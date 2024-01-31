@@ -1,0 +1,200 @@
+
+.social-button {
+background-position: 25px 0px;
+box-sizing: border-box;
+color: rgb(255, 255, 255);
+cursor: pointer;
+display: inline-block;
+height: 50px;
+line-height: 50px;
+text-align: left;
+text-decoration: none;
+text-transform: uppercase;
+vertical-align: middle;
+width: 100%;
+border-radius: 3px;
+margin: 10px auto;
+outline: rgb(255, 255, 255) none 0px;
+padding-left: 20%;
+transition: all 0.2s cubic-bezier(0.72, 0.01, 0.56, 1) 0s;
+-webkit-transition: all .3s ease;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease;
+}
+#google-connect {
+background: rgb(255, 255, 255) url('../img/social/google.jpg') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;
+border: 1px solid rgb(220, 74, 61);
+}
+
+#google-connect:hover {
+border-color: #dc4a3d;
+background: rgb(220, 74, 61) url('../img/social/google-icon.png') no-repeat scroll 5px 0px / 50px 50px padding-box border-box;
+-webkit-transition: all .8s ease-out;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease-out;
+}
+
+#google-connect:hover img {
+filter: grayscale(100%) brightness(1.5) invert(1);
+}
+#google-connect span {
+box-sizing: border-box;
+color: rgb(220, 74, 61);
+cursor: pointer;
+text-align: center;
+text-transform: uppercase;
+border: 0px none rgb(220, 74, 61);
+outline: rgb(255, 255, 255) none 0px;
+-webkit-transition: all .3s ease;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease;
+}
+
+#google-connect:hover span {
+color: #FFF;
+-webkit-transition: all .3s ease;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease;
+}
+
+#twitter-connect {
+background: rgb(255, 255, 255) url('../img/social/Apple-Logo.jpg') no-repeat scroll 5px 1px / 45px 45px padding-box border-box;
+border: 1px solid rgb(0, 0, 0);
+}
+
+#twitter-connect:hover {
+border-color: rgb(0, 0, 0);
+background: rgb(0, 0, 0) url('../img/social/Apple_logo_white.svg.png') no-repeat scroll 5px 1px / 45px 45px padding-box border-box;
+-webkit-transition: all .8s ease-out;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease-out;
+}
+
+#twitter-connect span {
+box-sizing: border-box;
+color: rgb(0, 0, 0);
+cursor: pointer;
+text-align: center; 
+text-transform: uppercase;
+border: 0px none rgb(220, 74, 61);
+outline: rgb(255, 255, 255) none 0px;
+-webkit-transition: all .3s ease;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease;
+}
+
+#twitter-connect:hover span {
+color: #FFF;
+-webkit-transition: all .3s ease;
+-moz-transition: all .3s ease;
+-ms-transition: all .3s ease;
+-o-transition: all .3s ease;
+transition: all .3s ease;
+}
+.login-with-google-btn {
+    transition: background-color .3s, box-shadow .3s;
+      
+    padding: 12px 16px 12px 30px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    
+    /* color: #757575; */
+    font-size: 14px;
+    font-weight: 500;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: 12px 11px;
+    
+    &:hover {
+      box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+    }
+    
+    &:active {
+      background-color: #eeeeee;
+    }
+    
+    &:focus {
+      outline: none;
+      box-shadow: 
+        0 -1px 0 rgba(0, 0, 0, .04),
+        0 2px 4px rgba(0, 0, 0, .25),
+        0 0 0 3px #c8dafc;
+    }
+    
+    &:disabled {
+      filter: grayscale(100%);
+      background-color: #ebebeb;
+      box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+      cursor: not-allowed;
+    }
+  }
+.login-with-apple-btn {
+    transition: background-color .3s, box-shadow .3s;
+      
+    padding: 12px 16px 12px 30px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    
+    color: black;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    /* background-image: url('../img/social/Apple-Logo.jpg'); */
+    
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMThweCIgaGVpZ2h0PSIxOHB4IiB2aWV3Qm94PSIwIDAgMTggMTgiIHZlcnNpb249IjEuMSI+CjxnIGlkPSJzdXJmYWNlMSI+CjxwYXRoIHN0eWxlPSIgc3Ryb2tlOm5vbmU7ZmlsbC1ydWxlOm5vbnplcm87ZmlsbDpyZ2IoMCUsMCUsMCUpO2ZpbGwtb3BhY2l0eToxOyIgZD0iTSAxMi40NjQ4NDQgMCBDIDEyLjUwNzgxMiAwIDEyLjU0Njg3NSAwIDEyLjU5Mzc1IDAgQyAxMi42OTUzMTIgMS4yNjk1MzEgMTIuMjEwOTM4IDIuMjE4NzUgMTEuNjIxMDk0IDIuOTA2MjUgQyAxMS4wNDI5NjkgMy41ODU5MzggMTAuMjUzOTA2IDQuMjUgOC45NzI2NTYgNC4xNDg0MzggQyA4Ljg4NjcxOSAyLjg5ODQzOCA5LjM3MTA5NCAyLjAxOTUzMSA5Ljk2MDkzOCAxLjMzMjAzMSBDIDEwLjUwNzgxMiAwLjY5NTMxMiAxMS41MDc4MTIgMC4xMjUgMTIuNDY0ODQ0IDAgWiBNIDEyLjQ2NDg0NCAwICIvPgo8cGF0aCBzdHlsZT0iIHN0cm9rZTpub25lO2ZpbGwtcnVsZTpub256ZXJvO2ZpbGw6cmdiKDAlLDAlLDAlKTtmaWxsLW9wYWNpdHk6MTsiIGQ9Ik0gMTYuMzM1OTM4IDEzLjIxMDkzOCBDIDE2LjMzNTkzOCAxMy4yMjY1NjIgMTYuMzM1OTM4IDEzLjIzNDM3NSAxNi4zMzU5MzggMTMuMjUgQyAxNS45NzY1NjIgMTQuMzM1OTM4IDE1LjQ2NDg0NCAxNS4yNjk1MzEgMTQuODM5ODQ0IDE2LjEzNjcxOSBDIDE0LjI2OTUzMSAxNi45MjE4NzUgMTMuNTY2NDA2IDE3Ljk4MDQ2OSAxMi4zMTY0MDYgMTcuOTgwNDY5IEMgMTEuMjM4MjgxIDE3Ljk4MDQ2OSAxMC41MTk1MzEgMTcuMjg1MTU2IDkuNDEwMTU2IDE3LjI2OTUzMSBDIDguMjM4MjgxIDE3LjI1IDcuNTk3NjU2IDE3Ljg0NzY1NiA2LjUyMzQzOCAxOCBDIDYuNDAyMzQ0IDE4IDYuMjgxMjUgMTggNi4xNjAxNTYgMTggQyA1LjM3NSAxNy44ODY3MTkgNC43MzgyODEgMTcuMjYxNzE5IDQuMjc3MzQ0IDE2LjcwMzEyNSBDIDIuOTE0MDYyIDE1LjA0Mjk2OSAxLjg1OTM3NSAxMi45MDIzNDQgMS42NjQwNjIgMTAuMTYwMTU2IEMgMS42NjQwNjIgOS44OTA2MjUgMS42NjQwNjIgOS42MjUgMS42NjQwNjIgOS4zNTU0NjkgQyAxLjc0NjA5NCA3LjM5NDUzMSAyLjY5OTIxOSA1Ljc5Njg3NSAzLjk2NDg0NCA1LjAyNzM0NCBDIDQuNjM2NzE5IDQuNjEzMjgxIDUuNTU0Njg4IDQuMjY1NjI1IDYuNTc4MTI1IDQuNDIxODc1IEMgNy4wMTU2MjUgNC40ODgyODEgNy40NjQ4NDQgNC42NDA2MjUgNy44NTkzNzUgNC43ODkwNjIgQyA4LjIzMDQ2OSA0LjkyOTY4OCA4LjY5NTMxMiA1LjE4MzU5NCA5LjEzNjcxOSA1LjE3MTg3NSBDIDkuNDMzNTk0IDUuMTY0MDYyIDkuNzMwNDY5IDUuMDA3ODEyIDEwLjAzNTE1NiA0Ljg5ODQzOCBDIDEwLjkxNDA2MiA0LjU3ODEyNSAxMS43ODEyNSA0LjIxMDkzOCAxMi45MjE4NzUgNC4zODI4MTIgQyAxNC4yODkwNjIgNC41ODk4NDQgMTUuMjYxNzE5IDUuMTk5MjE5IDE1Ljg2MzI4MSA2LjE0MDYyNSBDIDE0LjcwMzEyNSA2Ljg3NSAxMy43ODkwNjIgNy45ODgyODEgMTMuOTQ1MzEyIDkuODg2NzE5IEMgMTQuMDgyMDMxIDExLjYwOTM3NSAxNS4wODU5MzggMTIuNjE3MTg4IDE2LjMzNTkzOCAxMy4yMTA5MzggWiBNIDE2LjMzNTkzOCAxMy4yMTA5MzggIi8+CjwvZz4KPC9zdmc+Cg==");
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: 12px 11px;
+    
+    &:hover {
+      box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+    }
+    
+    &:active {
+      background-color: #eeeeee;
+    }
+    
+    &:focus {
+      outline: none;
+      box-shadow: 
+        0 -1px 0 rgba(0, 0, 0, .04),
+        0 2px 4px rgba(0, 0, 0, .25),
+        0 0 0 3px #c8dafc;
+    }
+    
+    &:disabled {
+      filter: grayscale(100%);
+      background-color: #ebebeb;
+      box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+      cursor: not-allowed;
+    }
+  }
+
+  
+  @media (max-width: 1220px) {
+    .full-width-button {
+        width: 100%;
+        display: block;
+        margin: 5px !important;
+    }
+}
+.footer-nav small{
+  font-size: 12px !important;
+}
