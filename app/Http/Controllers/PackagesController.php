@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category;
+use App\Models\Category;
 use App\Models\Package;
 use App\Models\PackageInclude;
 use App\Models\SubCategory;
