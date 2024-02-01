@@ -625,7 +625,8 @@ img {
 }
 
 .login-block {
-  background: #311501;
+  background: #000000;
+  /* background: #311501; */
   padding: 80px 0 40px;
 }
 

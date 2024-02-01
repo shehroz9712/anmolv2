@@ -16,7 +16,7 @@ class PackagesController extends Controller
     public function index()
     {
         $packages = Package::with('category', 'include')->get();
-        return view('admin.packages.index', compact('packages'));
+        return view('Admin.packages.index', compact('packages'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PackagesController extends Controller
     {
         $categories = category::where(['type' => 1, 'status' => 1])->get();
         $subcategories = SubCategory::where(['status' => 1])->get();
-        return view('admin.packages.create', compact('categories', 'subcategories'));
+        return view('Admin.packages.create', compact('categories', 'subcategories'));
     }
 
     /**
@@ -71,7 +71,7 @@ class PackagesController extends Controller
         $subcategories = SubCategory::where(['status' => 1])->get();
         $packageincludes  = PackageInclude::with('sharable')->where(['package_id' => $id])->get();
         $package = Package::find($id);
-        return view('admin.packages.view', compact('package', 'packageincludes', 'categories', 'subcategories'));
+        return view('Admin.packages.view', compact('package', 'packageincludes', 'categories', 'subcategories'));
     }
 
 
@@ -84,7 +84,7 @@ class PackagesController extends Controller
         $subcategories = SubCategory::where(['status' => 1])->get();
         $packageincludes  = PackageInclude::where(['package_id' => $id])->get();
         $package = Package::find($id);
-        return view('admin.packages.edit', compact('package', 'packageincludes', 'categories', 'subcategories'));
+        return view('Admin.packages.edit', compact('package', 'packageincludes', 'categories', 'subcategories'));
     }
 
     /**
