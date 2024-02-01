@@ -24,7 +24,7 @@ class PackagesController extends Controller
      */
     public function create()
     {
-        $categories = category::where(['type' => 1, 'status' => 1])->get();
+        $categories = Category::where(['type' => 1, 'status' => 1])->get();
         $subcategories = SubCategory::where(['status' => 1])->get();
         return view('Admin.packages.create', compact('categories', 'subcategories'));
     }
