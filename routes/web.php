@@ -80,6 +80,8 @@ Route::middleware('auth')->group(function () {
 
     //menu
     Route::get('/menu', [menu::class, 'index'])->name('menu.index');
+    Route::get('/menu/addon', [menu::class, 'addon'])->name('menu.addon');
+    Route::get('/menu/detail/{id}', [menu::class, 'detail'])->name('menu.detail');
     //Events
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events-create', [EventController::class, 'create'])->name('events.create');
@@ -151,6 +153,9 @@ Route::middleware(['auth', 'admin.auth'])->group(function () {
 
 
     Route::resource('packages', PackagesController::class);
+    Route::resource('dishes', PackagesController::class);
+    Route::resource('categories', PackagesController::class);
+    Route::resource('subcategories', PackagesController::class);
 });
 
 Route::prefix('admin')->group(function () {

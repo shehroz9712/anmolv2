@@ -34,15 +34,37 @@
                                 <span class="sidemenu-label">Types</span>
                             </a>
                         </li>
-                    @endif
 
-                    @if (Auth::user()->Role == 'Admin')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('packages.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
                                 <span class="sidemenu-label">Packges</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('categories.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Categories</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('subcategories.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Sub Categories</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('dishes.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Dishes</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -59,6 +81,14 @@
                                 <span class="shape2"></span>
                                 <i class="fe fe-globe sidemenu-icon menu-icon "></i>
                                 <span class="sidemenu-label">Venue</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin-venues.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-globe sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Admin Venue</span>
                             </a>
                         </li>
                     @else
@@ -78,70 +108,59 @@
                                 <span class="sidemenu-label">Venue</span>
                             </a>
                         </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('menu.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-menu sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Menu</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="si si-earphones-alt sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Service Style</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fa fa-toolbox sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Equipments</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="si si-people sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Labour & Staff</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="si si-notebook sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Contract</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="si si-calculator sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Invoice</span>
+                            </a>
+                        </li>
                     @endif
-                    {{-- @if (Auth::user()->Role == 'Admin')
-                    <li class="nav-item">
-                        <a class="nav-link" 
-                        href="{{route('admin-venues.index')}}"
-                        >
-                            <span class="shape1"></span>
-                            <span class="shape2"></span>
-                            <i class="fe fe-globe sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Admin Venue</span>
-                        </a>
-                    </li>
-                    @endif --}}
 
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('menu.index') }}">
-                            <span class="shape1"></span>
-                            <span class="shape2"></span>
-                            <i class="fe fe-menu sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Menu</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="shape1"></span>
-                            <span class="shape2"></span>
-                            <i class="si si-earphones-alt sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Service Style</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="shape1"></span>
-                            <span class="shape2"></span>
-                            <i class="fa fa-toolbox sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Equipments</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="shape1"></span>
-                            <span class="shape2"></span>
-                            <i class="si si-people sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Labour & Staff</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="shape1"></span>
-                            <span class="shape2"></span>
-                            <i class="si si-notebook sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Contract</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span class="shape1"></span>
-                            <span class="shape2"></span>
-                            <i class="si si-calculator sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Invoice</span>
-                        </a>
-                    </li>
                 </ul>
                 <div class="slide-right" id="slide-right"><i class="fe fe-chevron-right"></i></div>
             </div>

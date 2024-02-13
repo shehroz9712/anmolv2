@@ -10,10 +10,10 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Menu - Pre Packages </h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Menu </h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Menu - Pre Packages</li>
+                        <li class="breadcrumb-item active" aria-current="page">Menu</li>
                     </ol>
                 </div>
 
@@ -49,7 +49,7 @@
                                                             <li>{{ $include->qty }} - {{ $include->sharable->name }}</li>
                                                         @endforeach
 
-                                                        <li><a href="#"><button
+                                                        <li><a href="{{ route('menu.detail', encrypt($item->id)) }}"><button
                                                                     class="btn ripple btn-outline-primary col-md-12"
                                                                     style="padding: 5px; ">Select Food Items</button></a>
                                                         </li>
