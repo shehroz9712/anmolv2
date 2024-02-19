@@ -75,17 +75,14 @@
                                                                                     id="exampleModalLabel">
                                                                                     {{ $dishes->name }}</h5>
                                                                                 <button type="button" class="btn-close"
-                                                                                    data-bs-dismiss="modal"
-                                                                                    aria-label="Close"></button>
+                                                                                    data-bs-dismiss="modal"style="margin: -10px 0 0px 0px;"
+                                                                                    aria-label="Close"><i
+                                                                                        class="fa fa-close fs-5"></i></button>
                                                                             </div>
                                                                             <div class="modal-body">
                                                                                 <p>{!! $dishes->long_desc !!}</p>
                                                                             </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button"
-                                                                                    class="btn btn-secondary"
-                                                                                    data-bs-dismiss="modal">Close</button>
-                                                                            </div>
+                                                                            
                                                                         </div>
                                                                     </div>
                                                                 </div>

@@ -63,14 +63,14 @@
                                                     <button type="submit" class="btn btn-main-primary px-3">Edit</button>
                                                 </form>
 
-                                                <form action="{{ route('events.destroy', $event->id) }}" method="POST"
+                                                {{-- <form action="{{ route('events.destroy', $event->id) }}" method="POST"
                                                     style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger px-3"
                                                         onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
                                                 </form>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>

@@ -145,7 +145,6 @@
                                                     style="line-height: 36px;"></i>
                                             </span>
                                         </div>
-                                        <small id="startTimeError" class="text-danger"></small>
                                     </div>
 
                                     <div class="form-group">
@@ -161,16 +160,10 @@
                                                     style="line-height: 36px;"></i>
                                             </span>
                                         </div>
-                                        <small id="endTimeError" class="text-danger"></small>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="type">Event Type <button class="btn ripple btn-primary btn-sm"
-                                                data-bs-container="body"
-                                                data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-                                                data-bs-placement="top" data-bs-popover-color="default"
-                                                data-bs-toggle="popover" title="Popover top" type="button">
-                                                <i class="fa fa-info"></i></button></label>
+                                        <label for="type">Event Type</label>
                                         <select class="form-control" required id="type" name="type"
                                             onchange="handleEventTypeChange()">
                                             <option label="Select Event Type"></option>
@@ -298,6 +291,7 @@
             });
         }
     </script>
+
     <script>
         var currentDate = new Date();
         var oneWeekPrior = new Date(currentDate);
@@ -444,44 +438,6 @@
             toggleOtherTypeInput();
 
         })
-
-        function toggleOtherOccasionInput() {
-            const occasionDropdown = document.getElementById('occasion');
-            const otherOccasionInput = document.getElementById('otherOccasionInput');
-
-            if (occasionDropdown.value === 'Other') {
-                otherOccasionInput.style.display = 'block';
-                otherOccasionInput.setAttribute('required', 'required');
-            } else {
-                otherOccasionInput.style.display = 'none';
-                otherOccasionInput.removeAttribute('required');
-            }
-        }
-
-        document.getElementById('type').addEventListener('change', function() {
-            var otherTypeField = document.getElementById('otherTypeField');
-            if (this.value === 'Other') {
-                otherTypeField.style.display = 'block';
-                otherTypeField.setAttribute('required', 'required');
-            } else {
-                otherTypeField.style.display = 'none';
-                otherTypeField.removeAttribute('required');
-            }
-        });
-
-        function toggleOtherTypeInput() {
-            const typeDropdown = document.getElementById('type');
-            const otherTypeField = document.getElementById('otherTypeField');
-
-
-            if (typeDropdown.value === 'Other' || typeDropdown.value == '') {
-                otherTypeField.style.display = 'block';
-            } else {
-                otherTypeField.style.display = 'none';
-            }
-        }
-        toggleOtherTypeInput();
-        // toggleOtherOccasionInput();
     </script>
     <script>
         var firstOpen = true;
@@ -547,82 +503,6 @@
             return true;
 
         }
-
-
-        function validateForm() {
-            // Reset error messages
-            document.getElementById('nameError').textContent = '';
-            document.getElementById('guestsError').textContent = '';
-            document.getElementById('dateError').textContent = '';
-            document.getElementById('startTimeError').textContent = '';
-            document.getElementById('endTimeError').textContent = '';
-            document.getElementById('typeError').textContent = '';
-            document.getElementById('otherTypeError').textContent = '';
-            // document.getElementById('occasionError').textContent = '';
-            // document.getElementById('otherOccasionError').textContent = '';
-
-            // Retrieve form field values
-            const name = document.getElementById('name').value;
-            const guests = document.getElementById('guests').value;
-            const startTime = document.getElementById('start_time').value;
-            const endTime = document.getElementById('end_time').value;
-            const type = document.getElementById('type').value;
-            const otherType = document.getElementById('otherType').value;
-            // const occasion = document.getElementById('occasion').value;
-            // const otherOccasion = document.getElementById('otherOccasion').value;
-
-
-            let isValid = true;
-
-            // Perform validation checks
-            if (name.trim() === '' || /^\s+$/.test(name)) {
-                document.getElementById('nameError').textContent = 'Name is required';
-                isValid = false;
-            }
-
-            const specialChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-            if (specialChars.test(name)) {
-                document.getElementById('nameError').textContent = 'Cannot contain special characters';
-                isValid = false;
-            }
-
-            if (guests <= 0) {
-                document.getElementById('guestsError').textContent = 'Number of Guests must be a positive number';
-                isValid = false;
-            }
-
-            // Perform validation checks for Other Event Type
-            if (type === 'Other' && (otherType.trim() === '' || /^\s+$/.test(otherType) ||
-                    /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(otherType))) {
-                document.getElementById('otherTypeError').textContent =
-                    'Other Event Type is required and cannot contain special characters';
-                isValid = false;
-            }
-
-            // Perform validation checks for Other Event Occasion
-            // if (occasion === 'Other' && (otherOccasion.trim() === '' || /^\s+$/.test(otherOccasion) || /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(otherOccasion))) {
-            //     document.getElementById('otherOccasionError').textContent = 'Other Event Occasion is required and cannot contain special characters';
-            //     isValid = false;
-            // }
-            // validDate = validateDate()
-            validTime = validateTime()
-            if (validDate === true && validTime === true) {
-                isValid = true
-            } else if (!validTime) {
-                isValid = false
-            }
-
-            return isValid;
-        }
-
-        function validateAndSubmit(event, valid) {
-            if (valid) {
-                $('form').submit(); // Submit the form if validation passes
-            } else {
-                event.preventDefault(); // Prevent the default form submission
-            }
-        }
-        'use strict';
     </script>
     <script src="../assets/js/popover.js"></script>
 @endsection

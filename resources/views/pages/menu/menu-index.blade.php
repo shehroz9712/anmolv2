@@ -14,8 +14,7 @@
                     </ol>
                 </div>
                 <a href="{{ route('custom.menu') }}"><button class="btn ripple btn-primary col-md-12"
-                        style="padding: 5px; ">Select
-                        Item </button></a>
+                        style="padding: 5px; ">Create your own Food Menu</button></a>
 
             </div>
             <div class="row">
