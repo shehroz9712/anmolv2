@@ -77,7 +77,8 @@
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">Welcome to Eat Anmol</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Events</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Create Events</li>
             </ol>
         </div>
@@ -203,21 +204,12 @@
 
 
                                     <div class="form-group" style="display: none;" id="AddressDetails">
-                                        <label for="City" id="CityLabel">City</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" disabled
-                                            class="form-control" id="City" type="text">
+                                        <label for="city">City, State, ZipCode</label>
+                                        <input data-toggle="tooltip" data-placement="bottom"
+                                            placeholder="City, State, 123" title="City" class="form-control"
+                                            id="city" name="city" type="text"readonly required>
+                                        <small class="error-message" id="city_error"></small>
 
-                                        <label for="State" id="StateLabel">State</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" disabled
-                                            class="form-control" id="State" type="text">
-
-                                        <label for="ZipCode" id="ZipCodeLabel">Zip Code</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" disabled
-                                            class="form-control" id="ZipCode" type="text">
-
-                                        <label for="Country" id="CountryLabel">Country</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" disabled
-                                            class="form-control" id="Country" type="text">
 
                                     </div>
 
@@ -286,53 +278,23 @@
                 document.getElementById('AddressDetails').style.display = 'block';
 
                 // Display address components
-                console.log("Place :", place);
-                console.log("Place Name:", place.name);
-                console.log("Place Address:", place.formatted_address);
 
                 // Display city, state, country, and zip code
-                place.address_components.forEach(function(component) {
-                    console.log("Street Address:", component.long_name);
 
+                var cityzip = ''; // Declare the variable
+
+                place.address_components.forEach(function(component) {
                     if (component.types.includes('locality')) {
-                        console.log("City:", component.long_name);
-                        // Show the field
-                        document.getElementById('City').style.display = 'block';
-                        document.getElementById('CityLabel').style.display = 'block';
-                        // Assign city value
-                        document.getElementById('City').value = component.long_name;
+                        cityzip += component.long_name + ', '; // Concatenate locality
                     } else if (component.types.includes('administrative_area_level_1')) {
-                        console.log("State:", component.short_name);
-                        // Show the field
-                        document.getElementById('State').style.display = 'block';
-                        document.getElementById('StateLabel').style.display = 'block';
-                        // Assign state value
-                        document.getElementById('State').value = component.long_name;
-                    } else if (component.types.includes('country')) {
-                        console.log("Country:", component.long_name);
-                        // Show the field
-                        document.getElementById('Country').style.display = 'block';
-                        document.getElementById('CountryLabel').style.display = 'block';
-                        // Assign country value
-                        document.getElementById('Country').value = component.long_name;
+                        cityzip += component.long_name + ', '; // Concatenate administrative_area_level_1
                     } else if (component.types.includes('postal_code')) {
-                        console.log("Zip Code:", component.long_name);
-                        // Show the field
-                        document.getElementById('ZipCode').style.display = 'block';
-                        document.getElementById('ZipCodeLabel').style.display = 'block';
-                        document.getElementById('ZipCode').value = component.long_name;
-                    } else {
-                        // Hide all fields if none of the conditions are met
-                        document.getElementById('City').style.display = 'none';
-                        document.getElementById('CityLabel').style.display = 'none';
-                        document.getElementById('State').style.display = 'none';
-                        document.getElementById('StateLabel').style.display = 'none';
-                        document.getElementById('Country').style.display = 'none';
-                        document.getElementById('CountryLabel').style.display = 'none';
-                        document.getElementById('ZipCode').style.display = 'none';
-                        document.getElementById('ZipCodeLabel').style.display = 'none';
+                        cityzip += component.long_name; // Concatenate postal_code
                     }
                 });
+
+                document.getElementById('city').value = cityzip;
+
             });
         }
     </script>

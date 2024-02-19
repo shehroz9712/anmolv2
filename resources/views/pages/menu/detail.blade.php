@@ -20,7 +20,7 @@
                     <h2 class="main-content-title tx-24 mg-b-5">Menu - Packages (${{ $package->price }})</h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="#">Home</a>
+                            <a href="{{ route('index') }}">Home</a>
                         </li>
                         <li class="breadcrumb-item">
                             <a href="#">Menu</a>
@@ -28,6 +28,8 @@
                         <li class="breadcrumb-item active" aria-current="page">${{ $package->price }} Per Guest</li>
                     </ol>
                 </div>
+                <a href="{{ route('menu.index') }}"><button class="btn ripple btn-primary col-md-12"
+                        style="padding: 5px; ">back to menu </button></a>
             </div>
             <!-- End Page Header -->
             <!-- row -->
@@ -167,25 +169,33 @@
                             <h5 class="mb-3 font-weight-bold tx-14">Selected Menu</h5>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table border table-hover text-nowrap table-shopping-cart mb-0"
-                                    id="selected-dishes">
-                                    <thead class="text-muted">
-                                        <tr class="small text-uppercase">
-                                            <th scope="col">Items</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                            <form action="{{ route('menu.submit') }}" method="post">
+                                @csrf
+
+                                <input type="hidden" name="url" value="package">
+
+                                <input type="hidden" name="package" value="{{ Request::segments()[2] }}">
+
+                                <div class="table-responsive">
+                                    <table class="table border table-hover text-nowrap table-shopping-cart mb-0"
+                                        id="selected-dishes">
+                                        <thead class="text-muted">
+                                            <tr class="small text-uppercase">
+                                                <th scope="col">Items</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
 
 
-                                    </tbody>
+                                        </tbody>
 
-                                </table>
-                                <a class="btn ripple btn-outline-primary" href="{{ route('menu.addon') }}"
-                                    style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true;">Save &
-                                    Continue</a>
-                            </div>
+                                    </table>
+                                    <button class="btn ripple btn-outline-primary"
+                                        style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true;">Save &
+                                        Continue</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

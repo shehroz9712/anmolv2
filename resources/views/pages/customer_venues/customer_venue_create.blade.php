@@ -41,7 +41,9 @@
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5">Venue Add</h2>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Venue</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
+
+                    <li class="breadcrumb-item"><a href="{{ route('customer-venues.index') }}">Venue</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Add Venue</li>
                 </ol>
             </div>
@@ -177,12 +179,11 @@
 
 
                 var cityzip = ''; // Declare the variable
-
                 place.address_components.forEach(function(component) {
                     if (component.types.includes('locality')) {
-                        cityzip += component.long_name + ' '; // Concatenate locality
+                        cityzip += component.long_name + ', '; // Concatenate locality
                     } else if (component.types.includes('administrative_area_level_1')) {
-                        cityzip += component.long_name + ' '; // Concatenate administrative_area_level_1
+                        cityzip += component.long_name + ', '; // Concatenate administrative_area_level_1
                     } else if (component.types.includes('postal_code')) {
                         cityzip += component.long_name; // Concatenate postal_code
                     }
@@ -194,7 +195,7 @@
     </script>
 
 
-
+    
 
 
 

@@ -18,12 +18,11 @@ class EventController extends Controller
     public function index()
     {
 
-        if (Auth::user()->Role=="Admin") {
-            
-            $events = Event::All();
-        }else{
-            $events = Event::where('createdby', Auth::id())->get();
+        if (Auth::user()->Role == "Admin") {
 
+            $events = Event::All();
+        } else {
+            $events = Event::where('createdby', Auth::id())->get();
         }
         return view('pages.events.events_index', compact('events'));
     }
@@ -44,68 +43,74 @@ class EventController extends Controller
             'type' => 'string'
         ]);
         // dd($data);
-    
+
         if ($request['type'] == 'Other') {
             // If the type is "Other," use the value from the "Other Type" field
             $request['type'] = $request->input('otherType');
         }
-    
+
         // Convert the 'date' field to 'YYYY-MM-DD' format
         $date = Carbon::parse($data['date'])->format('Y-m-d');
         $request['date'] = $date;
         $request['occasion'] = '';
-    
+
         // Assign the currently authenticated user as the creator of the event
         $request['createdby'] = Auth::user()->id;
-    
+
         // Create a new Event instance
         $event = Event::create($request->all());
-    
+
         // Get the ID of the created event
         $eventId = $event->id;
-    
+
         // Save the event
         $event->save();
         // dd($event);
         $journey = new Journey([
             'eventid' => $eventId,
-            'venueid' => null, 
+            'venueid' => null,
             'created_by' => Auth::user()->id,
         ]);
         $journey->save();
-        if($event->type =='Pick up' || $event->type =='Drop-off'){
-            return redirect()->route('ContractIndex')
-            ->with('message', 'Event created successfully.');
-        }else
-        // Redirect to the venue creation page with the event ID
-        return redirect()->route('customer-venues.createWithId')
-    ->with([
-        'message' => 'Event created successfully.',
-        'eventId' => $eventId, // Flash the event ID
-    ]);
+        if ($event->type == 'Pick up' || $event->type == 'Drop-off') {
+            return redirect()->route('menu.index')
+                ->with('message', 'Event created successfully.');
+        } else
+            // Redirect to the venue creation page with the event ID
+            return redirect()->route('customer-venues.createWithId')
+                ->with([
+                    'message' => 'Event created successfully.',
+                    'eventId' => $eventId, // Flash the event ID
+                ]);
 
-       
+
         // return redirect()->route('ContractIndex')
         //      ->with('message', 'Event created successfully.');
     }
 
-    
+
     public function continueJourney(Request $request)
     {
-        $journey = Journey::where('eventid','=',$request->eventId
+        $journey = Journey::where(
+            'eventid',
+            '=',
+            $request->eventId
         )->firstOrFail();
-        $event = Event::where('id','=',$request->eventId
+        $event = Event::where(
+            'id',
+            '=',
+            $request->eventId
         )->firstOrFail();
         // dd($event);
-        if($event->type == 'Pick up' || $event->type == 'Drop-off'){
+        if ($event->type == 'Pick up' || $event->type == 'Drop-off') {
 
             return redirect()->route('ContractIndex');
         }
-        if(!$journey->venue){
+        if (!$journey->venue) {
             Session::put('eventId', $request->eventId);
 
-    return redirect()->route('customer-venues.createWithId');
-        }else{
+            return redirect()->route('customer-venues.createWithId');
+        } else {
             return redirect()->route('menu.index');
         }
     }
@@ -119,10 +124,10 @@ class EventController extends Controller
     {
         // Decrypt the encrypted ID
         // $decryptedId = Crypt::decryptString($encryptedId);
-        $eventId =$request->eventId;
+        $eventId = $request->eventId;
         // Retrieve the event by ID
         $event = Event::findOrFail($eventId);
-  
+
         $occasions = Occasion::all();
         $types = Type::all();
 
@@ -148,18 +153,18 @@ class EventController extends Controller
         if ($data['type'] == 'Other') {
             $data['type'] = $request->input('otherType');
         }
-    
+
         // if ($data['occasion'] === 'Other') {
         //     $data['occasion'] = $request->input('otherOccasion');
         // }
         $date = Carbon::parse($data['date'])->format('Y-m-d');
         $data['date'] = $date;
-    
+
         $event->update($data);
-        
+
         return redirect()->route('events.index')->with('message', 'Event updated successfully.');
     }
-    
+
 
     public function destroy(Event $event)
     {

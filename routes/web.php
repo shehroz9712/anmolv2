@@ -3,7 +3,9 @@
 use App\Http\Controllers\admin;
 use App\Http\Controllers\AdminVenueController;
 use App\Http\Controllers\AppleAuthController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerVenueController;
+use App\Http\Controllers\DishesController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GuestController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\OccasionController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\PasswordChangeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\VanueCustomerController;
@@ -79,6 +82,9 @@ Route::middleware('auth')->group(function () {
 
 
     //menu
+    Route::get('/menu/items', [menu::class, 'items'])->name('custom.menu');
+    Route::post('/menu/submit', [menu::class, 'submit'])->name('menu.submit');
+
     Route::get('/menu', [menu::class, 'index'])->name('menu.index');
     Route::get('/menu/addon', [menu::class, 'addon'])->name('menu.addon');
     Route::get('/menu/detail/{id}', [menu::class, 'detail'])->name('menu.detail');
@@ -86,9 +92,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events-create', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
-    // Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
-    // Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
-    // In your routes/web.php file
+
 
     Route::post('/events/edit', [EventController::class, 'edit'])->name('events.edit');
 
@@ -96,7 +100,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 
-    //customervenue
+    //customer venue
 
     Route::get('/customer-venues', [CustomerVenueController::class, 'index'])->name('customer-venues.index');
     Route::get('/customer-venues-create', [CustomerVenueController::class, 'create'])->name('customer-venues.create');
@@ -153,9 +157,9 @@ Route::middleware(['auth', 'admin.auth'])->group(function () {
 
 
     Route::resource('packages', PackagesController::class);
-    Route::resource('dishes', PackagesController::class);
-    Route::resource('categories', PackagesController::class);
-    Route::resource('subcategories', PackagesController::class);
+    Route::resource('items', DishesController::class)->names('dishes');
+    Route::resource('categories', CategoriesController::class);
+    Route::resource('subcategories', SubCategoriesController::class);
 });
 
 Route::prefix('admin')->group(function () {

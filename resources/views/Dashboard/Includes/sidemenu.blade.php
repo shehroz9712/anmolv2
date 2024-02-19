@@ -2,7 +2,7 @@
     <div class="main-menu main-sidebar main-sidebar-sticky side-menu">
         <div class="main-sidebar-header main-container-1 active ">
             <div class="bg-white border sidemenu-logo">
-                <a class="main-logo d-flex justify-content-center align-items-center" href="/home">
+                <a class="main-logo d-flex justify-content-center align-items-center" href="{{ route('index') }}">
 
                     <img src="{{ asset('assets/img/brand/logo.png') }}" height="40px"
                         class="header-brand-img desktop-logo" alt="logo">
@@ -18,7 +18,7 @@
                 <ul class="menu-nav nav">
                     <li class="nav-header"><span class="nav-label">Menu</span></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/home">
+                        <a class="nav-link" href="{{ route('index') }}">
                             <span class="shape1"></span>
                             <span class="shape2"></span>
                             <i class="ti-home sidemenu-icon menu-icon "></i>
@@ -26,14 +26,14 @@
                         </a>
                     </li>
                     @if (Auth::user()->Role == 'Admin')
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('types.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-menu sidemenu-icon menu-icon "></i>
                                 <span class="sidemenu-label">Types</span>
                             </a>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('packages.index') }}">
@@ -64,7 +64,7 @@
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
-                                <span class="sidemenu-label">Dishes</span>
+                                <span class="sidemenu-label">Items</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -144,7 +144,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('ContractIndex') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="si si-notebook sidemenu-icon menu-icon "></i>

@@ -18,4 +18,9 @@ class SubCategory extends Model
     {
         return $this->morphOne(PackageInclude::class, 'sharable');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }

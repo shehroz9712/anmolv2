@@ -28,7 +28,7 @@
         <div class="main-header-left">
             <a class="main-header-menu-icon" href="javascript:void(0)" id="mainSidebarToggle"><span></span></a>
             <div class="hor-logo">
-                <a class="main-logo" href="/home">
+                <a class="main-logo" href="{{ route('index') }}">
                     <img src="../assets/img/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
                     <img src="../assets/img/brand/logo-light.png" class="header-brand-img desktop-logo-dark"
                         alt="logo">
@@ -37,8 +37,8 @@
         </div>
         <div class="main-header-center">
             <div class="responsive-logo">
-                <a href="/home"><img src="../assets/img/brand/logo.png" height="50px" class="mobile-logo" alt="logo"></a>
-                <a href="/home"><img src="../assets/img/brand/logo-light.png" height="50px" class="mobile-logo-dark"
+                <a href="{{ route('index') }}"><img src="../assets/img/brand/logo.png" height="50px" class="mobile-logo" alt="logo"></a>
+                <a href="{{ route('index') }}"><img src="../assets/img/brand/logo-light.png" height="50px" class="mobile-logo-dark"
                         alt="logo"></a>
             </div>
             

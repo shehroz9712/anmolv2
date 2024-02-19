@@ -106,4 +106,7 @@
     border: 0px !important;
     box-shadow: 0px 0px 2px #07040078 !important
 }
+.btn{
+    text-transform: capitalize;
+}
 </style>

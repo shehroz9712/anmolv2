@@ -1,28 +1,23 @@
 @extends('Dashboard.Master.master_layout')
-
 @section('title')
     EatAnmol - Menu
 @endsection
 @section('content')
     <div class="main-container container-fluid">
         <div class="inner-body">
-
-            <!-- Page Header -->
             <div class="page-header">
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Menu </h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Menu</li>
                     </ol>
                 </div>
+                <a href="{{ route('custom.menu') }}"><button class="btn ripple btn-primary col-md-12"
+                        style="padding: 5px; ">Select
+                        Item </button></a>
 
             </div>
-            <!-- End Page Header -->
-
-
-
-            <!-- row -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-card mg-b-20">
@@ -56,21 +51,14 @@
                                                     </ul>
                                                 </li>
                                             @endforeach
-
                                         </ul>
                                     </div>
-                                    <!-- /col -->
                                 @endforeach
-
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-            <!-- /row -->
-
         </div>
     </div>
 @endsection

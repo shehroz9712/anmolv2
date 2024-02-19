@@ -14,19 +14,15 @@
 @section('content')
     <div class="main-container container-fluid">
         <div class="inner-body">
-            <!-- Page Header -->
             <div class="page-header">
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Menu </h2>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Menu</li>
                     </ol>
                 </div>
-
             </div>
-            <!-- End Page Header -->
-            <!-- row -->
             <div class="row">
                 <div class="col-md-6">
                     <div class="card custom-card mg-b-20">
@@ -114,29 +110,36 @@
                             <h5 class="mb-3 font-weight-bold tx-14">Selected Menu</h5>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table border table-hover text-nowrap table-shopping-cart mb-0"
-                                    id="selected-dishes">
-                                    <thead class="text-muted">
-                                        <tr class="small text-uppercase">
-                                            <th scope="col">Items</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                            <form action="{{ route('menu.submit') }}" method="post">
+                                @csrf
+
+
+                                <input type="hidden" name="url" value="{{ Request::segments()[1] }}">
+                                <div class="table-responsive">
+                                    <table class="table border table-hover text-nowrap table-shopping-cart mb-0"
+                                        id="selected-dishes">
+                                        <thead class="text-muted">
+                                            <tr class="small text-uppercase">
+                                                <th scope="col">Items</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
 
 
-                                    </tbody>
+                                        </tbody>
 
-                                </table>
-                                <button class="btn ripple btn-outline-primary" id="save-button"
-                                    style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true; display:none">Save
-                                    &
-                                    Continue</button>
-                                <button class="btn ripple btn-outline-primary" id="skip-button"
-                                    style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true;">Skip &
-                                    Continue</button>
-                            </div>
+                                    </table>
+                                    <button class="btn ripple btn-outline-primary" id="save-button"
+                                        style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true; display:none">Save
+                                        &
+                                        Continue</button>
+                                    <button class="btn ripple btn-outline-primary" id="skip-button"
+                                        style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true;">Skip &
+                                        Continue</button>
+
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

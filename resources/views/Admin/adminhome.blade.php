@@ -20,66 +20,7 @@
       <div class="row row-sm">
         <div class="col-sm-12 col-lg-12 col-xl-8">
           <!--Row-->
-          <div class="row row-sm">
-            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-              <div class="card custom-card">
-                <div class="card-body">
-                  <div class="card-item">
-                    <div class="card-item-title mb-2">
-                      <label class="main-content-label tx-13 font-weight-bold mb-1">{{$upcomingEvent->name}} </label>
-                      <span class="d-block tx-12 mb-0 text-muted">{{$upcomingEvent->occasion}}</span>
-                    </div>
-                    <div class="card-item-body">
-                      <div class="card-item-stat">
-                        <h4 class="font-weight-bold">{{ \Carbon\Carbon::parse($upcomingEvent->date)->format('m/d/Y') }}</h4>
-                        <small>
-                          <b class="text-success">{{$upcomingEvent->start_time}} to  {{$upcomingEvent->end_time}}</b>
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-              <div class="card custom-card">
-                <div class="card-body">
-                  <div class="card-item">
-                    <div class="card-item-title mb-2">
-                      <label class="main-content-label tx-13 font-weight-bold mb-1">Venue Name</label>
-                      <span class="d-block tx-12 mb-0 text-muted">[Most recent event as per calender of this user]</span>
-                    </div>
-                    <div class="card-item-food">
-                      <div class="card-item-stat">
-                        <h6 class="font-weight-bold">Address</h6>
-                        <h6 class="font-weight-bold">City, State, Zip code </h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-4">
-              <div class="card custom-card">
-                <div class="card-body">
-                  <div class="card-item">
-                    <div class="card-item-title  mb-2">
-                      <label class="main-content-label tx-13 font-weight-bold mb-1">No Of Guest : {{$upcomingEvent->guests}}</label>
-                      <span class="d-block tx-12 mb-0 text-muted">Items: 12 {No of Selected Items}</span>
-                    </div>
-                    <div class="card-item-body">
-                      <div class="card-item-stat">
-                        <h4 class="font-weight-bold">$8,500 <small>{Invoice Amount}</small>
-                        </h4>
-                        <small>Remaining Amount: <b class="text-danger">$2,890</b>
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+         
           <!--End row-->
           <!--row-->
           <div class="row row-sm">
