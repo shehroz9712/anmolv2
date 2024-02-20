@@ -43,17 +43,25 @@
                                     <h3>${{ $package->price }}</h3>
                                     <p>Package Overview or Deatils</p>
                                     <ul id="treeview1">
+
+                                        @php
+                                            $count = 0;
+                                        @endphp
+
                                         @foreach ($package->include as $include)
+                                            @php
+                                                $count += $include->qty;
+                                            @endphp
                                             <li>
                                                 <a href="#">{{ $include->qty }} - {{ $include->sharable->name }}</a>
                                                 <ul>
                                                     @if ($include->subcategory == null)
                                                         <li>
-                                                            <div class="form-group mg-b-20">
+                                                            <div class="form-group mg-b-20 include-remaining">
                                                                 <div class="align-items-center row">
                                                                     <div class="col-md-10">
                                                                         <label class="ckbox">
-                                                                            <input type="checkbox" class="dish-checkbox"
+                                                                            <input type="checkbox" class="dish-checkbox "
                                                                                 data-max="{{ $include->qty }}"
                                                                                 data-category="{{ $include->sharable->name }}">
                                                                             <span
@@ -90,7 +98,6 @@
                                                                         <div class="modal-body">
                                                                             <p>{!! $include->sharable->long_desc !!}</p>
                                                                         </div>
-
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -133,21 +140,20 @@
                                                                                     id="exampleModalLabel">
                                                                                     {{ $dishes->name }}</h5>
                                                                                 <button type="button" class="btn-close"
-                                                                                    data-bs-dismiss="modal"style="margin: -10px 0 0px 0px;"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    style="margin: -10px 0 0px 0px;"
                                                                                     aria-label="Close"><i
                                                                                         class="fa fa-close fs-5"></i></button>
                                                                             </div>
                                                                             <div class="modal-body">
                                                                                 <p>{!! $dishes->long_desc !!}</p>
                                                                             </div>
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                         @endforeach
                                                     @endif
-
                                                 </ul>
                                             </li>
                                         @endforeach
@@ -187,7 +193,11 @@
                                         </tbody>
 
                                     </table>
-                                    <button class="btn ripple btn-outline-primary"
+
+                                    <div id="dishes_no" class="my-2"x data-all="{{ $count }}">You have to
+                                        select {{ $count }} dishes and remain {{ $count }} dishes</div>
+                                    <button class="btn btn-outline-primary float-end ripple" id="saveButton"
+                                        style="display: none"
                                         style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true;">Save &
                                         Continue</button>
                                 </div>
@@ -216,6 +226,10 @@
                             return checkbox.getAttribute('data-category') === category;
                         });
 
+
+
+
+
                     if (selectedCheckboxesForCategory.length > parseInt(checkbox.getAttribute(
                             'data-max'))) {
                         checkbox.checked = false;
@@ -230,21 +244,24 @@
     </script>
 
     <script>
-        function limitWords(text, limit) {
-            var words = text.split(' ');
-            if (words.length > limit) {
-                return words.slice(0, limit).join(' ') + '...';
-            }
-            return text;
-        }
         document.addEventListener('DOMContentLoaded', function() {
             var checkboxes = document.querySelectorAll('.dish-checkbox');
-            var tableContainer = document.querySelector(
-                '#selected-dishes'); // Replace with the actual ID of your table container
-
+            var saveButton = document.querySelector('#saveButton');
+            var tableContainer = document.querySelector('#selected-dishes');
+            var dishes_no = document.querySelector('#dishes_no');
+            var count = parseInt(dishes_no.getAttribute('data-all'));
             checkboxes.forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
                     var selectedCheckboxes = document.querySelectorAll('.dish-checkbox:checked');
+                    var totalSelectedDishes = selectedCheckboxes.length;
+                    var remainingDishes = Math.max(0, count - totalSelectedDishes);
+
+                    // Update total selected dishes display
+                    dishes_no.innerHTML = 'You have to select ' + totalSelectedDishes +
+                        ' dishes and remain ' + remainingDishes + ' dishes';
+
+                    // Show or hide save button based on the number of selected dishes
+                    saveButton.style.display = totalSelectedDishes === count ? 'block' : 'none';
 
                     // Clear the existing table container content
                     tableContainer.innerHTML = '';
@@ -274,24 +291,24 @@
                         var dishDesc = selectedCheckbox.closest('li').querySelector('p')
                             .textContent;
                         var limitedDishDesc = limitWords(dishDesc, 10);
+
                         // Create a new table row
                         var newRow = document.createElement('tr');
                         newRow.innerHTML = `
-                    <td>
-                        <div class="media">
-                          
-                            <div class="media-body my-auto">
-                                <div class="card-item-desc mt-0">
-                                    <h6 class="font-weight-semibold mt-0 text-uppercase">${dishName}</h6>
-                                    <dl class="card-item-desc-1">
-                                        <dt>${category}</dt>
-                                        <p>${limitedDishDesc}</p>
-                                    </dl>
+                        <td>
+                            <div class="media">
+                                <div class="media-body my-auto">
+                                    <div class="card-item-desc mt-0">
+                                        <h6 class="font-weight-semibold mt-0 text-uppercase">${dishName}</h6>
+                                        <dl class="card-item-desc-1">
+                                            <dt>${category}</dt>
+                                            <p>${limitedDishDesc}</p>
+                                        </dl>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                `;
+                        </td>
+                    `;
 
                         // Append the new row to the current category table body
                         categoryTables[category].querySelector('tbody').appendChild(newRow);
@@ -305,6 +322,15 @@
                     }
                 });
             });
+
+            // Function to limit words
+            function limitWords(text, limit) {
+                var words = text.split(' ');
+                if (words.length > limit) {
+                    return words.slice(0, limit).join(' ') + '...';
+                }
+                return text;
+            }
         });
     </script>
 @endsection

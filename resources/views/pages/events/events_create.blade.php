@@ -163,7 +163,16 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="type">Event Type</label>
+                                        <label for="type">Event Type
+                                            <span id="eventTypeDetails"></span>
+
+                                            {{-- <button class="btn ripple btn-primary btn-sm"
+                                                data-bs-container="body"
+                                                data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                                data-bs-placement="top" data-bs-popover-color="default"
+                                                data-bs-toggle="popover" title="Popover top" type="button">
+                                                <i class="fa fa-info"></i></button> --}}
+                                        </label>
                                         <select class="form-control" required id="type" name="type"
                                             onchange="handleEventTypeChange()">
                                             <option label="Select Event Type"></option>
@@ -174,6 +183,7 @@
                                             <option value="Full service">Full service</option>
                                             {{-- <option value="Other">Other</option> --}}
                                         </select>
+
                                         <small id="typeError" class="text-danger"></small>
                                     </div>
 
@@ -327,6 +337,22 @@
             } else if (eventType === 'Drop-off') {
                 addressField.style.display = 'block';
             }
+
+            var eventTypeDetailsSpan = document.getElementById('eventTypeDetails');
+
+            // Reset the details span
+            eventTypeDetailsSpan.textContent = '';
+
+            var eventTypeDetails = {
+                'Pick up': 'You will pickup your food',
+                'Drop-off': 'We will drop-off your food at your provided address',
+                'Setup service': 'Setup service details...',
+                'Off-premise': 'Off-premise details...',
+                'Full service': 'Full service details...'
+            };
+
+            // Update the details span with the selected event type's details
+            eventTypeDetailsSpan.textContent = eventTypeDetails[eventType];
         }
     </script>
     <script>

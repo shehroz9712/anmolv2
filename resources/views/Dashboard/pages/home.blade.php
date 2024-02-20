@@ -16,13 +16,13 @@
                         </ol>
                     </div>
                     {{-- @if ($journey) --}}
-<div class="justify-content-center">
-   
-  <a href="{{ route('events.create') }}" class="btn btn-primary my-2 btn-icon-text">
-      <i class="fe fe-calendar me-2"></i> Create New Event
-  </a>
-</div>
-{{-- @endif --}}
+                    <div class="justify-content-center">
+
+                        <a href="{{ route('events.create') }}" class="btn btn-primary my-2 btn-icon-text">
+                            <i class="fe fe-calendar me-2"></i> Create New Event
+                        </a>
+                    </div>
+                    {{-- @endif --}}
                 </div>
                 <!-- End Page Header -->
                 <!--Row-->
@@ -114,8 +114,9 @@
                                         <div class="row row-sm">
                                             <div class="col-lg-12">
                                                 <div class="card custom-card p-3 mg-b-20">
-                                                    <div class="card-header">
+                                                    <div class="card-header d-flex justify-content-between">
                                                         <h6><b>Events</b></h6>
+                                                        <a href="{{ route('events.index') }}">Show all</a>
                                                     </div>
                                                     <div class="card-body">
                                                         <div class="table-responsive tasks">
@@ -148,24 +149,23 @@
                                                                             {{-- <td>{{ $event->start_time }}</td>
                                                                             <td>{{ $event->end_time }}</td> --}}
                                                                             <td class="d-flex">
-                                                                            <form class="mx-1" action="{{ route('continueJourney', ['eventId' => $event->id]) }}" method="POST">
-                                                                                @csrf
-                                                                                    <button type="submit" class="btn btn-primary">
+                                                                                <form class="mx-1"
+                                                                                    action="{{ route('continueJourney', ['eventId' => $event->id]) }}"
+                                                                                    method="POST">
+                                                                                    @csrf
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-primary">
                                                                                         Continue Journey
                                                                                     </button>
                                                                                 </form>
-                                                                                   
-                                                                                        {{-- <a class="btn text-dark px-1" href="{{ route('events.edit', ['encryptedId' => Crypt::encryptString($event->id)]) }}"><i class="fe fe-eye"></i></a> --}}
-                                                                                      
-                                                                                        <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display: inline-block;">
-                                                                                          @csrf
-                                                                                          @method('DELETE')
-                                                                                          <button type="submit" class="btn btn-primary text-light  px-3" onclick="return confirm('Are you sure you want to delete this event?')"><i class="fe fe-x"></i></button>
-                                                                                      </form>
-                                                                                      
-                                                                                    </td>
-                                                                            
-                                                                            
+
+                                                                                {{-- <a class="btn text-dark px-1" href="{{ route('events.edit', ['encryptedId' => Crypt::encryptString($event->id)]) }}"><i class="fe fe-eye"></i></a> --}}
+
+
+
+                                                                            </td>
+
+
                                                                             {{-- <div class="justify-content-center">
 
                                                                                 <a href="{{ route('ContractIndex') }}" class="btn btn-primary my-2 btn-icon-text">
@@ -567,7 +567,7 @@
                     <i class="fe fe-calendar me-2"></i> Add Event
                 </a>
             </div>
-          
+
         </div>
     @endif
 
