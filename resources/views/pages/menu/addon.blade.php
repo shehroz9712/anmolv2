@@ -237,7 +237,7 @@
                                         <dl class="card-item-desc-1">
                                             <dt>${dish.category}</dt>
                                             <p>${dish.desc}</p>
-                                            <dd>Price: $${dish.final_price.toFixed(2)}</dd>
+                                            <dd>Price: $${dish.final_price}</dd>
                                         </dl>
                                     </div>
                                 </div>
