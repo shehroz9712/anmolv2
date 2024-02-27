@@ -39,9 +39,7 @@
                                             @foreach ($category->sub_category as $sub_category)
                                                 <li>
                                                     <a href="#">
-                                                        {{ $sub_category->name }} price (1x ${{ $sub_category->single }}),
-                                                        (2x ${{ $sub_category->double }})
-                                                        , (3x ${{ $sub_category->trio }}),
+                                                        {{ $sub_category->name }}
                                                     </a>
                                                     <ul>
                                                         <!-- Loop through dishes -->
@@ -54,8 +52,8 @@
                                                                                 <input type="checkbox" class="dish-checkbox"
                                                                                     data-category="{{ $sub_category->name }}"
                                                                                     data-id="{{ $dishes->id }}">
-                                                                                <span class="tx-13">{{ $dishes->name }}
-                                                                                    ${{ $dishes->price ? $dishes->price : $sub_category->single }}</span>
+                                                                                <span
+                                                                                    class="tx-13">{{ $dishes->name }}</span>
                                                                             </label>
                                                                         </div>
                                                                         <div class="col-md-2">
@@ -235,9 +233,9 @@
                                     <div class="card-item-desc mt-0">
                                         <h6 class="font-weight-semibold mt-0 text-uppercase">${dish.name}</h6>
                                         <dl class="card-item-desc-1">
-                                            <dt>${dish.category}</dt>
-                                            <p>${dish.desc}</p>
+                                            <dt>${dish.subcategory.name}</dt>
                                             <dd>Price: $${dish.final_price}</dd>
+                                            <p>${dish.desc}</p>
                                         </dl>
                                     </div>
                                 </div>
