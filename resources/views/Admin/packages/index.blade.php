@@ -31,8 +31,10 @@
                 <div class="card custom-card mg-b-20">
                     <div class="card-body">
                         <h4 class="text-dark">Packages</h4>
-                        <div class="table-responsive tasks">
-                            <table class="table card-table table-vcenter text-nowrap mb-0 border">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="example2">
+                                {{-- <div class="table-responsive tasks">
+                            <table class="table card-table table-vcenter text-nowrap mb-0 border"> --}}
                                 <thead>
                                     <tr>
                                         <th class="wd-lg-10p">ID</th>
@@ -65,7 +67,7 @@
                                             <td>
                                                 <a class="btn btn-main-primary px-3"
                                                     href="{{ route('packages.edit', $package->id) }}">Edit</a>
-                                                    <a class="btn btn-main-primary px-3"
+                                                <a class="btn btn-main-primary px-3"
                                                     href="{{ route('packages.show', $package->id) }}">View</a>
                                                 {{-- <form action="{{ route('packages.destroy', $package->id) }}" method="POST"
                                                     style="display: inline-block;">

@@ -40,13 +40,13 @@
                                             <small id="priceError" class="text-danger"></small>
                                         </div>
 
-                                        <div class="col-lg-3 mb-3">
+                                        {{-- <div class="col-lg-3 mb-3">
                                             <label for="person">Number of Persons</label>
                                             <input class="form-control" id="person" name="person" required
                                                 type="number">
                                             <small id="personError" class="text-danger"></small>
                                         </div>
-
+ --}}
 
 
 

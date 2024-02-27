@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Dish | Edit Dish
+    Item | Edit Item
 @endsection
 
 
@@ -12,10 +12,10 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Edit Dish</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Edit Item</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Dish</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Dish</li>
+                <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Item</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Item</li>
             </ol>
         </div>
     </div>
@@ -25,8 +25,8 @@
             <div class="card custom-card">
                 <div class="card-body">
                     <div>
-                        <h6 class="main-content-label mb-1">Edit Dish</h6>
-                        <p class="text-muted card-sub-title">Edit Dish with details.</p>
+                        <h6 class="main-content-label mb-1">Edit Item</h6>
+                        <p class="text-muted card-sub-title">Edit Item with details.</p>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -53,7 +53,7 @@
 
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="price">Price</label>
+                                            <label for="price">Price(Leave blank if you need item category price)</label>
                                             <input type="number" class="form-control" id="price" name="price"
                                                 value="{{ $dish->price }}">
                                         </div>

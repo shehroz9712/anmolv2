@@ -84,6 +84,7 @@ Route::middleware('auth')->group(function () {
     //menu
     Route::get('/menu/items', [menu::class, 'items'])->name('custom.menu');
     Route::post('/menu/submit', [menu::class, 'submit'])->name('menu.submit');
+    Route::post('/getDishes', [menu::class, 'getDishes'])->name('menu.getDishes');
 
     Route::get('/menu', [menu::class, 'index'])->name('menu.index');
     Route::get('/menu/addon', [menu::class, 'addon'])->name('menu.addon');
@@ -115,14 +116,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/change-password', [PasswordChangeController::class, 'showChangePasswordForm'])->name('passwordChange');
     Route::post('/changePassword', [PasswordChangeController::class, 'changePassword'])->name('password.change');
 
-    Route::group(['prefix' => 'items'], function () {
-        Route::get('/', [ItemController::class, 'index'])->name('items.index');
-        Route::get('/add', [ItemController::class, 'create'])->name('items.create');
-        Route::post('/', [ItemController::class, 'store'])->name('items.store');
-        Route::get('/{item}', [ItemController::class, 'edit'])->name('items.edit');
-        Route::put('/{item}', [ItemController::class, 'update'])->name('items.update');
-        Route::delete('/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
-    });
+    // Route::group(['prefix' => 'items'], function () {
+    //     Route::get('/', [ItemController::class, 'index'])->name('items.index');
+    //     Route::get('/add', [ItemController::class, 'create'])->name('items.create');
+    //     Route::post('/', [ItemController::class, 'store'])->name('items.store');
+    //     Route::get('/{item}', [ItemController::class, 'edit'])->name('items.edit');
+    //     Route::put('/{item}', [ItemController::class, 'update'])->name('items.update');
+    //     Route::delete('/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
+    // });
 });
 
 Route::get('auth/twitter', [TwitterController::class, 'loginwithTwitter']);

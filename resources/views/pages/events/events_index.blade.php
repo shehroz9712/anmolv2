@@ -31,8 +31,8 @@
             <div class="col-lg-12">
                 <div class="card custom-card p-3 mg-b-20">
                     <div class="card-body">
-                        <div class="table-responsive tasks">
-                            <table class="table card-table table-vcenter text-nowrap mb-0 border">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="example2">
                                 <thead>
                                     <tr>
                                         <th class="wd-lg-20p">Name</th>

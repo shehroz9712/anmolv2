@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Dish;
 use App\Models\Package;
+use App\Models\Price;
+use App\Models\SubCategory;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
 class menu extends Controller
@@ -14,6 +18,34 @@ class menu extends Controller
         return view('pages.menu.menu-index', compact('categories'));
     }
 
+
+    public function getDishes(Request $request)
+    {
+        $dishes = null;
+        if ($request->id) {
+            $dishes = Dish::whereIn('id', $request->id)->with('subcategory')->where('status', 1)->get();
+
+            foreach ($dishes as $dish) {
+                if ($dish->price != 0) {
+                    $dish->final_price = $dish->price;
+                } else {
+                    $numOfDishesInCategory = count($dishes->where('subcategory_id', $dish->subcategory_id));
+
+                    $subcat = SubCategory::find($dish->subcategory_id);
+                    if ($numOfDishesInCategory == 1) { // Use == instead of =
+                        $dish->final_price = $subcat->single;
+                    } elseif ($numOfDishesInCategory == 2) { // Use == instead of =
+                        $dish->final_price = $subcat->double;
+                    } else {
+                        $dish->final_price = $subcat->trio;
+                    }
+                }
+            }
+            return response()->json($dishes); // Use response() helper function
+        } else {
+            return response()->json($request); // Use response() helper function
+        }
+    }
     public function detail($encryptedId)
     {
         $id = decrypt($encryptedId);

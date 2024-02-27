@@ -43,6 +43,8 @@ class PackagesController extends Controller
             ]
         );
 
+        $data['person'] = 1;
+        $data['currency'] = '$';
         $package = Package::create($data);
 
         $categories = $request->input('category');

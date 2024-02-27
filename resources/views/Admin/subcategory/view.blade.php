@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Package | Package Detail
+Sub Category | Sub Category Detail
 @endsection
 
 @section('stylesheet')
@@ -9,10 +9,10 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Package Detail</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Sub Category Detail</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('packages.index') }}">Package Detail</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Package Detail</li>
+                <li class="breadcrumb-item"><a href="{{ route('subcategories.index') }}">Sub Category Detail</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sub Category Detail</li>
             </ol>
         </div>
     </div>
@@ -22,71 +22,61 @@
             <div class="card custom-card">
                 <div class="card-body">
                     <div>
-                        <h6 class="main-content-label mb-1">Package Detail</h6>
-                        <p class="text-muted card-sub-title"> Package with details.</p>
+                        <h6 class="main-content-label mb-1">Sub Category Detail</h6>
+                        <p class="text-muted card-sub-title"> Sub Category with details.</p>
                     </div>
                     <div class="container">
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <h2>Main Package Details</h2>
+                            <div class="col-md-12">
+                                <h2>Main Subategory Details</h2>
                                 <div class="table-responsive">
-                                    <table class="table ">
+                                    <table class="table">
                                         <tbody>
                                             <tr>
-                                                <th class="col-sm-4">Price</th>
-                                                <td class="col-sm-8">{{ $package->price }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Number of Persons</th>
-                                                <td class="col-sm-8">{{ $package->person }}</td>
+                                                <th class="col-sm-4">Name</th>
+                                                <td class="col-sm-8">{{ $record->name }}</td>
                                             </tr>
                                             <tr>
                                                 <th class="col-sm-4">Category</th>
-                                                <td class="col-sm-8">{{ $package->category->name }}</td>
+                                                <td class="col-sm-8">{{ $record->category->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="col-sm-4">Is Addon</th>
+                                                <td class="col-sm-8">{{ $record->is_addon ? 'Yes' : 'No' }}</td>
                                             </tr>
                                             <tr>
                                                 <th class="col-sm-4">Status</th>
-                                                <td class="col-sm-8">{{ $package->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                                <td class="col-sm-8">{{ $record->status ? 'Active' : 'Inactive' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="col-sm-4">Single Price</th>
+                                                <td class="col-sm-8">{{ $record->single }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="col-sm-4">Double Price</th>
+                                                <td class="col-sm-8">{{ $record->double }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="col-sm-4">Trio Price</th>
+                                                <td class="col-sm-8">{{ $record->trio }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                
+
                             </div>
 
-                            <div class="col-md-6">
-                                <h2>Package Includes</h2>
-                                @if ($packageincludes->isEmpty())
-                                    <p>No package includes available for this package.</p>
-                                @else
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Item Category</th>
-                                                <th>Number of Dishes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($packageincludes as $packageinclude)
-                                                <tr>
-                                                    <td>{{ $packageinclude->sharable->name ?? '' }}</td>
-                                                    <td>{{ $packageinclude->qty }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                @endif
-                            </div>
+
                         </div>
                         <div class="d-flex">
                             <div class="justify-content-center">
-                                <a href="{{ route('packages.index') }}" class="btn btn-primary ">
-                                    Back to Packages
+                                <a href="{{ route('subcategories.index') }}" class="btn btn-primary ">
+                                    Back to Sub Category
                                 </a>
                             </div>
                         </div>
-                       
+
                     </div>
 
                 </div>

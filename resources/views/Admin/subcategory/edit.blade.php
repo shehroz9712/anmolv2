@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Package | Edit Package
+    Sub Category | Edit Sub Category
 @endsection
 
 @section('stylesheet')
@@ -9,10 +9,10 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Edit Package</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Edit Sub Category</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('packages.index') }}">Package</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Package</li>
+                <li class="breadcrumb-item"><a href="{{ route('subcategories.index') }}">Sub Category</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Sub Category</li>
             </ol>
         </div>
     </div>
@@ -22,94 +22,64 @@
             <div class="card custom-card">
                 <div class="card-body">
                     <div>
-                        <h6 class="main-content-label mb-1">Edit Package</h6>
-                        <p class="text-muted card-sub-title">Edit Package with details.</p>
+                        <h6 class="main-content-label mb-1">Edit Sub Category</h6>
+                        <p class="text-muted card-sub-title">Edit Sub Category with details.</p>
                     </div>
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-xl-12">
-                                <form method="POST" action="{{ route('packages.update', $package->id) }}">
+                                <form method="POST" action="{{ route('subcategories.update', $record->id) }}">
                                     @csrf
                                     @method('PUT')
 
                                     <div class="form-group row">
                                         <div class="col-lg-3 mb-3">
-                                            <label for="price">Price</label>
-                                            <input class="form-control" id="price" name="price" required
-                                                type="number" value="{{ $package->price }}">
-                                            <small id="priceError" class="text-danger"></small>
+                                            <label for="name">Name</label>
+                                            <input class="form-control" id="name" name="name" required
+                                                type="text" value="{{ $record->name }}">
                                         </div>
-
                                         <div class="col-lg-3 mb-3">
-                                            <label for="person">Number of Persons</label>
-                                            <input class="form-control" id="person" name="person" required
-                                                type="number" value="{{ $package->person }}">
-                                            <small id="personError" class="text-danger"></small>
-                                        </div>
-
-                                        <div class="col-lg-3 mb-3">
-                                            <label for="category">Category</label>
-                                            <select name="category_id" class="form-control">
-                                                <option disabled selected value="">Select Category</option>
-                                                @foreach ($categories as $category)
-                                                    <option value='{{ $category->id }}'
-                                                        {{ $category->id == $package->category_id ? 'selected' : '' }}>
-                                                        {{ $category->name }}
-                                                    </option>
+                                            <label for="category_id">Category</label>
+                                            <select id="category_id" class="form-control" name="category_id" required>
+                                                @foreach ($categories as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ $record->category_id == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name }}</option>
                                                 @endforeach
                                             </select>
-                                            <small id="categoryError" class="text-danger"></small>
                                         </div>
-
                                         <div class="col-lg-3 mb-3">
-                                            <label for="status">Status</label>
-                                            <select class="form-control" id="status" name="status">
-                                                <option disabled selected value="">Select Status</option>
-                                                <option value="0" {{ $package->status == 0 ? 'selected' : '' }}>
-                                                    Inactive</option>
-                                                <option value="1" {{ $package->status == 1 ? 'selected' : '' }}>Active
+                                            <label for="is_addon">Is Addon</label>
+                                            <select class="form-control" id="is_addon" name="is_addon" required>
+                                                <option value="0" {{ $record->is_addon == 0 ? 'selected' : '' }}>No
+                                                </option>
+                                                <option value="1" {{ $record->is_addon == 1 ? 'selected' : '' }}>Yes
                                                 </option>
                                             </select>
-                                            <small id="statusError" class="text-danger"></small>
                                         </div>
-
-                                        <div class="col-12">
-                                            <h4>Package Include</h4>
+                                        <div class="col-lg-3 mb-3">
+                                            <label for="status">Status</label>
+                                            <select class="form-control" id="status" name="status" required>
+                                                <option value="0" {{ $record->status == 0 ? 'selected' : '' }}>Inactive
+                                                </option>
+                                                <option value="1" {{ $record->status == 1 ? 'selected' : '' }}>Active
+                                                </option>
+                                            </select>
                                         </div>
-
-                                        <div id="formContainer" class="col-12">
-                                            <!-- Loop through existing package includes -->
-                                            @foreach ($packageincludes as $packageinclude)
-                                                <div class="form-group row align-items-end mb-3">
-                                                    <div class="col-lg-4 mb-3">
-                                                        <label for="category">Item Category</label>
-                                                        <select class="form-control" name="category[]">
-                                                            <option disabled selected value="">Select Dish Category
-                                                            </option>
-                                                            @foreach ($subcategories as $subcategory)
-                                                                <option value='{{ $subcategory->id }}'
-                                                                    {{ $subcategory->id == $packageinclude->sharable_id ? 'selected' : '' }}>
-                                                                    {{ $subcategory->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-4 mb-3">
-                                                        <label for="number">Number of Dishes</label>
-                                                        <input class="form-control" type="number" name="number[]"
-                                                            value="{{ $packageinclude->qty }}">
-                                                    </div>
-                                                    <div class="col-lg-4 mb-3">
-                                                        <button type="button"
-                                                            class="btn ripple btn-danger removeField">Remove</button>
-                                                    </div>
-                                                </div>
-                                            @endforeach
+                                        <div class="col-lg-3 mb-3">
+                                            <label for="single">Single Price</label>
+                                            <input class="form-control" id="single" name="single" type="number"
+                                                value="{{ $record->single }}">
                                         </div>
-
-                                        <div class="col-12 mb-3">
-                                            <button type="button" class="btn ripple btn-main-primary" id="addField">Add
-                                                Field</button>
+                                        <div class="col-lg-3 mb-3">
+                                            <label for="double">Double Price</label>
+                                            <input class="form-control" id="double" name="double" type="number"
+                                                value="{{ $record->double }}">
+                                        </div>
+                                        <div class="col-lg-3 mb-3">
+                                            <label for="trio">Trio Price</label>
+                                            <input class="form-control" id="trio" name="trio" type="number"
+                                                value="{{ $record->trio }}">
                                         </div>
                                         <div class="col-12 mb-3" style="text-align: end;">
                                             <button class="btn ripple btn-main-primary">Submit</button>

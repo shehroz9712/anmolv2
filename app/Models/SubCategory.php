@@ -16,7 +16,7 @@ class SubCategory extends Model
 
     public function category()
     {
-        return $this->morphOne(PackageInclude::class, 'sharable');
+        return $this->belongsTo(Category::class);
     }
 
     public function scopeActive($query)

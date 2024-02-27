@@ -217,8 +217,18 @@
                                     </div>
 
 
-                                    <div class="form-group" style="display: none;" id="otherTypeField">
-                                        <label for="otherType">Other Event Type</label>
+                                    <div class="form-group" >
+                                        <label for="type">Event Type <button class="btn ripple btn-primary btn-sm"
+                                                data-bs-container="body"
+                                                data-bs-content=" Pick up: You will pickup your food,
+                                                 Drop-off: We will drop-off your food at your provided address,
+                                                 Setup service: Setup service details...,
+                                                 Off-premise: Off-premise details...,
+                                                 Full service: Full service details..."
+                                                data-bs-placement="top" data-bs-popover-color="default"
+                                                data-bs-toggle="popover" title="Popover top" type="button">
+                                                <i class="fa fa-info"></i></button>
+                                        </label>
                                         <input data-toggle="tooltip" data-placement="bottom"
                                             placeholder="Business Conference" title="Other Event Type"
                                             class="form-control" id="otherType" name="otherType" type="text">

@@ -9,6 +9,7 @@
             cursor: pointer;
         }
     </style>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 
 @section('content')
@@ -32,30 +33,35 @@
                                 @foreach ($categories as $key => $category)
                                     <div class="col-lg-12">
                                         <h3>{{ $category->name }}</h3>
-                                        <p>Package Overview or Deatils</p>
+                                        <p>Subcategory Overview or Details</p>
                                         <ul id="treeview{{ $key + 1 }}">
-                                            @foreach ($category->sub_category as $package)
+                                            <!-- Loop through sub-categories -->
+                                            @foreach ($category->sub_category as $sub_category)
                                                 <li>
                                                     <a href="#">
-                                                        {{ $package->name }}</a>
+                                                        {{ $sub_category->name }} price (1x ${{ $sub_category->single }}),
+                                                        (2x ${{ $sub_category->double }})
+                                                        , (3x ${{ $sub_category->trio }}),
+                                                    </a>
                                                     <ul>
-
-                                                        @foreach ($package->dishes ?? [] as $key => $dishes)
+                                                        <!-- Loop through dishes -->
+                                                        @foreach ($sub_category->dishes ?? [] as $key => $dishes)
                                                             <li>
                                                                 <div class="form-group mg-b-20">
                                                                     <div class="align-items-center row">
                                                                         <div class="col-md-10">
                                                                             <label class="ckbox">
                                                                                 <input type="checkbox" class="dish-checkbox"
-                                                                                    data-category="{{ $package->name }}">
-                                                                                <span
-                                                                                    class="tx-13">{{ $dishes->name }}</span>
+                                                                                    data-category="{{ $sub_category->name }}"
+                                                                                    data-id="{{ $dishes->id }}">
+                                                                                <span class="tx-13">{{ $dishes->name }}
+                                                                                    ${{ $dishes->price ? $dishes->price : $sub_category->single }}</span>
                                                                             </label>
                                                                         </div>
                                                                         <div class="col-md-2">
                                                                             <a class="btn ripple"
                                                                                 data-bs-target="#modaldemo{{ $dishes->id }}"
-                                                                                data-bs-toggle="modal" href="">
+                                                                                data-bs-toggle="modal" href="#">
                                                                                 <i class="fa fa-search"
                                                                                     style="font-size: 12px;"></i>
                                                                             </a>
@@ -75,20 +81,20 @@
                                                                                     id="exampleModalLabel">
                                                                                     {{ $dishes->name }}</h5>
                                                                                 <button type="button" class="btn-close"
-                                                                                    data-bs-dismiss="modal"style="margin: -10px 0 0px 0px;"
-                                                                                    aria-label="Close"><i
-                                                                                        class="fa fa-close fs-5"></i></button>
+                                                                                    data-bs-dismiss="modal"
+                                                                                    style="margin: -10px 0 0px 0px;"
+                                                                                    aria-label="Close">
+                                                                                    <i class="fa fa-close fs-5"></i>
+                                                                                </button>
                                                                             </div>
                                                                             <div class="modal-body">
                                                                                 <p>{!! $dishes->long_desc !!}</p>
                                                                             </div>
-                                                                            
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </li>
                                                         @endforeach
-
                                                     </ul>
                                                 </li>
                                             @endforeach
@@ -127,6 +133,7 @@
                                         </tbody>
 
                                     </table>
+                                    <div id="single-category-dishes-count"></div>
                                     <button class="btn ripple btn-outline-primary" id="save-button"
                                         style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true; display:none">Save
                                         &
@@ -182,6 +189,7 @@
             }
             return text;
         }
+
         document.addEventListener('DOMContentLoaded', function() {
             var checkboxes = document.querySelectorAll('.dish-checkbox');
             var tableContainer = document.querySelector('#selected-dishes');
@@ -193,73 +201,68 @@
                     var selectedCheckboxes = document.querySelectorAll('.dish-checkbox:checked');
                     var isEmpty = selectedCheckboxes.length === 0;
 
-                    // Clear the existing table container content
-                    tableContainer.innerHTML = '';
-
-                    // Create a separate table for each category
-                    var categoryTables = {};
-
-                    // Iterate over selected checkboxes and add rows to the corresponding category table
-                    selectedCheckboxes.forEach(function(selectedCheckbox) {
-                        var category = selectedCheckbox.getAttribute('data-category');
-
-                        // If the category table doesn't exist, create a new one
-                        if (!categoryTables[category]) {
-                            categoryTables[category] = document.createElement('table');
-                            categoryTables[category].classList.add(
-                                'your-table-class'); // Add your table class here
-
-                            // Create a table body for the current category
-                            var categoryTableBody = document.createElement('tbody');
-
-                            // Append the table body to the current category table
-                            categoryTables[category].appendChild(categoryTableBody);
-                        }
-
-                        var dishName = selectedCheckbox.closest('label').querySelector(
-                            '.tx-13').textContent;
-                        var dishDesc = selectedCheckbox.closest('li').querySelector('p')
-                            .textContent;
-                        var limitedDishDesc = limitWords(dishDesc, 10);
-                        // Create a new table row
-                        var newRow = document.createElement('tr');
-                        newRow.innerHTML = `
-                    <td>
-                        <div class="media">
-                            <div class="media-body my-auto">
-                                <div class="card-item-desc mt-0">
-                                    <h6 class="font-weight-semibold mt-0 text-uppercase">${dishName}</h6>
-                                    <dl class="card-item-desc-1">
-                                        <dt>${category}</dt>
-                                        <p>${limitedDishDesc}</p>
-                                    </dl>
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-                `;
-
-                        // Append the new row to the current category table body
-                        categoryTables[category].querySelector('tbody').appendChild(newRow);
-                    });
-
-                    // Append each category table to the table container
-                    for (var category in categoryTables) {
-                        if (categoryTables.hasOwnProperty(category)) {
-                            tableContainer.appendChild(categoryTables[category]);
-                        }
-                    }
-
-                    // Show/hide buttons based on whether the table is empty or not
-                    if (isEmpty) {
-                        skipButton.style.display = 'block';
-                        saveButton.style.display = 'none';
-                    } else {
-                        skipButton.style.display = 'none';
-                        saveButton.style.display = 'block';
-                    }
+                    // Make an AJAX request to update the server with selected dishes data
+                    updateSelectedDishes(selectedCheckboxes);
                 });
             });
+
+            function updateSelectedDishes(selectedCheckboxes) {
+                var selectedDishesIds = Array.from(selectedCheckboxes).map(function(checkbox) {
+                    return checkbox.getAttribute('data-id');
+                });
+
+                // Make an AJAX request to update the server with selected dishes data
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    url: "{{ route('menu.getDishes') }}",
+                    data: {
+                        id: selectedDishesIds
+                    },
+                    success: function(response) {
+                        // Clear the existing table container content
+                        tableContainer.innerHTML = '';
+
+                        // Iterate over the response and append rows to the table
+                        response.forEach(function(dish) {
+                            var newRow = document.createElement('tr');
+                            newRow.innerHTML = `
+                        <td>
+                            <div class="media">
+                                <div class="media-body my-auto">
+                                    <div class="card-item-desc mt-0">
+                                        <h6 class="font-weight-semibold mt-0 text-uppercase">${dish.name}</h6>
+                                        <dl class="card-item-desc-1">
+                                            <dt>${dish.category}</dt>
+                                            <p>${dish.desc}</p>
+                                            <dd>Price: $${dish.final_price.toFixed(2)}</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    `;
+
+                            // Append the new row to the table container
+                            tableContainer.appendChild(newRow);
+                        });
+
+                        // Show/hide buttons based on whether the table is empty or not
+                        if (response.length === 0) {
+                            skipButton.style.display = 'block';
+                            saveButton.style.display = 'none';
+                        } else {
+                            skipButton.style.display = 'none';
+                            saveButton.style.display = 'block';
+                        }
+                    },
+                    error: function(response) {
+                        // Handle errors if any
+                    }
+                });
+            }
         });
     </script>
 @endsection

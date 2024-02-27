@@ -22,6 +22,7 @@ class DishesController extends Controller
      */
     public function create()
     {
+        // dd('create');
         $subcategory = SubCategory::Active()->get();
 
         return view('Admin.dishes.create', compact('subcategory'));

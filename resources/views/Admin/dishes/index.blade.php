@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Dish | Create Item
+    Item | Create Item
 @endsection
 
 @section('stylesheet')
@@ -31,8 +31,8 @@
                 <div class="card custom-card mg-b-20">
                     <div class="card-body">
                         <h4 class="text-dark">Items</h4>
-                        <div class="table-responsive tasks">
-                            <table class="table card-table table-vcenter text-nowrap mb-0 border">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="example2">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -40,6 +40,7 @@
                                         <th>Unit</th>
                                         <th>Sub Category</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,9 +51,6 @@
                                             <td>{{ $dish->unit }}</td>
                                             <td>{{ $dish->subcategory ? $dish->subcategory->name : '' }}</td>
                                             <td>{{ $dish->status == 1 ? 'Active' : 'Inactive' }}</td>
-
-
-
                                             <td>
                                                 <a class="btn btn-main-primary px-3"
                                                     href="{{ route('dishes.edit', $dish->id) }}">Edit</a>

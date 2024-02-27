@@ -13,8 +13,8 @@ class SubCategoriesController extends Controller
      */
     public function index()
     {
-        $subcategory = SubCategory::all();
-        return view('Admin.subcategory.index', compact('subcategory'));
+        $subcategories = SubCategory::with('category')->get();
+        return view('Admin.subcategory.index', compact('subcategories'));
     }
 
     /**
@@ -47,8 +47,8 @@ class SubCategoriesController extends Controller
      */
     public function show(string $id)
     {
-        $subcategory = SubCategory::find($id);
-        return view('Admin.subcategory.view', compact('subcategory'));
+        $record = SubCategory::find($id);
+        return view('Admin.subcategory.view', compact('record'));
     }
 
     /**
@@ -56,8 +56,9 @@ class SubCategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        $subcategory = SubCategory::find($id);
-        return view('Admin.subcategory.edit', compact('subcategory'));
+        $categories = Category::where(['type' => 2, 'status' => 1])->get();
+        $record = SubCategory::with('category')->find($id);
+        return view('Admin.subcategory.edit', compact('record', 'categories'));
     }
 
     /**
@@ -73,6 +74,7 @@ class SubCategoriesController extends Controller
         // Update the main package details
         $subcategory = SubCategory::findOrFail($id);
         $subcategory->update($data);
+        return redirect()->route('subcategories.index')->with('message', 'Sub Category Update Successfully');
     }
 
     /**

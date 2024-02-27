@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Dish | Dish Detail
+    Item | Item Detail
 @endsection
 
 @section('stylesheet')
@@ -9,10 +9,10 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Dish Detail</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Item Detail</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Dish Detail</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Dish Detail</li>
+                <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Item Detail</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Item Detail</li>
             </ol>
         </div>
     </div>
@@ -22,14 +22,14 @@
             <div class="card custom-card">
                 <div class="card-body">
                     <div>
-                        <h6 class="main-content-label mb-1">Dish Detail</h6>
-                        <p class="text-muted card-sub-title"> Dish with details.</p>
+                        <h6 class="main-content-label mb-1">Item Detail</h6>
+                        <p class="text-muted card-sub-title"> Item with details.</p>
                     </div>
                     <div class="container">
 
                         <div class="row">
                             <div class="col-md-6">
-                                <h2>Main Dish Details</h2>
+                                <h2>Main Item Details</h2>
                                 <div class="table-responsive">
                                     <table class="table ">
                                         <tbody>
@@ -73,12 +73,12 @@
 
                             </div>
 
-                      
+
                         </div>
                         <div class="d-flex">
                             <div class="justify-content-center">
                                 <a href="{{ route('dishes.index') }}" class="btn btn-primary ">
-                                    Back to Dishes
+                                    Back to Itemes
                                 </a>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Dish | Create Dish
+    Item | Create Item
 @endsection
 
 @section('stylesheet')
@@ -10,10 +10,10 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Add Dish</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Add Item</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Dish</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Add Dish</li>
+                <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Item</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Item</li>
             </ol>
         </div>
     </div>
@@ -23,8 +23,8 @@
             <div class="card custom-card">
                 <div class="card-body">
                     <div>
-                        <h6 class="main-content-label mb-1">Add Dish</h6>
-                        <p class="text-muted card-sub-title">Add a new Dish with details.</p>
+                        <h6 class="main-content-label mb-1">Add Item</h6>
+                        <p class="text-muted card-sub-title">Add a new Item with details.</p>
                     </div>
                     <div class="container">
                         <div class="row">
@@ -46,7 +46,7 @@
 
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="price">Price</label>
+                                            <label for="price">Price (Leave blank if you need item category price)</label>
                                             <input type="number" class="form-control" id="price" name="price">
                                         </div>
                                         {{-- <div class="col-md-6 mb-3">
@@ -62,7 +62,7 @@
                                                             @if ($item->is_addon)
                                                                 (Addon Items)
                                                             @else
-                                                                ( Regular)
+                                                                ( main)
                                                             @endif
                                                         </small>
                                                     </option>
