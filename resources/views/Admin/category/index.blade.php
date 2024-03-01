@@ -31,8 +31,8 @@
                 <div class="card custom-card mg-b-20">
                     <div class="card-body">
                         <h4 class="text-dark">Categories</h4>
-                        <div class="table-responsive tasks">
-                            <table class="table card-table table-vcenter text-nowrap mb-0 border">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="example2">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
