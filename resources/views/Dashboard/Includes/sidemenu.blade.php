@@ -43,7 +43,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('menu.index') }}">
+                            <a class="nav-link" href="{{ route('menu.link.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
