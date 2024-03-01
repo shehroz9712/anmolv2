@@ -28,7 +28,7 @@
                     </div>
                     <div class="card-body">
                         <h6 class="">Categories</h6>
-                        <p class="card-text">Explore diverse categories for your products and services management system.
+                        <p class="card-text">Explore diverse categories for your subcategories management system.
                         </p>
                         <a href="{{ route('categories.index') }}" class="btn btn-primary ripple btn-block">View</a>
                     </div>
