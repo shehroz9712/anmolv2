@@ -146,6 +146,7 @@ Route::middleware(['auth', 'admin.auth'])->group(function () {
     Route::delete('/types/{id}', [TypeController::class, 'destroy'])->name('types.destroy');
 
     //admin vanue
+    Route::get('/menu', [PackagesController::class, 'menuLinks'])->name('menu.index');
 
 
     Route::get('/admin-venues', [AdminVenueController::class, 'index'])->name('admin-venues.index');

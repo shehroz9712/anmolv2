@@ -8,13 +8,23 @@
         .ckbox span:hover {
             cursor: pointer;
         }
+
+        .card-body {
+            height: 400px;
+            overflow: auto;
+            margin: 10px;
+        }
+
+        dt {
+            color: #ff7501;
+        }
     </style>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 
 @section('content')
     <div class="main-container container-fluid">
-        <div class="inner-body">
+        <div class="inner-body" style="margin-bottom: 5rem;">
             <div class="page-header">
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Menu </h2>
@@ -27,13 +37,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card custom-card mg-b-20">
-                        <div class="card-body">
+                        <div class="card-body" style="">
                             <div class="row">
                                 <!-- col -->
                                 @foreach ($categories as $key => $category)
                                     <div class="col-lg-12">
                                         <h3>{{ $category->name }}</h3>
-                                        <p>Subcategory Overview or Details</p>
+                                        <p> Overview or Details</p>
                                         <ul id="treeview{{ $key + 1 }}">
                                             <!-- Loop through sub-categories -->
                                             @foreach ($category->sub_category as $sub_category)
@@ -60,7 +70,7 @@
                                                                             <a class="btn ripple"
                                                                                 data-bs-target="#modaldemo{{ $dishes->id }}"
                                                                                 data-bs-toggle="modal" href="#">
-                                                                                <i class="fa fa-search"
+                                                                                <i class="fa fa-info-circle"
                                                                                     style="font-size: 12px;"></i>
                                                                             </a>
                                                                         </div>
@@ -110,9 +120,9 @@
                         <div class="card-header">
                             <h5 class="mb-3 font-weight-bold tx-14">Selected Menu</h5>
                         </div>
-                        <div class="card-body">
-                            <form action="{{ route('menu.submit') }}" method="post">
-                                @csrf
+                        <form action="{{ route('menu.submit') }}" method="post">
+                            @csrf
+                            <div class="card-body" style="height: 300px;">
 
 
                                 <input type="hidden" name="url" value="{{ Request::segments()[1] }}">
@@ -127,27 +137,38 @@
                                         <tbody>
 
 
-
+                                            <td>
+                                                <div id="loader" style="display: none;">
+                                                    <div class="spinner-border text-primary" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tbody>
 
                                     </table>
-                                    <div id="single-category-dishes-count"></div>
-                                    <button class="btn ripple btn-outline-primary" id="save-button"
-                                        style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true; display:none">Save
-                                        &
-                                        Continue</button>
-                                    <button class="btn ripple btn-outline-primary" id="skip-button"
-                                        style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true;">Skip &
-                                        Continue</button>
-
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+
+                            <div class="">
+                                <div id="single-category-dishes-count"></div>
+                                <button class="btn ripple btn-outline-primary" id="save-button"
+                                    style=" margin: 0px  30px 15px; float:right; display:none">Save
+                                    &
+                                    Continue</button>
+                                <button class="btn ripple btn-outline-primary" id="skip-button"
+                                    style="margin: 0px  30px 15px; float:right;">Skip
+                                    &
+                                    Continue</button>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <!-- /row -->
         </div>
+        <!-- /row -->
+    </div>
     </div>
 @endsection
 @section('js')
@@ -193,11 +214,13 @@
             var tableContainer = document.querySelector('#selected-dishes');
             var saveButton = document.querySelector('#save-button');
             var skipButton = document.querySelector('#skip-button');
+            var loader = document.querySelector('#loader'); // Reference to the loader
 
             checkboxes.forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
                     var selectedCheckboxes = document.querySelectorAll('.dish-checkbox:checked');
                     var isEmpty = selectedCheckboxes.length === 0;
+                    loader.style.display = 'block';
 
                     // Make an AJAX request to update the server with selected dishes data
                     updateSelectedDishes(selectedCheckboxes);
@@ -255,9 +278,13 @@
                             skipButton.style.display = 'none';
                             saveButton.style.display = 'block';
                         }
+                        loader.style.display = 'none';
+                        tableContainer.scrollTop = tableContainer.scrollHeight;
+
                     },
                     error: function(response) {
-                        // Handle errors if any
+                        loader.style.display = 'none';
+
                     }
                 });
             }

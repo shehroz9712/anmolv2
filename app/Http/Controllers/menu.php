@@ -17,7 +17,7 @@ class menu extends Controller
         $categories  = Category::with('packages')->Category()->get();
         return view('pages.menu.menu-index', compact('categories'));
     }
-
+    
 
     public function getDishes(Request $request)
     {

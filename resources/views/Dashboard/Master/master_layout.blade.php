@@ -12,7 +12,7 @@
 
 	<!-- Favicon -->
 	<link rel="icon" href="{{asset('../assets/img/brand/favicon.ico')}}" type="image/x-icon" />
-
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<!-- Title -->
 	<title>
 

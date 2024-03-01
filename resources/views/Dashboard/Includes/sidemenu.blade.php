@@ -34,13 +34,20 @@
                                 <span class="sidemenu-label">Types</span>
                             </a>
                         </li> --}}
-
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('packages.index') }}">
+                            <a class="nav-link" href="{{ route('events.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
-                                <span class="sidemenu-label">Packges</span>
+                                <span class="sidemenu-label">Events</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('menu.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Menu</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -68,11 +75,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('events.index') }}">
+                            <a class="nav-link" href="{{ route('packages.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
-                                <span class="sidemenu-label">Events</span>
+                                <span class="sidemenu-label">Packages</span>
                             </a>
                         </li>
                         <li class="nav-item">

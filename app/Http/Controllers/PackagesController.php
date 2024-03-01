@@ -133,4 +133,8 @@ class PackagesController extends Controller
     {
         //
     }
+    function menuLinks()
+    {
+        return view('Admin.packages.menuLinks');
+    }
 }

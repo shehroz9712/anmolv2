@@ -8,6 +8,10 @@
         .ckbox span:hover {
             cursor: pointer;
         }
+
+        dt {
+            color: var(--primary-bg-color);
+        }
     </style>
 @endsection
 
@@ -171,7 +175,7 @@
                             <h5 class="mb-3 font-weight-bold tx-14">Selected Menu</h5>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('menu.submit') }}" method="post">
+                            <form action="{{ route('menu.submit') }}" method="post" id="menuForm">
                                 @csrf
 
                                 <input type="hidden" name="url" value="package">
@@ -197,7 +201,7 @@
                                     <div id="dishes_no" class="my-2"x data-all="{{ $count }}">You have to
                                         select {{ $count }} dishes and remain {{ $count }} dishes</div>
                                     <button class="btn btn-outline-primary float-end ripple" id="saveButton"
-                                        style="display: none"
+                                        type="button" style="display: none"
                                         style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true;">Save &
                                         Continue</button>
                                 </div>
@@ -331,6 +335,27 @@
                 }
                 return text;
             }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('saveButton').addEventListener('click', function() {
+                // Display SweetAlert confirmation dialog
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: " If you select a package, you don't have to select individual custom items, except for addons.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, save it!',
+                    cancelButtonText: 'No, cancel!'
+                }).then((result) => {
+                    // If user confirms, submit the form
+                    if (result.isConfirmed) {
+                        document.getElementById('menuForm').submit();
+                    }
+                });
+            });
         });
     </script>
 @endsection

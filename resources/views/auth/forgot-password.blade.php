@@ -25,9 +25,10 @@
                     <div class="the-inner">
                         <div class="container">
                             <div class="row">
-                                <div class="d-flex justify-content-center align-item-center text-center p-0 mb-0">
-                                    <img class="d-inline" src="{{ asset('assets/img/brand/logo.png') }}" width="20%"
-                                        alt="Logo">
+                                <div class="">
+                                    <a href='{{ route('login') }}' style="">
+                                        <img alt='logo' src='{{ asset('assets/img/brand/logo-light.png') }}'>
+                                    </a>
                                 </div>
                                 <p class="text-dark pt-0 p-3">Get ready to embark on a hassle-free journey to event
                                     perfection. Anmol's website offers you the power to create unforgettable occasions
@@ -55,9 +56,10 @@
                                         <div class="container">
                                             <div class="row row-sm">
                                                 <div class="text-center ">
-                                                    <span class="bg-white p-3"> <img
-                                                            src="{{ asset('assets/img/brand/logo.png') }}"
-                                                            width="20%" alt=""></span>
+                                                    <a href='{{ route('login') }}' style="">
+                                                        <img alt='logo'
+                                                            src='{{ asset('assets/img/brand/logo-light.png') }}'>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -69,29 +71,32 @@
                                                     @csrf
                                                     <div class="form-group text-start">
                                                         <label>Email</label>
-                                                        <input class="form-control" placeholder="Enter your email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email">
+                                                        <input class="form-control" placeholder="Enter your email"
+                                                            type="email" name="email" value="{{ old('email') }}"
+                                                            required autofocus autocomplete="email">
                                                         @if ($errors->has('email'))
-                                                            <small class="alert alert-danger p-2">{{ $errors->first('email') }}</small>
+                                                            <small
+                                                                class="alert alert-danger p-2">{{ $errors->first('email') }}</small>
                                                         @endif
                                                     </div>
-                                                    <button class="btn ripple btn-main-primary btn-block">Email Password Reset Link</button>
+                                                    <button class="btn ripple btn-main-primary btn-block">Email Password
+                                                        Reset Link</button>
                                                 </form>
-                                              
-                                                </div>
-                                                <div class="mysection text-start ms-0">
-                                                    @if (Route::has('password.request'))
-                                                        <div class="mb-1"><a
-                                                                href="{{ route('password.request') }}">Forgot
-                                                                password?</a></div><br>
-                                                    @endif
-                                                    <div>Don't have an account? <a href="/register"><b>Register
-                                                                Here</b></a>
-                                                        Or <a href="{{ route('guest-home') }}"><b>Continue As
-                                                                Guest</b></a>
-                                                    </div>
-                                                </div>
-                                                <!-- End of the login form -->
+
                                             </div>
+                                            <div class="mysection text-start ms-0">
+                                                @if (Route::has('password.request'))
+                                                    <div class="mb-1"><a href="{{ route('password.request') }}">Forgot
+                                                            password?</a></div><br>
+                                                @endif
+                                                <div>Don't have an account? <a
+                                                        href="{{ route('register') }}"><b>Register
+                                                            Here</b></a>
+                                                    Or <a href="{{ route('guest-home') }}"><b>Continue As
+                                                            Guest</b></a>
+                                                </div>
+                                            </div>
+                                            <!-- End of the login form -->
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +107,8 @@
             </div>
         </div>
     </div>
-    
+    </div>
+
 
     @include('Dashboard.Includes.scripts')
 </body>

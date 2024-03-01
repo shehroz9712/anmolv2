@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -18,15 +17,17 @@
     <title>Customer Panel - Eat Anmol</title>
     <link rel="stylesheet" media="screen"
         href="{{ asset('assets/tripleseat/d12lx3pio9mr3b.cloudfront.net/assets/01/fa_bundle-c4bdd483be2b1dae791c0b3cb38bdbe27f559eac1b9a55c950cf64b858ac1882.css') }}" />
-        <link href="{{ asset('assets/tripleseat/d12lx3pio9mr3b.cloudfront.net/marketing_site/style.css') }}" id='base-style-css'
-        media='all' rel='stylesheet' type='text/css'>
-    <script src="{{ asset('assets/tripleseat/d12lx3pio9mr3b.cloudfront.net/assets/01/jquery_bundle-16319aafdbe0f8e90b79c96663d5f937405614f2aa47071526a39a63a437170c.js') }}"
+    <link href="{{ asset('assets/tripleseat/d12lx3pio9mr3b.cloudfront.net/marketing_site/style.css') }}"
+        id='base-style-css' media='all' rel='stylesheet' type='text/css'>
+    <script
+        src="{{ asset('assets/tripleseat/d12lx3pio9mr3b.cloudfront.net/assets/01/jquery_bundle-16319aafdbe0f8e90b79c96663d5f937405614f2aa47071526a39a63a437170c.js') }}"
         crossorigin="anonymous"></script>
-    <script src="{{ asset('assets/tripleseat/d12lx3pio9mr3b.cloudfront.net/assets/01/rails-3b92853778d4282132e4be897e0d4e173a9163595e5e9907bc7f0e31b21f1f3d.js') }}"
+    <script
+        src="{{ asset('assets/tripleseat/d12lx3pio9mr3b.cloudfront.net/assets/01/rails-3b92853778d4282132e4be897e0d4e173a9163595e5e9907bc7f0e31b21f1f3d.js') }}"
         crossorigin="anonymous"></script>
-    
 
-    </head>
+
+</head>
 
 <body>
     <div class='wrapper'>
@@ -42,7 +43,8 @@
                                 offers you the power to explore, order, and enjoy your favorite cuisines, all at your
                                 fingertips.</p>
                             <div class='btn-hold'>
-                                <a class='btn' href="{{ route('register') }}"><small style="font-size:16px">Create an Account</small></a>
+                                <a class='btn' href="{{ route('register') }}"><small style="font-size:16px">Create an
+                                        Account</small></a>
                             </div>
                         </div>
                     </div>
@@ -51,34 +53,32 @@
                     <div class='container'>
                         <div class='form-holder'>
                             <div class='logo'>
-                                <a href='login.html'
-                                    style="filter: invert(50%) hue-rotate(180deg) brightness(200%)">
-                                    <img alt='logo' src='{{ asset('assets/img/brand/logo.png') }}'>
+                                <a href='{{ route('login') }}' style="">
+                                    <img alt='logo' src='{{ asset('assets/img/brand/logo-light.png') }}'>
                                 </a>
                             </div>
 
                             <div class='login-form'>
                                 <h2>Sign In</h2>
 
-                                <form class="sign-form lwa-form" action="{{ route('login') }}" method="POST"
+                                <form class="sign-form lwa-form" action="" method="POST"
                                     onsubmit="return validateForm()">
                                     @csrf
                                     <label>
                                         <label class="lwa_user_login" for="login">Email Address</label>
                                         <input type="text" name="email" id="login" class="lwa_user_login"
-                                            placeholder="" placeholder="Enter Your Email" autofocus="autofocus"
-                                             />
+                                            placeholder="" placeholder="Enter Your Email" autofocus="autofocus" />
                                         <small class="text-danger" id="email-error"></small>
                                         @if ($errors->has('email'))
-                                        <small class="text-danger">{{ $errors->first('email') }}</small>
-                                    @endif
+                                            <small class="text-danger">{{ $errors->first('email') }}</small>
+                                        @endif
                                     </label>
 
                                     <label>
                                         <label class="lwa_user_pass input" for="password">Password</label>
                                         <input type="password" name="password" id="password"
-                                            class="lwa_user_pass input" placeholder="" placeholder="Enter your password"
-                                         />
+                                            class="lwa_user_pass input" placeholder=""
+                                            placeholder="Enter your password" />
                                         <small class="error-message text-danger" id="password-error"></small>
                                     </label>
 
@@ -98,7 +98,8 @@
                                         <div class="col-6 text-end">
                                             <button class="lwa_wp-submit a btn btn-sm" type="submit">Sign In</button>
 
-                                            <input type="hidden" name="browser_mobile" id="browser_mobile" value="1" />
+                                            <input type="hidden" name="browser_mobile" id="browser_mobile"
+                                                value="1" />
 
                                         </div>
                                     </div>
@@ -121,8 +122,8 @@
 
                         </div>
 
-                        
-                        
+
+
                         <div class='footer-nav '>
                             <small>
                                 Don't have an account? <a href="{{ route('register') }}"><b>Create an Account</b></a>
@@ -136,16 +137,18 @@
         </main>
     </div>
     <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/65a0c2458d261e1b5f523041/1hjtvdo8t';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {},
+            Tawk_LoadStart = new Date();
+        (function() {
+            var s1 = document.createElement("script"),
+                s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/65a0c2458d261e1b5f523041/1hjtvdo8t';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
     </script>
     <!--End of Tawk.to Script-->
     <script
@@ -181,7 +184,7 @@
                         errorContainer.textContent = '';
                     }
                     break;
-                // Add other cases for additional fields if needed
+                    // Add other cases for additional fields if needed
             }
         }
 
@@ -223,4 +226,3 @@
 </body>
 
 </html>
-

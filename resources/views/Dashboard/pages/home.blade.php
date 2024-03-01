@@ -119,9 +119,8 @@
                                                         <a href="{{ route('events.index') }}">Show all</a>
                                                     </div>
                                                     <div class="card-body">
-                                                        <div class="table-responsive tasks">
-                                                            <table
-                                                                class="table card-table table-vcenter text-nowrap mb-0 border">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered" id="example2">
                                                                 <thead>
                                                                     <tr>
                                                                         {{-- <th class="wd-lg-10p">ID</th> --}}

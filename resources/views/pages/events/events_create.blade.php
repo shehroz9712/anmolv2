@@ -164,14 +164,16 @@
 
                                     <div class="form-group">
                                         <label for="type">Event Type
-                                            <span id="eventTypeDetails"></span>
 
-                                            {{-- <button class="btn ripple btn-primary btn-sm"
-                                                data-bs-container="body"
-                                                data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+                                            <button class="btn ripple btn-primary btn-sm" data-bs-container="body"
+                                                data-bs-content=" Pick up: You will pickup your food,
+                                             Drop-off: We will drop-off your food at your provided address,
+                                             Setup service: Setup service details...,
+                                             Off-premise: Off-premise details...,
+                                             Full service: Full service details..."
                                                 data-bs-placement="top" data-bs-popover-color="default"
                                                 data-bs-toggle="popover" title="Popover top" type="button">
-                                                <i class="fa fa-info"></i></button> --}}
+                                                <i class="fa fa-info"></i></button>
                                         </label>
                                         <select class="form-control" required id="type" name="type"
                                             onchange="handleEventTypeChange()">
@@ -217,23 +219,7 @@
                                     </div>
 
 
-                                    <div class="form-group" >
-                                        <label for="type">Event Type <button class="btn ripple btn-primary btn-sm"
-                                                data-bs-container="body"
-                                                data-bs-content=" Pick up: You will pickup your food,
-                                                 Drop-off: We will drop-off your food at your provided address,
-                                                 Setup service: Setup service details...,
-                                                 Off-premise: Off-premise details...,
-                                                 Full service: Full service details..."
-                                                data-bs-placement="top" data-bs-popover-color="default"
-                                                data-bs-toggle="popover" title="Popover top" type="button">
-                                                <i class="fa fa-info"></i></button>
-                                        </label>
-                                        <input data-toggle="tooltip" data-placement="bottom"
-                                            placeholder="Business Conference" title="Other Event Type"
-                                            class="form-control" id="otherType" name="otherType" type="text">
-                                        <small id="otherTypeError" class="text-danger"></small>
-                                    </div>
+
 
                                     <div class="d-flex">
                                         <div class="d-flex justify-content-end w-100">
@@ -348,21 +334,7 @@
                 addressField.style.display = 'block';
             }
 
-            var eventTypeDetailsSpan = document.getElementById('eventTypeDetails');
-
-            // Reset the details span
-            eventTypeDetailsSpan.textContent = '';
-
-            var eventTypeDetails = {
-                'Pick up': 'You will pickup your food',
-                'Drop-off': 'We will drop-off your food at your provided address',
-                'Setup service': 'Setup service details...',
-                'Off-premise': 'Off-premise details...',
-                'Full service': 'Full service details...'
-            };
-
-            // Update the details span with the selected event type's details
-            eventTypeDetailsSpan.textContent = eventTypeDetails[eventType];
+            
         }
     </script>
     <script>

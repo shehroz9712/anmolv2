@@ -76,7 +76,8 @@
                                     <div class="form-group">
                                         <label for="venueAddress">Venue Name</label>
                                         <input data-toggle="tooltip" data-placement="bottom" aria-autocomplete="false"
-                                            required placeholder="Enter address" title="Address" class="form-control"
+                                            required placeholder="Enter address" title="Address"
+                                            class="form-control  @error('venueAddress') is-invalid @enderror"
                                             autocomplete="false" id="venueAddress" name="venueAddress" type="text">
                                         <small id="addressError" class="text-danger"></small>
                                     </div>
@@ -84,16 +85,16 @@
                                     <div class="form-group">
                                         <label for="address">Address</label>
                                         <input data-toggle="tooltip" data-placement="bottom" placeholder="123 Main St"
-                                            title="Address" class="form-control" id="address" name="address" readonly
-                                            type="text" required>
+                                            title="Address" class="form-control  @error('address') is-invalid @enderror"
+                                            id="address" name="address" readonly type="text" required>
                                         <small class="error-message" id="address_error"></small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="city">City, State, ZipCode</label>
                                         <input data-toggle="tooltip" data-placement="bottom" placeholder="City, State, 123"
-                                            title="City" class="form-control" id="city" name="city"
-                                            type="text"readonly required>
+                                            title="City" class="form-control  @error('city') is-invalid @enderror"
+                                            id="city" name="city" type="text"readonly required>
                                         <small class="error-message" id="city_error"></small>
                                     </div>
 
@@ -104,22 +105,25 @@
                                     <div class="form-group">
                                         <label for="ContactPerson">Contact Person</label>
                                         <input data-toggle="tooltip" data-placement="bottom" placeholder="John Doe"
-                                            title="Contact Person" class="form-control" id="ContactPerson"
-                                            name="ContactPerson" type="text">
+                                            title="Contact Person"
+                                            class="form-control  @error('ContactPerson') is-invalid @enderror"
+                                            id="ContactPerson" name="ContactPerson" type="text">
                                         <small class="error-message" id="ContactPerson_error"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="ContactEmail">Contact Email</label>
                                         <input data-toggle="tooltip" data-placement="bottom"
-                                            placeholder="john.doe@example.com" title="Contact Email" class="form-control"
+                                            placeholder="john.doe@example.com" title="Contact Email"
+                                            class="form-control  @error('ContactEmail') is-invalid @enderror"
                                             id="ContactEmail" name="ContactEmail" type="email">
                                         <small class="error-message" id="ContactEmail_error"></small>
                                     </div>
                                     <div class="form-group">
                                         <label for="ContactPhone">Contact Phone</label>
                                         <input data-toggle="tooltip" data-placement="bottom" placeholder="+1 (555) 123-4567"
-                                            title="Contact Phone" class="form-control" id="ContactPhone" name="ContactPhone"
-                                            type="tel">
+                                            title="Contact Phone"
+                                            class="form-control  @error('ContactPhone') is-invalid @enderror"
+                                            id="ContactPhone" name="ContactPhone" type="tel">
                                         <small class="error-message" id="ContactPhone_error"></small>
                                     </div>
                                     <div class="d-flex ">
@@ -195,7 +199,7 @@
     </script>
 
 
-    
+
 
 
 
