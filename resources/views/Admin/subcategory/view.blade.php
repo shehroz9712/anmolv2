@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-Sub Category | Sub Category Detail
+    Sub Category | Sub Category Detail
 @endsection
 
 @section('stylesheet')
@@ -49,18 +49,13 @@ Sub Category | Sub Category Detail
                                                 <th class="col-sm-4">Status</th>
                                                 <td class="col-sm-8">{{ $record->status ? 'Active' : 'Inactive' }}</td>
                                             </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Single Price</th>
-                                                <td class="col-sm-8">{{ $record->single }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Double Price</th>
-                                                <td class="col-sm-8">{{ $record->double }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Trio Price</th>
-                                                <td class="col-sm-8">{{ $record->trio }}</td>
-                                            </tr>
+                                            @foreach ($record->price as $item)
+                                                <tr>
+                                                    <th class="col-sm-4">{{ $item->pick }} Pick</th>
+                                                    <td class="col-sm-8">${{ $item->price }}</td>
+                                                </tr>
+                                            @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>

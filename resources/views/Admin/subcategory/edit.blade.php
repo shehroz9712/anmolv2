@@ -66,21 +66,34 @@
                                                 </option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-3 mb-3">
-                                            <label for="single">Single Price</label>
-                                            <input class="form-control" id="single" name="single" type="number"
-                                                value="{{ $record->single }}">
+                                      
+                                        <div id="formContainer" class="col-12">
+                                            <!-- Loop through existing package includes -->
+                                            @foreach ($record->price as $item)
+                                                <div class="form-group row align-items-end mb-3">
+                                                    <div class="col-lg-4 mb-3">
+                                                        <label for="number">Number of Dishes</label>
+                                                        <input class="form-control" type="number" name="number[]"
+                                                            value="{{ $item->pick }}">
+                                                    </div>
+                                                    <div class="col-lg-4 mb-3">
+                                                        <label for="number">Price</label>
+                                                        <input class="form-control" type="number" name="price[]"
+                                                            value="{{ $item->price }}">
+                                                    </div>
+                                                    <div class="col-lg-4 mb-3">
+                                                        <button type="button"
+                                                            class="btn ripple btn-danger removeField">Remove</button>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
-                                        <div class="col-lg-3 mb-3">
-                                            <label for="double">Double Price</label>
-                                            <input class="form-control" id="double" name="double" type="number"
-                                                value="{{ $record->double }}">
+
+                                        <div class="col-12 mb-3">
+                                            <button type="button" class="btn ripple btn-main-primary" id="addField">Add
+                                                Field</button>
                                         </div>
-                                        <div class="col-lg-3 mb-3">
-                                            <label for="trio">Trio Price</label>
-                                            <input class="form-control" id="trio" name="trio" type="number"
-                                                value="{{ $record->trio }}">
-                                        </div>
+
                                         <div class="col-12 mb-3" style="text-align: end;">
                                             <button class="btn ripple btn-main-primary">Submit</button>
                                         </div>

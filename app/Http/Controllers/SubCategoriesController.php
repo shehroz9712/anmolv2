@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Price;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -35,10 +36,25 @@ class SubCategoriesController extends Controller
             [
                 '_token',
                 '_method',
+                'number',
+                'price',
             ]
         );
 
-        $package = SubCategory::create($data);
+        $subcategory = SubCategory::create($data);
+        $price = $request->input('price');
+        $numbers = $request->input('number');
+
+        foreach ($numbers as $key => $number) {
+            if (!empty($number)) {
+                Price::create([
+                    'category_id' => $subcategory->id,
+                    'price' => $price[$key],
+                    'pick' => $numbers[$key],
+                ]);
+            }
+        }
+
         return redirect()->route('subcategories.index')->with('message', 'Sub Category Added Successfully');
     }
 
@@ -66,14 +82,34 @@ class SubCategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = $request->except([
-            '_token',
-            '_method',
-        ]);
+        $data = $request->except(
+            [
+                '_token',
+                '_method',
+                'number',
+                'price',
+            ]
+        );
 
-        // Update the main package details
         $subcategory = SubCategory::findOrFail($id);
         $subcategory->update($data);
+
+        Price::where('category_id', $id)->delete();
+
+        $price = $request->input('price');
+        $numbers = $request->input('number');
+
+        foreach ($numbers as $key => $number) {
+            if (!empty($number)) {
+                Price::create([
+                    'category_id' => $id,
+                    'price' => $price[$key],
+                    'pick' => $numbers[$key],
+                ]);
+            }
+        }
+        // Update the main package details
+
         return redirect()->route('subcategories.index')->with('message', 'Sub Category Update Successfully');
     }
 
