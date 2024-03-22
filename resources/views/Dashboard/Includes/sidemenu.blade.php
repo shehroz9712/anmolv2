@@ -126,7 +126,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('service.styling') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="si si-earphones-alt sidemenu-icon menu-icon "></i>

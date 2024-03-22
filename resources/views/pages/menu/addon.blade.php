@@ -152,16 +152,43 @@
 
                             <div class="">
                                 <div id="single-category-dishes-count"></div>
-                                <button class="btn ripple btn-outline-primary" id="save-button"
+                                <button class="btn ripple btn-outline-primary" id="save-button" type="button"
                                     style=" margin: 0px  30px 15px; float:right; display:none">Save
                                     &
                                     Continue</button>
-                                <button class="btn ripple btn-outline-primary" id="skip-button"
+                                <button class="btn ripple btn-outline-primary" id="skip-button" type="button"
                                     style="margin: 0px  30px 15px; float:right;">Skip
                                     &
                                     Continue</button>
 
                             </div>
+
+                            <div class="modal" id="myModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Spacial Instruction</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal Body -->
+                                        <div class="modal-body">
+
+                                            <textarea name="instruction" style="height: 200px;width: 100%;"></textarea>
+                                        </div>
+
+                                        <!-- Modal Footer -->
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary" id="popup-save"
+                                                data-dismiss="modal">Save</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -172,6 +199,19 @@
     </div>
 @endsection
 @section('js')
+    <script>
+        // When save button is clicked, show the modal
+        document.getElementById('save-button').addEventListener('click', function() {
+            $('#myModal').modal('show');
+        });
+
+        // When skip button is clicked, show the modal
+        document.getElementById('skip-button').addEventListener('click', function() {
+            $('#myModal').modal('show');
+        });
+
+        // When save button in the modal is clicked, submit the value
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var checkboxes = document.querySelectorAll('.dish-checkbox');
@@ -256,7 +296,7 @@
                                     <div class="card-item-desc mt-0">
                                         <h6 class="font-weight-semibold mt-0 text-uppercase">${dish.name}</h6>
                                         <dl class="card-item-desc-1">
-                                            <dt>${dish.subcategory.name}</dt>
+                                            <dt><input type="text" value="${dish.id}"> ${dish.subcategory.name}</dt>
                                             <dd>Price: $${dish.final_price}</dd>
                                             <p>${dish.desc}</p>
                                         </dl>

@@ -13,6 +13,11 @@ class SubCategory extends Model
     {
         return $this->hasMany(Dish::class, 'subcategory_id', 'id')->where('status', 1);
     }
+    public function price()
+    {
+        return $this->hasMany(Price::class, 'category_id', 'id')->where('status', 1);
+    }
+
 
     public function category()
     {

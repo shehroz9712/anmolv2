@@ -16,6 +16,7 @@ use App\Http\Controllers\OccasionController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\PasswordChangeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\TypeController;
@@ -93,6 +94,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events-create', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
+
+    Route::get('/service/styling', [ServiceController::class, 'create'])->name('service.styling');
+    Route::post('/service/styling', [ServiceController::class, 'store'])->name('service.store');
 
 
     Route::post('/events/edit', [EventController::class, 'edit'])->name('events.edit');

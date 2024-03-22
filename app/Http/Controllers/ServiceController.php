@@ -13,80 +13,24 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Crypt;
 
 
-class EventController extends Controller
+class ServiceController extends Controller
 {
-    public function index()
-    {
 
-        if (Auth::user()->Role == "Admin") {
-
-            $events = Event::All();
-        } else {
-            $events = Event::where('createdby', Auth::id())->get();
-        }
-        return view('pages.events.events_index', compact('events'));
-    }
 
     public function create()
     {
-        $occasions = Occasion::all();
-        $types = Type::all();
-        return view('pages.events.events_create', compact('types', 'occasions'));
+        return view('pages.service.service');
     }
     public function store(Request $request)
     {
-        // dd($request->all());
-        $data = $request->validate([
-            'name' => 'required|string',
-            'date' => 'required|date',
-            'guests' => 'required',
-            'type' => 'string'
-        ]);
-        // dd($data);
 
-        if ($request['type'] == 'Other') {
-            // If the type is "Other," use the value from the "Other Type" field
-            $request['type'] = $request->input('otherType');
-        }
-
-        // Convert the 'date' field to 'YYYY-MM-DD' format
-        $date = Carbon::parse($data['date'])->format('Y-m-d');
-        $request['date'] = $date;
-        $request['occasion'] = '';
-
-        // Assign the currently authenticated user as the creator of the event
-        $request['createdby'] = Auth::user()->id;
-
-        // Create a new Event instance
-        $event = Event::create($request->all());
-
-        // Get the ID of the created event
-        $eventId = $event->id;
-
-        // Save the event
-        $event->save();
-        // dd($event);
-        $journey = new Journey([
-            'eventid' => $eventId,
-            'venueid' => null,
-            'created_by' => Auth::user()->id,
-        ]);
-        $journey->save();
-        if ($event->type == 'Pick up' || $event->type == 'Drop-off') {
-            return redirect()->route('menu.index')
-                ->with('message', 'Event created successfully.');
-        } else
-            // Redirect to the venue creation page with the event ID
-            return redirect()->route('customer-venues.createWithId')
-                ->with([
-                    'message' => 'Event created successfully.',
-                    'eventId' => $eventId, // Flash the event ID
-                ]);
-
-
-        // return redirect()->route('ContractIndex')
-        //      ->with('message', 'Event created successfully.');
+        // Redirect to the venue creation page with the event ID
+        return redirect()->route('ContractIndex')
+            ->with([
+                'message' => 'Service Style Save successfully.',
+            ]);
     }
+
 
 
     public function continueJourney(Request $request)
@@ -172,10 +116,4 @@ class EventController extends Controller
 
         return redirect()->route('events.index')->with('message', 'Event deleted successfully.');
     }
-
-
-
-
-
-    
 }
