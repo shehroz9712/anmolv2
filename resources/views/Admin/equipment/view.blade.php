@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Item | Item Detail
+    Equipment | Equipment Detail
 @endsection
 
 @section('stylesheet')
@@ -9,10 +9,10 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Item Detail</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Equipment Detail</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Item Detail</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Item Detail</li>
+                <li class="breadcrumb-item"><a href="{{ route('equipments.index') }}">Equipment Detail</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Equipment Detail</li>
             </ol>
         </div>
     </div>
@@ -22,79 +22,44 @@
             <div class="card custom-card">
                 <div class="card-body">
                     <div>
-                        <h6 class="main-content-label mb-1">Item Detail</h6>
-                        <p class="text-muted card-sub-title"> Item with details.</p>
+                        <h6 class="main-content-label mb-1">Equipment Detail</h6>
+                        <p class="text-muted card-sub-title"> Equipment with details.</p>
                     </div>
                     <div class="container">
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <h2>Main Item Details</h2>
+                            <div class="col-md-12">
+                                <h2>Main Subategory Details</h2>
                                 <div class="table-responsive">
-                                    <table class="table ">
+                                    <table class="table">
                                         <tbody>
                                             <tr>
                                                 <th class="col-sm-4">Name</th>
-                                                <td class="col-sm-8">{{ $dish->name }}</td>
+                                                <td class="col-sm-8">{{ $record->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="col-sm-4">Price</th>
+                                                <td class="col-sm-8">{{ $record->price }}</td>
                                             </tr>
 
                                             <tr>
-                                                <th class="col-sm-4">Price</th>
-                                                <td class="col-sm-8">{{ $dish->price }}</td>
-                                            </tr>
-                                            {{-- <tr>
-                                                <th class="col-sm-4">Equipment ID</th>
-                                                <td class="col-sm-8">{{ $dish->equipment_id }}</td>
-                                            </tr> --}}
-                                            <tr>
-                                                <th class="col-sm-4">Unit</th>
-                                                <td class="col-sm-8">{{ $dish->unit }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Description</th>
-                                                <td class="col-sm-8">{{ $dish->desc }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Long Description</th>
-                                                <td class="col-sm-8">{!! $dish->long_desc !!}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Sub Category</th>
-                                                <td class="col-sm-8">{{ $dish->subcategory->name }}</td>
-                                            </tr>
-                                            <tr>
                                                 <th class="col-sm-4">Status</th>
-                                                <td class="col-sm-8">{{ $dish->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                                <td class="col-sm-8">{{ $record->status ? 'Active' : 'Inactive' }}</td>
                                             </tr>
+
+
                                         </tbody>
-                                    </table>
                                     </table>
                                 </div>
 
                             </div>
 
-                            <div class="col-md-6">
-                                <h2>Equipment Details</h2>
-                                @foreach ($dish->equipment as $item)
-                                    <div class="table-responsive">
-                                        <table class="table ">
-                                            <tbody>
-                                                <tr>
-                                                    <th class="col-sm-4">Equipment Name</th>
-                                                    <td class="col-sm-8">{{ $item->name }}</td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                @endforeach
-                            </div>
 
                         </div>
                         <div class="d-flex">
                             <div class="justify-content-center">
-                                <a href="{{ route('dishes.index') }}" class="btn btn-primary ">
-                                    Back to Itemes
+                                <a href="{{ route('equipments.index') }}" class="btn btn-primary ">
+                                    Back to Equipment
                                 </a>
                             </div>
                         </div>

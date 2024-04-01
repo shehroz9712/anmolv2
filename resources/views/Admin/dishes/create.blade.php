@@ -46,7 +46,8 @@
 
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="price">Price (Leave blank if you need item category price)</label>
+                                            <label for="price">Price (Leave blank if you need item category
+                                                price)</label>
                                             <input type="number" class="form-control" id="price" name="price">
                                         </div>
                                         {{-- <div class="col-md-6 mb-3">
@@ -81,7 +82,23 @@
                                             <input type="text" class="form-control" id="desc" name="desc">
                                         </div>
                                     </div>
+                                    <div class="row">
 
+                                        <div class="col-md-12 mb-3">
+                                            <div class="form-group mb-3">
+                                                    <label for="equipment">Equipments Name </label>
+                                                    <select name="equipment[]" class="select2" multiple id="">
+                                                        @foreach ($equipments as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
                                             <label for="long_desc">Long Description</label>
@@ -100,6 +117,7 @@
                                             </select>
                                         </div>
                                     </div>
+
 
                                     <button class="btn btn-primary" type="submit">Submit</button>
                                 </form>

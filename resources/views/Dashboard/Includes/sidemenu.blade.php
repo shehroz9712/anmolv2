@@ -83,6 +83,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('equipments.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fa fa-toolbox sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Equipments</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('customer-venues.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>

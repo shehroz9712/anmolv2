@@ -6,6 +6,7 @@ use App\Http\Controllers\AppleAuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomerVenueController;
 use App\Http\Controllers\DishesController;
+use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GuestController;
@@ -90,6 +91,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/menu', [menu::class, 'index'])->name('menu.index');
     Route::get('/menu/addon', [menu::class, 'addon'])->name('menu.addon');
     Route::get('/menu/detail/{id}', [menu::class, 'detail'])->name('menu.detail');
+
+    Route::get('/equipment', [menu::class, 'equipment'])->name('equipment.index');
+
+
     //Events
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events-create', [EventController::class, 'create'])->name('events.create');
@@ -109,7 +114,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/customer-venues', [CustomerVenueController::class, 'index'])->name('customer-venues.index');
     Route::get('/customer-venues-create', [CustomerVenueController::class, 'create'])->name('customer-venues.create');
-    Route::post('/customer-venues-create', [CustomerVenueController::class, 'create'])->name('customer-venues.createWithId');
+    Route::get('/customer-venues-create/{id?}', [CustomerVenueController::class, 'create'])->name('customer-venues.createWithId');
     Route::post('/customer-venues', [CustomerVenueController::class, 'store'])->name('customer-venues.store');
     Route::post('/customer-venues/edit', [CustomerVenueController::class, 'edit'])->name('customer-venues.edit');
     Route::put('/customer-venues', [CustomerVenueController::class, 'update'])->name('customer-venues.update');
@@ -166,6 +171,7 @@ Route::middleware(['auth', 'admin.auth'])->group(function () {
     Route::resource('items', DishesController::class)->names('dishes');
     Route::resource('categories', CategoriesController::class);
     Route::resource('subcategories', SubCategoriesController::class);
+    Route::resource('equipments', EquipmentController::class);
 });
 
 Route::prefix('admin')->group(function () {

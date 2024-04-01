@@ -103,7 +103,7 @@
                                 <form method="POST" action="{{ route('service.store') }}">
                                     @csrf
                                     <div class="row">
-                                        <label class="fs-17 fw-bold ps-4">Apitizer</label>
+                                        <label class="fs-17 fw-bold ps-4">Appetizer</label>
                                         <div class="col-lg-6 form-group">
                                             <label for="start_time">Start Time</label>
                                             <div class="input-group " data-placement="bottom" data-align="top"
@@ -226,7 +226,7 @@
                 // Format the result as HH:MM
                 return `${String(newHours).padStart(2, '0')}:${String(newMins).padStart(2, '0')}`;
             }
-           
+
         });
     </script>
     <script>

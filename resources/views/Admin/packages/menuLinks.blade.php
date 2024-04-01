@@ -21,7 +21,7 @@
         </div>
         <!-- End Page Header -->
         <div class="row row-sm">
-            <div class="col-lg-12 col-xl-6 col-md-12 col-12 col-sm-12">
+            <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
                 <div class="card custom-card">
                     <div class="card-header custom-card-header border-bottom-0">
                         <h5 class="main-content-label tx-dark tx-medium mb-0">Categories</h5>
@@ -30,11 +30,12 @@
                         <h6 class="">Categories</h6>
                         <p class="card-text">Explore diverse categories for your subcategories management system.
                         </p>
-                        <a href="{{ route('categories.index') }}" class="btn btn-primary ripple btn-block">View</a>
+                        <a href="{{ route('categories.index') }}" class="btn btn-primary ripple "
+                            style="float: inline-end;padding: 8px 25px;">View</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-xl-6 col-md-12 col-12 col-sm-12">
+            <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
                 <div class="card custom-card">
                     <div class="card-header custom-card-header border-bottom-0">
                         <h5 class="main-content-label tx-dark tx-medium mb-0">Sub Categories</h5>
@@ -43,23 +44,25 @@
                         <h6 class="">Sub Categories</h6>
                         <p class="card-text">Organize your offerings into detailed subcategories for better organization.
                         </p>
-                        <a href="{{ route('subcategories.index') }}" class="btn btn-primary ripple btn-block">View</a>
+                        <a href="{{ route('subcategories.index') }}" class="btn btn-primary ripple "
+                            style="float: inline-end;padding: 8px 25px;">View</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-xl-6 col-md-12 col-12 col-sm-12">
+            <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
                 <div class="card custom-card">
                     <div class="card-header custom-card-header border-bottom-0">
                         <h5 class="main-content-label tx-dark tx-medium mb-0">Items</h5>
                     </div>
                     <div class="card-body">
                         <h6 class="">Items</h6>
-                        <p class="card-text">Dive into a world of culinary delights with our diverse dishes.</p>
-                        <a href="{{ route('dishes.index') }}" class="btn btn-primary ripple btn-block">View</a>
+                        <p class="card-text">Dive into the  world of culinary delights with our diverse variety dishes .</p>
+                        <a href="{{ route('dishes.index') }}" class="btn btn-primary ripple "
+                            style="float: inline-end;padding: 8px 25px;">View</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-xl-6 col-md-12 col-12 col-sm-12">
+            <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
                 <div class="card custom-card">
                     <div class="card-header custom-card-header border-bottom-0">
                         <h5 class="main-content-label tx-dark tx-medium mb-0">Packages</h5>
@@ -67,7 +70,8 @@
                     <div class="card-body">
                         <h6 class="">Packages</h6>
                         <p class="card-text">Create and customize packages to meet your customers' specific needs.</p>
-                        <a href="{{ route('packages.index') }}" class="btn btn-primary ripple btn-block">View</a>
+                        <a href="{{ route('packages.index') }}" class="btn btn-primary ripple "
+                            style="float: inline-end;padding: 8px 25px;">View</a>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\DishesEquipment;
+use App\Models\Equipment;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -24,8 +26,8 @@ class DishesController extends Controller
     {
         // dd('create');
         $subcategory = SubCategory::Active()->get();
-
-        return view('Admin.dishes.create', compact('subcategory'));
+        $equipments = Equipment::Active()->get();
+        return view('Admin.dishes.create', compact('subcategory', 'equipments'));
     }
 
     /**
@@ -37,12 +39,21 @@ class DishesController extends Controller
             [
                 '_token',
                 '_method',
+                'equipment',
             ]
         );
-      
+
         // $this->uploadImage($data->image, 'dishes');
 
-        $Dish = Dish::create($data);
+        $dish = Dish::create($data);
+        $equipment = $request->equipment;
+        foreach ($equipment as $key => $value) {
+            DishesEquipment::create([
+                'equipment_id' => $value,
+                'dish_id' => $dish->id
+            ]);
+        }
+
         return redirect()->route('dishes.index')->with('message', 'Dish Added Successfully');
     }
 
@@ -51,7 +62,8 @@ class DishesController extends Controller
      */
     public function show(string $id)
     {
-        $dish = Dish::find($id);
+        $dish = Dish::with('equipment')->find($id);
+
         return view('Admin.dishes.view', compact('dish'));
     }
 
@@ -61,8 +73,9 @@ class DishesController extends Controller
     public function edit(string $id)
     {
         $subcategory = SubCategory::Active()->get();
-        $dish = Dish::find($id);
-        return view('Admin.dishes.edit', compact('dish', 'subcategory'));
+        $equipments = Equipment::Active()->get();
+        $dish = Dish::with('equipment')->find($id);
+        return view('Admin.dishes.edit', compact('dish', 'subcategory', 'equipments'));
     }
 
     /**
@@ -73,11 +86,20 @@ class DishesController extends Controller
         $data = $request->except([
             '_token',
             '_method',
+            'equipment'
         ]);
 
         // Update the main package details
         $dishes = Dish::find($id);
         $dishes->update($data);
+        DishesEquipment::where(['dish_id' => $id])->delete();
+        $equipment = $request->equipment;
+        foreach ($equipment as $key => $value) {
+            DishesEquipment::create([
+                'equipment_id' => $value,
+                'dish_id' => $id
+            ]);
+        }
         return redirect()->route('dishes.index')->with('message', 'Dishes Updated Successfully');
     }
 

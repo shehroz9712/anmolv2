@@ -10,7 +10,7 @@
         }
 
         .card-body {
-            height: 400px;
+            height: 70vh;
             overflow: auto;
             margin: 10px;
         }
@@ -21,7 +21,14 @@
     </style>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
+{{-- @php
+            $url = url()->current();
+            $segments = collect(explode('/', $url));
+            $lastSegment = $segments->last();
+        @endphp
 
+        {{-- Output the last segment --}}
+{{-- $lastSegment }} --}}
 @section('content')
     <div class="main-container container-fluid">
         <div class="inner-body" style="margin-bottom: 5rem;">
@@ -122,7 +129,7 @@
                         </div>
                         <form action="{{ route('menu.submit') }}" method="post">
                             @csrf
-                            <div class="card-body" style="height: 300px;">
+                            <div class="card-body" id="scrolldev" style="height: 340px;">
 
 
                                 <input type="hidden" name="url" value="{{ Request::segments()[1] }}">
@@ -169,7 +176,7 @@
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Spacial Instruction</h4>
+                                            <h4 class="modal-title">Special Instruction</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
 
@@ -251,6 +258,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             var checkboxes = document.querySelectorAll('.dish-checkbox');
+            var scrolldev = document.querySelector('#scrolldev');
             var tableContainer = document.querySelector('#selected-dishes');
             var saveButton = document.querySelector('#save-button');
             var skipButton = document.querySelector('#skip-button');
@@ -289,22 +297,20 @@
                         // Iterate over the response and append rows to the table
                         response.forEach(function(dish) {
                             var newRow = document.createElement('tr');
-                            newRow.innerHTML = `
-                        <td>
-                            <div class="media">
-                                <div class="media-body my-auto">
-                                    <div class="card-item-desc mt-0">
-                                        <h6 class="font-weight-semibold mt-0 text-uppercase">${dish.name}</h6>
-                                        <dl class="card-item-desc-1">
-                                            <dt><input type="text" value="${dish.id}"> ${dish.subcategory.name}</dt>
-                                            <dd>Price: $${dish.final_price}</dd>
-                                            <p>${dish.desc}</p>
-                                        </dl>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    `;
+                            newRow.innerHTML = `<td>
+                                                    <div class="media">
+                                                        <div class="media-body my-auto">
+                                                            <div class="card-item-desc mt-0">
+                                                                <h6 class="font-weight-semibold mt-0 text-uppercase">${dish.name}</h6>
+                                                                <dl class="card-item-desc-1">
+                                                                    <dt><input type="hidden" value="${dish.id}"> ${dish.subcategory.name}</dt>
+                                                                    <dd>Price: $${dish.final_price}</dd>
+                                                                    <p>${dish.desc}</p>
+                                                                </dl>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>`;
 
                             // Append the new row to the table container
                             tableContainer.appendChild(newRow);
@@ -319,7 +325,7 @@
                             saveButton.style.display = 'block';
                         }
                         loader.style.display = 'none';
-                        tableContainer.scrollTop = tableContainer.scrollHeight;
+                        scrolldev.scrollTop = tableContainer.scrollHeight;
 
                     },
                     error: function(response) {

@@ -19,4 +19,8 @@ class Package extends Model
     {
         return $this->hasMany(PackageInclude::class, 'package_id', 'id')->with('sharable', 'subcategory');
     }
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }

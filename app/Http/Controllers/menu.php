@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Dish;
+use App\Models\Equipment;
 use App\Models\Package;
 use App\Models\Price;
 use App\Models\SubCategory;
@@ -37,7 +38,6 @@ class menu extends Controller
 
                     // Find the price based on the number of dishes in this category
                     $price = $prices->where('pick', $numOfDishesInCategory)->first();
-
                     // If there is no price for the current number of dishes, use the last available price
                     if (!$price) {
                         $price = $prices->last();
@@ -101,7 +101,7 @@ class menu extends Controller
             return redirect()->route('menu.addon')
                 ->with('message', 'Menu submit successfully.');
         } elseif ($request->url == 'package') {
-            // |$event = 
+            // |$event =
 
             return redirect()->route('menu.addon')
                 ->with('message', 'Package submit successfully.');
@@ -110,5 +110,10 @@ class menu extends Controller
             return redirect()->route('service.styling')
                 ->with('message', 'Addon items submit successfully.');
         }
+    }
+    public function equipment()
+    {
+        $equipments  = Equipment::Active()->get();
+        return view('pages.equipment.index', compact('equipments'));
     }
 }

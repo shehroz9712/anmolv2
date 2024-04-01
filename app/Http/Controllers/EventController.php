@@ -77,7 +77,7 @@ class EventController extends Controller
                 ->with('message', 'Event created successfully.');
         } else
             // Redirect to the venue creation page with the event ID
-            return redirect()->route('customer-venues.createWithId')
+            return redirect()->route('customer-venues.createWithId', encrypt($eventId))
                 ->with([
                     'message' => 'Event created successfully.',
                     'eventId' => $eventId, // Flash the event ID
@@ -172,10 +172,4 @@ class EventController extends Controller
 
         return redirect()->route('events.index')->with('message', 'Event deleted successfully.');
     }
-
-
-
-
-
-    
 }

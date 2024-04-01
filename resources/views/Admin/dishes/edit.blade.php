@@ -88,36 +88,51 @@
                                                 value="{{ $dish->desc }}">
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12 mb-3">
-                                            <label for="long_desc">Long Description</label>
-                                            <textarea class="form-control" id="long_desc" name="long_desc" rows="3">{{ $dish->long_desc }}</textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="status">Status</label>
-                                            <select class="form-control" id="status" name="status">
-                                                <option value="0" {{ $dish->status == 0 ? 'selected' : '' }}>Inactive
-                                                </option>
-                                                <option value="1" {{ $dish->status == 1 ? 'selected' : '' }}>Active
-                                                </option>
+                                    <div class="col-md-12 mb-3">
+                                        <div class="form-group mb-3">
+                                            <label for="equipment">Equipments Name </label>
+                                            <select name="equipment[]" class="select2" multiple id="">
+                                                @foreach ($equipments as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        @if ($dish->equipment->contains($item->id)) selected @endif>
+                                                        {{ $item->name }}</option>
+                                                @endforeach
                                             </select>
-                                        </div>
-                                    </div>
 
-                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                </form>
+                                        </div>
+
+                                    </div>
 
                             </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="long_desc">Long Description</label>
+                                    <textarea class="form-control" id="long_desc" name="long_desc" rows="3">{{ $dish->long_desc }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="status">Status</label>
+                                    <select class="form-control" id="status" name="status">
+                                        <option value="0" {{ $dish->status == 0 ? 'selected' : '' }}>Inactive
+                                        </option>
+                                        <option value="1" {{ $dish->status == 1 ? 'selected' : '' }}>Active
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                            </form>
+
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
     </div>
 @endsection

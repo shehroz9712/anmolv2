@@ -70,7 +70,8 @@
                                 <form method="POST" action="{{ route('customer-venues.store') }}">
                                     @csrf
 
-                                    <input type="hidden" name="event_id" id="event_id" value="{{ $eventId ?? null }}">
+                                    <input type="hidden" name="event_id" id="event_id"
+                                        value="{{ $eventId ? decrypt($eventId) : null }}">
 
 
                                     <div class="form-group">

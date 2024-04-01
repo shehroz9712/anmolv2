@@ -24,6 +24,6 @@ class Category extends Model
     }
     public function packages()
     {
-        return $this->hasMany(Package::class, 'category_id', 'id')->with('include');
+        return $this->hasMany(Package::class, 'category_id', 'id')->Active()->with('include');
     }
 }

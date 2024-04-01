@@ -21,10 +21,10 @@ class CustomerVenueController extends Controller
         return view('pages.customer_venues.customer_venue_index', compact('customerVenues'));
     }
 
-    public function create(Request $request)
+    public function create(Request $request, $eventId = null)
     {
 
-        $eventId = $request->eventId;
+        $eventId = $eventId;
 
         // Provide data for creating a new customer venue (e.g., admin venues and users)
         $venues  = AdminVenue::all();

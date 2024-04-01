@@ -25,7 +25,7 @@ class ServiceController extends Controller
     {
 
         // Redirect to the venue creation page with the event ID
-        return redirect()->route('ContractIndex')
+        return redirect()->route('equipment.index')
             ->with([
                 'message' => 'Service Style Save successfully.',
             ]);

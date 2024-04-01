@@ -26,4 +26,9 @@ class Dish extends Model
     {
         return $this->morphOne(PackageInclude::class, 'sharable');
     }
+
+    public function equipment()
+    {
+        return $this->belongsToMany(Equipment::class, 'dishes_equipment', 'dish_id', 'equipment_id');
+    }
 }
