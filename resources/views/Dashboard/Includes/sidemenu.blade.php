@@ -108,8 +108,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                            {{-- <a class="nav-link" href="{{ route('events.create') }}"> --}}
+                            <a class="nav-link" href="{{ route('events.create') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
@@ -118,7 +117,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                            {{-- <a class="nav-link" href="{{ route('customer-venues.create') }}"> --}}
+                                {{-- <a class="nav-link" href="{{ route('customer-venues.create') }}"> --}}
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-globe sidemenu-icon menu-icon "></i>
@@ -129,7 +128,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                            {{-- <a class="nav-link" href="{{ route('menu.index') }}"> --}}
+                                {{-- <a class="nav-link" href="{{ route('menu.index') }}"> --}}
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-menu sidemenu-icon menu-icon "></i>
@@ -138,7 +137,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                            {{-- <a class="nav-link" href="{{ route('service.styling') }}"> --}}
+                                {{-- <a class="nav-link" href="{{ route('service.styling') }}"> --}}
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="si si-earphones-alt sidemenu-icon menu-icon "></i>

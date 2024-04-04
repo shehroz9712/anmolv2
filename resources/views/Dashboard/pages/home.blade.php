@@ -27,9 +27,9 @@
                 <!-- End Page Header -->
                 <!--Row-->
                 <div class="row row-sm">
-                    <div class="col-sm-12 col-lg-12 col-xl-8">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
                         <!--Row-->
-                        <div class="row row-sm">
+                        {{-- <div class="row row-sm">
                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
                                 <div class="card custom-card">
                                     <div class="card-body">
@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!--End row-->
                         <!--row-->
                         <div class="row row-sm">
@@ -453,7 +453,7 @@
                         <!-- Row end -->
                     </div>
                     <!-- col end -->
-                    <div class="col-sm-12 col-lg-12 col-xl-4">
+                    {{-- <div class="col-sm-12 col-lg-12 col-xl-4">
                         <div class="card custom-card">
                             <div class="card-header border-bottom-0 pb-0 d-flex ps-3 ms-1">
                                 <div>
@@ -538,7 +538,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <!-- col end -->
 
