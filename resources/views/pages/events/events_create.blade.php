@@ -225,7 +225,7 @@
                                         <div class="d-flex justify-content-end w-100">
                                             <div class="d-inline-block my-2">
                                                 <button onclick="validateAndSubmit(event, validateForm())"
-                                                    class="btn ripple btn-primary" id="submitBtn">Submit</button>
+                                                    class="btn ripple btn-primary" id="submitBtn">Save & Continue</button>
                                             </div>
                                         </div>
                                     </div>
@@ -334,7 +334,7 @@
                 addressField.style.display = 'block';
             }
 
-            
+
         }
     </script>
     <script>

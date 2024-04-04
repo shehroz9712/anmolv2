@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Journey;
 use App\Models\Occasion;
+use App\Models\ServiceStyling;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,12 +18,41 @@ class ServiceController extends Controller
 {
 
 
-    public function create()
+    public function create(Request $request, $eventId)
     {
-        return view('pages.service.service');
+        return view('pages.service.service', compact('eventId'));
     }
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'appetizer_start_time' => 'required|date_format:H:i A',
+            'appetizer_end_time' => 'required|date_format:H:i A',
+            'main_course_start_time' => 'required|date_format:H:i A',
+            'main_course_end_time' => 'required|date_format:H:i A',
+            'dessert_start_time' => 'required|date_format:H:i A',
+            'dessert_end_time' => 'required|date_format:H:i A',
+            'butler_style_start_time' => 'required|date_format:H:i A',
+            'butler_style_end_time' => 'required|date_format:H:i A',
+        ]);
+
+        // Create a new EventTiming instance
+        $service_styling = ServiceStyling::create([
+            'appetizer_start_time' => $this->timeConvert($request->appetizer_start_time),
+            'appetizer_end_time' => $this->timeConvert($request->appetizer_end_time),
+            'main_course_start_time' => $this->timeConvert($request->main_course_start_time),
+            'main_course_end_time' => $this->timeConvert($request->main_course_end_time),
+            'dessert_start_time' => $this->timeConvert($request->dessert_start_time),
+            'dessert_end_time' => $this->timeConvert($request->dessert_end_time),
+            'butler_style_start_time' => $this->timeConvert($request->butler_style_start_time),
+            'butler_style_end_time' => $this->timeConvert($request->butler_style_end_time),
+
+        ]);
+        $event_id = $request->eventId ? decrypt($request->eventId) : '1';
+        Journey::where('eventid', $event_id)->update(
+            [
+                'service_styling_id' =>  $service_styling->id,
+            ]
+        );
 
         // Redirect to the venue creation page with the event ID
         return redirect()->route('equipment.index')

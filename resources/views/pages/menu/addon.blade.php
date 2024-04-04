@@ -127,12 +127,14 @@
                         <div class="card-header">
                             <h5 class="mb-3 font-weight-bold tx-14">Selected Menu</h5>
                         </div>
-                        <form action="{{ route('menu.submit') }}" method="post">
+                        <form action="{{ route('menu.submit') }}" method="post" id="formid">
                             @csrf
                             <div class="card-body" id="scrolldev" style="height: 340px;">
 
 
                                 <input type="hidden" name="url" value="{{ Request::segments()[1] }}">
+                                <input type="hidden" name="eventId" value="{{ $eventId }}">
+
                                 <div class="table-responsive">
                                     <table class="table border table-hover text-nowrap table-shopping-cart mb-0"
                                         id="selected-dishes">
@@ -160,9 +162,7 @@
                             <div class="">
                                 <div id="single-category-dishes-count"></div>
                                 <button class="btn ripple btn-outline-primary" id="save-button" type="button"
-                                    style=" margin: 0px  30px 15px; float:right; display:none">Save
-                                    &
-                                    Continue</button>
+                                    style=" margin: 0px  30px 15px; float:right; display:none">Save & Continue</button>
                                 <button class="btn ripple btn-outline-primary" id="skip-button" type="button"
                                     style="margin: 0px  30px 15px; float:right;">Skip
                                     &
@@ -183,7 +183,7 @@
                                         <!-- Modal Body -->
                                         <div class="modal-body">
 
-                                            <textarea name="instruction" style="height: 200px;width: 100%;"></textarea>
+                                            <textarea name="instruction" style="height: 200px;width: 100%;color: black;padding: 10px;"></textarea>
                                         </div>
 
                                         <!-- Modal Footer -->
@@ -201,21 +201,35 @@
                 </div>
             </div>
         </div>
-        <!-- /row -->
+
     </div>
     </div>
 @endsection
 @section('js')
     <script>
-        // When save button is clicked, show the modal
-        document.getElementById('save-button').addEventListener('click', function() {
-            $('#myModal').modal('show');
-        });
+        var segments = window.location.pathname.split('/');
+        var secondLastSegment = segments[segments.length - 2];
+        if (window.location.pathname.split('/').pop() == 'addon' || secondLastSegment == 'addon') {
 
-        // When skip button is clicked, show the modal
-        document.getElementById('skip-button').addEventListener('click', function() {
-            $('#myModal').modal('show');
-        });
+            // When save button is clicked, show the modal
+            document.getElementById('save-button').addEventListener('click', function() {
+                $('#myModal').modal('show');
+            });
+
+            // When skip button is clicked, show the modal
+            document.getElementById('skip-button').addEventListener('click', function() {
+                $('#myModal').modal('show');
+            });
+        } else {
+            document.getElementById('save-button').addEventListener('click', function() {
+                document.getElementById('formid').submit();
+            });
+
+            // When skip button is clicked, submit the form
+            document.getElementById('skip-button').addEventListener('click', function() {
+                document.getElementById('formid').submit();
+            });
+        }
 
         // When save button in the modal is clicked, submit the value
     </script>
@@ -303,7 +317,7 @@
                                                             <div class="card-item-desc mt-0">
                                                                 <h6 class="font-weight-semibold mt-0 text-uppercase">${dish.name}</h6>
                                                                 <dl class="card-item-desc-1">
-                                                                    <dt><input type="hidden" value="${dish.id}"> ${dish.subcategory.name}</dt>
+                                                                    <dt><input type="hidden" name="dishid[]"  value="${dish.id}"> ${dish.subcategory.name}</dt>
                                                                     <dd>Price: $${dish.final_price}</dd>
                                                                     <p>${dish.desc}</p>
                                                                 </dl>

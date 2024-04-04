@@ -13,8 +13,8 @@
                         <li class="breadcrumb-item active" aria-current="page">Menu</li>
                     </ol>
                 </div>
-                <a href="{{ route('custom.menu') }}"><button class="btn ripple btn-primary col-md-12"
-                        style="padding: 5px; ">Create your own Food Menu</button></a>
+                <a href="{{ route('custom.menu', $eventId) }}"><button class="btn ripple btn-primary col-md-12"
+                        style="padding: 5px; ">Customize Package</button></a>
 
             </div>
             <div class="row">
@@ -31,7 +31,6 @@
                                 @foreach ($categories as $key => $category)
                                     <div class="col-lg-4">
                                         <div class="col-lg-12">
-                                            <i class="fa fa-snowflake"> </i>
                                             <h3>{{ $category->name }}</h3>
                                             <p>Package Overview or Deatils</p>
                                         </div>
@@ -43,7 +42,8 @@
                                                             <li>{{ $include->qty }} - {{ $include->sharable->name }}</li>
                                                         @endforeach
 
-                                                        <li><a href="{{ route('menu.detail', encrypt($item->id)) }}"><button
+                                                        <li><a
+                                                                href="{{ route('menu.detail', [encrypt($item->id), $eventId]) }}"><button
                                                                     class="btn ripple btn-outline-primary col-md-12"
                                                                     style="padding: 5px; ">Select Food Items</button></a>
                                                         </li>

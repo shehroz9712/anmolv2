@@ -134,7 +134,7 @@
                                         </a> --}}
                                             <div class="d-inline-block my-2"> <button
                                                     class="btn ripple btn-main-primary d-inline-block"
-                                                    id="submitBtn">Submit</button></div>
+                                                    id="submitBtn">Save & Continue</button></div>
                                         </div>
                                     </div>
                                 </form>

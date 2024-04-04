@@ -93,14 +93,11 @@ class EventController extends Controller
     {
         $journey = Journey::where(
             'eventid',
-            '=',
             $request->eventId
         )->firstOrFail();
-        $event = Event::where(
-            'id',
-            '=',
-            $request->eventId
-        )->firstOrFail();
+
+        $eventId = encrypt($request->eventId);
+        $event = Event::where('id', $request->eventId)->firstOrFail();
         // dd($event);
         if ($event->type == 'Pick up' || $event->type == 'Drop-off') {
 
@@ -109,9 +106,15 @@ class EventController extends Controller
         if (!$journey->venue) {
             Session::put('eventId', $request->eventId);
 
-            return redirect()->route('customer-venues.createWithId');
+            return redirect()->route('customer-venues.createWithId', $eventId);
+        }
+        if (!$journey->menu_submit) {
+            return redirect()->route('menu.index', $eventId);
+        }
+        if (!$journey->service_styling_id) {
+            return redirect()->route('service.styling', $eventId);
         } else {
-            return redirect()->route('menu.index');
+            return redirect()->route('equipments.index');
         }
     }
 

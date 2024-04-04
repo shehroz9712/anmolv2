@@ -86,7 +86,7 @@ class CustomerVenueController extends Controller
             $journey->update();
         }
 
-        return redirect()->route('menu.index')->with('message', 'Venue Added Successfully');
+        return redirect()->route('menu.index', encrypt($request->event_id))->with('message', 'Venue Added Successfully');
     }
 
 

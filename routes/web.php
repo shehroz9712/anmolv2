@@ -84,15 +84,15 @@ Route::middleware('auth')->group(function () {
 
 
     //menu
-    Route::get('/menu/items', [menu::class, 'items'])->name('custom.menu');
+    Route::get('/menu/items/{eventId?}', [menu::class, 'items'])->name('custom.menu');
     Route::post('/menu/submit', [menu::class, 'submit'])->name('menu.submit');
     Route::post('/getDishes', [menu::class, 'getDishes'])->name('menu.getDishes');
 
-    Route::get('/menu', [menu::class, 'index'])->name('menu.index');
-    Route::get('/menu/addon', [menu::class, 'addon'])->name('menu.addon');
-    Route::get('/menu/detail/{id}', [menu::class, 'detail'])->name('menu.detail');
+    Route::get('/menu/addon/{eventId?}', [menu::class, 'addon'])->name('menu.addon');
+    Route::get('/menu/detail/{id}/{eventId?}', [menu::class, 'detail'])->name('menu.detail');
 
     Route::get('/equipment', [menu::class, 'equipment'])->name('equipment.index');
+    Route::get('/menu/{id?}', [menu::class, 'index'])->name('menu.index');
 
 
     //Events
@@ -100,7 +100,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/events-create', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
 
-    Route::get('/service/styling', [ServiceController::class, 'create'])->name('service.styling');
+    Route::get('/service/styling/{eventId?}', [ServiceController::class, 'create'])->name('service.styling');
     Route::post('/service/styling', [ServiceController::class, 'store'])->name('service.store');
 
 

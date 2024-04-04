@@ -32,7 +32,7 @@
                         <li class="breadcrumb-item active" aria-current="page">${{ $package->price }} Per Guest</li>
                     </ol>
                 </div>
-                <a href="{{ route('menu.index') }}"><button class="btn ripple btn-primary col-md-12"
+                <a href="{{ route('menu.index',$eventId) }}"><button class="btn ripple btn-primary col-md-12"
                         style="padding: 5px; ">back to menu </button></a>
             </div>
             <!-- End Page Header -->
@@ -108,13 +108,14 @@
                                                         </li>
                                                     @else
                                                         @foreach ($include->subcategory->dishes ?? [] as $dishes)
-                                                            <li>
+                                                            <li id="dish_{{ $dishes->id }}">
                                                                 <div class="form-group mg-b-20">
                                                                     <div class="align-items-center row">
                                                                         <div class="col-md-10">
                                                                             <label class="ckbox">
                                                                                 <input type="checkbox" class="dish-checkbox"
                                                                                     data-max="{{ $include->qty }}"
+                                                                                    data-id="{{ $dishes->id }}"
                                                                                     data-category="{{ $include->sharable->name }}">
                                                                                 <span
                                                                                     class="tx-13">{{ $dishes->name }}</span>
@@ -124,7 +125,7 @@
                                                                             <a class="btn ripple"
                                                                                 data-bs-target="#modaldemo{{ $loop->index + 1 }}"
                                                                                 data-bs-toggle="modal" href="">
-                                                                                <i class="fa fa-search"
+                                                                                <i class="fa fa-info-circle"
                                                                                     style="font-size: 12px;"></i>
                                                                             </a>
                                                                         </div>
@@ -179,8 +180,9 @@
                                 @csrf
 
                                 <input type="hidden" name="url" value="package">
-
-                                <input type="hidden" name="package" value="{{ Request::segments()[2] }}">
+                                <input type="hidden" name="eventId" id="event_id"
+                                    value="{{ $eventId ? $eventId : null }}">
+                                <input type="hidden" name="package" value="{{ $package->id }}">
 
                                 <div class="table-responsive">
                                     <table class="table border table-hover text-nowrap table-shopping-cart mb-0"
@@ -198,7 +200,7 @@
 
                                     </table>
 
-                                    <div id="dishes_no" class="my-2"x data-all="{{ $count }}">You have to
+                                    <div id="dishes_no" class="my-2 fw-bold"x data-all="{{ $count }}">You have to
                                         select {{ $count }} dishes and remain {{ $count }} dishes</div>
                                     <button class="btn btn-outline-primary float-end ripple" id="saveButton"
                                         type="button" style="display: none"
@@ -239,8 +241,13 @@
                         checkbox.checked = false;
                         // alert('You can only select up to ' + checkbox.getAttribute('data-max') +
                         //     ' items in ' + category + '.');
-                        alert('if you want change the selected dish in ' + category +
-                            ', kindly unselect the checked dish')
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Oops...',
+                            // text: 'If you want to change the selected dish in ' + category +
+                            //     ', kindly unselect the checked dish.',
+                            text: 'You will be able to select more items on next screen'
+                        });
                     }
                 });
             });
@@ -294,6 +301,8 @@
                             '.tx-13').textContent;
                         var dishDesc = selectedCheckbox.closest('li').querySelector('p')
                             .textContent;
+                        var dishId = selectedCheckbox.dataset
+                            .id; // Accessing data-id attribute directly
                         var limitedDishDesc = limitWords(dishDesc, 10);
 
                         // Create a new table row
@@ -305,6 +314,8 @@
                                     <div class="card-item-desc mt-0">
                                         <h6 class="font-weight-semibold mt-0 text-uppercase">${dishName}</h6>
                                         <dl class="card-item-desc-1">
+                                            <dt><input type="hidden" name="dishid[]" value="${dishId}"></dt>
+
                                             <dt>${category}</dt>
                                             <p>${limitedDishDesc}</p>
                                         </dl>

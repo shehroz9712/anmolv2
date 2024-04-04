@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEventMenuRequest;
 use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Equipment;
+use App\Models\EventMenu;
+use App\Models\Journey;
 use App\Models\Package;
 use App\Models\Price;
 use App\Models\SubCategory;
@@ -13,10 +16,13 @@ use Illuminate\Http\Request;
 
 class menu extends Controller
 {
-    public function index()
+    public function index(Request $request, $eventId = null)
     {
+
+        $eventId = $eventId;
         $categories  = Category::with('packages')->Category()->get();
-        return view('pages.menu.menu-index', compact('categories'));
+
+        return view('pages.menu.menu-index', compact('categories', 'eventId'));
     }
 
 
@@ -63,51 +69,112 @@ class menu extends Controller
             return response()->json($request); // Use response() helper function
         }
     }
-    public function detail($encryptedId)
+    public function detail($encryptedId, $eventId = null)
     {
         $id = decrypt($encryptedId);
+        $eventId = $eventId;
+
         $categories = Category::with('packages')
             ->whereHas('packages', function ($query) use ($id) {
                 $query->where('id', $id);
             })
             ->get();
         $package  = Package::with('include')->where('id', $id)->first();
-        return view('pages.menu.detail', compact('package'));
+        return view('pages.menu.detail', compact('package', 'eventId'));
     }
-    public function addon()
+    public function addon(Request $request, $eventId = null)
     {
+
+        $eventId = $eventId;
         $categories = Category::Addon()
             ->whereHas('sub_category', function ($query) {
                 $query->where('is_addon', 1);
             })
             ->with('sub_category')
             ->get();
-        return view('pages.menu.addon', compact('categories'));
+        return view('pages.menu.addon', compact('categories', 'eventId'));
     }
-    public function items()
+    public function items(Request $request, $eventId = null)
     {
+
+        $eventId = $eventId;
+
         $categories = Category::Addon()
             ->whereHas('sub_category', function ($query) {
                 $query->where('is_addon', 0);
             })
             ->with('sub_category')
             ->get();
-        return view('pages.menu.addon', compact('categories'));
+        return view('pages.menu.addon', compact('categories', 'eventId'));
     }
     public function submit(Request $request)
     {
+        $event_id = $request->eventId ? decrypt($request->eventId) : '1';
+        $journey = Journey::where('eventid', $event_id)->first();
+
         if ($request->url == 'items') {
 
-            return redirect()->route('menu.addon')
+            Journey::where('eventid', $event_id)->update(
+                [
+                    'package_id' =>  0,
+                    'menu_submit' => 1
+                ]
+            );
+            if ($request->dishid) {
+
+                foreach ($request->dishid as $item) {
+                    EventMenu::create([
+                        'dish_id' => $item,
+                        'event_id' => $event_id,
+                        'type' => 'custom',
+                    ]);
+                }
+            }
+            return redirect()->route('menu.addon', $request->eventId)
                 ->with('message', 'Menu submit successfully.');
         } elseif ($request->url == 'package') {
-            // |$event =
+            $package_id = $request->package;
+            $journey = Journey::where('eventid', $event_id)->first();
+            Journey::where('eventid', $event_id)->update(
+                [
+                    'package_id' => $package_id ?? 0,
+                    'menu_submit' => 1
+                ]
+            );
+            if ($request->dishid) {
 
-            return redirect()->route('menu.addon')
+                foreach ($request->dishid as $item) {
+                    EventMenu::create([
+                        'dish_id' => $item,
+                        'event_id' => $event_id,
+                        'type' => $request->url,
+                    ]);
+                }
+            }
+
+            return redirect()->route('menu.addon', $request->eventId)
                 ->with('message', 'Package submit successfully.');
         } else {
 
-            return redirect()->route('service.styling')
+            Journey::where('eventid', $event_id)->update(
+                [
+                    'menu_submit' => 1,
+                    'special_instruction' => $request->instruction,
+
+                ]
+            );
+            if ($request->dishid) {
+
+                foreach ($request->dishid as $item) {
+                    EventMenu::create([
+                        'dish_id' => $item,
+                        'event_id' => $event_id,
+                        'type' => 'addon',
+                    ]);
+                }
+            }
+
+            return redirect()->route('service.styling', $request->eventId)
                 ->with('message', 'Addon items submit successfully.');
         }
     }
