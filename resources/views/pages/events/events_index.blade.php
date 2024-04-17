@@ -54,6 +54,8 @@
                                             <td>{{ $event->start_time }}</td>
                                             <td>{{ $event->end_time }}</td>
                                             <td class="d-flex">
+                                                <a href="{{ route('events.show', $event->id) }}"
+                                                    class="btn btn-main-primary px-3">View</a>
                                                 <form id="editEventForm" class=" mx-1" method="POST"
                                                     action="{{ route('events.edit') }}">
                                                     @csrf

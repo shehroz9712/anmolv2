@@ -41,39 +41,22 @@ class CustomerVenueController extends Controller
             'ContactPerson' => 'nullable|string',
             'ContactEmail' => 'nullable|email',
             'ContactPhone' => 'nullable|string',
+            'address' => 'required|nullable|string',
+
         ]);
-        $adminVenue = null;
-        if ($request->venue_id === 'other') {
-            // Create an AdminVenue and associate it with the authenticated user
-            $adminVenue = new AdminVenue([
-                'createdby' => auth()->user()->id,
-                'name' => $request->otherVenue,
-                'address' => $request->address,
-                'city' => $request->city,
-                'state' => $request->state,
-                'zipcode' => $request->zipcode,
-                // Add other fields for AdminVenue as needed
-            ]);
 
-            // Set the admin_venue_id to the ID of the created AdminVenue
-            $request->merge(['admin_venue_id' => $adminVenue->id]);
+        // Create an AdminVenue and associate it with the authenticated user
+        $customerVenue = new CustomerVenue([
+            'createdby' => auth()->user()->id,
+            'address' => $request->address,
+            'city' => $request->city,
+            'ContactPerson' => $request->ContactPerson,
+            'ContactEmail' => $request->ContactEmail,
+            'event_id' => $request->event_id,
+        ]);
 
-            // Save the AdminVenue model
-            $adminVenue->save();
-        }
 
-        // If admin_venue_id is not set to 'other', create a CustomerVenue
-        $customerVenue = new \App\Models\CustomerVenue($request->all());
-        $customerVenue->createdby = auth()->user()->id;
 
-        $customerVenue->event_id = $request->event_id;
-        if ($adminVenue !== null) {
-            $customerVenue->admin_venue_id = $adminVenue->id;
-        } else {
-            $customerVenue['admin_venue_id'] = $request->venue_id;
-        }
-
-        $customerVenue->save();
 
         if ($request->event_id != null) {
 

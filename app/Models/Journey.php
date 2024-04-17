@@ -5,6 +5,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Journey extends Model
@@ -34,7 +35,7 @@ class Journey extends Model
      */
     public function venue()
     {
-        return $this->belongsTo(CustomerVenue::class, 'venueid');
+        return $this->belongsTo(CustomerVenue::class, 'venueid')->with('adminVenue');
     }
 
     /**
@@ -65,7 +66,26 @@ class Journey extends Model
         return $query->where('created_by', $userId);
     }
 
-    // Other methods, scopes, or relationships as needed
 
-    // You can add additional methods, relationships, and logic based on your application requirements.
+
+
+    /**
+     * Get the package associated with the Journey
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function package(): HasOne
+    {
+        return $this->hasOne(Package::class, 'id', 'package_id')->with('category');
+    }
+
+    /**
+     * Get the menu associated with the Journey
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function ServiceStyling(): HasOne
+    {
+        return $this->hasOne(ServiceStyling::class, 'id', 'service_styling_id');
+    }
 }

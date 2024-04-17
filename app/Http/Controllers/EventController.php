@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerVenue;
 use App\Models\Event;
+use App\Models\EventMenu;
 use App\Models\Journey;
 use App\Models\Occasion;
 use App\Models\Type;
@@ -118,9 +120,11 @@ class EventController extends Controller
         }
     }
 
-    public function show(Event $event)
+    public function show(Request $request, $id)
     {
-        return view('events.show', compact('event'));
+        $journey = Journey::where('eventid', $id)->with('event', 'venue', 'ServiceStyling', 'package')->firstOrFail();
+        $menu = EventMenu::where('event_id', $journey->eventid)->with('dishes')->get();
+        return view('pages.events.show', compact('journey', 'menu'));
     }
 
     public function edit(Request $request)
