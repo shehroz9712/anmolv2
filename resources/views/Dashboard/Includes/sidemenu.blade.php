@@ -34,7 +34,7 @@
                                 <span class="sidemenu-label">Types</span>
                             </a>
                         </li> --}}
-                        <li class="nav-item @if(Request::is('events/*')) active @endif">
+                        <li class="nav-item @if (Request::is('events')  || Request::is('events/*')) active @endif">
                             <a class="nav-link" href="{{ route('events.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -42,7 +42,7 @@
                                 <span class="sidemenu-label">Events</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('menu.link/*')) active @endif">
+                        <li class="nav-item @if (Request::is('menu') || Request::is('menu/*')) active @endif">
                             <a class="nav-link" href="{{ route('menu.link.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -50,7 +50,7 @@
                                 <span class="sidemenu-label">Menu</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('categories/*')) active @endif">
+                        <li class="nav-item @if (Request::is('categories') || Request::is('categories/*')) active @endif">
                             <a class="nav-link" href="{{ route('categories.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -58,7 +58,7 @@
                                 <span class="sidemenu-label">Categories</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('subcategories/*')) active @endif">
+                        <li class="nav-item @if (Request::is('subcategories') || Request::is('subcategories/*')) active @endif">
                             <a class="nav-link" href="{{ route('subcategories.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -66,7 +66,7 @@
                                 <span class="sidemenu-label">Sub Categories</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('dishes/*')) active @endif">
+                        <li class="nav-item @if (Request::is('dishes') || Request::is('dishes/*')) active @endif">
                             <a class="nav-link" href="{{ route('dishes.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -74,7 +74,7 @@
                                 <span class="sidemenu-label">Items</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('packages/*')) active @endif">
+                        <li class="nav-item @if (Request::is('packages') || Request::is('packages/*')) active @endif">
                             <a class="nav-link" href="{{ route('packages.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -82,7 +82,7 @@
                                 <span class="sidemenu-label">Packages</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('equipments/*')) active @endif">
+                        <li class="nav-item @if (Request::is('equipments') || Request::is('equipments/*')) active @endif">
                             <a class="nav-link" href="{{ route('equipments.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -90,7 +90,7 @@
                                 <span class="sidemenu-label">Equipments</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('customer-venues/*')) active @endif">
+                        <li class="nav-item @if (Request::is('customer-venues') || Request::is('customer-venues/*')) active @endif">
                             <a class="nav-link" href="{{ route('customer-venues.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -98,7 +98,7 @@
                                 <span class="sidemenu-label">Venue</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('admin-venues/*')) active @endif">
+                        <li class="nav-item @if (Request::is('admin-venues') || Request::is('admin-venues/*')) active @endif">
                             <a class="nav-link" href="{{ route('admin-venues.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -107,7 +107,7 @@
                             </a>
                         </li>
                     @else
-                        <li class="nav-item @if(Request::is('events/*')) active @endif">
+                        <li class="nav-item @if (Request::is('events') || Request::is('events/*')) active @endif">
                             <a class="nav-link " href="{{ route('events.create') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -115,7 +115,7 @@
                                 <span class="sidemenu-label">Events</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('customer-venues/*')) active @endif">
+                        <li class="nav-item @if (Request::is('customer-venues') || Request::is('customer-venues/*')) active @endif">
                             <a class="nav-link " href="#">
                                 {{-- <a class="nav-link" href="{{ route('customer-venues.create') }}"> --}}
                                 <span class="shape1"></span>
@@ -126,7 +126,7 @@
                         </li>
 
 
-                        <li class="nav-item  @if(Request::is('menu.index/*')) active @endif">
+                        <li class="nav-item  @if (Request::is('menu') || Request::is('menu/*') || Request::is('menu')) active @endif">
                             <a class="nav-link" href="#">
                                 {{-- <a class="nav-link" href="{{ route('menu.index') }}"> --}}
                                 <span class="shape1"></span>
@@ -135,7 +135,7 @@
                                 <span class="sidemenu-label">Menu</span>
                             </a>
                         </li>
-                        <li class="nav-item  @if(Request::is('service.styling/*')) active @endif">
+                        <li class="nav-item  @if (Request::is('service') || Request::is('service/*')) active @endif">
                             <a class="nav-link" href="#">
                                 {{-- <a class="nav-link" href="{{ route('service.styling') }}"> --}}
                                 <span class="shape1"></span>
@@ -144,7 +144,7 @@
                                 <span class="sidemenu-label">Service Style</span>
                             </a>
                         </li>
-                        <li class="nav-item  @if(Request::is('equipment/*')) active @endif">
+                        <li class="nav-item  @if (Request::is('equipment') || Request::is('equipment/*')) active @endif">
                             <a class="nav-link" href="#">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -152,7 +152,7 @@
                                 <span class="sidemenu-label">Equipments</span>
                             </a>
                         </li>
-                        <li class="nav-item  @if(Request::is('labour/*')) active @endif">
+                        <li class="nav-item  @if (Request::is('labour') || Request::is('labour/*')) active @endif">
                             <a class="nav-link" href="#">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -161,7 +161,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item  @if(Request::is('ContractIndex/*')) active @endif">
+                        <li class="nav-item  @if (Request::is('ContractIndex') || Request::is('ContractIndex/*')) active @endif">
                             <a class="nav-link" href="{{ route('ContractIndex') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -169,7 +169,7 @@
                                 <span class="sidemenu-label">Contract</span>
                             </a>
                         </li>
-                        <li class="nav-item @if(Request::is('invoice/*')) active @endif">
+                        <li class="nav-item @if (Request::is('invoice') || Request::is('invoice/*')) active @endif">
                             <a class="nav-link" href="#">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
