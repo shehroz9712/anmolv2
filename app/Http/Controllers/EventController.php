@@ -103,7 +103,7 @@ class EventController extends Controller
         // dd($event);
         if ($event->type == 'Pick up' || $event->type == 'Drop-off') {
 
-            return redirect()->route('ContractIndex');
+            return redirect()->route('menu.index', $eventId);
         }
         if (!$journey->venue) {
             Session::put('eventId', $request->eventId);

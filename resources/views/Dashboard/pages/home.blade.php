@@ -29,7 +29,7 @@
                 <div class="row row-sm">
                     <div class="col-sm-12 col-lg-12 col-xl-12">
                         <!--Row-->
-                        {{-- <div class="row row-sm">
+                        <div class="row row-sm">
                             <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
                                 <div class="card custom-card">
                                     <div class="card-body">
@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         <!--End row-->
                         <!--row-->
                         <div class="row row-sm">
@@ -158,6 +158,17 @@
                                                                                     </button>
                                                                                 </form>
 
+                                                                                <form id="editEventForm" class=" mx-1"
+                                                                                    method="POST"
+                                                                                    action="{{ route('events.edit') }}">
+                                                                                    @csrf
+                                                                                    @method('POST')
+                                                                                    <!-- Adding this line to specify the method as POST -->
+                                                                                    <input type="hidden" name="eventId"
+                                                                                        value="{{ $event->id }}">
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-main-primary px-3">Edit</button>
+                                                                                </form>
                                                                                 {{-- <a class="btn text-dark px-1" href="{{ route('events.edit', ['encryptedId' => Crypt::encryptString($event->id)]) }}"><i class="fe fe-eye"></i></a> --}}
 
 

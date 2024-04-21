@@ -201,7 +201,7 @@
                                     </table>
 
                                     <div id="dishes_no" class="my-2 fw-bold"x data-all="{{ $count }}">You have to
-                                        select {{ $count }} dishes and remain {{ $count }} dishes</div>
+                                        select {{ $count }} items and remain {{ $count }}  items</div>
                                     <button class="btn btn-outline-primary float-end ripple" id="saveButton"
                                         type="button" style="display: none"
                                         style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true;">Save &
@@ -244,8 +244,8 @@
                         Swal.fire({
                             icon: 'warning',
                             title: 'Oops...',
-                            // text: 'If you want to change the selected dish in ' + category +
-                            //     ', kindly unselect the checked dish.',
+                            // text: 'If you want to change the selected  items in ' + category +
+                            //     ', kindly unselect the checked  items.',
                             text: 'You will be able to select more items on next screen'
                         });
                     }
@@ -269,7 +269,7 @@
 
                     // Update total selected dishes display
                     dishes_no.innerHTML = 'You have to select ' + totalSelectedDishes +
-                        ' dishes and remain ' + remainingDishes + ' dishes';
+                        '  items and remain ' + remainingDishes + '  items';
 
                     // Show or hide save button based on the number of selected dishes
                     saveButton.style.display = totalSelectedDishes === count ? 'block' : 'none';
