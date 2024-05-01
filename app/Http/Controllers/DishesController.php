@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use App\Models\DishesEquipment;
+use App\Models\DishesLabour;
 use App\Models\Equipment;
+use App\Models\Labour;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -26,8 +28,9 @@ class DishesController extends Controller
     {
         // dd('create');
         $subcategory = SubCategory::Active()->get();
+        $labours = Labour::Active()->get();
         $equipments = Equipment::Active()->get();
-        return view('Admin.dishes.create', compact('subcategory', 'equipments'));
+        return view('Admin.dishes.create', compact('subcategory', 'equipments', 'labours'));
     }
 
     /**
@@ -40,16 +43,17 @@ class DishesController extends Controller
                 '_token',
                 '_method',
                 'equipment',
+                'labour',
             ]
         );
 
         // $this->uploadImage($data->image, 'dishes');
 
         $dish = Dish::create($data);
-        $equipment = $request->equipment;
-        foreach ($equipment as $key => $value) {
-            DishesEquipment::create([
-                'equipment_id' => $value,
+        $labour = $request->labour;
+        foreach ($labour as $key => $value) {
+            DishesLabour::create([
+                'labour_id' => $value,
                 'dish_id' => $dish->id
             ]);
         }
@@ -73,9 +77,10 @@ class DishesController extends Controller
     public function edit(string $id)
     {
         $subcategory = SubCategory::Active()->get();
+        $labours = Labour::Active()->get();
         $equipments = Equipment::Active()->get();
-        $dish = Dish::with('equipment')->find($id);
-        return view('Admin.dishes.edit', compact('dish', 'subcategory', 'equipments'));
+        $dish = Dish::with('equipment', 'labour')->find($id);
+        return view('Admin.dishes.edit', compact('dish', 'subcategory', 'equipments', 'labours'));
     }
 
     /**
@@ -86,7 +91,9 @@ class DishesController extends Controller
         $data = $request->except([
             '_token',
             '_method',
-            'equipment'
+            'equipment',
+            'labour'
+
         ]);
 
         // Update the main package details
@@ -100,7 +107,17 @@ class DishesController extends Controller
                 'dish_id' => $id
             ]);
         }
-        return redirect()->route('dishes.index')->with('message', 'Dishes Updated Successfully');
+        DishesLabour::where(['dish_id' => $id])->delete();
+        $labour = $request->labour;
+
+        foreach ($labour as $key => $value) {
+            $lbrdata[] = [
+                'labour_id' => $value,
+                'dish_id' => $id
+            ];
+        }
+        DishesLabour::insert($lbrdata);
+        return redirect()->route('dishes.index')->with('message', 'Items Updated Successfully');
     }
 
     /**

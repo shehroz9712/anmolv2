@@ -34,7 +34,7 @@
                                 <span class="sidemenu-label">Types</span>
                             </a>
                         </li> --}}
-                        <li class="nav-item @if (Request::is('events')  || Request::is('events/*')) active @endif">
+                        <li class="nav-item @if (Request::is('events') || Request::is('events/*')) active @endif">
                             <a class="nav-link" href="{{ route('events.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -66,7 +66,7 @@
                                 <span class="sidemenu-label">Sub Categories</span>
                             </a>
                         </li>
-                        <li class="nav-item @if (Request::is('dishes') || Request::is('dishes/*')) active @endif">
+                        <li class="nav-item @if (Request::is('dishes') || Request::is('items/*')) active @endif">
                             <a class="nav-link" href="{{ route('dishes.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -88,6 +88,14 @@
                                 <span class="shape2"></span>
                                 <i class="fa fa-toolbox sidemenu-icon menu-icon "></i>
                                 <span class="sidemenu-label">Equipments</span>
+                            </a>
+                        </li>
+                        <li class="nav-item @if (Request::is('labours') || Request::is('labours/*')) active @endif">
+                            <a class="nav-link" href="{{ route('labours.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fa fa-toolbox sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Labours</span>
                             </a>
                         </li>
                         <li class="nav-item @if (Request::is('customer-venues') || Request::is('customer-venues/*')) active @endif">
@@ -124,9 +132,7 @@
                                 <span class="sidemenu-label">Venue</span>
                             </a>
                         </li>
-
-
-                        <li class="nav-item  @if (Request::is('menu') || Request::is('menu/*') || Request::is('menu')) active @endif">
+                        <li class="nav-item  @if (Request::is('menu')) active @endif">
                             <a class="nav-link" href="#">
                                 {{-- <a class="nav-link" href="{{ route('menu.index') }}"> --}}
                                 <span class="shape1"></span>
@@ -135,6 +141,40 @@
                                 <span class="sidemenu-label">Menu</span>
                             </a>
                         </li>
+                        @if (Request::is('menu/detail/*'))
+                            <li class="nav-item  active ">
+                                <a class="nav-link" href="#">
+                                    {{-- <a class="nav-link" href="{{ route('menu.index') }}"> --}}
+                                    <span class="shape1"></span>
+                                    <span class="shape2"></span>
+                                    <i class="fe fe-menu sidemenu-icon menu-icon "></i>
+                                    <span class="sidemenu-label">Package Detail</span>
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (Request::is('menu/addon/*'))
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+                                    {{-- <a class="nav-link" href="{{ route('menu.index') }}"> --}}
+                                    <span class="shape1"></span>
+                                    <span class="shape2"></span>
+                                    <i class="fe fe-menu sidemenu-icon menu-icon "></i>
+                                    <span class="sidemenu-label">Addon Menu</span>
+                                </a>
+                            </li>
+                        @endif
+                        @if (Request::is('menu/items'))
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+                                    {{-- <a class="nav-link" href="{{ route('menu.index') }}"> --}}
+                                    <span class="shape1"></span>
+                                    <span class="shape2"></span>
+                                    <i class="fe fe-menu sidemenu-icon menu-icon "></i>
+                                    <span class="sidemenu-label">Custom Menu</span>
+                                </a>
+                            </li>
+                        @endif
                         <li class="nav-item  @if (Request::is('service') || Request::is('service/*')) active @endif">
                             <a class="nav-link" href="#">
                                 {{-- <a class="nav-link" href="{{ route('service.styling') }}"> --}}

@@ -24,16 +24,16 @@ class ServiceController extends Controller
     }
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'appetizer_start_time' => 'required|date_format:H:i A',
-            'appetizer_end_time' => 'required|date_format:H:i A',
-            'main_course_start_time' => 'required|date_format:H:i A',
-            'main_course_end_time' => 'required|date_format:H:i A',
-            'dessert_start_time' => 'required|date_format:H:i A',
-            'dessert_end_time' => 'required|date_format:H:i A',
-            'butler_style_start_time' => 'required|date_format:H:i A',
-            'butler_style_end_time' => 'required|date_format:H:i A',
-        ]);
+        // $validatedData = $request->validate([
+        //     'appetizer_start_time' => 'required|date_format:H:i A',
+        //     'appetizer_end_time' => 'required|date_format:H:i A',
+        //     'main_course_start_time' => 'required|date_format:H:i A',
+        //     'main_course_end_time' => 'required|date_format:H:i A',
+        //     'dessert_start_time' => 'required|date_format:H:i A',
+        //     'dessert_end_time' => 'required|date_format:H:i A',
+        //     'butler_style_start_time' => 'required|date_format:H:i A',
+        //     'butler_style_end_time' => 'required|date_format:H:i A',
+        // ]);
 
         // Create a new EventTiming instance
         $service_styling = ServiceStyling::create([

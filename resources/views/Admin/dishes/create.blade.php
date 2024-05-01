@@ -98,6 +98,20 @@
                                             </div>
 
                                         </div>
+                                        <div class="col-md-12 mb-3">
+                                            <div class="form-group mb-3">
+                                                    <label for="labour">Labours Name </label>
+                                                    <select name="labour[]" class="select2" multiple id="">
+                                                        @foreach ($labours as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->designation }}</option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mb-3">

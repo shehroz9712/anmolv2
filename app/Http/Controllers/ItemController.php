@@ -15,7 +15,7 @@ class ItemController extends Controller
         $items = Item::all();
         return view('pages.items.item_index', compact('items'));
     }
-   
+
     public function create()
     {
         return view('pages.items.item_create');
@@ -23,15 +23,15 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
-      
-    
+
+
         $data = $request->except(['created_at', 'updated_at']);
         // Handle image upload
         if ($request->hasFile('image')) {
             $validator = Validator::make($request->all(), [
                 'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed image types and maximum size
             ]);
-            
+
             if ($validator->fails()) {
                 return redirect()->back()
                 ->withErrors($validator)
@@ -41,16 +41,16 @@ class ItemController extends Controller
             $data['imageUrl'] = $imagePath;
             // dd($data);
         }
-    
+
         $data['created_at'] = now();
         $data['updated_at'] = null;
-    
+
         $item = Item::create($data);
         // dd($item);
-    
+
         return redirect()->route('items.index')->with('success', 'Item created successfully.');
     }
-    
+
 
     public function edit(Item $item)
     {
@@ -59,6 +59,10 @@ class ItemController extends Controller
 
     public function update(Request $request, Item $item)
     {
+
+
+
+
         $item->update($request->all());
         return redirect()->route('items.index')->with('success', 'Item updated successfully.');
     }

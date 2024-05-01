@@ -31,4 +31,9 @@ class Dish extends Model
     {
         return $this->belongsToMany(Equipment::class, 'dishes_equipment', 'dish_id', 'equipment_id');
     }
+
+    public function labour()
+    {
+        return $this->belongsToMany(Labour::class, 'dishes_labours', 'dish_id', 'labour_id');
+    }
 }
