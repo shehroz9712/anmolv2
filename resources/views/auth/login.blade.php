@@ -32,7 +32,7 @@
 <body>
     <div class='wrapper'>
         <main class='main' id='main'>
-            <div class='login-holder'>
+            <div class='bg-black login-holder'>
                 <div class='intro-section'>
                     <div class='bg-img' style="background-image: url({{ asset('assets/img/media/signinpage.jpg') }});">
                     </div>
