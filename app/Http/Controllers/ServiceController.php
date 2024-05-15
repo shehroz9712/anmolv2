@@ -45,6 +45,8 @@ class ServiceController extends Controller
             'dessert_end_time' => $this->timeConvert($request->dessert_end_time),
             'butler_style_start_time' => $this->timeConvert($request->butler_style_start_time),
             'butler_style_end_time' => $this->timeConvert($request->butler_style_end_time),
+            'butler_style_start_time_1' => $this->timeConvert($request->butler_style_start_time_1),
+            'butler_style_end_time_1' => $this->timeConvert($request->butler_style_end_time_1),
 
         ]);
         $event_id = $request->eventId ? decrypt($request->eventId) : '1';

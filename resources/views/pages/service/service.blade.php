@@ -190,7 +190,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <label class="fs-17 fw-bold ps-4">Butler Style</label>
+                                        <label class="fs-17 fw-bold ps-4">Hot  O'Dourves</label>
                                         <div class="col-lg-6 form-group">
                                             <label for="butler_style_start_time">Start Time</label>
                                             <div class="input-group " data-placement="bottom" data-align="top"
@@ -212,6 +212,35 @@
                                                 <input data-toggle="tooltip" data-placement="bottom"
                                                     placeholder="10:00 PM" title="End Time" type="text"
                                                     id="butler_style_end_time" name="butler_style_end_time" required
+                                                    class="form-control timePicker">
+                                                <span class="input-group-addon custom-addon bg-primary">
+                                                    <i class="fa fa-clock-o text-light" aria-hidden="true"
+                                                        style="line-height: 36px;"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <label class="fs-17 fw-bold ps-4">Cold  O'Dourves</label>
+                                        <div class="col-lg-6 form-group">
+                                            <label for="butler_style_start_time_1">Start Time</label>
+                                            <div class="input-group " data-placement="bottom" data-align="top"
+                                                data-autoclose="false" data-format="hh:mm">
+                                                <input data-toggle="tooltip" data-placement="bottom"
+                                                    placeholder="06:00 PM" title="Start Time" type="text"
+                                                    id="butler_style_start_time_1" name="butler_style_start_time_1"
+                                                    class="form-control  timePicker">
+                                                <span class="input-group-addon custom-addon bg-primary">
+                                                    <i class="fa fa-clock-o text-light" aria-hidden="true"
+                                                        style="line-height: 36px;"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 form-group">
+                                            <label for="butler_style_end_time_1">End Time</label>
+                                            <div class="input-group " data-placement="bottom" data-align="top"
+                                                data-autoclose="false" data-format="hh:mm">
+                                                <input data-toggle="tooltip" data-placement="bottom"
+                                                    placeholder="10:00 PM" title="End Time" type="text"
+                                                    id="butler_style_end_time_1" name="butler_style_end_time_1" required
                                                     class="form-control timePicker">
                                                 <span class="input-group-addon custom-addon bg-primary">
                                                     <i class="fa fa-clock-o text-light" aria-hidden="true"
@@ -396,6 +425,32 @@
 
             // For Butler_style end time
             $('#butler_style_end_time').datetimepicker({
+                useCurrent: false,
+                format: "hh:mm A",
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            }).on('dp.show', function() {
+                // Your logic for butler_style end time picker
+            });
+            $('#butler_style_start_time_1').datetimepicker({
+                useCurrent: false,
+                format: "hh:mm A",
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            }).on('dp.show', function() {
+                // Your logic for butler_style start time picker
+            });
+
+            // For Butler_style end time
+            $('#butler_style_end_time_1').datetimepicker({
                 useCurrent: false,
                 format: "hh:mm A",
                 icons: {
