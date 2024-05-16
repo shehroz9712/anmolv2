@@ -48,7 +48,7 @@
 
 		<div class="main-container container-fluid">
 			<div class="inner-body">
-				@yield('content')	 	
+				@yield('content')
 		</div>
 </div>
 </div>
@@ -57,7 +57,7 @@
 		<div class="container">
 			<div class="row row-sm">
 				<div class="col-md-12">
-					<span>Developed  by Cloudscourt 2023, All rights reserved.</span>
+					<span>Developed  by Cloudscourt {{ date('Y') }}, All rights reserved.</span>
 				</div>
 			</div>
 		</div>
@@ -95,7 +95,7 @@
                 <a class="btn btn-danger" href="{{ route('GuestLogout') }}"
                    >Sign Out</a>
             </div>
-			
+
         </div>
     </div>
 </div>
@@ -116,7 +116,7 @@
 								<label>Name</label>
 								<input class="form-control" placeholder="John Doe" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name">
 							</div>
-							
+
 							<div class="form-group text-start">
 								<label>Phone Number</label>
 								<input class="form-control" placeholder="+1 (555) 123-4567" type="text" name="phone" value="{{ old('phone') }}" required autofocus autocomplete="phone">
@@ -136,7 +136,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="form-group text-start">
 								<label>Confirm Password</label>
 								<div class="input-group">
@@ -148,19 +148,19 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<button class="btn ripple btn-main-primary btn-block">Convert Account & Logout</button>
 						</form>
 					</div>
 				</form>
-				
+
             </div>
         </div>
     </div>
 </div>
 <script>
     const showRegistrationButton = document.getElementById('showRegistrationButton');
-    
+
     showRegistrationButton.addEventListener('click', function() {
         $('#registrationFormModal').modal('show'); // Show the nested registration modal
     });

@@ -32,10 +32,11 @@
 
 
 
-<body class=" ltr  main-body leftmenu error-1 ">
+<body class=" ltr  main-body leftmenu error-1  bg-black">
+
     <div class='wrapper'>
         <main class='main' id='main'>
-            <div class='bg-black login-holder'>
+            <div class='login-holder'>
                 <div class='intro-section'>
                     <div class='bg-img' style="background-image: url({{ asset('assets/img/media/signinpage.jpg') }});">
                     </div>
@@ -112,7 +113,7 @@
                                         <small class="error-message text-danger" id="confirmPassword-error"></small>
                                     </label>
 
-                                    <button class="lwa_wp-submit a btn btn-sm" type="submit">Create Account</button>
+                                    <button class="lwa_wp-submit a bg-black btn btn-sm" type="submit">Create Account</button>
 
                                     <input type="hidden" name="browser_mobile" id="browser_mobile"
                                         value="1" />
