@@ -96,7 +96,7 @@
 
                                         </div>
                                         <div class="col-6 text-end">
-                                            <button class="lwa_wp-submit a btn btn-sm" type="submit">Sign In</button>
+                                            <button class="lwa_wp-submit a bg-black btn btn-sm" type="submit">Sign In</button>
 
                                             <input type="hidden" name="browser_mobile" id="browser_mobile"
                                                 value="1" />

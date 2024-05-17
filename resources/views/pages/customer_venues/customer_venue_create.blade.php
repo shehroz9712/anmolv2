@@ -133,8 +133,8 @@
                                             <i class="fe fe-grid me-2"></i> View All Venues
                                         </a> --}}
                                             <div class="d-inline-block my-2"> <button
-                                                    class="btn ripple btn-main-primary d-inline-block"
-                                                    id="submitBtn">Save & Continue</button></div>
+                                                    class="btn ripple btn-main-primary d-inline-block" id="submitBtn">Save
+                                                    & Continue</button></div>
                                         </div>
                                     </div>
                                 </form>
@@ -153,6 +153,20 @@
     <script async
         src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API_KEY') }}&loading=async&libraries=places&callback=initMap">
     </script>
+    <script>
+        window.onbeforeunload = function(e) {
+            e = e || window.event;
+
+            // For IE and Firefox prior to version 4
+            if (e) {
+                e.returnValue = 'Sure?';
+            }
+
+            // For Safari
+            return 'Sure?';
+        };
+    </script>
+
     <script>
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {

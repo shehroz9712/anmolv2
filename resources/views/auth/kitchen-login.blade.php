@@ -24,7 +24,7 @@
         crossorigin="anonymous"></script>
     <script src="{{ asset('assets/tripleseat/d12lx3pio9mr3b.cloudfront.net/assets/01/rails-3b92853778d4282132e4be897e0d4e173a9163595e5e9907bc7f0e31b21f1f3d.js') }}"
         crossorigin="anonymous"></script>
-    
+
 
     </head>
 
@@ -96,7 +96,7 @@
 
                                         </div>
                                         <div class="col-6 text-end">
-                                            <button class="lwa_wp-submit a btn btn-sm" type="submit">Sign In</button>
+                                            <button class="lwa_wp-submit a bg-black btn btn-sm" type="submit">Sign In</button>
 
                                             <input type="hidden" name="browser_mobile" id="browser_mobile" value="1" />
 

@@ -41,7 +41,7 @@
             </ol>
         </div>
         {{-- <div class="d-flex">
-       
+
         <a  class="btn btn-primary my-2 btn-icon-text" href="{{ route('events.index') }}">
             <i class="fe fe-grid me-2"></i> View All
         </a>
@@ -202,7 +202,7 @@
                                         <div class="d-flex justify-content-end w-100">
                                             <div class="d-inline-block my-2">
                                                 <button class="btn ripple btn-main-primary d-inline-block"
-                                                    onclick="validateForm()" id="submitBtn">Update</button>
+                                                    onclick="validateForm()" id="submitBtn">Edit</button>
                                             </div>
                                         </div>
                                     </div>

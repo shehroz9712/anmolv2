@@ -106,7 +106,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/events/show/{id}', [EventController::class, 'show'])->name('events.show');
 
-    Route::post('/events/edit', [EventController::class, 'edit'])->name('events.edit');
+    Route::get('/events/edit/{id}', [EventController::class, 'edit'])->name('events.edit');
 
     Route::put('/events', [EventController::class, 'update'])->name('events.update');
 
