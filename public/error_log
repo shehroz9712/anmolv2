@@ -1,0 +1,24 @@
+[01-Feb-2024 22:45:01 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:45:01 UTC] PHP Fatal error:  require(): Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:45:03 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:45:03 UTC] PHP Fatal error:  require(): Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:45:10 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:45:10 UTC] PHP Fatal error:  require(): Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:45:43 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:45:43 UTC] PHP Fatal error:  require(): Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:45:53 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:45:53 UTC] PHP Fatal error:  require(): Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:46:14 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:46:14 UTC] PHP Fatal error:  require(): Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:46:42 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php): failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:46:42 UTC] PHP Fatal error:  require(): Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php74/usr/share/pear') in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:48:35 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:48:35 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/jmahalal/anmolv2.jmahalal.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:48:39 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[01-Feb-2024 22:48:39 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/jmahalal/anmolv2.jmahalal.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
