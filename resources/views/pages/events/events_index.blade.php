@@ -56,14 +56,44 @@
                                             <td class="d-flex">
                                                 <a href="{{ route('events.show', $event->id) }}"
                                                     class="btn btn-main-primary px-3">View</a>
-                                                <form id="editEventForm" class=" mx-1" method="POST"
-                                                    action="{{ route('events.edit') }}">
-                                                    @csrf
-                                                    @method('POST')
-                                                    <!-- Adding this line to specify the method as POST -->
-                                                    <input type="hidden" name="eventId" value="{{ $event->id }}">
-                                                    <button type="submit" class="btn btn-main-primary px-3">Edit</button>
-                                                </form>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-main-primary dropdown-toggle  ms-3"
+                                                        type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        Edit
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-light"
+                                                        aria-labelledby="dropdownMenuButton2">
+                                                        @if ($event->journey->eventid)
+                                                            <li><a class="dropdown-item "
+                                                                    href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                    <i class="fa fa-pencil-alt"></i>
+                                                                    Event </a></li>
+                                                        @endif
+                                                        @if ($event->journey->venueid)
+                                                            <li><a class="dropdown-item "
+                                                                    href="{{ route('events.edit', $event->journey->venueid) }}">
+                                                                    <i class="fa fa-pencil-alt"></i>
+                                                                    Venue </a></li>
+                                                        @endif
+                                                        @if ($event->journey->menu_submit)
+                                                            <li><a class="dropdown-item "
+                                                                    href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                    <i class="fa fa-pencil-alt"></i>
+                                                                    Menu </a></li>
+                                                        @endif
+                                                        @if ($event->journey->service_styling_id)
+                                                            <li><a class="dropdown-item "
+                                                                    href="{{ route('events.edit', $event->journey->service_styling_id) }}">
+                                                                    <i class="fa fa-pencil-alt"></i>
+                                                                    Service </a></li>
+                                                        @endif
+
+
+                                                    </ul>
+                                                </div>
+
+
 
                                                 {{-- <form action="{{ route('events.destroy', $event->id) }}" method="POST"
                                                     style="display: inline-block;">

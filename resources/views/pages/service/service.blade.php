@@ -111,8 +111,8 @@
                                                 <input type="hidden" name="eventId" value="{{ $eventId }}">
 
                                                 <input data-toggle="tooltip" data-placement="bottom" placeholder="06:00 PM"
-                                                    title="Start Time" type="text" id="start_time" name="appetizer_start_time"
-                                                    class="form-control  timePicker">
+                                                    title="Start Time" type="text" id="start_time"
+                                                    name="appetizer_start_time" class="form-control  timePicker">
                                                 <span class="input-group-addon custom-addon bg-primary">
                                                     <i class="fa fa-clock-o text-light" aria-hidden="true"
                                                         style="line-height: 36px;"></i>
@@ -124,8 +124,8 @@
                                             <div class="input-group " data-placement="bottom" data-align="top"
                                                 data-autoclose="false" data-format="hh:mm">
                                                 <input data-toggle="tooltip" data-placement="bottom" placeholder="10:00 PM"
-                                                    title="End Time" type="text" id="end_time" name="appetizer_end_time" required
-                                                    class="form-control timePicker">
+                                                    title="End Time" type="text" id="end_time" name="appetizer_end_time"
+                                                    required class="form-control timePicker">
                                                 <span class="input-group-addon custom-addon bg-primary">
                                                     <i class="fa fa-clock-o text-light" aria-hidden="true"
                                                         style="line-height: 36px;"></i>
@@ -190,7 +190,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <label class="fs-17 fw-bold ps-4">Hot  O'Dourves</label>
+                                        <label class="fs-17 fw-bold ps-4">Hot O'Dourves</label>
                                         <div class="col-lg-6 form-group">
                                             <label for="butler_style_start_time">Start Time</label>
                                             <div class="input-group " data-placement="bottom" data-align="top"
@@ -219,7 +219,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <label class="fs-17 fw-bold ps-4">Cold  O'Dourves</label>
+                                        <label class="fs-17 fw-bold ps-4">Cold O'Dourves</label>
                                         <div class="col-lg-6 form-group">
                                             <label for="butler_style_start_time_1">Start Time</label>
                                             <div class="input-group " data-placement="bottom" data-align="top"
@@ -252,7 +252,8 @@
                                     <div class="d-flex">
                                         <div class="d-flex justify-content-end w-100">
                                             <div class="d-inline-block my-2">
-                                                <button class="btn ripple btn-primary" id="submitBtn">Save & Continue</button>
+                                                <button class="btn ripple btn-primary" id="submitBtn">Save &
+                                                    Continue</button>
                                             </div>
                                         </div>
                                     </div>
@@ -269,6 +270,19 @@
 @endsection
 
 @section('js')
+    <script>
+        window.onbeforeunload = function(e) {
+            e = e || window.event;
+
+            // For IE and Firefox prior to version 4
+            if (e) {
+                e.returnValue = 'Sure?';
+            }
+
+            // For Safari
+            return 'Sure?';
+        };
+    </script>
     <script>
         $(document).ready(function() {
             $('#start_time').change(function() {
@@ -356,111 +370,111 @@
             $(this).data('DateTimePicker').date(endtime);
         });
         $('#main_course_start_time').datetimepicker({
-                useCurrent: false,
-                format: "hh:mm A",
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            }).on('dp.show', function() {
-                // Your logic for start time picker
-            });
+            useCurrent: false,
+            format: "hh:mm A",
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        }).on('dp.show', function() {
+            // Your logic for start time picker
+        });
 
-            // For Main Course end time
-            $('#main_course_end_time').datetimepicker({
-                useCurrent: false,
-                format: "hh:mm A",
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            }).on('dp.show', function() {
-                // Your logic for end time picker
-            });
+        // For Main Course end time
+        $('#main_course_end_time').datetimepicker({
+            useCurrent: false,
+            format: "hh:mm A",
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        }).on('dp.show', function() {
+            // Your logic for end time picker
+        });
 
-            // For Dessert start time
-            $('#dessert_start_time').datetimepicker({
-                useCurrent: false,
-                format: "hh:mm A",
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            }).on('dp.show', function() {
-                // Your logic for dessert start time picker
-            });
+        // For Dessert start time
+        $('#dessert_start_time').datetimepicker({
+            useCurrent: false,
+            format: "hh:mm A",
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        }).on('dp.show', function() {
+            // Your logic for dessert start time picker
+        });
 
-            // For Dessert end time
-            $('#dessert_end_time').datetimepicker({
-                useCurrent: false,
-                format: "hh:mm A",
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            }).on('dp.show', function() {
-                // Your logic for dessert end time picker
-            });
-             // For Dessert start time
-             $('#butler_style_start_time').datetimepicker({
-                useCurrent: false,
-                format: "hh:mm A",
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            }).on('dp.show', function() {
-                // Your logic for butler_style start time picker
-            });
+        // For Dessert end time
+        $('#dessert_end_time').datetimepicker({
+            useCurrent: false,
+            format: "hh:mm A",
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        }).on('dp.show', function() {
+            // Your logic for dessert end time picker
+        });
+        // For Dessert start time
+        $('#butler_style_start_time').datetimepicker({
+            useCurrent: false,
+            format: "hh:mm A",
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        }).on('dp.show', function() {
+            // Your logic for butler_style start time picker
+        });
 
-            // For Butler_style end time
-            $('#butler_style_end_time').datetimepicker({
-                useCurrent: false,
-                format: "hh:mm A",
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            }).on('dp.show', function() {
-                // Your logic for butler_style end time picker
-            });
-            $('#butler_style_start_time_1').datetimepicker({
-                useCurrent: false,
-                format: "hh:mm A",
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            }).on('dp.show', function() {
-                // Your logic for butler_style start time picker
-            });
+        // For Butler_style end time
+        $('#butler_style_end_time').datetimepicker({
+            useCurrent: false,
+            format: "hh:mm A",
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        }).on('dp.show', function() {
+            // Your logic for butler_style end time picker
+        });
+        $('#butler_style_start_time_1').datetimepicker({
+            useCurrent: false,
+            format: "hh:mm A",
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        }).on('dp.show', function() {
+            // Your logic for butler_style start time picker
+        });
 
-            // For Butler_style end time
-            $('#butler_style_end_time_1').datetimepicker({
-                useCurrent: false,
-                format: "hh:mm A",
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            }).on('dp.show', function() {
-                // Your logic for butler_style end time picker
-            });
+        // For Butler_style end time
+        $('#butler_style_end_time_1').datetimepicker({
+            useCurrent: false,
+            format: "hh:mm A",
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        }).on('dp.show', function() {
+            // Your logic for butler_style end time picker
+        });
     </script>
 @endsection

@@ -32,7 +32,7 @@
                         <li class="breadcrumb-item active" aria-current="page">${{ $package->price }} Per Guest</li>
                     </ol>
                 </div>
-                <a href="{{ route('menu.index',$eventId) }}"><button class="btn ripple btn-primary col-md-12"
+                <a href="{{ route('menu.index', $eventId) }}"><button class="btn ripple btn-primary col-md-12"
                         style="padding: 5px; ">back to menu </button></a>
             </div>
             <!-- End Page Header -->
@@ -201,7 +201,7 @@
                                     </table>
 
                                     <div id="dishes_no" class="my-2 fw-bold"x data-all="{{ $count }}">You have to
-                                        select {{ $count }} items and remain {{ $count }}  items</div>
+                                        select {{ $count }} items and remain {{ $count }} items</div>
                                     <button class="btn btn-outline-primary float-end ripple" id="saveButton"
                                         type="button" style="display: none"
                                         style="padding: 5px; margin: 12px 0px; float:right; text-align-last: true;">Save &
@@ -217,6 +217,19 @@
     </div>
 @endsection
 @section('js')
+    <script>
+        window.onbeforeunload = function(e) {
+            e = e || window.event;
+
+            // For IE and Firefox prior to version 4
+            if (e) {
+                e.returnValue = 'Sure?';
+            }
+
+            // For Safari
+            return 'Sure?';
+        };
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var checkboxes = document.querySelectorAll('.dish-checkbox');

@@ -166,11 +166,11 @@
                                         <label for="type">Event Type
 
                                             <button class="btn ripple btn-primary btn-sm" data-bs-container="body"
-                                                data-bs-content=" Pick up: You will pickup your food,
-                                             Drop-off: We will drop-off your food at your provided address,
-                                             Setup service: Setup service details...,
-                                             Off-premise: Off-premise details...,
-                                             Full service: Full service details..."
+                                                data-bs-content="Pick up: You will pickup your food,
+                                            Drop-off: We will drop-off your food at your provided address,
+                                            Setup service: Setup service details...,
+                                            Off-premise: Off-premise details...,
+                                            Full service: Full service details..."
                                                 data-bs-placement="top" data-bs-popover-color="default"
                                                 data-bs-toggle="popover" title="Popover top" type="button">
                                                 <i class="fa fa-info"></i></button>
@@ -241,6 +241,31 @@
 @endsection
 
 @section('js')
+    <script>
+        $('body').on('click', function(e) {
+            $('[data-toggle=popover]').each(function() {
+                // hide any open popovers when the anywhere else in the body is clicked
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e
+                        .target).length === 0) {
+
+                    $(this).popover('hide');
+                }
+            });
+        });
+    </script>
+    <script>
+        window.onbeforeunload = function(e) {
+            e = e || window.event;
+
+            // For IE and Firefox prior to version 4
+            if (e) {
+                e.returnValue = 'Sure?';
+            }
+
+            // For Safari
+            return 'Sure?';
+        };
+    </script>
     <!-- Load Google Maps API with the provided API key -->
     <script async
         src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API_KEY') }}&loading=async&libraries=places&callback=initMap">

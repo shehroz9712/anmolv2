@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
@@ -15,5 +16,14 @@ class Event extends Model
     public function createdby()
     {
         return $this->belongsTo(User::class, 'createdby');
+    }
+    /**
+     * Get the journey associated with the Event
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function journey(): HasOne
+    {
+        return $this->hasOne(journey::class, 'eventid', 'id');
     }
 }

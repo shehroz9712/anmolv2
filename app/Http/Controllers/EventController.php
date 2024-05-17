@@ -24,7 +24,7 @@ class EventController extends Controller
 
             $events = Event::All();
         } else {
-            $events = Event::where('createdby', Auth::id())->get();
+            $events = Event::with('journey')->where('createdby', Auth::id())->get();
         }
         return view('pages.events.events_index', compact('events'));
     }
@@ -127,11 +127,11 @@ class EventController extends Controller
         return view('pages.events.show', compact('journey', 'menu'));
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request, $id)
     {
         // Decrypt the encrypted ID
         // $decryptedId = Crypt::decryptString($encryptedId);
-        $eventId = $request->eventId;
+        $eventId = $id;
         // Retrieve the event by ID
         $event = Event::findOrFail($eventId);
 
