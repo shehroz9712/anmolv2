@@ -77,7 +77,7 @@
                                     <div class="form-group">
                                         <label for="venueAddress">Venue Name</label>
                                         <input data-toggle="tooltip" data-placement="bottom" aria-autocomplete="false"
-                                            required placeholder="Enter address" title="Address"
+                                            required placeholder="Venue name" title="Address"
                                             class="form-control  @error('venueAddress') is-invalid @enderror"
                                             autocomplete="false" id="venueAddress" name="venueAddress" type="text">
                                         <small id="addressError" class="text-danger"></small>
@@ -93,7 +93,7 @@
 
                                     <div class="form-group">
                                         <label for="city">City, State, ZipCode</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="City, State, 123"
+                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="City, State, ZipCode"
                                             title="City" class="form-control  @error('city') is-invalid @enderror"
                                             id="city" name="city" type="text" required>
                                         <small class="error-message" id="city_error"></small>
