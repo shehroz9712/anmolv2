@@ -253,19 +253,7 @@
             });
         });
     </script>
-    <script>
-        window.onbeforeunload = function(e) {
-            e = e || window.event;
 
-            // For IE and Firefox prior to version 4
-            if (e) {
-                e.returnValue = 'Sure?';
-            }
-
-            // For Safari
-            return 'Sure?';
-        };
-    </script>
     <!-- Load Google Maps API with the provided API key -->
     <script async
         src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API_KEY') }}&loading=async&libraries=places&callback=initMap">
