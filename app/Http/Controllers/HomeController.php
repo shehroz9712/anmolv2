@@ -30,7 +30,7 @@ class HomeController extends Controller
                     $venue = CustomerVenue::with(['adminVenue',])->where('event_id', $upcomingEvent->id)->first();
                 }
                 $journey = Journey::where('created_by', Auth::id())->first();
-                // dd("user");
+
                 return view('Dashboard.pages.home', compact('events', 'upcomingEvent', 'venue', 'journey'));
             } else if ($role == "Kitchen" || $role == "kitchen") {
                 // dd("user");
