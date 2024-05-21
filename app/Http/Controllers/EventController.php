@@ -22,7 +22,7 @@ class EventController extends Controller
 
         if (Auth::user()->Role == "Admin") {
 
-            $events = Event::All();
+            $events = Event::with('journey')->get();
         } else {
             $events = Event::with('journey')->where('createdby', Auth::id())->get();
         }

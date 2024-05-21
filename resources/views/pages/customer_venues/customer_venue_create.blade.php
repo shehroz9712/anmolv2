@@ -72,8 +72,6 @@
 
                                     <input type="hidden" name="event_id" id="event_id"
                                         value="{{ $eventId ? decrypt($eventId) : null }}">
-
-
                                     <div class="form-group">
                                         <label for="venueAddress">Venue Name</label>
                                         <input data-toggle="tooltip" data-placement="bottom" aria-autocomplete="false"
