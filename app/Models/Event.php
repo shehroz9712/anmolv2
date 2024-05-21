@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Journey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -24,6 +25,6 @@ class Event extends Model
      */
     public function journey(): HasOne
     {
-        return $this->hasOne(journey::class, 'eventid', 'id');
+        return $this->hasOne(Journey::class, 'eventid', 'id');
     }
 }
