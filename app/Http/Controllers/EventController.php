@@ -101,7 +101,7 @@ class EventController extends Controller
         $eventId = encrypt($request->eventId);
         $event = Event::where('id', $request->eventId)->firstOrFail();
         // dd($event);
-        if ($event->type == 'Pick up' || $event->type == 'Drop-off') {
+        if ($event->type == 'pick up' || $event->type == 'Drop-off') {
 
             return redirect()->route('menu.index', $eventId);
         }

@@ -133,7 +133,7 @@
                             </div>
                             @if ($venue)
                                 <div class="row mt-3 ">
-                                    <h4>Vanue Details</h4>
+                                    <h4>Venue Details</h4>
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="border-bottom col-md-6 mt-2">

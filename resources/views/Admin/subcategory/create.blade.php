@@ -65,7 +65,7 @@
                                             <!-- Initial category and number fields -->
                                             <div class="form-group row align-items-end mb-3">
                                                 <div class="col-lg-4 mb-3">
-                                                    <label for="number">Number of Dishes </label>
+                                                    <label for="number">Number of Items </label>
                                                     <input class="form-control" type="number" name="number[]">
                                                 </div>
                                                 <div class="col-lg-4 mb-3">

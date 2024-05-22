@@ -57,7 +57,7 @@
 		<div class="container">
 			<div class="row row-sm">
 				<div class="col-md-12">
-					<span>Developed  by Cloudscourt {{ date('Y') }}, All rights reserved.</span>
+					<span>Developed  by Cloudscourt 2023 - {{ date('Y') }}, All rights reserved.</span>
 				</div>
 			</div>
 		</div>

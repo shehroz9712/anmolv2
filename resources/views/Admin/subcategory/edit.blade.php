@@ -66,13 +66,13 @@
                                                 </option>
                                             </select>
                                         </div>
-                                      
+
                                         <div id="formContainer" class="col-12">
                                             <!-- Loop through existing package includes -->
                                             @foreach ($record->price as $item)
                                                 <div class="form-group row align-items-end mb-3">
                                                     <div class="col-lg-4 mb-3">
-                                                        <label for="number">Number of Dishes</label>
+                                                        <label for="number">Number of Items</label>
                                                         <input class="form-control" type="number" name="number[]"
                                                             value="{{ $item->pick }}">
                                                     </div>

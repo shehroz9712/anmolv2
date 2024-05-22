@@ -86,16 +86,15 @@
                                     <div class="card-body">
                                         <div class="card-item">
                                             <div class="card-item-title  mb-2">
-                                                <label class="main-content-label tx-13 font-weight-bold mb-1">No Of Guest :
+                                                <label class="main-content-label tx-13 font-weight-bold mb-1">Guest :
                                                     {{ $upcomingEvent->guests ?? '---' }}</label>
-                                                <span class="d-block tx-12 mb-0 text-muted">Items: 12 {No of Selected
-                                                    Items}</span>
+                                                <span class="d-block tx-12 mb-0 text-muted">Items: 12 </span>
                                             </div>
                                             <div class="card-item-body">
                                                 <div class="card-item-stat">
-                                                    <h4 class="font-weight-bold">$0,00 <small>{Invoice Amount}</small>
+                                                    <h4 class="font-weight-bold">$0,00 <small></small>
                                                     </h4>
-                                                    <small>Remaining Amount: <b class="text-danger">$2,890</b>
+                                                    <small>Amount: <b class="text-danger">$2,890</b>
                                                     </small>
                                                 </div>
                                             </div>

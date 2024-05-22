@@ -113,7 +113,7 @@
 
                                     <div class="form-group">
                                         <label for="guests">Number of Guests</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="50"
+                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="50" min="1"
                                             title="Number Of Guests" class="form-control" id="guests" name="guests"
                                             type="number" required>
                                         <small id="guestsError" class="text-danger"></small>
@@ -163,16 +163,37 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <div class="row row-sm tx-center">
+                                            <div class="col-sm-6 col-lg-3">
+                                                <button class="btn ripple btn-primary" data-bs-container="body" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-placement="top" data-bs-popover-color="default" data-bs-toggle="popover" title="Popover top" type="button">Popover Top</button>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3 mg-t-30 mg-sm-t-0">
+                                                <button class="btn ripple btn-secondary" data-bs-container="body" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-placement="bottom" data-bs-popover-color="default" data-bs-toggle="popover" title="Popover bottom" type="button">Popover Bottom</button>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3 mg-t-30 mg-lg-t-0">
+                                                <button class="btn ripple btn-info" data-bs-container="body" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-placement="left" data-bs-popover-color="default" data-bs-toggle="popover" title="Popover left" type="button">Popover Left</button>
+                                            </div>
+                                            <div class="col-sm-6 col-lg-3 mg-t-30 mg-lg-t-0">
+                                                <button class="btn ripple btn-danger" data-bs-container="body" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-placement="right" data-bs-popover-color="default" data-bs-toggle="popover" title="Popover right" type="button">Popover Right</button>
+                                            </div>
+                                        </div>
+
                                         <label for="type">Event Type
 
-                                            <button class="btn ripple btn-primary btn-sm" data-bs-container="body"
+                                            <button class="btn ripple btn-primary btn-sm"
+                                            data-bs-container="body" data-bs-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." data-bs-placement="top" data-bs-popover-color="default" data-bs-toggle="popover" title="Popover top" type="button"
+
+
+
+                                            {{-- data-bs-container="body"
                                                 data-bs-content="Pick up: You will pickup your food,
                                             Drop-off: We will drop-off your food at your provided address,
                                             Setup service: Setup service details...,
                                             Off-premise: Off-premise details...,
                                             Full service: Full service details..."
                                                 data-bs-placement="top" data-bs-popover-color="default"
-                                                data-bs-toggle="popover" title="Popover top" type="button">
+                                                data-bs-toggle="popover" title="Popover top" type="button" --}}
+                                                >
                                                 <i class="fa fa-info"></i></button>
                                         </label>
                                         <select class="form-control" required id="type" name="type"
