@@ -10,12 +10,8 @@ class CustomerVenue extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'ContactPerson',
-        'ContactEmail',
-        'ContactPhone',
-        'createdby',
-    ];
+    protected $guarded = [];
+
 
     public function adminVenue()
     {

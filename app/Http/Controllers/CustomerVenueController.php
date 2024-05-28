@@ -48,6 +48,7 @@ class CustomerVenueController extends Controller
         // Create an AdminVenue and associate it with the authenticated user
         $customerVenue = new CustomerVenue([
             'createdby' => auth()->user()->id,
+            'name' => $request->name,
             'address' => $request->address,
             'city' => $request->city,
             'ContactPerson' => $request->ContactPerson,
@@ -76,63 +77,37 @@ class CustomerVenueController extends Controller
 
 
 
-    public function edit(Request $request)
+    public function edit(Request $request, $id)
     {
-        $venueId = $request->venueId;
-        // Retrieve the event by ID
-        $event = CustomerVenue::findOrFail($venueId);
+        $venueId = decrypt($id);
 
-        // dd($venue);
-        // Retrieve a specific customer venue for editing
-
-        $venues = AdminVenue::all();
-        $users = User::all();
         $venue = CustomerVenue::findOrFail($venueId);
-        $venue  = $venue::with('adminVenue', 'createdBy')->where('id', $venueId)->First();
-        // dd($venue);
-
-        $adminVenue = AdminVenue::find($venue->admin_venue_id);
-        return view('pages.customer_venues.customer_venue_edit', compact('venueId', 'venues', 'venue', 'users', 'adminVenue'));
+        return view('pages.customer_venues.customer_venue_edit', compact('venueId', 'venue'));
     }
 
     public function update(Request $request)
     {
+
         $request->validate([
             'ContactPerson' => 'nullable|string',
             'ContactEmail' => 'nullable|email',
-            'ContactPhone' => 'nullable|string'
+            'ContactPhone' => 'nullable|string',
+            'address' => 'required|nullable|string',
+
         ]);
-        // $decryptedId = Crypt::decryptString($request->input('encrypted_id'));
-        $customerVenue = CustomerVenue::findOrFail($request->venueId);
-        // Check if the selected venue is "other"
-        if ($request->venue_id === 'other') {
-            // Create or update an AdminVenue and associate it with the authenticated user
-            if ($customerVenue->adminVenue) {
-                $adminVenue = $customerVenue->adminVenue;
-                $adminVenue->update([
-                    'name' => $request->otherVenue,
-                    'address' => $request->address,
-                    'city' => $request->city,
-                    'state' => $request->state,
-                    'zipcode' => $request->zipcode,
-                ]);
-            } else {
-                $adminVenue = new AdminVenue([
-                    'createdby' => auth()->user()->id,
-                    'name' => $request->otherVenue,
-                    'address' => $request->address,
-                    'city' => $request->city,
-                    'state' => $request->state,
-                    'zipcode' => $request->zipcode,
-                ]);
-                $adminVenue->save();
-                $customerVenue->admin_venue_id = $adminVenue->id;
-            }
-        }
+        $venue = CustomerVenue::find($request->venueId);
 
-        $customerVenue->update($request->all());
-
-        return redirect()->route('customer-venues.index')->with('message', 'Updated Successfully');
+        // Create an AdminVenue and associate it with the authenticated user
+            $venue->update([
+                'createdby' => auth()->user()->id,
+                'name' => $request->name,
+                'address' => $request->address,
+                'city' => $request->city,
+                'ContactPerson' => $request->ContactPerson,
+                'ContactPhone' => $request->ContactPhone,
+                'ContactEmail' => $request->ContactEmail,
+            ]);
+        return redirect()->route('events.index')->with('message', 'Updated Successfully');
     }
 
 

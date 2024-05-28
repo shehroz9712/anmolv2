@@ -6,6 +6,7 @@ use App\Models\CustomerVenue;
 use App\Models\Event;
 use App\Models\Journey;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +41,27 @@ class HomeController extends Controller
                 $upcomingEvent = Event::where('date', '>=', now())
                     ->orderBy('date', 'asc')
                     ->first();
-                return view('Admin.adminhome', compact('events', 'upcomingEvent'));
+
+                foreach ($events as $appointment) {
+                    $originalDate = $appointment->date;
+                    $dateTime = new DateTime($originalDate);
+                    $formattedDate = $dateTime->format('D-m');
+
+
+
+                    $appointmentDate =  $formattedDate;
+                    $appointmentTime =  $appointment->end_time;
+                    $comment = $appointment->name ?? '';
+
+                    $appointments[] = [
+                        'title' =>  $comment,
+                        'start' => $appointment->date,
+                        'end' => $appointment->end_time,
+                    ];
+                }
+                // dd($appointments);
+
+                return view('Admin.adminhome', compact('events', 'appointments', 'upcomingEvent'));
             } else {
                 return Redirect::back();
                 // dd($role);

@@ -1,5 +1,26 @@
 @extends('Dashboard.Master.master_layout')
 @section('content')
+    <style>
+        #calendar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .fc-header-toolbar {
+            /*
+                                        the calendar will be butting up against the edges,
+                                        but let's scoot in the header's buttons
+                                        */
+            padding-top: 1em;
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+    </style>
+
+    </style>
     <!-- Main Content-->
     <div class="main-container container-fluid">
         <div class="inner-body">
@@ -15,10 +36,80 @@
                     </ol>
                 </div>
             </div>
+            <!-- Row -->
+            <div class="row row-sm">
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <div class="card-order ">
+                                <label class="main-content-label mb-3 pt-1">New Users</label>
+                                <h2 class="text-end card-item-icon card-icon">
+                                    <i class="mdi mdi-account-multiple icon-size float-start text-primary"></i><span
+                                        class="font-weight-bold">3,672</span>
+                                </h2>
+                                <p class="mb-0 mt-4 text-muted">Monthly users<span class="float-end">50%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- COL END -->
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <div class="card-order">
+                                <label class="main-content-label mb-3 pt-1">Total tax</label>
+                                <h2 class="text-end"><i class="mdi mdi-cube icon-size float-start text-primary"></i><span
+                                        class="font-weight-bold">$89,265</span></h2>
+                                <p class="mb-0 mt-4 text-muted">Monthly Income<span class="float-end">$7,893</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- COL END -->
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <div class="card-order">
+                                <label class="main-content-label mb-3 pt-1">Total Profit</label>
+                                <h2 class="text-end"><i
+                                        class="icon-size mdi mdi-poll-box   float-start text-primary"></i><span
+                                        class="font-weight-bold">$23,987</span></h2>
+                                <p class="mb-0 mt-4 text-muted">Monthly Profit<span class="float-end">$4,678</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- COL END -->
+                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="card custom-card">
+                        <div class="card-body">
+                            <div class="card-order">
+                                <label class="main-content-label mb-3 pt-1">Total Sales</label>
+                                <h2 class="text-end"><i class="mdi mdi-cart icon-size float-start text-primary"></i><span
+                                        class="font-weight-bold">46,486</span></h2>
+                                <p class="mb-0 mt-4 text-muted">Monthly Sales<span class="float-end">3,756</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- COL END -->
+            </div>
+            <!-- End Row -->
+            <div class="row mb-3">
+                <div class="col-lg-12">
+                    <div class="card  overflow-hidden">
+
+                        <div class="card-body ps-0">
+                            <div id='calendar'></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- End Page Header -->
             <!--Row-->
             <div class="row row-sm">
-                <div class="col-sm-12 col-lg-12 col-xl-8">
+                <div class="col-sm-12 col-lg-12 ">
                     <!--Row-->
 
                     <!--End row-->
@@ -346,7 +437,7 @@
                     <!-- Row end -->
                 </div>
                 <!-- col end -->
-                <div class="col-sm-12 col-lg-12 col-xl-4">
+                {{-- <div class="col-sm-12 col-lg-12 ">
                     <div class="card custom-card">
                         <div class="card-header border-bottom-0 pb-0 d-flex ps-3 ms-1">
                             <div>
@@ -431,7 +522,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- col end -->
 
@@ -440,4 +531,43 @@
         </div>
     </div>
     <!-- End Main Content-->
+@endsection
+@section('js')
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.13/index.global.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentDate = new Date();
+
+            var currentDateString = currentDate.toISOString().slice(0, 10);
+
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+
+                height: 'auto',
+                selectMirror: true,
+                nowIndicator: true,
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                initialDate: currentDateString,
+                navLinks: true, // can click day/week names to navigate views
+                businessHours: true, // display business hours
+                // editable: true,
+                selectable: true,
+                events: @json($appointments),
+                eventClick: function(info) {
+                    // When an event is clicked, check if it has a "fullMessage" property
+                    if (info.event.extendedProps.fullMessage) {
+                        // Show the full message in a popup or a custom element
+                        alert(info.event.extendedProps.fullMessage);
+                    }
+                }
+
+            });
+            calendar.render();
+        });
+    </script>
 @endsection

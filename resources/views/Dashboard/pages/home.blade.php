@@ -177,7 +177,7 @@
                                                                                         @endif
                                                                                         @if ($event->journey->venueid)
                                                                                             <li><a class="dropdown-item "
-                                                                                                    href="{{ route('events.edit', $event->journey->venueid) }}">
+                                                                                                    href="{{ route('customer-venues.edit', encrypt($event->journey->venueid)) }}">
                                                                                                     <i
                                                                                                         class="fa fa-pencil-alt"></i>
                                                                                                     Venue </a></li>

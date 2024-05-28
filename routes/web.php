@@ -118,7 +118,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer-venues-create', [CustomerVenueController::class, 'create'])->name('customer-venues.create');
     Route::get('/customer-venues-create/{id?}', [CustomerVenueController::class, 'create'])->name('customer-venues.createWithId');
     Route::post('/customer-venues', [CustomerVenueController::class, 'store'])->name('customer-venues.store');
-    Route::post('/customer-venues/edit', [CustomerVenueController::class, 'edit'])->name('customer-venues.edit');
+    Route::get('/event/venues/edit/{id}', [CustomerVenueController::class, 'edit'])->name('customer-venues.edit');
     Route::put('/customer-venues', [CustomerVenueController::class, 'update'])->name('customer-venues.update');
     Route::delete('/customer-venues/{customerVenue}', [CustomerVenueController::class, 'destroy'])->name('customer-venues.destroy');
 

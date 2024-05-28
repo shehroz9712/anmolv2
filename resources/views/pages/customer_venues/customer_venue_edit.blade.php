@@ -41,84 +41,81 @@
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">
-                                <form method="POST" action="{{ route('customer-venues.update') }}">
+                                <form id="editEventForm" method="POST"
+                                    action="{{ route('customer-venues.update', $venue->id) }}">
                                     @csrf
-                                    @method('PUT')
+                                    @method('PUT') <!-- Use PUT for updating existing resource -->
 
-                                    <input type="hidden" name="venueId" value="{{ $venueId }}">
+                                    <input type="hidden" name="venueId" id="venueId" value="{{ $venue->id }}">
+
                                     <div class="form-group">
-                                        <label for="venue_id">Venue Name</label>
-                                        <select class="form-control" id="venue_id" name="venue_id" required>
-                                            <option label="Select Venue"></option>
-                                            @foreach ($venues as $v)
-                                                <option value="{{ $v->id }}" data-city="{{ $v->city }}"
-                                                    data-state="{{ $v->state }}" data-zipcode="{{ $v->zipcode }}"
-                                                    data-address="{{ $v->address }}"
-                                                    @if ($venue->admin_venue_id == $v->id) selected @endif>{{ $v->name }}
-                                                </option>
-                                            @endforeach
-                                            <option value="other">Other</option>
-                                        </select>
-                                        <small class="error-message text-danger" id="venue_id_error"></small>
+                                        <label for="name">Venue Name</label>
+                                        <input data-toggle="tooltip" data-placement="bottom" aria-autocomplete="false"
+                                            required placeholder="Venue name" title="Address"
+                                            class="form-control @error('name') is-invalid @enderror" autocomplete="false"
+                                            id="name" name="name" type="text"
+                                            value="{{ old('name', $venue->name) }}">
+                                        <small id="addressError" class="text-danger"></small>
                                     </div>
 
-                                    <div class="form-group d-none" id="otherVenueField">
-                                        <label for="otherVenue">Other Venue Name</label>
-                                        <input class="form-control" id="otherVenue" name="otherVenue" type="otherVenue"
-                                            placeholder="Dummy Venue">
-                                        <small class="error-message" id="otherVenue_error"></small>
-                                    </div>
                                     <div class="form-group">
                                         <label for="address">Address</label>
-                                        <input class="form-control" id="address" name="address" type="text"
-                                            value="{{ old('address', $adminVenue->address) }}" required disabled
-                                            placeholder="123 Dummy Street">
-                                        <small class="error-message text-danger" id="address_error"></small>
+                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="123 Main St"
+                                            title="Address" class="form-control @error('address') is-invalid @enderror"
+                                            id="address" name="address" type="text" required
+                                            value="{{ old('address', $venue->address) }}">
+                                        <small class="error-message" id="address_error"></small>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="city">City, State, ZipCode</label>
-                                        <input class="form-control" id="city" name="city" type="text"
-                                            value="{{ old('city', $adminVenue->city) }}" required disabled
-                                            placeholder="Dummy City, Dummy State, 12345">
-                                        <small class="error-message text-danger" id="city_error"></small>
+                                        <input data-toggle="tooltip" data-placement="bottom"
+                                            placeholder="City, State, ZipCode" title="City"
+                                            class="form-control @error('city') is-invalid @enderror" id="city"
+                                            name="city" type="text" required value="{{ old('city', $venue->city) }}">
+                                        <small class="error-message" id="city_error"></small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="ContactPerson">Contact Person</label>
-                                        <input class="form-control" id="ContactPerson" name="ContactPerson"
-                                            value="{{ old('ContactPerson', $venue->ContactPerson) }}" required
-                                            type="text" placeholder="John Doe">
-                                        <small class="error-message text-danger" id="ContactPerson_error"></small>
+                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="John Doe"
+                                            title="Contact Person"
+                                            class="form-control @error('ContactPerson') is-invalid @enderror"
+                                            id="ContactPerson" name="ContactPerson" type="text"
+                                            value="{{ old('ContactPerson', $venue->ContactPerson) }}">
+                                        <small class="error-message" id="ContactPerson_error"></small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="ContactEmail">Contact Email</label>
-                                        <input class="form-control" id="ContactEmail" name="ContactEmail" type="email"
-                                            value="{{ old('ContactEmail', $venue->ContactEmail) }}"
-                                            placeholder="dummy@example.com">
-                                        <small class="error-message text-danger" id="ContactEmail_error"></small>
+                                        <input data-toggle="tooltip" data-placement="bottom"
+                                            placeholder="john.doe@example.com" title="Contact Email"
+                                            class="form-control @error('ContactEmail') is-invalid @enderror"
+                                            id="ContactEmail" name="ContactEmail" type="email"
+                                            value="{{ old('ContactEmail', $venue->ContactEmail) }}">
+                                        <small class="error-message" id="ContactEmail_error"></small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="ContactPhone">Contact Phone</label>
-                                        <input class="form-control" id="ContactPhone" name="ContactPhone" type="tel"
-                                            value="{{ old('ContactPhone', $venue->ContactPhone) }}"
-                                            placeholder="(555) 555-5555">
-                                        <small class="error-message text-danger" id="ContactPhone_error"></small>
+                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="+1 (555) 123-4567"
+                                            title="Contact Phone"
+                                            class="form-control @error('ContactPhone') is-invalid @enderror"
+                                            id="ContactPhone" name="ContactPhone" type="tel"
+                                            value="{{ old('ContactPhone', $venue->ContactPhone) }}">
+                                        <small class="error-message" id="ContactPhone_error"></small>
                                     </div>
 
                                     <div class="d-flex">
                                         <div class="d-flex justify-content-end w-100">
-                                            {{-- <a href="{{ route('customer-venues.index') }}" class="btn btn-purple my-2 btn-icon-text">
-                                            <i class="fe fe-grid me-2"></i> View All Venues
-                                        </a> --}}
                                             <div class="d-inline-block my-2">
                                                 <button class="btn ripple btn-main-primary d-inline-block"
-                                                    id="submitBtn">Update</button>
+                                                    id="submitBtn">Save & Continue</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+
 
 
 
@@ -133,6 +130,57 @@
 @endsection
 
 @section('js')
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAP_API_KEY') }}&loading=async&libraries=places&callback=initMap">
+    </script>
+
+
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: -34.397,
+                    lng: 150.644
+                },
+                zoom: 8
+            });
+
+            var input = document.getElementById('name');
+            var autocomplete = new google.maps.places.Autocomplete(input, {
+                componentRestrictions: {
+                    country: 'US'
+                } // Restrict results to the United States
+            });
+
+            autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                map.setZoom(17);
+                map.setCenter(place.geometry.location);
+
+                document.getElementById('address').value = place.name;
+
+
+                var cityzip = ''; // Declare the variable
+                place.address_components.forEach(function(component) {
+                    if (component.types.includes('locality')) {
+                        cityzip += component.long_name + ', '; // Concatenate locality
+                    } else if (component.types.includes('administrative_area_level_1')) {
+                        cityzip += component.long_name + ', '; // Concatenate administrative_area_level_1
+                    } else if (component.types.includes('postal_code')) {
+                        cityzip += component.long_name; // Concatenate postal_code
+                    }
+                });
+
+                document.getElementById('city').value = cityzip;
+            });
+        }
+    </script>
+
     <script>
         document.getElementById('venue_id').addEventListener('change', function() {
             const cityInput = document.getElementById('city');
