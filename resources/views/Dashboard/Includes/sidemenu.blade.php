@@ -17,15 +17,16 @@
                 <div class="slide-left disabled" id="slide-left"><i class="fe fe-chevron-left"></i></div>
                 <ul class="menu-nav nav">
                     <li class="nav-header"><span class="nav-label">Menu</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('index') }}">
-                            <span class="shape1"></span>
-                            <span class="shape2"></span>
-                            <i class="ti-home sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Dashboard</span>
-                        </a>
-                    </li>
+
                     @if (Auth::user()->Role == 'Admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="ti-home sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Dashboard</span>
+                            </a>
+                        </li>
                         {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('types.index') }}">
                                 <span class="shape1"></span>
@@ -124,6 +125,14 @@
                             </a>
                         </li> --}}
                     @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('index') }}">
+                            <span class="shape1"></span>
+                            <span class="shape2"></span>
+                            <i class="ti-home sidemenu-icon menu-icon "></i>
+                            <span class="sidemenu-label">Infoboard</span>
+                        </a>
+                    </li>
                         <li class="nav-item @if (Request::is('events') || Request::is('events/*')) active @endif">
                             <a class="nav-link " href="{{ route('events.create') }}">
                                 <span class="shape1"></span>
