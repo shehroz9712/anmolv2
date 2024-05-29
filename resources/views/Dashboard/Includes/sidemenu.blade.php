@@ -42,15 +42,24 @@
                                 <span class="sidemenu-label">Events</span>
                             </a>
                         </li>
+                        <li class="nav-item @if (Request::is('calender') || Request::is('calender/*')) active @endif">
+                            <a class="nav-link" href="{{ route('calender.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Calender</span>
+                            </a>
+                        </li>
+
                         <li class="nav-item @if (Request::is('menu') || Request::is('menu/*')) active @endif">
                             <a class="nav-link" href="{{ route('menu.link.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
-                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <i class="fe fe-file sidemenu-icon menu-icon "></i>
                                 <span class="sidemenu-label">Menu</span>
                             </a>
                         </li>
-                        <li class="nav-item @if (Request::is('categories') || Request::is('categories/*')) active @endif">
+                        <li class="nav-item @if (Request::is('categories') || Request::is('categories/*')) active  @else d-none @endif">
                             <a class="nav-link" href="{{ route('categories.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -58,7 +67,7 @@
                                 <span class="sidemenu-label">Categories</span>
                             </a>
                         </li>
-                        <li class="nav-item @if (Request::is('subcategories') || Request::is('subcategories/*')) active @endif">
+                        <li class="nav-item  @if (Request::is('subcategories') || Request::is('subcategories')) active  @else d-none @endif">
                             <a class="nav-link" href="{{ route('subcategories.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -66,7 +75,7 @@
                                 <span class="sidemenu-label">Sub Categories</span>
                             </a>
                         </li>
-                        <li class="nav-item @if (Request::is('dishes') || Request::is('items/*')) active @endif">
+                        <li class="nav-item @if (Request::is('items') || Request::is('items/*')) active @else d-none @endif">
                             <a class="nav-link" href="{{ route('dishes.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -74,7 +83,7 @@
                                 <span class="sidemenu-label">Items</span>
                             </a>
                         </li>
-                        <li class="nav-item @if (Request::is('packages') || Request::is('packages/*')) active @endif">
+                        <li class="nav-item @if (Request::is('packages') || Request::is('packages/*')) active  @else d-none @endif">
                             <a class="nav-link" href="{{ route('packages.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -86,7 +95,7 @@
                             <a class="nav-link" href="{{ route('equipments.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
-                                <i class="fa fa-toolbox sidemenu-icon menu-icon "></i>
+                                <i class="fa fa-shopping-basket sidemenu-icon menu-icon "></i>
                                 <span class="sidemenu-label">Equipments</span>
                             </a>
                         </li>
@@ -95,10 +104,10 @@
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fa fa-toolbox sidemenu-icon menu-icon "></i>
-                                <span class="sidemenu-label">Labours</span>
+                                <span class="sidemenu-label">Staff</span>
                             </a>
                         </li>
-                        <li class="nav-item @if (Request::is('customer-venues') || Request::is('customer-venues/*')) active @endif">
+                        {{-- <li class="nav-item @if (Request::is('customer-venues') || Request::is('customer-venues/*')) active @endif">
                             <a class="nav-link" href="{{ route('customer-venues.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
@@ -113,7 +122,7 @@
                                 <i class="fe fe-globe sidemenu-icon menu-icon "></i>
                                 <span class="sidemenu-label">Admin Venue</span>
                             </a>
-                        </li>
+                        </li> --}}
                     @else
                         <li class="nav-item @if (Request::is('events') || Request::is('events/*')) active @endif">
                             <a class="nav-link " href="{{ route('events.create') }}">

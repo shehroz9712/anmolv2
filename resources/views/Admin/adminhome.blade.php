@@ -47,7 +47,6 @@
                                     <i class="mdi mdi-account-multiple icon-size float-start text-primary"></i><span
                                         class="font-weight-bold">3,672</span>
                                 </h2>
-                                <p class="mb-0 mt-4 text-muted">Monthly users<span class="float-end">50%</span></p>
                             </div>
                         </div>
                     </div>
@@ -57,10 +56,9 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="card-order">
-                                <label class="main-content-label mb-3 pt-1">Total tax</label>
+                                <label class="main-content-label mb-3 pt-1">Total Sales, (Monthly)</label>
                                 <h2 class="text-end"><i class="mdi mdi-cube icon-size float-start text-primary"></i><span
                                         class="font-weight-bold">$89,265</span></h2>
-                                <p class="mb-0 mt-4 text-muted">Monthly Income<span class="float-end">$7,893</span></p>
                             </div>
                         </div>
                     </div>
@@ -70,11 +68,10 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="card-order">
-                                <label class="main-content-label mb-3 pt-1">Total Profit</label>
+                                <label class="main-content-label mb-3 pt-1">New Leads/ Bookings</label>
                                 <h2 class="text-end"><i
                                         class="icon-size mdi mdi-poll-box   float-start text-primary"></i><span
-                                        class="font-weight-bold">$23,987</span></h2>
-                                <p class="mb-0 mt-4 text-muted">Monthly Profit<span class="float-end">$4,678</span></p>
+                                        class="font-weight-bold">23</span></h2>
                             </div>
                         </div>
                     </div>
@@ -84,10 +81,9 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="card-order">
-                                <label class="main-content-label mb-3 pt-1">Total Sales</label>
+                                <label class="main-content-label mb-3 pt-1">Today Events</label>
                                 <h2 class="text-end"><i class="mdi mdi-cart icon-size float-start text-primary"></i><span
-                                        class="font-weight-bold">46,486</span></h2>
-                                <p class="mb-0 mt-4 text-muted">Monthly Sales<span class="float-end">3,756</span></p>
+                                        class="font-weight-bold">4</span></h2>
                             </div>
                         </div>
                     </div>

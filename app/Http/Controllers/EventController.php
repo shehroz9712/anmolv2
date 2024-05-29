@@ -8,6 +8,7 @@ use App\Models\EventMenu;
 use App\Models\Journey;
 use App\Models\Occasion;
 use App\Models\Type;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,29 @@ class EventController extends Controller
             $events = Event::with('journey')->where('createdby', Auth::id())->get();
         }
         return view('pages.events.events_index', compact('events'));
+    }
+    function calender()
+    {
+
+        $events = Event::with('journey')->get();
+        foreach ($events as $appointment) {
+            $originalDate = $appointment->date . $appointment->start_time;
+            $dateTime = new DateTime($originalDate);
+            $formattedDate = $dateTime->format('D-m h:i');
+
+
+            $appointmentDate =  $formattedDate;
+            $appointmentTime =  $appointment->end_time;
+            $comment = $appointment->name ?? '';
+
+            $appointments[] = [
+                'title' =>  $appointment->name,
+                'start' => $appointment->date,
+                'end' => $appointment->end_time,
+            ];
+        }
+        // dd($appointments);
+        return view('pages.events.calender', compact('appointments'));
     }
 
     public function create()

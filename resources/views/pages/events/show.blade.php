@@ -235,17 +235,14 @@
                                     <h4>Menu Details</h4>
                                     <div class="col-lg-12">
                                         <div class="row">
-                                            @foreach ($menu as $item)
+                                            @foreach ($menu as $key => $item)
                                                 @if ($loop->first || $item->type !== $menu[$loop->index - 1]->type)
                                                     <h4 class="my-3">{{ ucfirst($item->type) }} Items</h4>
                                                 @endif
-                                                <div class="border-bottom col-md-6 mt-2">
-                                                    <div class="row">
-                                                        <h6 class="col-sm-4 fw-bold">Item Name</h6>
-                                                        <div class="col-sm-8">
-                                                            {{ $item->dishes->name }} ({{ ucfirst($item->type) }})
-                                                        </div>
-                                                    </div>
+                                                <div class="border-bottom col-md-4 my-2">
+                                                    {{ $key + 1 }}-
+                                                    {{ $item->dishes->name }} ({{ ucfirst($item->type) }})
+
                                                 </div>
                                             @endforeach
                                         </div>

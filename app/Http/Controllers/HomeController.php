@@ -43,10 +43,9 @@ class HomeController extends Controller
                     ->first();
 
                 foreach ($events as $appointment) {
-                    $originalDate = $appointment->date;
+                    $originalDate = $appointment->date. $appointment->start_time;
                     $dateTime = new DateTime($originalDate);
-                    $formattedDate = $dateTime->format('D-m');
-
+                    $formattedDate = $dateTime->format('D-m h:i');
 
 
                     $appointmentDate =  $formattedDate;

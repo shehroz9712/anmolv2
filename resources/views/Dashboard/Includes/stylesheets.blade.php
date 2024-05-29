@@ -130,4 +130,9 @@
     .btn {
         text-transform: capitalize;
     }
+
+    button.fc-today-button.fc-button.fc-button-primary,
+    button.fc-button.fc-button-primary {
+        text-transform: capitalize;
+    }
 </style>
