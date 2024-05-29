@@ -11,9 +11,9 @@
 
         .fc-header-toolbar {
             /*
-                                        the calendar will be butting up against the edges,
-                                        but let's scoot in the header's buttons
-                                        */
+                                            the calendar will be butting up against the edges,
+                                            but let's scoot in the header's buttons
+                                            */
             padding-top: 1em;
             padding-left: 1em;
             padding-right: 1em;
@@ -27,12 +27,12 @@
             <!-- Page Header -->
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Welcome To Infoboard</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Welcome To Dashboard</h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="javascript:void(0)">Home</a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Personal Infoboard</li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                     </ol>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="card-order">
-                                <label class="main-content-label mb-3 pt-1">Total Sales, (Monthly)</label>
+                                <label class="main-content-label mb-3 pt-1">Total Sales (Monthly)</label>
                                 <h2 class="text-end"><i class="mdi mdi-cube icon-size float-start text-primary"></i><span
                                         class="font-weight-bold">$89,265</span></h2>
                             </div>

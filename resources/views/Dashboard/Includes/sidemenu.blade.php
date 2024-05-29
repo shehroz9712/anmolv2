@@ -22,7 +22,7 @@
                             <span class="shape1"></span>
                             <span class="shape2"></span>
                             <i class="ti-home sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Home</span>
+                            <span class="sidemenu-label">Dashboard</span>
                         </a>
                     </li>
                     @if (Auth::user()->Role == 'Admin')
