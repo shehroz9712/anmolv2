@@ -7,12 +7,14 @@ use App\Models\Journey;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\CustomerVenue;
+use App\Traits\NotificationTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 
 class CustomerVenueController extends Controller
 {
+    use NotificationTrait;
     public function index()
     {
         // Retrieve all customer venues with relations
@@ -98,15 +100,18 @@ class CustomerVenueController extends Controller
         $venue = CustomerVenue::find($request->venueId);
 
         // Create an AdminVenue and associate it with the authenticated user
-            $venue->update([
-                'createdby' => auth()->user()->id,
-                'name' => $request->name,
-                'address' => $request->address,
-                'city' => $request->city,
-                'ContactPerson' => $request->ContactPerson,
-                'ContactPhone' => $request->ContactPhone,
-                'ContactEmail' => $request->ContactEmail,
-            ]);
+        $venue->update([
+            'createdby' => auth()->user()->id,
+            'name' => $request->name,
+            'address' => $request->address,
+            'city' => $request->city,
+            'ContactPerson' => $request->ContactPerson,
+            'ContactPhone' => $request->ContactPhone,
+            'ContactEmail' => $request->ContactEmail,
+        ]);
+        if (Auth::user()->Role != "Admin") {
+            $this->sendNotification('admin', 'Edit Venue ', 'User edit this venue event id#' . $request->eventId);
+        }
         return redirect()->route('events.index')->with('message', 'Updated Successfully');
     }
 

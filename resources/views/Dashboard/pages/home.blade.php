@@ -143,69 +143,77 @@
                                                                             <td>{{ \Carbon\Carbon::parse($event->date)->format('m/d/Y') }}
                                                                             </td>
                                                                             <td>{{ $event->type }}</td>
-                                                                            {{-- <td>{{ $event->occasion }}</td> --}}
-                                                                            {{-- <td>{{ $event->start_time }}</td>
-                                                                            <td>{{ $event->end_time }}</td> --}}
-                                                                            <td class="d-flex">
-                                                                                <form class="mx-1"
-                                                                                    action="{{ route('continueJourney', ['eventId' => $event->id]) }}"
-                                                                                    method="POST">
-                                                                                    @csrf
-                                                                                    <button type="submit"
-                                                                                        class="btn btn-primary">
-                                                                                        Continue Journey
-                                                                                    </button>
-                                                                                </form>
 
-                                                                                <div class="dropdown">
-                                                                                    <button
-                                                                                        class="btn btn-main-primary dropdown-toggle  ms-3"
-                                                                                        type="button"
-                                                                                        id="dropdownMenuButton2"
-                                                                                        data-bs-toggle="dropdown"
-                                                                                        aria-expanded="false">
-                                                                                        Edit
-                                                                                    </button>
-                                                                                    <ul class="dropdown-menu dropdown-menu-light"
-                                                                                        aria-labelledby="dropdownMenuButton2">
-                                                                                        @if ($event->journey->eventid)
-                                                                                            <li><a class="dropdown-item "
-                                                                                                    href="{{ route('events.edit', $event->journey->eventid) }}">
-                                                                                                    <i
-                                                                                                        class="fa fa-pencil-alt"></i>
-                                                                                                    Event </a></li>
-                                                                                        @endif
-                                                                                        @if ($event->journey->venueid)
-                                                                                            <li><a class="dropdown-item "
-                                                                                                    href="{{ route('customer-venues.edit', encrypt($event->journey->venueid)) }}">
-                                                                                                    <i
-                                                                                                        class="fa fa-pencil-alt"></i>
-                                                                                                    Venue </a></li>
-                                                                                        @endif
-                                                                                        @if ($event->journey->menu_submit)
-                                                                                            <li><a class="dropdown-item "
-                                                                                                    href="{{ route('events.edit', $event->journey->eventid) }}">
-                                                                                                    <i
-                                                                                                        class="fa fa-pencil-alt"></i>
-                                                                                                    Menu </a></li>
-                                                                                        @endif
-                                                                                        @if ($event->journey->service_styling_id)
-                                                                                            <li><a class="dropdown-item "
-                                                                                                    href="{{ route('events.edit', $event->journey->service_styling_id) }}">
-                                                                                                    <i
-                                                                                                        class="fa fa-pencil-alt"></i>
-                                                                                                    Service </a></li>
-                                                                                        @endif
+                                                                            @php
+
+                                                                                $eventDate = \Carbon\Carbon::parse(
+                                                                                    $event->date,
+                                                                                );
+                                                                                $oneWeekAgo = \Carbon\Carbon::now()->subWeek(); // Calculate the date one week before today
+                                                                            @endphp
+                                                                            @if ($eventDate->greaterThanOrEqualTo($oneWeekAgo))
+                                                                                <td class="d-flex">
+                                                                                    <form class="mx-1"
+                                                                                        action="{{ route('continueJourney', ['eventId' => $event->id]) }}"
+                                                                                        method="POST">
+                                                                                        @csrf
+                                                                                        <button type="submit"
+                                                                                            class="btn btn-primary">
+                                                                                            Continue Journey
+                                                                                        </button>
+                                                                                    </form>
+
+                                                                                    <div class="dropdown">
+                                                                                        <button
+                                                                                            class="btn btn-main-primary dropdown-toggle  ms-3"
+                                                                                            type="button"
+                                                                                            id="dropdownMenuButton2"
+                                                                                            data-bs-toggle="dropdown"
+                                                                                            aria-expanded="false">
+                                                                                            Edit
+                                                                                        </button>
+                                                                                        <ul class="dropdown-menu dropdown-menu-light"
+                                                                                            aria-labelledby="dropdownMenuButton2">
+                                                                                            @if ($event->journey->eventid)
+                                                                                                <li><a class="dropdown-item "
+                                                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                                                        <i
+                                                                                                            class="fa fa-pencil-alt"></i>
+                                                                                                        Event </a></li>
+                                                                                            @endif
+                                                                                            @if ($event->journey->venueid)
+                                                                                                <li><a class="dropdown-item "
+                                                                                                        href="{{ route('customer-venues.edit', encrypt($event->journey->venueid)) }}">
+                                                                                                        <i
+                                                                                                            class="fa fa-pencil-alt"></i>
+                                                                                                        Venue </a></li>
+                                                                                            @endif
+                                                                                            @if ($event->journey->menu_submit)
+                                                                                                <li><a class="dropdown-item "
+                                                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                                                        <i
+                                                                                                            class="fa fa-pencil-alt"></i>
+                                                                                                        Menu </a></li>
+                                                                                            @endif
+                                                                                            @if ($event->journey->service_styling_id)
+                                                                                                <li><a class="dropdown-item "
+                                                                                                        href="{{ route('events.edit', $event->journey->service_styling_id) }}">
+                                                                                                        <i
+                                                                                                            class="fa fa-pencil-alt"></i>
+                                                                                                        Service </a></li>
+                                                                                            @endif
 
 
-                                                                                    </ul>
-                                                                                </div>
-                                                                                {{-- <a class="btn text-dark px-1" href="{{ route('events.edit', ['encryptedId' => Crypt::encryptString($event->id)]) }}"><i class="fe fe-eye"></i></a> --}}
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                    {{-- <a class="btn text-dark px-1" href="{{ route('events.edit', ['encryptedId' => Crypt::encryptString($event->id)]) }}"><i class="fe fe-eye"></i></a> --}}
 
 
 
-                                                                            </td>
-
+                                                                                </td>
+                                                                            @else
+                                                                                <td>Event Date Passout</td>
+                                                                            @endif
 
                                                                             {{-- <div class="justify-content-center">
 

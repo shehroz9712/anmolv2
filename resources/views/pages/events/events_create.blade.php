@@ -164,28 +164,29 @@
 
                                     <div class="form-group">
                                         <label for="type">Event Type
-
-                                            <button class="btn ripple btn-primary btn-sm" data-bs-container="body"
-                                                data-bs-content="Pick up: You will pickup your food,
-                                            Drop-off: We will drop-off your food at your provided address,
-                                            Setup service: Setup service details...,
-                                            Off-premise: Off-premise details...,
-                                            Full service: Full service details..."
+                                            <button class="btn ripple btn-primary btn-sm popover-dismiss"
+                                                data-bs-container="body"
+                                                data-bs-content="Pick up: You will pickup your food,<br>
+                                                                Drop-off: We will drop-off your food at your provided address,<br>
+                                                                Setup service: Setup service details...,<br>
+                                                                Off-premise: Off-premise details...,<br>
+                                                                Full service: Full service details..."
                                                 data-bs-placement="top" data-bs-popover-color="default"
-                                                data-bs-toggle="popover" title="Popover top" type="button">
-                                                <i class="fa fa-info"></i></button>
+                                                data-bs-html="true" data-bs-toggle="popover" title="Popover top"
+                                                type="button">
+                                                <i class="fa fa-info"></i>
+                                            </button>
                                         </label>
                                         <select class="form-control" required id="type" name="type"
                                             onchange="handleEventTypeChange()">
                                             <option label="Select Event Type"></option>
-                                            <option value="Pick up">Pick up </option>
+                                            <option value="Pick up">Pick up</option>
                                             <option value="Drop-off">Drop-off</option>
                                             <option value="Setup service">Setup service</option>
                                             <option value="Off-premise">Off-premise</option>
                                             <option value="Full service">Full service</option>
                                             {{-- <option value="Other">Other</option> --}}
                                         </select>
-
                                         <small id="typeError" class="text-danger"></small>
                                     </div>
 
@@ -242,14 +243,21 @@
 
 @section('js')
     <script>
-        $('body').on('click', function(e) {
-            $('[data-toggle=popover]').each(function() {
-                // hide any open popovers when the anywhere else in the body is clicked
-                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e
-                        .target).length === 0) {
+        $(document).ready(function() {
+            // Initialize popover
+            $('[data-bs-toggle="popover"]').popover({
+                trigger: 'focus' // Ensures the popover will close when it loses focus
+            });
 
-                    $(this).popover('hide');
-                }
+            // Close popover when clicking outside
+            $('body').on('click', function(e) {
+                $('[data-bs-toggle="popover"]').each(function() {
+                    // Hide any open popovers when clicking anywhere else in the body
+                    if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover')
+                        .has(e.target).length === 0) {
+                        $(this).popover('hide');
+                    }
+                });
             });
         });
     </script>

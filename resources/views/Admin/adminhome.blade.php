@@ -11,9 +11,9 @@
 
         .fc-header-toolbar {
             /*
-                                            the calendar will be butting up against the edges,
-                                            but let's scoot in the header's buttons
-                                            */
+                                                the calendar will be butting up against the edges,
+                                                but let's scoot in the header's buttons
+                                                */
             padding-top: 1em;
             padding-left: 1em;
             padding-right: 1em;
@@ -555,11 +555,23 @@
                 selectable: true,
                 events: @json($appointments),
                 eventClick: function(info) {
-                    // When an event is clicked, check if it has a "fullMessage" property
-                    if (info.event.extendedProps.fullMessage) {
-                        // Show the full message in a popup or a custom element
-                        alert(info.event.extendedProps.fullMessage);
-                    }
+                    // Destroy existing popovers
+                    $('.popover').popover('dispose');
+
+                    // Create popover content
+                    var content = info.event.extendedProps.fullMessage || 'No additional details';
+
+                    // Use Bootstrap's popover
+                    var popover = new bootstrap.Popover(info.el, {
+                        title: info.event.title,
+                        content: content,
+                        html: true, // Allow HTML content
+                        placement: 'top',
+                        trigger: 'focus'
+                    });
+
+                    // Show the popover
+                    popover.show();
                 }
 
             });

@@ -8,6 +8,7 @@ use App\Models\EventMenu;
 use App\Models\Journey;
 use App\Models\Occasion;
 use App\Models\Type;
+use App\Traits\NotificationTrait;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Crypt;
 
 class EventController extends Controller
 {
+    use NotificationTrait;
     public function index()
     {
 
@@ -192,6 +194,10 @@ class EventController extends Controller
         $data['date'] = $date;
 
         $event->update($data);
+        if (Auth::user()->Role != "Admin") {
+            $this->sendNotification('admin', 'Edit Event ', 'User edit this event event id#' . $request->eventId);
+        }
+
 
         return redirect()->route('events.index')->with('message', 'Event updated successfully.');
     }

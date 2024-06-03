@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -22,11 +23,38 @@ class ProfileController extends Controller
         $user = Auth::user(); // Get the authenticated user
         return view('Dashboard.pages.profile.profile_edit', compact('user'));
     }
-     
+
     public function index(): View
     {
         $user = Auth::user(); // Get the authenticated user
         return view('Dashboard.pages.profile.profile_index', compact('user'));
+    }
+    public function markNotificationAsRead(Request $request)
+    {
+        $notificationId = $request->input('notification_id');
+
+        $notification = Notification::find($notificationId);
+        if ($notification) {
+            $notification->update(['is_read' => 1]);
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+    public function notificationlist(Request $request)
+    {
+
+        if (Auth::user()->Role == "Admin") {
+            $notifications = Notification::where('user_type', 'admin')
+                ->Orderby('is_read')
+                ->get();
+        } else {
+            $notifications = Notification::where('user_type', 'user')
+                ->where('user_id', Auth::user()->id)
+                ->latest()->get();
+        }
+        return view('Dashboard.pages.profile.notification', compact('notifications'));
+
     }
 
     /**
@@ -35,7 +63,7 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request)
     {
         $user = $request->user();
-    
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -47,34 +75,34 @@ class ProfileController extends Controller
             ],
             // Add other validation rules for other fields as needed
         ]);
-        
+
         // $user->fill($request->validated());
         // $user =  User::where('id',$request->id)->first();
         $user = User::findOrFail($request->id);
         //  dd($user);
         if ($user->email != $request->email) {
             $existingUser = User::where('email', $user->email)->first();
-            
+
             if ($existingUser && $existingUser->id !== $user->id) {
                 // session(['error' => 'Email Already Exists']);
                 return back()->with('error', 'Email Already Exists.');
             }
-            
+
             $user->email_verified_at = null;
         }
 
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->name = $request->name;
-        
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->name = $request->name;
+
         // dd($user);
-        
+
         $user->save();
         // session(['error' => 'Email Already Exists']);
         return redirect()->route('profile.index')->with('message', 'Profile Updated Successfully.');
     }
-    
-    
+
+
 
     /**
      * Delete the user's account.
@@ -88,11 +116,11 @@ class ProfileController extends Controller
         $user = $request->user();
 
         Auth::logout();
-       try {
-        $token = Auth::user()->token;
-        $token->revoke();
-       } catch (\Throwable $th) {
-       }
+        try {
+            $token = Auth::user()->token;
+            $token->revoke();
+        } catch (\Throwable $th) {
+        }
 
         $user->delete();
 

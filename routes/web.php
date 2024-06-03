@@ -83,6 +83,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::post('/notification/read', [ProfileController::class, 'markNotificationAsRead'])->name('user.mark.notification.read');
+    Route::get('/notification/list', [ProfileController::class, 'notificationlist'])->name('user.notification.list');
+
 
     //menu
     Route::get('/menu/items/{eventId?}', [menu::class, 'items'])->name('custom.menu');
