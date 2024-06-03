@@ -85,15 +85,16 @@
                                         <label for="address">Address</label>
                                         <input data-toggle="tooltip" data-placement="bottom" placeholder="123 Main St"
                                             title="Address" class="form-control  @error('address') is-invalid @enderror"
-                                            id="address" name="address"  type="text" required>
+                                            id="address" name="address" type="text" required>
                                         <small class="error-message" id="address_error"></small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="city">City, State, ZipCode</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="City, State, ZipCode"
-                                            title="City" class="form-control  @error('city') is-invalid @enderror"
-                                            id="city" name="city" type="text" required>
+                                        <input data-toggle="tooltip" data-placement="bottom"
+                                            placeholder="City, State, ZipCode" title="City"
+                                            class="form-control  @error('city') is-invalid @enderror" id="city"
+                                            name="city" type="text" required>
                                         <small class="error-message" id="city_error"></small>
                                     </div>
 

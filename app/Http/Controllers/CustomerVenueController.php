@@ -48,9 +48,9 @@ class CustomerVenueController extends Controller
         ]);
 
         // Create an AdminVenue and associate it with the authenticated user
-        $customerVenue = new CustomerVenue([
+        $customerVenue = CustomerVenue::create([
             'createdby' => auth()->user()->id,
-            'name' => $request->name,
+            'name' => $request->venueAddress,
             'address' => $request->address,
             'city' => $request->city,
             'ContactPerson' => $request->ContactPerson,
@@ -65,12 +65,14 @@ class CustomerVenueController extends Controller
 
             $journey = Journey::where(
                 'eventid',
-                '=',
                 $request->event_id
             )->firstOrFail();
-            $journey->venueid = $customerVenue->id;
-            $journey->update();
+
+            $journey->update([
+                'venueid' => $customerVenue->id,
+            ]);
         }
+
 
         return redirect()->route('menu.index', encrypt($request->event_id))->with('message', 'Venue Added Successfully');
     }
@@ -109,6 +111,8 @@ class CustomerVenueController extends Controller
             'ContactPhone' => $request->ContactPhone,
             'ContactEmail' => $request->ContactEmail,
         ]);
+
+
         if (Auth::user()->Role != "Admin") {
             $this->sendNotification('admin', 'Edit Venue ', 'User edit this venue event id#' . $request->eventId);
         }
