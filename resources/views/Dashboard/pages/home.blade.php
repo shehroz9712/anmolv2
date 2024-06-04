@@ -197,7 +197,7 @@
                                                                                             @endif
                                                                                             @if ($event->journey->service_styling_id)
                                                                                                 <li><a class="dropdown-item "
-                                                                                                        href="{{ route('events.edit', encrypt($event->journey->service_styling_id)) }}">
+                                                                                                        href="{{ route('service.styling.edit', encrypt($event->journey->service_styling_id)) }}">
                                                                                                         <i class="fa fa-pencil-alt"></i>
                                                                                                         Service </a></li>
                                                                                             @endif

@@ -57,7 +57,7 @@ class ServiceController extends Controller
         );
 
         // Redirect to the venue creation page with the event ID
-        return redirect()->route('equipment.index')
+        return redirect()->route('equipment.index', $request->eventId)
             ->with([
                 'message' => 'Service Style Save successfully.',
             ]);
@@ -106,46 +106,27 @@ class ServiceController extends Controller
 
         $event = Event::findOrFail($eventId);
 
-
-        return view('pages.service.service', compact('service', 'eventId'));
+        return view('pages.service.edit', compact('service', 'eventId'));
     }
 
     public function update(Request $request, Event $event)
     {
-        $data = $request->validate([
-            'name' => 'required',
-            'type' => 'string',
-            'guests' => 'required',
-            'date' => 'required|date',
-            'occasion' => 'string',
-            'start_time' => 'required',
-            'end_time' => 'required',
+        $service_styling = ServiceStyling::where('id', $request->serviceId)->update([
+            'appetizer_start_time' => $this->timeConvert($request->appetizer_start_time),
+            'appetizer_end_time' => $this->timeConvert($request->appetizer_end_time),
+            'main_course_start_time' => $this->timeConvert($request->main_course_start_time),
+            'main_course_end_time' => $this->timeConvert($request->main_course_end_time),
+            'dessert_start_time' => $this->timeConvert($request->dessert_start_time),
+            'dessert_end_time' => $this->timeConvert($request->dessert_end_time),
+            'butler_style_start_time' => $this->timeConvert($request->butler_style_start_time),
+            'butler_style_end_time' => $this->timeConvert($request->butler_style_end_time),
+            'butler_style_start_time_1' => $this->timeConvert($request->butler_style_start_time_1),
+            'butler_style_end_time_1' => $this->timeConvert($request->butler_style_end_time_1),
+
         ]);
 
-        // $decryptedId = Crypt::decryptString($request->input('encrypted_id'));
-
-        $event = Event::findOrFail($request->eventId);
-
-        if ($data['type'] == 'Other') {
-            $data['type'] = $request->input('otherType');
-        }
-
-        // if ($data['occasion'] === 'Other') {
-        //     $data['occasion'] = $request->input('otherOccasion');
-        // }
-        $date = Carbon::parse($data['date'])->format('Y-m-d');
-        $data['date'] = $date;
-
-        $event->update($data);
-
-        return redirect()->route('events.index')->with('message', 'Event updated successfully.');
+        return redirect()->route('events.index')->with('message', 'Service Styling updated successfully.');
     }
 
 
-    public function destroy(Event $event)
-    {
-        $event->delete();
-
-        return redirect()->route('events.index')->with('message', 'Event deleted successfully.');
-    }
 }
