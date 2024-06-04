@@ -98,13 +98,12 @@ class ServiceController extends Controller
 
     public function edit(Request $request)
     {
-        $eventId = $request->eventId ? decrypt($request->eventId) : '1';
         $serviceid = $request->serviceid ? decrypt($request->serviceid) : '1';
 
         $service = ServiceStyling::find($serviceid);
 
 
-        $event = Event::findOrFail($eventId);
+        $eventId = 1;
 
         return view('pages.service.edit', compact('service', 'eventId'));
     }
@@ -127,6 +126,4 @@ class ServiceController extends Controller
 
         return redirect()->route('events.index')->with('message', 'Service Styling updated successfully.');
     }
-
-
 }

@@ -109,6 +109,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/service/styling/{eventId?}', [ServiceController::class, 'create'])->name('service.styling');
     Route::get('/edit/service/{serviceid}', [ServiceController::class, 'edit'])->name('service.styling.edit');
     Route::post('/service/styling', [ServiceController::class, 'store'])->name('service.store');
+    Route::post('/update/service', [ServiceController::class, 'update'])->name('service.update');
 
     Route::get('/events/show/{id}', [EventController::class, 'show'])->name('events.show');
 

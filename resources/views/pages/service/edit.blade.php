@@ -100,7 +100,7 @@
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">
-                                <form method="POST" action="{{ route('service.store') }}">
+                                <form method="POST" action="{{ route('service.update') }}">
                                     @csrf
                                     <div class="row">
                                         <label class="fs-17 fw-bold ps-4">Appetizer</label>
