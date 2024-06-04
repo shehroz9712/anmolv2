@@ -98,16 +98,16 @@ class ServiceController extends Controller
 
     public function edit(Request $request)
     {
-        // Decrypt the encrypted ID
-        // $decryptedId = Crypt::decryptString($encryptedId);
-        $eventId = $request->eventId;
-        // Retrieve the event by ID
+        $eventId = $request->eventId ? decrypt($request->eventId) : '1';
+        $serviceid = $request->serviceid ? decrypt($request->serviceid) : '1';
+
+        $service = ServiceStyling::find($serviceid);
+
+
         $event = Event::findOrFail($eventId);
 
-        $occasions = Occasion::all();
-        $types = Type::all();
 
-        return view('pages.events.events_edit', compact('event', 'eventId', 'types', 'occasions'));
+        return view('pages.service.service', compact('service', 'eventId'));
     }
 
     public function update(Request $request, Event $event)

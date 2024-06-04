@@ -95,7 +95,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/menu/addon/{eventId?}', [menu::class, 'addon'])->name('menu.addon');
     Route::get('/menu/detail/{id}/{eventId?}', [menu::class, 'detail'])->name('menu.detail');
 
-    Route::get('/equipment', [menu::class, 'equipment'])->name('equipment.index');
+    Route::get('/equipment/{eventId?}', [menu::class, 'equipment'])->name('equipment.index');
     Route::get('/menu/{id?}', [menu::class, 'index'])->name('menu.index');
 
 
@@ -107,6 +107,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
 
     Route::get('/service/styling/{eventId?}', [ServiceController::class, 'create'])->name('service.styling');
+    Route::get('/edit/service/{serviceid}', [ServiceController::class, 'edit'])->name('service.styling.edit');
     Route::post('/service/styling', [ServiceController::class, 'store'])->name('service.store');
 
     Route::get('/events/show/{id}', [EventController::class, 'show'])->name('events.show');

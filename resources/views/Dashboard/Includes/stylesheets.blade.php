@@ -135,4 +135,12 @@
     button.fc-button.fc-button-primary {
         text-transform: capitalize;
     }
+
+    label {
+        font-weight: 500;
+    }
+
+    .main-notification-list .media.new {
+        background: #fff5e9;
+    }
 </style>

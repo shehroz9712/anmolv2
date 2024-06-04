@@ -47,10 +47,13 @@ class ProfileController extends Controller
         if (Auth::user()->Role == "Admin") {
             $notifications = Notification::where('user_type', 'admin')
                 ->Orderby('is_read')
+                ->latest()
                 ->get();
         } else {
             $notifications = Notification::where('user_type', 'user')
                 ->where('user_id', Auth::user()->id)
+                ->latest()
+
                 ->latest()->get();
         }
         return view('Dashboard.pages.profile.notification', compact('notifications'));

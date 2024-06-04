@@ -39,7 +39,7 @@
                             <a class="nav-link" href="{{ route('events.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
-                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <i class="fe fe-file-text menu-icon sidemenu-icon "></i>
                                 <span class="sidemenu-label">Events</span>
                             </a>
                         </li>
@@ -137,7 +137,7 @@
                             <a class="nav-link " href="{{ route('events.create') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
-                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <i class="fe fe-file-text menu-icon sidemenu-icon "></i>
                                 <span class="sidemenu-label">Events</span>
                             </a>
                         </li>

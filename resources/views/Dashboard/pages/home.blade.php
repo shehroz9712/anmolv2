@@ -92,9 +92,9 @@
                                             </div>
                                             <div class="card-item-body">
                                                 <div class="card-item-stat">
-                                                    <h4 class="font-weight-bold">$0,00 <small></small>
+                                                    <h4 class="font-weight-bold">$0.00 <small></small>
                                                     </h4>
-                                                    <small>Amount: <b class="text-danger">$2,890</b>
+                                                    <small>Amount: <b class="text-danger">$0.00</b>
                                                     </small>
                                                 </div>
                                             </div>
@@ -197,9 +197,8 @@
                                                                                             @endif
                                                                                             @if ($event->journey->service_styling_id)
                                                                                                 <li><a class="dropdown-item "
-                                                                                                        href="{{ route('events.edit', $event->journey->service_styling_id) }}">
-                                                                                                        <i
-                                                                                                            class="fa fa-pencil-alt"></i>
+                                                                                                        href="{{ route('events.edit', encrypt($event->journey->service_styling_id)) }}">
+                                                                                                        <i class="fa fa-pencil-alt"></i>
                                                                                                         Service </a></li>
                                                                                             @endif
 

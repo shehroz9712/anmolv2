@@ -178,9 +178,13 @@ class menu extends Controller
                 ->with('message', 'Addon items submit successfully.');
         }
     }
-    public function equipment()
+    public function equipment(Request $request)
     {
+        $event_id = $request->eventId ? decrypt($request->eventId) : '1';
+
+        $dish = EventMenu::with('dishes.equipment')->where('event_id', $event_id)->get();
+        // dd($dish);
         $equipments  = Equipment::Active()->get();
-        return view('pages.equipment.index', compact('equipments'));
+        return view('pages.equipment.index', compact('dish'));
     }
 }

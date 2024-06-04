@@ -7,6 +7,7 @@ use App\Models\Journey;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\CustomerVenue;
+use App\Models\Event;
 use App\Traits\NotificationTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -111,10 +112,13 @@ class CustomerVenueController extends Controller
             'ContactPhone' => $request->ContactPhone,
             'ContactEmail' => $request->ContactEmail,
         ]);
+        $journey =  Journey::where('venueid', $request->venueId)->first();
+        if ($journey) {
 
-
-        if (Auth::user()->Role != "Admin") {
-            $this->sendNotification('admin', 'Edit Venue ', 'User edit this venue event id#' . $request->eventId);
+            $event = Event::find($journey->eventid);
+            if (Auth::user()->Role != "Admin") {
+                $this->sendNotification('admin', 'Edit Venue ', 'User edit this venue event id#' . $event->name);
+            }
         }
         return redirect()->route('events.index')->with('message', 'Updated Successfully');
     }

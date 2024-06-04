@@ -75,7 +75,7 @@
     <!-- Page Header -->
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Welcome to Eat Anmol</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Create Event</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
@@ -93,10 +93,7 @@
         <div class="col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <div>
-                        <h6 class="main-content-label mb-1">Create Event</h6>
-                        <hr />
-                    </div>
+
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">
@@ -162,17 +159,18 @@
                                         </div>
                                     </div>
 
+
                                     <div class="form-group">
                                         <label for="type">Event Type
                                             <button class="btn ripple btn-primary btn-sm popover-dismiss"
                                                 data-bs-container="body"
-                                                data-bs-content="Pick up: You will pickup your food,<br>
-                                                                Drop-off: We will drop-off your food at your provided address,<br>
-                                                                Setup service: Setup service details...,<br>
-                                                                Off-premise: Off-premise details...,<br>
-                                                                Full service: Full service details..."
+                                                data-bs-content="<b>Pick Up:</b> You will pickup your food,<br>
+                                                                <b>Drop-off:</b> We will drop-off your food at your provided address,<br>
+                                                                <b>Setup Service:</b> Setup service details<br>
+                                                                <b>Off-premise:</b> Off-premise details<br>
+                                                                <b>Full Service:</b> Full service details"
                                                 data-bs-placement="top" data-bs-popover-color="default"
-                                                data-bs-html="true" data-bs-toggle="popover" title="Popover top"
+                                                data-bs-html="true" data-bs-toggle="popover" title="Type Detail"
                                                 type="button">
                                                 <i class="fa fa-info"></i>
                                             </button>

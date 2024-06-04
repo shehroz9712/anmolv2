@@ -92,11 +92,15 @@
                                         data-message="{{ $notification->message }}"
                                         data-notification-id="{{ $notification->id }}" data-toggle="modal"
                                         data-target="#notificationModal">
-                                        <div class="main-img-user online"><img alt="avatar"
-                                                src="../assets/img/users/5.jpg"></div>
-                                        <div class="media-body">
-                                            <p>{{ Illuminate\Support\Str::limit($notification->subject, 20, '...') }}
-                                            </p>
+                                        {{-- <div class="main-img-user online"><i class="fe fe-bell header-icons"></i></div> --}}
+                                        <div class="align-items-center d-flex justify-content-between media-body">
+                                            <div>
+
+                                                <p>{{ Illuminate\Support\Str::limit($notification->subject, 20, '...') }}
+                                                </p>
+                                                <p>{{ Illuminate\Support\Str::limit($notification->message, 20, '...') }}
+                                                </p>
+                                            </div>
                                             <span>{{ $notification->created_at ? $notification->created_at->diffForHumans() : '' }}</span>
                                         </div>
                                     </div>

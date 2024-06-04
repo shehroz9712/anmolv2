@@ -28,23 +28,41 @@
                             <table class="table table-bordered" id="example2">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th>Qty.</th>
+                                        <th>Food</th>
                                         <th>Price</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($equipments as $record)
+                                    @foreach ($dish as $item)
                                         <tr>
-                                            <td>{{ $record->name }}</td>
-                                            <td>${{ $record->price }}</td>
+                                            <td>1</td>
+                                            <td>
+                                                {{ optional($item->dishes)->name }}<br>
+                                                @php
 
-
-
-
+                                                    $price = 0;
+                                                @endphp
+                                                @if (empty($item->dishes->equipment))
+                                                    <small>No equipment found</small>
+                                                @else
+                                                    @foreach ($item->dishes->equipment as $equipment)
+                                                        @php
+                                                            $price += $equipment->price;
+                                                        @endphp
+                                                        <small class="ms-3">{{ $equipment->name }}</small><br>
+                                                    @endforeach
+                                                @endif
                                             </td>
+                                            <td>{{ $price }}</td>
+                                            <td>{{ $price }}</td>
                                         </tr>
                                     @endforeach
+
+
                                 </tbody>
+                            </table>
                             </table>
                         </div>
                     </div>

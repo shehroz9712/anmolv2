@@ -25,6 +25,8 @@
         .custom-addon i {
             color: #333;
         }
+
+
     </style>
 @endsection
 
@@ -33,7 +35,7 @@
     <!-- Page Header -->
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Welcome to Eatanmol</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Edit Event</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
@@ -52,10 +54,10 @@
         <div class="col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <div>
+                    {{-- <div>
                         <h6 class="main-content-label mb-1">Edit Event</h6>
-                        <p class="text-muted card-sub-title">Edit an existing event with type and occasion selection.</p>
-                    </div>
+                        <p class="text-muted card-sub-title">Edit an existing event with type  selection.</p>
+                    </div> --}}
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">

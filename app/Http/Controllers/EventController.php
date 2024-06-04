@@ -195,7 +195,7 @@ class EventController extends Controller
 
         $event->update($data);
         if (Auth::user()->Role != "Admin") {
-            $this->sendNotification('admin', 'Edit Event ', 'User edit this event event id#' . $request->eventId);
+            $this->sendNotification('admin', 'Edit Event ', 'User edit this event event id#' . $request->name);
         }
 
 

@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('content')
-    <div class="main-content side-content pt-0">
+    <div class=" pt-0">
 
         <div class="main-container container-fluid">
             <div class="inner-body">
@@ -48,11 +48,12 @@
 
                                         <div class="media-body ms-3 d-flex">
                                             <div class="">
-                                                <p class="tx-14 text-dark mb-0 tx-semibold">Dennis Trexy</p>
-                                                <p class="mb-0 tx-13 text-muted">2 Members Accepted your Request.</p>
+                                                <p class="tx-14 text-dark mb-0 tx-semibold">{{ $item->subject }}</p>
+                                                <p class="mb-0 tx-13 text-muted">{{ $item->message }}</p>
                                             </div>
                                             <div class="notify-time">
-                                                <p class="mb-0 text-muted tx-11">2 Hrs ago</p>
+                                                <p class="mb-0 text-muted tx-11">
+                                                    {{ $item->created_at ? $item->created_at->diffForHumans() : '' }}</p>
                                             </div>
                                         </div>
                                     </div>
