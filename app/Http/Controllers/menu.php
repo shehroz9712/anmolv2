@@ -6,6 +6,7 @@ use App\Http\Requests\StoreEventMenuRequest;
 use App\Models\Category;
 use App\Models\Dish;
 use App\Models\Equipment;
+use App\Models\Event;
 use App\Models\EventMenu;
 use App\Models\Journey;
 use App\Models\Package;
@@ -181,10 +182,11 @@ class menu extends Controller
     public function equipment(Request $request)
     {
         $event_id = $request->eventId ? decrypt($request->eventId) : '1';
+        $event = Event::find($event_id);
 
         $dish = EventMenu::with('dishes.equipment')->where('event_id', $event_id)->get();
         // dd($dish);
         $equipments  = Equipment::Active()->get();
-        return view('pages.equipment.index', compact('dish'));
+        return view('pages.equipment.index', compact('dish', 'event'));
     }
 }

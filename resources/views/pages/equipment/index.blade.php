@@ -28,7 +28,7 @@
                             <table class="table table-bordered" id="example2">
                                 <thead>
                                     <tr>
-                                        <th>Qty.</th>
+                                        <th>No of Guest.</th>
                                         <th>Food</th>
                                         <th>Price</th>
                                         <th>Total</th>
@@ -37,7 +37,7 @@
                                 <tbody>
                                     @foreach ($dish as $item)
                                         <tr>
-                                            <td>1</td>
+                                            <td>{{ $event->guests }}</td>
                                             <td>
                                                 {{ optional($item->dishes)->name }}<br>
                                                 @php
@@ -55,8 +55,8 @@
                                                     @endforeach
                                                 @endif
                                             </td>
-                                            <td>{{ $price }}</td>
-                                            <td>{{ $price }}</td>
+                                            <td>$ {{ number_format(round($price, 2), 2, '.', ',') }}</td>
+                                            <td>$ {{ number_format(round($price * $event->guests, 2), 2, '.', ',') }}</td>
                                         </tr>
                                     @endforeach
 

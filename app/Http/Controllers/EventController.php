@@ -142,7 +142,7 @@ class EventController extends Controller
         if (!$journey->service_styling_id) {
             return redirect()->route('service.styling', $eventId);
         } else {
-            return redirect()->route('equipments.index');
+            return redirect()->route('equipment.index', $eventId);
         }
     }
 
