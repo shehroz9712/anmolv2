@@ -68,11 +68,38 @@
             color: #dcd3d3;
             /* Darker text color for disabled dates */
         }
+
+        .description {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .draggable-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .draggable-list li {
+            margin: 5px 0;
+            padding: 10px;
+            background: #fc9003;
+            border: 1px solid #fc9003;
+            cursor: move;
+            color: white
+        }
+
+        .dragging {
+            opacity: 0.5;
+        }
     </style>
 @endsection
 
+
 @section('content')
-    <!-- Page Header -->
     <div class="page-header">
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">Welcome to Eat Anmol</h2>
@@ -82,13 +109,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Set Service Styling Times</li>
             </ol>
         </div>
-        {{-- <div class="d-flex">
-        <a class="btn btn-primary my-2 btn-icon-text" href="{{ route('events.index') }}">
-            <i class="fe fe-grid me-2"></i> View All
-        </a>
-    </div> --}}
     </div>
-    <!-- End Page Header -->
     <div class="row row-sm">
         <div class="col-md-12">
             <div class="card custom-card">
@@ -102,6 +123,22 @@
                             <div class="">
                                 <form method="POST" action="{{ route('service.store') }}">
                                     @csrf
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label class="form-label">Select Service Type</label>
+                                            <select class="form-control" name="service_type" id="service_type" required>
+                                                <option value="">Select Service Type</option>
+                                                <option value="1">Buffet Style</option>
+                                                <option value="2">Butler Style/Passed O’Dourves</option>
+                                                <option value="3">Displayed Station/Buffet</option>
+                                                <option value="4">Family Style</option>
+                                                <option value="5">Platted/Course Meals</option>
+                                                <option value="6">Action Station</option>
+                                                <option value="7">Live Barbecue</option>
+                                            </select>
+                                            <div id="description" class="d-none description"></div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <label class="fs-17 fw-bold ps-4">Appetizer</label>
                                         <div class="col-lg-6 form-group">
@@ -151,9 +188,10 @@
                                             <label for="main_course_end_time">End Time</label>
                                             <div class="input-group " data-placement="bottom" data-align="top"
                                                 data-autoclose="false" data-format="hh:mm">
-                                                <input data-toggle="tooltip" data-placement="bottom" placeholder="10:00 PM"
-                                                    title="End Time" type="text" id="main_course_end_time"
-                                                    name="main_course_end_time" required class="form-control timePicker">
+                                                <input data-toggle="tooltip" data-placement="bottom"
+                                                    placeholder="10:00 PM" title="End Time" type="text"
+                                                    id="main_course_end_time" name="main_course_end_time" required
+                                                    class="form-control timePicker">
                                                 <span class="input-group-addon custom-addon bg-primary">
                                                     <i class="fa fa-clock-o text-light" aria-hidden="true"
                                                         style="line-height: 36px;"></i>
@@ -257,8 +295,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </form>
                             </div>
                         </div>
@@ -270,7 +306,180 @@
 @endsection
 
 @section('js')
+    <script>
+        const descriptions = {
+            "1": `<b>Buffet Style</b> - Most common way of serving food, food on Buffet table in serviceware and chaffers, Guest help themselves as Servers refill and Maintain the buffet.
+                  <ul>
+                      <li>1 Buffet for 80-150 Guests</li>
+                      <li>Double Sided Lines</li>
+                      <li>Duration approx 15-30 Minutes (for the last person to be served)</li>
+                      <li>We recommend serving food for a minimum of 45 minutes and a maximum of 90 but no more than 2 hours</li>
+                  </ul>
+                  <b>Appetizer Sequence:</b>
+                  <div id="appetizer_sequence" class="draggable-container">
+                      <h3>Appetizer Sequence</h3>
+                      <ul id="appetizers" class="draggable-list">
+                          <li draggable="true">First item</li>
+                          <li draggable="true">Second Item - Vegetarian Item</li>
+                          <li draggable="true">Third Item - Meat Item</li>
+                          <li draggable="true">Cold Item</li>
+                          <li draggable="true">Last - Condiments/ Sauces</li>
+                      </ul>
+                  </div>
+                  <b>Main Course Sequence:</b>
+                  <div id="main_course_sequence" class="draggable-container">
+                      <h3>Main Course Sequence</h3>
+                      <ul id="main_courses" class="draggable-list">
+                          <li draggable="true">Biryani (or similar)</li>
+                          <li draggable="true">Vegetables (if applies)</li>
+                          <li draggable="true">Fusion Items - Pasta’s & Noodles etc.</li>
+                          <li draggable="true">Curries (Most popular curry or lesser amount of curry towards end)</li>
+                          <li draggable="true">BBQ</li>
+                          <li draggable="true">Naan- Specialty Breads towards the end</li>
+                          <li draggable="true">Salads at the end Sauces to the very end</li>
+                          <li draggable="true">Condiments- May be placed next to Item it pairs with on a riser or at the end</li>
+                      </ul>
+                  </div>`,
+            "2": `<b>Butler Style/Passed O’Dourves</b> - Mostly used for “hand food” or “appetizers” where service staff (most likely of the banquet) serves the food on platters, accompanied by a sauce. Your job as a cook/handler is to have the platters ready for them, filled, cleaned, and garnished. Napkins are used as plates here. Wait Staff will be serving it to the guests. Butler Style Appetizers are generally served in Foyers/Entrances/Welcome Areas where guests are standing/mingling. These areas have Hi Boys scattered throughout the room.
+                  <ul>
+                      <li>Minimum 2 Items to be passed.</li>
+                      <li>1 Wait Staff Per Item Per 100 Guests</li>
+                  </ul>`,
+            "3": `<b>Displayed Station/Buffet</b> - Similar to a Buffet style service but more complex in terms of design and service ware used to present food. Chaffers are not used here, but heat lamps, Platters, Risers and charcuterie boards. Usually Displayed buffets will have items that are plated in the kitchen then set outside.
+                  <ul>
+                      <li>1 Displayed Buffet is recommended for 300 Guests</li>
+                      <li>6’ Worth of Table space Per Item is Required</li>
+                  </ul>`,
+            "4": `<b>Family Style</b> - Catering Cooks makes bowls or plates for all items per table and hold items in warmers, garnish and clean at the end as the wait staff serves the food to the guests.
+                  <ul>
+                      <li>1 Food Handler per Entree</li>
+                      <li>1 Cook per Station</li>
+                      <li>1 Wait Staff per 3 Tables</li>
+                  </ul>`,
+            "5": `<b>Platted/Course Meals</b> - Here Individual plates are made per person, plates are made as Banquet Staff takes them away.
+                  <ul>
+                      <li>1 Food Handler per Entree</li>
+                      <li>1 Cook per Station</li>
+                      <li>1 Wait Staff per Table</li>
+                  </ul>`,
+            "6": `<b>Action Station</b> - Catering Staff/Cooks are now behind the station, preparing and serving the guests as they come up.
+                  <ul>
+                      <li>Total of 1 Action Station for 50 Guests is recommended (Example, 300 Guests should have a total of 6 Stations)</li>
+                      <li>1 Action Station can serve up to 150 Guests for appetizers/Desserts</li>
+                  </ul>`,
+            "7": `<b>Live Barbecue</b> - Here a Remote Kitchen is set up in front of the guests and outdoors, as we cook the food on the spot and then serve it to them, mostly buffet style. Remote Kitchen Equipment Involves Deep Fryers, Charcoal Pits, Griddles and Portable Ovens. Depending on the Menu and Clients requirements.`
+        };
 
+
+        document.getElementById('service_type').addEventListener('change', function() {
+            const descriptionDiv = document.getElementById('description');
+            descriptionDiv.classList.remove('d-none');
+            descriptionDiv.innerHTML = descriptions[this.value] || '';
+            loadItems(this.value); // Load items for the selected service type
+        });
+
+        function loadItems(serviceType) {
+            const appetizers = @json($appetizer);
+            const mainCourses = @json($main);
+
+            // Simulated data for appetizers and main courses
+
+            const appetizerList = document.getElementById('appetizers');
+            const mainCourseList = document.getElementById('main_courses');
+
+            appetizerList.innerHTML = '';
+            mainCourseList.innerHTML = '';
+
+            if (serviceType === '1') { // Buffet Style
+                appetizers.forEach((appetizer, index) => {
+                    appetizerList.innerHTML += `<li draggable="true">
+                ${appetizer.name}
+                <input type="hidden" name="appetizer_order[]" value="${index + 1}">
+            </li>`;
+                });
+
+                mainCourses.forEach((mainCourse, index) => {
+                    mainCourseList.innerHTML += `<li draggable="true">
+                ${mainCourse.name}
+                <input type="hidden" name="main_course_order[]" value="${index + 1}">
+            </li>`;
+                });
+
+                initDragAndDrop(); // Reinitialize drag-and-drop functionality
+            }
+            // Add conditions for other service types if needed
+        }
+
+        function initDragAndDrop() {
+            const draggables = document.querySelectorAll('.draggable-list li');
+            const containers = document.querySelectorAll('.draggable-list');
+
+            draggables.forEach(draggable => {
+                draggable.addEventListener('dragstart', () => {
+                    draggable.classList.add('dragging');
+                });
+
+                draggable.addEventListener('dragend', () => {
+                    draggable.classList.remove('dragging');
+                    updateSortOrder(); // Update sort order when dragging ends
+                });
+            });
+
+            containers.forEach(container => {
+                container.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    const afterElement = getDragAfterElement(container, e.clientY);
+                    const dragging = document.querySelector('.dragging');
+                    if (afterElement == null) {
+                        container.appendChild(dragging);
+                    } else {
+                        container.insertBefore(dragging, afterElement);
+                    }
+                });
+            });
+        }
+
+        // Function to get the element after which the dragged item should be placed
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('li:not(.dragging)')];
+
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return {
+                        offset: offset,
+                        element: child
+                    };
+                } else {
+                    return closest;
+                }
+            }, {
+                offset: Number.NEGATIVE_INFINITY
+            }).element;
+        }
+
+        // Function to update the sort order and store it in hidden input fields
+        function updateSortOrder() {
+            const appetizerList = document.getElementById('appetizers');
+            const mainCourseList = document.getElementById('main_courses');
+            const appetizerItems = appetizerList.querySelectorAll('li');
+            const mainCourseItems = mainCourseList.querySelectorAll('li');
+
+            // Update sort order for appetizers
+            appetizerItems.forEach((item, index) => {
+                item.querySelector('input[name="appetizer_order[]"]').value = index + 1;
+            });
+
+            // Update sort order for main courses
+            mainCourseItems.forEach((item, index) => {
+                item.querySelector('input[name="main_course_order[]"]').value = index + 1;
+            });
+        }
+
+        // Initialize drag-and-drop functionality on page load
+        document.addEventListener('DOMContentLoaded', initDragAndDrop);
+    </script>
     <script>
         $(document).ready(function() {
             $('#start_time').change(function() {

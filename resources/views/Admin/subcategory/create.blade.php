@@ -61,6 +61,14 @@
                                                 <option value="1">Active</option>
                                             </select>
                                         </div>
+                                        <div class="col-lg-3 mb-3">
+                                            <label for="term">It is</label>
+                                            <select class="form-control" id="term" name="term" required>
+                                                <option value="main course">Main Course</option>
+                                                <option value="appetizer">Appetizer</option>
+                                                <option value="dessert">Dessert</option>
+                                            </select>
+                                        </div>
                                         <div id="formContainer" class="col-12">
                                             <!-- Initial category and number fields -->
                                             <div class="form-group row align-items-end mb-3">
@@ -102,63 +110,63 @@
 @endsection
 
 @section('js')
-<script>
-    $(document).ready(function() {
-        // Array to store selected categories
-        var selectedCategories = [];
+    <script>
+        $(document).ready(function() {
+            // Array to store selected categories
+            var selectedCategories = [];
 
-        // Add field button functionality
-        $("#addField").click(function() {
-            // Clone the first form group and append it to the container
-            var clonedField = $("#formContainer .form-group:first").clone();
-            clonedField.find("select").val(""); // Clear the selected value
-            clonedField.find("input").val(""); // Clear the selected value
-            // Disable already selected categories in the cloned field
-            disableSelectedCategories(clonedField);
+            // Add field button functionality
+            $("#addField").click(function() {
+                // Clone the first form group and append it to the container
+                var clonedField = $("#formContainer .form-group:first").clone();
+                clonedField.find("select").val(""); // Clear the selected value
+                clonedField.find("input").val(""); // Clear the selected value
+                // Disable already selected categories in the cloned field
+                disableSelectedCategories(clonedField);
 
-            $("#formContainer").append(clonedField);
+                $("#formContainer").append(clonedField);
+                updateRemoveButtonVisibility();
+            });
+
+            // Remove field button functionality
+            $("#formContainer").on("click", ".removeField", function() {
+                // Remove the parent form group only if there is more than one
+                if ($("#formContainer .form-group").length > 1) {
+                    var removedCategory = $(this).closest(".form-group").find("select").val();
+                    $(this).closest(".form-group").remove();
+                    // Remove the category from the selectedCategories array
+                    selectedCategories = selectedCategories.filter(function(category) {
+                        return category !== removedCategory;
+                    });
+                    updateRemoveButtonVisibility();
+                }
+            });
+
+            // Function to update the visibility of the "Remove" button
+            function updateRemoveButtonVisibility() {
+                var removeButtons = $("#formContainer .removeField");
+                removeButtons.prop("disabled", removeButtons.length === 1);
+            }
+
+            // Function to disable selected categories in a given field
+            function disableSelectedCategories(field) {
+                field.find("select option").prop("disabled", false); // Enable all options
+                selectedCategories.forEach(function(category) {
+                    field.find("select option[value='" + category + "']").prop("disabled", true);
+                });
+            }
+
+            // Function to handle change event in category dropdown
+            $("#formContainer").on("change", "select[name='category[]']", function() {
+                // Add the selected category to the array
+                var selectedCategory = $(this).val();
+                selectedCategories.push(selectedCategory);
+                // Disable selected categories in other fields
+                disableSelectedCategories($("#formContainer .form-group:not(:has(.removeField))"));
+            });
+
+            // Initial update of the "Remove" button visibility
             updateRemoveButtonVisibility();
         });
-
-        // Remove field button functionality
-        $("#formContainer").on("click", ".removeField", function() {
-            // Remove the parent form group only if there is more than one
-            if ($("#formContainer .form-group").length > 1) {
-                var removedCategory = $(this).closest(".form-group").find("select").val();
-                $(this).closest(".form-group").remove();
-                // Remove the category from the selectedCategories array
-                selectedCategories = selectedCategories.filter(function(category) {
-                    return category !== removedCategory;
-                });
-                updateRemoveButtonVisibility();
-            }
-        });
-
-        // Function to update the visibility of the "Remove" button
-        function updateRemoveButtonVisibility() {
-            var removeButtons = $("#formContainer .removeField");
-            removeButtons.prop("disabled", removeButtons.length === 1);
-        }
-
-        // Function to disable selected categories in a given field
-        function disableSelectedCategories(field) {
-            field.find("select option").prop("disabled", false); // Enable all options
-            selectedCategories.forEach(function(category) {
-                field.find("select option[value='" + category + "']").prop("disabled", true);
-            });
-        }
-
-        // Function to handle change event in category dropdown
-        $("#formContainer").on("change", "select[name='category[]']", function() {
-            // Add the selected category to the array
-            var selectedCategory = $(this).val();
-            selectedCategories.push(selectedCategory);
-            // Disable selected categories in other fields
-            disableSelectedCategories($("#formContainer .form-group:not(:has(.removeField))"));
-        });
-
-        // Initial update of the "Remove" button visibility
-        updateRemoveButtonVisibility();
-    });
-</script>
+    </script>
 @endsection

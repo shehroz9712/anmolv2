@@ -38,8 +38,8 @@
                                         <th>Name</th>
                                         <th>Category</th>
                                         <th>Is Addon</th>
+                                        <th>It is</th>
                                         {{-- <th>Single</th>
-                                        <th>Double</th>
                                         <th>Trio</th> --}}
                                         <th class="wd-lg-20p">status</th>
                                         <th class="wd-lg-20p">Actions</th>
@@ -51,8 +51,8 @@
                                             <td>{{ $record->name }}</td>
                                             <td>{{ $record->category->name }}</td>
                                             <td>{{ $record->is_addon }}</td>
+                                            <td>{{ $record->term }}</td>
                                             {{-- <td>{{ $record->single }}</td>
-                                            <td>{{ $record->double }}</td>
                                             <td>{{ $record->trio }}</td> --}}
 
                                             <td>

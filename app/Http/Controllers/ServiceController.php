@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventMenu;
 use App\Models\Journey;
 use App\Models\Occasion;
 use App\Models\ServiceStyling;
@@ -20,7 +21,31 @@ class ServiceController extends Controller
 
     public function create(Request $request, $eventId)
     {
-        return view('pages.service.service', compact('eventId'));
+
+        $menu = EventMenu::with('dishes.subcategory')->where('event_id', decrypt($eventId))->get();
+
+
+        $groupedData = [];
+
+        // Iterate over each menu item
+        foreach ($menu as $eventMenu) {
+            $dish = $eventMenu->dishes;
+            if ($dish->subcategory) {
+                $term = $dish->subcategory->term;
+                $subcategoryName = $dish->subcategory->name;
+
+                // Creating a unique key for grouping
+                $key = $term;
+                if (!isset($groupedData[$key])) {
+                    $groupedData[$key] = [];
+                }
+
+                $groupedData[$key][] = $dish;
+            }
+        }
+        $main = $groupedData['main course'];
+        $appetizer = $groupedData['appetizer'];
+        return view('pages.service.service', compact('eventId', 'main', 'appetizer'));
     }
     public function store(Request $request)
     {

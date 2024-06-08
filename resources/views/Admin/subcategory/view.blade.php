@@ -42,6 +42,10 @@
                                                 <td class="col-sm-8">{{ $record->category->name }}</td>
                                             </tr>
                                             <tr>
+                                                <th class="col-sm-4">It is</th>
+                                                <td class="col-sm-8">{{ $record->term }}</td>
+                                            </tr>
+                                            <tr>
                                                 <th class="col-sm-4">Is Addon</th>
                                                 <td class="col-sm-8">{{ $record->is_addon ? 'Yes' : 'No' }}</td>
                                             </tr>

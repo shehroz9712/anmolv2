@@ -66,7 +66,20 @@
                                                 </option>
                                             </select>
                                         </div>
-
+                                        <div class="col-lg-3 mb-3">
+                                            <label for="term">It is</label>
+                                            <select class="form-control" id="term" name="term" required>
+                                                <option
+                                                    value="main course"{{ $record->term == 'main course' ? 'selected' : '' }}>
+                                                    Main Course</option>
+                                                <option
+                                                    value="appetizer"{{ $record->term == 'appetizer' ? 'selected' : '' }}>
+                                                    Appetizer</option>
+                                                <option
+                                                    value="dessert"{{ $record->term == 'dessert' ? 'selected' : '' }}>
+                                                    Dessert</option>
+                                            </select>
+                                        </div>
                                         <div id="formContainer" class="col-12">
                                             <!-- Loop through existing package includes -->
                                             @foreach ($record->price as $item)
