@@ -39,31 +39,20 @@
         <div>
             <h2 class="main-content-title tx-24 mg-b-5"></h2>
             <div>
-                <h2 class="main-content-title tx-24 mg-b-5">Venue Add</h2>
+                <h2 class="main-content-title tx-24 mg-b-5">Venue</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-
-                    <li class="breadcrumb-item"><a href="{{ route('customer-venues.index') }}">Venue</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Add Venue</li>
                 </ol>
             </div>
         </div>
-        {{-- <div class="d-flex">
-        <div class="justify-content-center">
-            <a href="{{ route('customer-venues.index') }}" class="btn btn-primary my-2 btn-icon-text">
-                <i class="fe fe-grid me-2"></i> View All
-            </a>
-        </div>
-    </div> --}}
+
     </div>
     <div class="row row-sm">
         <div class=" col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <div>
-                        <h6 class="main-content-label mb-1">Add Venue</h6>
-                        <p class="text-muted card-sub-title">Add a new venue with venue name and related details.</p>
-                    </div>
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">

@@ -391,20 +391,23 @@
             mainCourseList.innerHTML = '';
 
             if (serviceType === '1') { // Buffet Style
-                appetizers.forEach((appetizer, index) => {
-                    appetizerList.innerHTML += `<li draggable="true">
-                ${appetizer.name}
-                <input type="hidden" name="appetizer_order[]" value="${index + 1}">
-            </li>`;
-                });
+                if (appetizers) {
+                    appetizers.forEach((appetizer, index) => {
+                        appetizerList.innerHTML += `<li draggable="true">
+                            ${appetizer.name}
+                            <input type="hidden" name="appetizer_order[]" value="${index + 1}">
+                            </li>`;
+                    });
+                }
+                if (mainCourses) {
+                    mainCourses.forEach((mainCourse, index) => {
+                        mainCourseList.innerHTML += `<li draggable="true">
+                        ${mainCourse.name}
+                        <input type="hidden" name="main_course_order[]" value="${index + 1}">
+                        </li>`;
+                    });
 
-                mainCourses.forEach((mainCourse, index) => {
-                    mainCourseList.innerHTML += `<li draggable="true">
-                ${mainCourse.name}
-                <input type="hidden" name="main_course_order[]" value="${index + 1}">
-            </li>`;
-                });
-
+                }
                 initDragAndDrop(); // Reinitialize drag-and-drop functionality
             }
             // Add conditions for other service types if needed

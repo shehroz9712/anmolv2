@@ -17,7 +17,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
 
-                    <li class="breadcrumb-item"><a href="{{ route('customer-venues.index') }}">Venue</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Edit Venue</li>
                 </ol>
             </div>
@@ -34,10 +34,6 @@
         <div class=" col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <div>
-                        <h6 class="main-content-label mb-1">Edit Customer Venue</h6>
-                        <p class="text-muted card-sub-title">Edit the customer venue details.</p>
-                    </div>
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">

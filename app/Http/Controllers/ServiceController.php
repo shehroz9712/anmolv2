@@ -24,7 +24,6 @@ class ServiceController extends Controller
 
         $menu = EventMenu::with('dishes.subcategory')->where('event_id', decrypt($eventId))->get();
 
-
         $groupedData = [];
 
         // Iterate over each menu item
@@ -43,8 +42,8 @@ class ServiceController extends Controller
                 $groupedData[$key][] = $dish;
             }
         }
-        $main = $groupedData['main course'];
-        $appetizer = $groupedData['appetizer'];
+        $main = $groupedData['main course'] ?? '';
+        $appetizer = $groupedData['appetizer'] ?? '';
         return view('pages.service.service', compact('eventId', 'main', 'appetizer'));
     }
     public function store(Request $request)
