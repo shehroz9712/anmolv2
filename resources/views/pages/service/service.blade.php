@@ -102,11 +102,11 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Service Styling</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Service Style</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Service Styling</li>
+                <li class="breadcrumb-item active" aria-current="page">Service Style</li>
             </ol>
         </div>
     </div>
@@ -122,7 +122,7 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <label class="form-label">Select Service Type</label>
+                                            <label class="form-label">Service Type</label>
                                             <select class="form-control" name="service_type" id="service_type" required>
                                                 <option value="">Select Service Type</option>
                                                 <option value="1">Buffet Style</option>
