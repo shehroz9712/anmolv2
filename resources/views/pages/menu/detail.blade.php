@@ -26,6 +26,8 @@
                         <li class="breadcrumb-item">
                             <a href="{{ route('index') }}">Home</a>
                         </li>
+                        <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
+
                         <li class="breadcrumb-item">
                             <a href="#">Menu</a>
                         </li>

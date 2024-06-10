@@ -75,28 +75,21 @@
     <!-- Page Header -->
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Welcome to Eat Anmol</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Service Styling</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Set Service Styling Times</li>
+                <li class="breadcrumb-item active" aria-current="page">Service Styling</li>
             </ol>
         </div>
-        {{-- <div class="d-flex">
-        <a class="btn btn-primary my-2 btn-icon-text" href="{{ route('events.index') }}">
-            <i class="fe fe-grid me-2"></i> View All
-        </a>
-    </div> --}}
+
     </div>
     <!-- End Page Header -->
     <div class="row row-sm">
         <div class="col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <div>
-                        <h6 class="main-content-label mb-1">Set Service Styling Time</h6>
-                        <hr />
-                    </div>
+
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">

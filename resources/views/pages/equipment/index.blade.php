@@ -12,7 +12,7 @@
                     <h2 class="main-content-title tx-24 mg-b-5">Equipment List</h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('equipment.index') }}">Equipments</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                         <li class="breadcrumb-item active" aria-current="page">List Equipment</li>
                     </ol>
                 </div>
@@ -23,7 +23,6 @@
             <div class="col-lg-12">
                 <div class="card custom-card mg-b-20">
                     <div class="card-body">
-                        <h4 class="text-dark">Equipments Use in Selected your Dishes </h4>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="example2">
                                 <thead>
