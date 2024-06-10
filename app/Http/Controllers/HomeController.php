@@ -41,7 +41,7 @@ class HomeController extends Controller
                 $upcomingEvent = Event::where('date', '>=', now())
                     ->orderBy('date', 'asc')
                     ->first();
-
+                    $appointments = [];
                 foreach ($events as $appointment) {
                     $originalDate = $appointment->date. $appointment->start_time;
                     $dateTime = new DateTime($originalDate);

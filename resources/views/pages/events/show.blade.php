@@ -9,7 +9,7 @@
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5"></h2>
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Event List</h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Event Details</h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
@@ -23,9 +23,7 @@
             <div class="col-lg-12">
                 <div class="card custom-card p-3 mg-b-20">
                     <div class="card-body">
-                        <div>
-                            <h2 class=" mb-2">Event Detail</h2>
-                        </div>
+
                         @php
                             $event = $journey->event;
                             $venue = $journey->venue;
@@ -35,15 +33,11 @@
                         <div class="container">
 
                             <div class="row">
-                                <h4>Event Item Details</h4>
+                                <h4>Event</h4>
+                                <hr>
                                 <div class="col-lg-12">
                                     <div class="row">
-                                        <div class="border-bottom col-md-6 mt-2">
-                                            <div class="row">
-                                                <h6 class="col-sm-4 fw-bold">ID</h6>
-                                                <div class="col-sm-8">{{ $event->id }}</div>
-                                            </div>
-                                        </div>
+
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
                                                 <h6 class="col-sm-4 fw-bold">Name</h6>
@@ -68,12 +62,7 @@
                                                 <div class="col-sm-8">{{ $event->date }}</div>
                                             </div>
                                         </div>
-                                        <div class="border-bottom col-md-6 mt-2">
-                                            <div class="row">
-                                                <h6 class="col-sm-4 fw-bold">Occasion</h6>
-                                                <div class="col-sm-8">{{ $event->occasion }}</div>
-                                            </div>
-                                        </div>
+
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
                                                 <h6 class="col-sm-4 fw-bold">Start Time</h6>
@@ -86,22 +75,11 @@
                                                 <div class="col-sm-8">{{ $event->end_time }}</div>
                                             </div>
                                         </div>
-                                        <div class="border-bottom col-md-6 mt-2">
-                                            <div class="row">
-                                                <h6 class="col-sm-4 fw-bold">Deleted At</h6>
-                                                <div class="col-sm-8">{{ $event->deleted_at }}</div>
-                                            </div>
-                                        </div>
+
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
                                                 <h6 class="col-sm-4 fw-bold">Created At</h6>
                                                 <div class="col-sm-8">{{ $event->created_at }}</div>
-                                            </div>
-                                        </div>
-                                        <div class="border-bottom col-md-6 mt-2">
-                                            <div class="row">
-                                                <h6 class="col-sm-4 fw-bold">Updated At</h6>
-                                                <div class="col-sm-8">{{ $event->updated_at }}</div>
                                             </div>
                                         </div>
                                         <div class="border-bottom col-md-6 mt-2">
@@ -116,16 +94,19 @@
                                                 <div class="col-sm-8">{{ $event->location }}</div>
                                             </div>
                                         </div>
-                                        <div class="border-bottom col-md-6 mt-2">
-                                            <div class="row">
-                                                <h6 class="col-sm-4 fw-bold">Address</h6>
-                                                <div class="col-sm-8">{{ $event->address }}</div>
+                                        @if ($event->type == 'Drop-off')
+                                            <div class="border-bottom col-md-6 mt-2">
+                                                <div class="row">
+                                                    <h6 class="col-sm-4 fw-bold">Address</h6>
+                                                    <div class="col-sm-8">{{ $event->address }}</div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
+
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
-                                                <h6 class="col-sm-4 fw-bold">Other Type</h6>
-                                                <div class="col-sm-8">{{ $event->otherType }}</div>
+                                                <h6 class="col-sm-4 fw-bold">Event Type</h6>
+                                                <div class="col-sm-8">{{ $event->type }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +114,7 @@
                             </div>
                             @if ($venue)
                                 <div class="row mt-3 ">
-                                    <h4>Venue Details</h4>
+                                    <h4>Venue</h4>
                                     <div class="col-lg-12">
                                         <div class="row">
                                             <div class="border-bottom col-md-6 mt-2">
@@ -197,7 +178,7 @@
                             @if ($menu)
                                 @if ($package)
                                     <div class="row mt-3 ">
-                                        <h4>Package Details</h4>
+                                        <h4>Package</h4>
                                         <div class="col-lg-12">
                                             <div class="row">
 
@@ -232,7 +213,7 @@
                                     </div>
                                 @endif
                                 <div class="row mt-3 ">
-                                    <h4>Menu Details</h4>
+                                    <h4>Menu</h4>
                                     <div class="col-lg-12">
                                         <div class="row">
                                             @foreach ($menu as $key => $item)

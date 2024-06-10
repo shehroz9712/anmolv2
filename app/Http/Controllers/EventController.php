@@ -35,6 +35,7 @@ class EventController extends Controller
     {
 
         $events = Event::with('journey')->get();
+        $appointments = [];
         foreach ($events as $appointment) {
             $originalDate = $appointment->date . $appointment->start_time;
             $dateTime = new DateTime($originalDate);
