@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Equipment | Create Equipment
+    Create Equipment - EatAnmol
 @endsection
 
 @section('stylesheet')

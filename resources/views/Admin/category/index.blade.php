@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Category | Create Category
+    Category List - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -51,17 +51,13 @@
                                             <td>{{ $category->name }}</td>
                                             <td>{{ $category->status == 1 ? 'Active' : 'Inactive' }}</td>
                                             <td>{{ $category->type == 1 ? 'Packages' : 'Regular' }}</td>
-                                            <td>{{ $category->created_at ? $category->created_at->format('Y-m-d H:i:s') : '' }}
-                                            </td>
-                                            <td>{{ $category->updated_at ? $category->updated_at->format('Y-m-d H:i:s') : '' }}
-                                            </td>
 
 
                                             <td>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('categories.edit', $category->id) }}">Edit</a>
+                                                    href="{{ route('categories.edit', encrypt($category->id)) }}">Edit</a>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('categories.show', $category->id) }}">View</a>
+                                                    href="{{ route('categories.show', encrypt($category->id)) }}">View</a>
                                                 {{-- <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
                                                     style="display: inline-block;">
                                                     @csrf

@@ -6,6 +6,7 @@ use App\Models\CustomerVenue;
 use App\Models\Event;
 use App\Models\Journey;
 use App\Models\User;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -41,9 +42,9 @@ class HomeController extends Controller
                 $upcomingEvent = Event::where('date', '>=', now())
                     ->orderBy('date', 'asc')
                     ->first();
-                    $appointments = [];
+                $appointments = [];
                 foreach ($events as $appointment) {
-                    $originalDate = $appointment->date. $appointment->start_time;
+                    $originalDate = $appointment->date . $appointment->start_time;
                     $dateTime = new DateTime($originalDate);
                     $formattedDate = $dateTime->format('D-m h:i');
 
@@ -59,8 +60,15 @@ class HomeController extends Controller
                     ];
                 }
                 // dd($appointments);
+                $users = User::count();
+                // Get the start and end of the current month
+                $startOfMonth = Carbon::now()->startOfMonth()->toDateString();
+                $endOfMonth = Carbon::now()->endOfMonth()->toDateString();
 
-                return view('Admin.adminhome', compact('events', 'appointments', 'upcomingEvent'));
+                // Retrieve events for the current month
+                $event_count = Event::whereBetween('date', [$startOfMonth, $endOfMonth])->count();
+
+                return view('Admin.adminhome', compact('users', 'events', 'appointments', 'upcomingEvent'));
             } else {
                 return Redirect::back();
                 // dd($role);

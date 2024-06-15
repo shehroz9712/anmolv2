@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    EatAnmol - Equipments Index
+    Equipments list - EatAnmol
 @endsection
 @section('content')
     <div class="inner-body">

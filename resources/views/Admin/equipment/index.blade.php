@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Equipments | Create Equipments
+    Equipments List - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -66,9 +66,9 @@
 
                                             <td>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('equipments.edit', $record->id) }}">Edit</a>
+                                                    href="{{ route('equipments.edit', encrypt($record->id)) }}">Edit</a>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('equipments.show', $record->id) }}">View</a>
+                                                    href="{{ route('equipments.show', encrypt($record->id)) }}">View</a>
                                                 {{-- <form action="{{ route('equipments.destroy', $equipment->id) }}" method="POST"
                                                     style="display: inline-block;">
                                                     @csrf

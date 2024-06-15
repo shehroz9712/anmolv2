@@ -65,7 +65,7 @@ class DishesController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
+    { $id = decrypt($id);
         $dish = Dish::with('equipment')->find($id);
 
         return view('Admin.dishes.view', compact('dish'));
@@ -75,7 +75,7 @@ class DishesController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
+    { $id = decrypt($id);
         $subcategory = SubCategory::Active()->get();
         $labours = Labour::Active()->get();
         $equipments = Equipment::Active()->get();

@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Sub Categories | Create Sub Categories
+    Sub Categories List - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -66,9 +66,9 @@
 
                                             <td>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('subcategories.edit', $record->id) }}">Edit</a>
+                                                    href="{{ route('subcategories.edit', encrypt($record->id)) }}">Edit</a>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('subcategories.show', $record->id) }}">View</a>
+                                                    href="{{ route('subcategories.show', encrypt($record->id)) }}">View</a>
                                                 {{-- <form action="{{ route('subcategories.destroy', $subcategory->id) }}" method="POST"
                                                     style="display: inline-block;">
                                                     @csrf

@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Menu
+    Menu - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -56,7 +56,7 @@
                     </div>
                     <div class="card-body">
                         <h6 class="">Items</h6>
-                        <p class="card-text">Dive into the  world of culinary delights with our diverse variety dishes .</p>
+                        <p class="card-text">Dive into the world of culinary delights with our diverse variety dishes .</p>
                         <a href="{{ route('dishes.index') }}" class="btn btn-primary ripple "
                             style="float: inline-end;padding: 8px 25px;">View</a>
                     </div>

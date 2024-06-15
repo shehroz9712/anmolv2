@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Labour | Create Labour
+    Create Labour - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -28,21 +28,25 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-xl-12">
-                                <form method="POST" action="{{ route('labours.store') }}" onsubmit="return validateForm();">
+                                <form method="POST" action="{{ route('labours.store') }}"
+                                    onsubmit="return validateForm();">
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-lg-4 mb-3">
                                             <label for="name">Name</label>
-                                            <input class="form-control" id="name" name="name" required type="text">
+                                            <input class="form-control" id="name" name="name" required
+                                                type="text">
                                         </div>
                                         <div class="col-lg-4 mb-3">
                                             <label for="designation">Designation</label>
-                                            <input class="form-control" id="designation" name="designation" required type="text" step="0.01">
+                                            <input class="form-control" id="designation" name="designation" required
+                                                type="text" step="0.01">
                                         </div>
                                         <div class="col-lg-4 mb-3">
                                             <label for="with_dish">With Dish</label>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="with_dish" name="with_dish" value="1">
+                                                <input class="form-check-input" type="checkbox" id="with_dish"
+                                                    name="with_dish" value="1">
                                                 <label class="form-check-label" for="with_dish">With Dish</label>
                                             </div>
                                         </div>
@@ -51,12 +55,14 @@
                                     <div class="form-group row">
                                         <div class="col-lg-4 mb-3">
                                             <label for="guest">Guest</label>
-                                            <input type="number" class="form-control" id="guest" name="guest" required type="text">
+                                            <input type="number" class="form-control" id="guest" name="guest"
+                                                required type="text">
                                         </div>
 
                                         <div class="col-lg-4 mb-3">
                                             <label for="price">Price</label>
-                                            <input class="form-control" id="price" name="price" required type="number" step="0.01">
+                                            <input class="form-control" id="price" name="price" required
+                                                type="number" step="0.01">
                                         </div>
                                         <div class="col-lg-4 mb-3">
                                             <label for="status">Status</label>

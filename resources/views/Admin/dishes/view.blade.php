@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Item | Item Detail
+    Item Detail - EatAnmol
 @endsection
 
 @section('stylesheet')

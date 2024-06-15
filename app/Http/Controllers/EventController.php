@@ -109,7 +109,7 @@ class EventController extends Controller
             return redirect()->route('customer-venues.createWithId', encrypt($eventId))
                 ->with([
                     'message' => 'Event created successfully.',
-                    'eventId' => $eventId, // Flash the event ID
+
                 ]);
 
 
@@ -149,6 +149,7 @@ class EventController extends Controller
 
     public function show(Request $request, $id)
     {
+        $id = decrypt($id);
         $journey = Journey::where('eventid', $id)->with('event', 'venue', 'ServiceStyling', 'package')->firstOrFail();
         $menu = EventMenu::where('event_id', $journey->eventid)->with('dishes')->get();
         return view('pages.events.show', compact('journey', 'menu'));
@@ -158,7 +159,7 @@ class EventController extends Controller
     {
         // Decrypt the encrypted ID
         // $decryptedId = Crypt::decryptString($encryptedId);
-        $eventId = $id;
+        $eventId = decrypt($id);
         // Retrieve the event by ID
         $event = Event::findOrFail($eventId);
 
@@ -197,6 +198,8 @@ class EventController extends Controller
         $event->update($data);
         if (Auth::user()->Role != "Admin") {
             $this->sendNotification('admin', 'Edit Event ', 'User edit this event event id#' . $request->name);
+        } else {
+            $this->sendNotification('user', 'Edit Event ', 'Admin edit this event event id#' . $request->name);
         }
 
 

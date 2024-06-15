@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Item | Create Item
+    Create Item - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -86,63 +86,63 @@
 
                                         <div class="col-md-12 mb-3">
                                             <div class="form-group mb-3">
-                                                    <label for="equipment">Equipments Name </label>
-                                                    <select name="equipment[]" class="select2" multiple id="">
-                                                        @foreach ($equipments as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                        @endforeach
-                                                    </select>
-
-                                                </div>
+                                                <label for="equipment">Equipments Name </label>
+                                                <select name="equipment[]" class="select2" multiple id="">
+                                                    @foreach ($equipments as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
 
                                             </div>
 
                                         </div>
-                                        <div class="col-md-12 mb-3">
-                                            <div class="form-group mb-3">
-                                                    <label for="labour">Staff Applied </label>
-                                                    <select name="labour[]" class="select2" multiple id="">
-                                                        @foreach ($labours as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->designation }}</option>
-                                                        @endforeach
-                                                    </select>
 
-                                                </div>
-
-                                            </div>
-
-                                        </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12 mb-3">
-                                            <label for="long_desc">Long Description</label>
-                                            <!-- Add a unique id to the textarea -->
-                                            <textarea class="form-control" id="long_desc" name="long_desc" rows="3"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col-md-6 mb-3">
-                                            <label for="status">Status</label>
-                                            <select class="form-control" id="status" name="status">
-                                                <option value="0">Inactive</option>
-                                                <option value="1">Active</option>
+                                    <div class="col-md-12 mb-3">
+                                        <div class="form-group mb-3">
+                                            <label for="labour">Staff Applied </label>
+                                            <select name="labour[]" class="select2" multiple id="">
+                                                @foreach ($labours as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->designation }}</option>
+                                                @endforeach
                                             </select>
+
                                         </div>
+
                                     </div>
-
-
-                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                </form>
 
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <label for="long_desc">Long Description</label>
+                                <!-- Add a unique id to the textarea -->
+                                <textarea class="form-control" id="long_desc" name="long_desc" rows="3"></textarea>
+                            </div>
+                        </div>
 
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+                                <label for="status">Status</label>
+                                <select class="form-control" id="status" name="status">
+                                    <option value="0">Inactive</option>
+                                    <option value="1">Active</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
+
         </div>
+    </div>
+    </div>
     </div>
     </div>
 @endsection

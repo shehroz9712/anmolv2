@@ -45,6 +45,7 @@ class EquipmentController extends Controller
      */
     public function show(string $id)
     {
+        $id = decrypt($id);
         $record = Equipment::find($id);
         return view('Admin.equipment.view', compact('record'));
     }
@@ -54,6 +55,7 @@ class EquipmentController extends Controller
      */
     public function edit(string $id)
     {
+        $id = decrypt($id);
         $record = Equipment::find($id);
         return view('Admin.equipment.edit', compact('record'));
     }

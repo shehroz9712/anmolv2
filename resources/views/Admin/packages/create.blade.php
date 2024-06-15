@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Package | Create Package
+    Create Package - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -203,6 +203,5 @@
 
             return true;
         }
-     
     </script>
 @endsection

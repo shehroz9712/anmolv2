@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    EatAnmol - Labours Index
+    Labours List - EatAnmol
 @endsection
 @section('content')
     <div class="inner-body">

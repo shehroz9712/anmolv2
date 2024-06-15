@@ -1,7 +1,7 @@
 @extends('Dashboard.Master.master_layout')
 
 @section('title')
-    EatAnmol - Items Index
+    Items List - EatAnmol
 @endsection
 
 @section('content')
@@ -49,17 +49,21 @@
                                             <td>{{ $item->description }}</td>
                                             <td>
                                                 @if ($item->imageUrl)
-                                                    <img src="{{ asset('storage/' . $item->imageUrl) }}" alt="Item Image" style="max-width: 100px;">
+                                                    <img src="{{ asset('storage/' . $item->imageUrl) }}" alt="Item Image"
+                                                        style="max-width: 100px;">
                                                 @else
                                                     No Image
                                                 @endif
                                             </td>
                                             <td>
-                                                <a class="btn btn-main-primary px-3" href="{{ route('items.edit', $item->id) }}">Edit</a>
-                                                <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display: inline-block;">
+                                                <a class="btn btn-main-primary px-3"
+                                                    href="{{ route('items.edit', $item->id) }}">Edit</a>
+                                                <form action="{{ route('items.destroy', $item->id) }}" method="POST"
+                                                    style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger px-3" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger px-3"
+                                                        onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

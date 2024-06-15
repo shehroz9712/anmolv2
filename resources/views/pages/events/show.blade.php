@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    EatAnmol - Events show
+    Events Detail - EatAnmol
 @endsection
 @section('content')
     <div class="inner-body">
@@ -85,7 +85,7 @@
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
                                                 <h6 class="col-sm-4 fw-bold">Created By</h6>
-                                                <div class="col-sm-8">{{ $event->createdby }}</div>
+                                                <div class="col-sm-8">{{ $event->created_user }}</div>
                                             </div>
                                         </div>
                                         <div class="border-bottom col-md-6 mt-2">
@@ -125,7 +125,7 @@
                                             </div>
                                             <div class="border-bottom col-md-6 mt-2">
                                                 <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">City</h6>
+                                                    <h6 class="col-sm-4 fw-bold">City, State, ZipCode</h6>
                                                     <div class="col-sm-8">{{ $venue->city }}</div>
                                                 </div>
                                             </div>
@@ -147,30 +147,7 @@
                                                     <div class="col-sm-8">{{ $venue->ContactPhone }}</div>
                                                 </div>
                                             </div>
-                                            <div class="border-bottom col-md-6 mt-2">
-                                                <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">Created By</h6>
-                                                    <div class="col-sm-8">{{ $venue->createdby }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="border-bottom col-md-6 mt-2">
-                                                <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">Deleted At</h6>
-                                                    <div class="col-sm-8">{{ $venue->deleted_at }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="border-bottom col-md-6 mt-2">
-                                                <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">Created At</h6>
-                                                    <div class="col-sm-8">{{ $venue->created_at }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="border-bottom col-md-6 mt-2">
-                                                <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">Updated At</h6>
-                                                    <div class="col-sm-8">{{ $venue->updated_at }}</div>
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

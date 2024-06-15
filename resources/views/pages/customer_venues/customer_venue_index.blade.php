@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    EatAnmol - Venue Index
+    Venue List - EatAnmol
 @endsection
 @section('content')
     <div class="inner-body">
@@ -58,7 +58,7 @@
                                             <td>{{ $customerVenue->adminVenue->name }}</td>
                                             <td>{{ $customerVenue->adminVenue->address }}</td>
                                             <td>{{ $customerVenue->adminVenue->city }}</td>
-                                            {{-- <td>{{ $customerVenue->adminVenue->state }}</td>      
+                                            {{-- <td>{{ $customerVenue->adminVenue->state }}</td>
                                         <td>{{ $customerVenue->adminVenue->zipcode }}</td>    --}}
                                             <td>{{ optional($customerVenue->createdBy)->name }}</td>
 

@@ -1,7 +1,7 @@
 {{-- {{dd($venue)}} --}}
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    EatAnmol - Venue Edit
+Venue Edit - EatAnmol
 @endsection
 @section('stylesheet')
     <style>

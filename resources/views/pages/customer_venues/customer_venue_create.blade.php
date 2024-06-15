@@ -1,7 +1,7 @@
 {{-- {{dd($eventId)}} --}}
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    EatAnmol - Venue Create
+    Venue Create - EatAnmol
 @endsection
 @section('stylesheet')
     <style>

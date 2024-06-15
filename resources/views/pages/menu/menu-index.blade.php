@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    EatAnmol - Menu
+    Menu Detail - EatAnmol
 @endsection
 @section('content')
     <div class="main-container container-fluid">

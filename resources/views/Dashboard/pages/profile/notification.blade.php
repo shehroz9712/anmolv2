@@ -1,4 +1,8 @@
 @extends('Dashboard.Master.master_layout')
+@section('title')
+    Notification - EatAnmol
+@endsection
+
 @section('content')
     <div class=" pt-0">
 

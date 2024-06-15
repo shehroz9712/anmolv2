@@ -1,7 +1,7 @@
 @extends('Dashboard.Master.master_layout')
 
 @section('title')
-    EatAnmol - Items Edit
+    Items Edit - EatAnmol
 @endsection
 
 @section('content')
@@ -39,30 +39,39 @@
 
                                         <div class="form-group">
                                             <label for="name">Item Name</label>
-                                            <input data-toggle="tooltip" data-placement="bottom" placeholder="Product Name" title="Item Name" class="form-control" id="name" name="name" required type="text" value="{{ $item->name }}">
+                                            <input data-toggle="tooltip" data-placement="bottom" placeholder="Product Name"
+                                                title="Item Name" class="form-control" id="name" name="name"
+                                                required type="text" value="{{ $item->name }}">
                                             <small id="nameError" class="text-danger"></small>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="quantity">Quantity</label>
-                                            <input data-toggle="tooltip" data-placement="bottom" placeholder="10" title="Quantity" class="form-control" id="quantity" name="quantity" type="number" required value="{{ $item->quantity }}">
+                                            <input data-toggle="tooltip" data-placement="bottom" placeholder="10"
+                                                title="Quantity" class="form-control" id="quantity" name="quantity"
+                                                type="number" required value="{{ $item->quantity }}">
                                             <small id="quantityError" class="text-danger"></small>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="amount">Amount</label>
-                                            <input data-toggle="tooltip" data-placement="bottom" placeholder="100.00" title="Amount" class="form-control" id="amount" name="amount" type="number" step="0.01" required value="{{ $item->amount }}">
+                                            <input data-toggle="tooltip" data-placement="bottom" placeholder="100.00"
+                                                title="Amount" class="form-control" id="amount" name="amount"
+                                                type="number" step="0.01" required value="{{ $item->amount }}">
                                             <small id="amountError" class="text-danger"></small>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="description">Description</label>
-                                            <textarea data-toggle="tooltip" data-placement="bottom" placeholder="Item Description" title="Item Description" class="form-control" id="description" name="description" rows="3" required>{{ $item->description }}</textarea>
+                                            <textarea data-toggle="tooltip" data-placement="bottom" placeholder="Item Description" title="Item Description"
+                                                class="form-control" id="description" name="description" rows="3" required>{{ $item->description }}</textarea>
                                             <small id="descriptionError" class="text-danger"></small>
                                         </div>
 
                                         <div class="d-flex justify-content-end w-100">
-                                            <button onclick="validateAndSubmit(event, validateForm())" class="btn ripple btn-main-primary d-inline-block" id="submitBtn">Update</button>
+                                            <button onclick="validateAndSubmit(event, validateForm())"
+                                                class="btn ripple btn-main-primary d-inline-block"
+                                                id="submitBtn">Update</button>
                                         </div>
                                     </form>
                                 </div>

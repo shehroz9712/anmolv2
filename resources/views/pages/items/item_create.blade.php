@@ -1,7 +1,7 @@
 @extends('Dashboard.Master.master_layout')
 
 @section('title')
-    EatAnmol - Items Index
+    Create Items - EatAnmol
 @endsection
 
 @section('content')

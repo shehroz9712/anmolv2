@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Item | Create Item
+    Item List - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -53,9 +53,9 @@
                                             <td>{{ $dish->status == 1 ? 'Active' : 'Inactive' }}</td>
                                             <td>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('dishes.edit', $dish->id) }}">Edit</a>
+                                                    href="{{ route('dishes.edit', encrypt($dish->id)) }}">Edit</a>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('dishes.show', $dish->id) }}">View</a>
+                                                    href="{{ route('dishes.show', encrypt($dish->id)) }}">View</a>
                                                 {{-- <form action="{{ route('dishes.destroy', $dish->id) }}" method="POST"
                                                     style="display: inline-block;">
                                                     @csrf

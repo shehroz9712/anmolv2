@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    EatAnmol - Event Create
+    EatAnmol - Service Style Create
 @endsection
 @section('stylesheet')
     <style>

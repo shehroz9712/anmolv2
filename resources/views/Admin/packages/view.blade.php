@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Package | Package Detail
+    Package Detail - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -47,12 +47,13 @@
                                             </tr>
                                             <tr>
                                                 <th class="col-sm-4">Status</th>
-                                                <td class="col-sm-8">{{ $package->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                                <td class="col-sm-8">{{ $package->status == 1 ? 'Active' : 'Inactive' }}
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                
+
                             </div>
 
                             <div class="col-md-6">
@@ -86,7 +87,7 @@
                                 </a>
                             </div>
                         </div>
-                       
+
                     </div>
 
                 </div>

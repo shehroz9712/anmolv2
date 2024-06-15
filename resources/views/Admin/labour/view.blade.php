@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Labour | Labour Detail
+    Labour Detail - EatAnmol
 @endsection
 
 @section('stylesheet')

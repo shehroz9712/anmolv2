@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Labour | Edit Labour
+    Edit Labour - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -54,8 +54,8 @@
                                         </div>
                                         <div class="col-lg-4 mb-3">
                                             <label for="guest">Guest</label>
-                                            <input class="form-control" id="guest" name="guest" type="number" required
-                                                type="text" value="{{ $record->guest }}">
+                                            <input class="form-control" id="guest" name="guest" type="number"
+                                                required type="text" value="{{ $record->guest }}">
                                         </div>
                                     </div>
 

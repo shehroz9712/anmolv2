@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Package | Create Package
+    Package List - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -66,9 +66,9 @@
 
                                             <td>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('packages.edit', $package->id) }}">Edit</a>
+                                                    href="{{ route('packages.edit', encrypt($package->id)) }}">Edit</a>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('packages.show', $package->id) }}">View</a>
+                                                    href="{{ route('packages.show', encrypt($package->id)) }}">View</a>
                                                 {{-- <form action="{{ route('packages.destroy', $package->id) }}" method="POST"
                                                     style="display: inline-block;">
                                                     @csrf

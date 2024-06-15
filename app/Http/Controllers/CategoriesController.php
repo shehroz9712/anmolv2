@@ -45,6 +45,7 @@ class CategoriesController extends Controller
      */
     public function show(string $id)
     {
+        $id = decrypt($id);
         $category = Category::find($id);
         return view('Admin.category.view', compact('category'));
     }
@@ -54,6 +55,7 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
+        $id = decrypt($id);
         $category = Category::find($id);
         return view('Admin.category.edit', compact('category'));
     }

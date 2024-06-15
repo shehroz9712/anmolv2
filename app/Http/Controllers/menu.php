@@ -12,6 +12,7 @@ use App\Models\Journey;
 use App\Models\Package;
 use App\Models\Price;
 use App\Models\SubCategory;
+use Exception;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
@@ -110,7 +111,8 @@ class menu extends Controller
     }
     public function submit(Request $request)
     {
-        $event_id = $request->eventId ? decrypt($request->eventId) : '1';
+        // try {
+        $event_id =  decrypt($request->eventId);
         $journey = Journey::where('eventid', $event_id)->first();
 
         if ($request->url == 'items') {
@@ -145,11 +147,14 @@ class menu extends Controller
             if ($request->dishid) {
 
                 foreach ($request->dishid as $item) {
-                    EventMenu::create([
-                        'dish_id' => $item,
-                        'event_id' => $event_id,
-                        'type' => $request->url,
-                    ]);
+                    if ($item) {
+
+                        EventMenu::create([
+                            'dish_id' => $item,
+                            'event_id' => $event_id,
+                            'type' => $request->url,
+                        ]);
+                    }
                 }
             }
 
@@ -178,6 +183,9 @@ class menu extends Controller
             return redirect()->route('service.styling', $request->eventId)
                 ->with('message', 'Addon items submit successfully.');
         }
+        // } catch (Exception $e) {
+        //     return redirect()->back()->with('error', $e->getMessage());
+        // }
     }
     public function equipment(Request $request)
     {

@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Package | Edit Package
+    Package | Edit Package - EatAnmol
 @endsection
 
 @section('stylesheet')

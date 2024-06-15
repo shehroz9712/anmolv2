@@ -1,4 +1,7 @@
 @extends('Dashboard.Master.master_layout')
+@section('title')
+    Dashboard - EatAnmol
+@endsection
 @section('content')
     <style>
         #calendar-container {
@@ -11,9 +14,9 @@
 
         .fc-header-toolbar {
             /*
-                                                the calendar will be butting up against the edges,
-                                                but let's scoot in the header's buttons
-                                                */
+                                                                                the calendar will be butting up against the edges,
+                                                                                but let's scoot in the header's buttons
+                                                                                */
             padding-top: 1em;
             padding-left: 1em;
             padding-right: 1em;
@@ -42,10 +45,10 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="card-order ">
-                                <label class="main-content-label mb-3 pt-1">New Users</label>
+                                <label class="main-content-label mb-3 pt-1">Total Users</label>
                                 <h2 class="text-end card-item-icon card-icon">
                                     <i class="mdi mdi-account-multiple icon-size float-start text-primary"></i><span
-                                        class="font-weight-bold">3,672</span>
+                                        class="font-weight-bold">{{ $users }}</span>
                                 </h2>
                             </div>
                         </div>
@@ -68,10 +71,10 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="card-order">
-                                <label class="main-content-label mb-3 pt-1">New Leads/ Bookings</label>
+                                <label class="main-content-label mb-3 pt-1">Monthly Event / Bookings</label>
                                 <h2 class="text-end"><i
                                         class="icon-size mdi mdi-poll-box   float-start text-primary"></i><span
-                                        class="font-weight-bold">23</span></h2>
+                                        class="font-weight-bold">{{ $event_count }}</span></h2>
                             </div>
                         </div>
                     </div>
@@ -81,9 +84,9 @@
                     <div class="card custom-card">
                         <div class="card-body">
                             <div class="card-order">
-                                <label class="main-content-label mb-3 pt-1">Today Events</label>
+                                <label class="main-content-label mb-3 pt-1">Today Event / Bookings</label>
                                 <h2 class="text-end"><i class="mdi mdi-cart icon-size float-start text-primary"></i><span
-                                        class="font-weight-bold">4</span></h2>
+                                        class="font-weight-bold">{{ $events }}</span></h2>
                             </div>
                         </div>
                     </div>

@@ -69,6 +69,7 @@ class PackagesController extends Controller
      */
     public function show(string $id)
     {
+        $id = decrypt($id);
         $categories = category::where(['type' => 1, 'status' => 1])->get();
         $subcategories = SubCategory::where(['status' => 1])->get();
         $packageincludes  = PackageInclude::with('sharable')->where(['package_id' => $id])->get();
@@ -82,6 +83,7 @@ class PackagesController extends Controller
      */
     public function edit(string $id)
     {
+        $id = decrypt($id);
         $categories = category::where(['type' => 1, 'status' => 1])->get();
         $subcategories = SubCategory::where(['status' => 1])->get();
         $packageincludes  = PackageInclude::where(['package_id' => $id])->get();

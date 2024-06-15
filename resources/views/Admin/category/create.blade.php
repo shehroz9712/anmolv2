@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Categories | Create Package
+    Create Category - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -9,10 +9,10 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Add Package</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Add Category</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Package</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Add Package</li>
+                <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Category</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Category</li>
             </ol>
         </div>
     </div>
@@ -21,10 +21,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <div>
-                        <h6 class="main-content-label mb-1">Add Package</h6>
-                        <p class="text-muted card-sub-title">Add a new Package with details.</p>
-                    </div>
+
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-xl-12">

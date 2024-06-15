@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    EatAnmol - Events Index
+    Events List - EatAnmol
 @endsection
 @section('content')
     <div class="inner-body">
@@ -53,68 +53,73 @@
                                             <td>{{ $event->type }}</td>
                                             <td>{{ $event->start_time }}</td>
                                             <td>{{ $event->end_time }}</td>
-                                            <td class="d-flex">
-                                                <a href="{{ route('events.show', $event->id) }}"
+                                            <td class="d-flex"> <a href="{{ route('events.show', encrypt($event->id)) }}"
                                                     class="btn btn-main-primary px-3">View</a>
-
                                                 @php
 
                                                     $eventDate = \Carbon\Carbon::parse($event->date);
                                                     $oneWeekAgo = \Carbon\Carbon::now()->subWeek(); // Calculate the date one week before today
                                                 @endphp
-                                                @if($eventDate->greaterThanOrEqualTo($oneWeekAgo))
-                                                <div class="dropdown">
-                                                        @if ($event->journey)
-                                                            <button class="btn btn-main-primary dropdown-toggle  ms-3"
-                                                                type="button" id="dropdownMenuButton2"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                                Edit
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-light"
-                                                                aria-labelledby="dropdownMenuButton2">
-                                                                @if ($event->journey->eventid)
-                                                                    <li><a class="dropdown-item "
-                                                                            href="{{ route('events.edit', $event->journey->eventid) }}">
-                                                                            <i class="fa fa-pencil-alt"></i>
-                                                                            Event </a></li>
-                                                                @endif
-                                                                @if ($event->journey->venueid)
-                                                                    <li><a class="dropdown-item "
-                                                                            href="{{ route('customer-venues.edit', encrypt($event->journey->venueid)) }}">
-                                                                            <i class="fa fa-pencil-alt"></i>
-                                                                            Venue </a></li>
-                                                                @endif
-                                                                @if ($event->journey->menu_submit)
-                                                                    <li><a class="dropdown-item "
-                                                                            href="{{ route('events.edit', $event->journey->eventid) }}">
-                                                                            <i class="fa fa-pencil-alt"></i>
-                                                                            Menu </a></li>
-                                                                @endif
-                                                                @if ($event->journey->service_styling_id)
-                                                                    <li><a class="dropdown-item "
-                                                                            href="{{ route('events.edit', $event->journey->service_styling_id) }}">
-                                                                            <i class="fa fa-pencil-alt"></i>
-                                                                            Service </a></li>
-                                                                @endif
+                                                @if ($eventDate->greaterThanOrEqualTo($oneWeekAgo))
+                                                    <form class="mx-1"
+                                                        action="{{ route('continueJourney', ['eventId' => $event->id]) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-primary">
+                                                            Continue Journey
+                                                        </button>
+                                                    </form>
+
+                                                    <div class="dropdown">
+
+                                                        <button class="btn btn-main-primary dropdown-toggle  ms-3"
+                                                            type="button" id="dropdownMenuButton2"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Edit
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-light"
+                                                            aria-labelledby="dropdownMenuButton2">
+                                                            @if ($event->journey->eventid)
+                                                                <li><a class="dropdown-item "
+                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                        Event </a></li>
+                                                            @endif
+                                                            @if ($event->journey->venueid)
+                                                                <li><a class="dropdown-item "
+                                                                        href="{{ route('customer-venues.edit', encrypt($event->journey->venueid)) }}">
+                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                        Venue </a></li>
+                                                            @endif
+                                                            @if ($event->journey->menu_submit)
+                                                                <li><a class="dropdown-item "
+                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                        Change Full Menu
+                                                                    </a></li>
+                                                                <li><a class="dropdown-item "
+                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                        Change Form </a>
+                                                                </li>
+                                                            @endif
+                                                            @if ($event->journey->service_styling_id)
+                                                                <li><a class="dropdown-item "
+                                                                        href="{{ route('service.styling.edit', encrypt($event->journey->service_styling_id)) }}">
+                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                        Service </a></li>
+                                                            @endif
 
 
-                                                            </ul>
-                                                        @endif
+                                                        </ul>
                                                     </div>
-
-
-
-                                                    {{-- <form action="{{ route('events.destroy', $event->id) }}" method="POST"
-                                                    style="display: inline-block;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger px-3"
-                                                        onclick="return confirm('Are you sure you want to delete this event?')">Delete</button>
-                                                </form> --}}
+                                                    {{-- <a class="btn text-dark px-1" href="{{ route('events.edit', ['encryptedId' => Crypt::encryptString($event->id)]) }}"><i class="fe fe-eye"></i></a> --}}
+                                                @else
+                                                    <p class="ms-3">Event Date Passout</p>
+                                                @endif
                                             </td>
-                                    @endif
 
-                                    </tr>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>

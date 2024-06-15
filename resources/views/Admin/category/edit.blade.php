@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Category | Edit Category
+    Edit Category - EatAnmol
 @endsection
 
 @section('stylesheet')

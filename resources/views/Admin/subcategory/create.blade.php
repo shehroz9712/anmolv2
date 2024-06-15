@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Sub Category | Create Sub Category
+    Create Sub Category - EatAnmol
 @endsection
 
 @section('stylesheet')

@@ -1,5 +1,7 @@
 @extends('Dashboard.Master.master_layout')
-
+@section('title')
+    Profile Edits - EatAnmol
+@endsection
 @section('content')
 <div class="container p-5">
     <div class="container px-5">
@@ -16,7 +18,7 @@
                         <label>Email</label>
                         <input class="form-control" placeholder="Enter your email" type="email" name="email" value="{{ Auth::user()->email}}" required autocomplete="username">
                     </div>
-                   
+
                     <button type="submit" class="btn ripple btn-main-primary btn-block">Update Profile</button>
                 </form>
             </div>

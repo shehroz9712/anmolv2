@@ -1,7 +1,7 @@
 @extends('Dashboard.Master.master_layout')
 
 @section('title')
-    EatAnmol - Menu
+    Addon Menu - EatAnmol
 @endsection
 @section('stylesheet')
     <style>
@@ -208,7 +208,6 @@
     </div>
 @endsection
 @section('js')
-
     <script>
         var segments = window.location.pathname.split('/');
         var secondLastSegment = segments[segments.length - 2];

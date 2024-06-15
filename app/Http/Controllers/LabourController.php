@@ -45,6 +45,7 @@ class LabourController extends Controller
      */
     public function show(string $id)
     {
+        $id = decrypt($id);
         $record = Labour::find($id);
         return view('Admin.labour.view', compact('record'));
     }
@@ -54,6 +55,7 @@ class LabourController extends Controller
      */
     public function edit(string $id)
     {
+        $id = decrypt($id);
         $record = Labour::find($id);
         return view('Admin.labour.edit', compact('record'));
     }

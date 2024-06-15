@@ -1,4 +1,7 @@
 @extends('Dashboard.Master.master_layout')
+@section('title')
+    Dashboard - EatAnmol
+@endsection
 @section('content')
     @if ($events)
         <!-- Main Content-->
@@ -143,16 +146,17 @@
                                                                             <td>{{ \Carbon\Carbon::parse($event->date)->format('m/d/Y') }}
                                                                             </td>
                                                                             <td>{{ $event->type }}</td>
+                                                                            <td class="d-flex"> <a
+                                                                                    href="{{ route('events.show', encrypt($event->id)) }}"
+                                                                                    class="btn btn-main-primary px-3">View</a>
+                                                                                @php
 
-                                                                            @php
-
-                                                                                $eventDate = \Carbon\Carbon::parse(
-                                                                                    $event->date,
-                                                                                );
-                                                                                $oneWeekAgo = \Carbon\Carbon::now()->subWeek(); // Calculate the date one week before today
-                                                                            @endphp
-                                                                            @if ($eventDate->greaterThanOrEqualTo($oneWeekAgo))
-                                                                                <td class="d-flex">
+                                                                                    $eventDate = \Carbon\Carbon::parse(
+                                                                                        $event->date,
+                                                                                    );
+                                                                                    $oneWeekAgo = \Carbon\Carbon::now()->subWeek(); // Calculate the date one week before today
+                                                                                @endphp
+                                                                                @if ($eventDate->greaterThanOrEqualTo($oneWeekAgo))
                                                                                     <form class="mx-1"
                                                                                         action="{{ route('continueJourney', ['eventId' => $event->id]) }}"
                                                                                         method="POST">
@@ -164,6 +168,7 @@
                                                                                     </form>
 
                                                                                     <div class="dropdown">
+
                                                                                         <button
                                                                                             class="btn btn-main-primary dropdown-toggle  ms-3"
                                                                                             type="button"
@@ -193,12 +198,20 @@
                                                                                                         href="{{ route('events.edit', $event->journey->eventid) }}">
                                                                                                         <i
                                                                                                             class="fa fa-pencil-alt"></i>
-                                                                                                        Menu </a></li>
+                                                                                                        Change Full Menu
+                                                                                                    </a></li>
+                                                                                                <li><a class="dropdown-item "
+                                                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                                                        <i
+                                                                                                            class="fa fa-pencil-alt"></i>
+                                                                                                        Change Form </a>
+                                                                                                </li>
                                                                                             @endif
                                                                                             @if ($event->journey->service_styling_id)
                                                                                                 <li><a class="dropdown-item "
                                                                                                         href="{{ route('service.styling.edit', encrypt($event->journey->service_styling_id)) }}">
-                                                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                                                        <i
+                                                                                                            class="fa fa-pencil-alt"></i>
                                                                                                         Service </a></li>
                                                                                             @endif
 
@@ -206,20 +219,10 @@
                                                                                         </ul>
                                                                                     </div>
                                                                                     {{-- <a class="btn text-dark px-1" href="{{ route('events.edit', ['encryptedId' => Crypt::encryptString($event->id)]) }}"><i class="fe fe-eye"></i></a> --}}
-
-
-
-                                                                                </td>
-                                                                            @else
-                                                                                <td>Event Date Passout</td>
-                                                                            @endif
-
-                                                                            {{-- <div class="justify-content-center">
-
-                                                                                <a href="{{ route('ContractIndex') }}" class="btn btn-primary my-2 btn-icon-text">
-                                                                                    <i class="fe fe-calendar me-2"></i> Continue Journey
-                                                                                </a>
-                                                                            </div> --}}
+                                                                                @else
+                                                                                    <p class="ms-3">Event Date Passout</p>
+                                                                                @endif
+                                                                            </td>
                                                                         </tr>
                                                                     @endforeach
                                                                 </tbody>

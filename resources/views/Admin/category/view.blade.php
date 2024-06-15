@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Category | Category Detail
+    Category Detail - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -47,18 +47,7 @@
                                                 <td class="col-sm-8">{{ $category->type == 1 ? 'Packages' : 'Regular' }}
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Created At</th>
-                                                <td class="col-sm-8">
-                                                    {{ $category->created_at ? $category->created_at->format('Y-m-d H:i:s') : '' }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Updated At</th>
-                                                <td class="col-sm-8">
-                                                    {{ $category->updated_at ? $category->updated_at->format('Y-m-d H:i:s') : '' }}
-                                                </td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                     </table>

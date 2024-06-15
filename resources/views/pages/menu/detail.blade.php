@@ -1,7 +1,7 @@
 @extends('Dashboard.Master.master_layout')
 
 @section('title')
-    EatAnmol - Menu
+    Menu Detail - EatAnmol
 @endsection
 @section('stylesheet')
     <style>
@@ -62,13 +62,14 @@
                                                 <a href="#">{{ $include->qty }} - {{ $include->sharable->name }}</a>
                                                 <ul>
                                                     @if ($include->subcategory == null)
-                                                        <li>
+                                                        <li id="dish_{{ $include->sharable->id }}">
                                                             <div class="form-group mg-b-20 include-remaining">
                                                                 <div class="align-items-center row">
                                                                     <div class="col-md-10">
                                                                         <label class="ckbox">
                                                                             <input type="checkbox" class="dish-checkbox "
                                                                                 data-max="{{ $include->qty }}"
+                                                                                data-id="{{ $include->sharable->id }}"
                                                                                 data-category="{{ $include->sharable->name }}">
                                                                             <span
                                                                                 class="tx-13">{{ $include->sharable->name }}</span>
@@ -78,7 +79,7 @@
                                                                         <a class="btn ripple"
                                                                             data-bs-target="#modaldemo{{ $loop->index + 1 }}"
                                                                             data-bs-toggle="modal" href="">
-                                                                            <i class="fa fa-search"
+                                                                            <i class="fa-info-circle"
                                                                                 style="font-size: 12px;"></i>
                                                                         </a>
                                                                     </div>
@@ -107,6 +108,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                         </li>
                                                     @else
                                                         @foreach ($include->subcategory->dishes ?? [] as $dishes)
@@ -219,7 +221,6 @@
     </div>
 @endsection
 @section('js')
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var checkboxes = document.querySelectorAll('.dish-checkbox');

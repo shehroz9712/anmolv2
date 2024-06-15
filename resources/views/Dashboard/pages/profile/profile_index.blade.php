@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-EatAnmol - Manage Profile
+EatAnmol - Manage Profile  - EatAnmol
 @endsection
 @section('content')
     <div class="main-content  pt-0">
@@ -14,7 +14,7 @@ EatAnmol - Manage Profile
                         <li class="breadcrumb-item active" aria-current="page">Manage</li>
                     </ol>
                 </div>
-              
+
             </div> --}}
             <!-- End Page Header -->
 
@@ -112,10 +112,10 @@ EatAnmol - Manage Profile
                                                                 value="{{ Auth::user()->phone }}" required autocomplete="phone">
                                                             <small class="error-message text-danger" id="phone-error"></small>
                                                         </div>
-                                                    
+
                                                         <button type="submit" class="btn ripple btn-main-primary btn-block">Update Profile</button>
                                                     </form>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>

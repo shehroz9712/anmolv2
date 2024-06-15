@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Labours | Create Labours
+    Labours List - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -55,7 +55,7 @@
                                                 <td>{{ $labour->price }}</td>
                                                 <td>{{ $labour->status ? 'Active' : 'Inactive' }}</td>
                                                 <td>
-                                                    <a href="{{ route('labours.edit', $labour->id) }}"
+                                                    <a href="{{ route('labours.edit', encrypt($labour->id)) }}"
                                                         class="btn btn-primary">Edit</a>
                                                 </td>
                                             </tr>

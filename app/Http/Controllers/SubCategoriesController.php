@@ -63,6 +63,7 @@ class SubCategoriesController extends Controller
      */
     public function show(string $id)
     {
+        $id = decrypt($id);
         $record = SubCategory::find($id);
         return view('Admin.subcategory.view', compact('record'));
     }
@@ -72,6 +73,7 @@ class SubCategoriesController extends Controller
      */
     public function edit(string $id)
     {
+        $id = decrypt($id);
         $categories = Category::where(['type' => 2, 'status' => 1])->get();
         $record = SubCategory::with('category')->find($id);
         return view('Admin.subcategory.edit', compact('record', 'categories'));

@@ -1,11 +1,11 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Sub Category | Edit Sub Category
+    Edit Sub Category - EatAnmol
 @endsection
 
 @section('stylesheet')
 @endsection
-
+s
 @section('content')
     <div class="page-header">
         <div>
@@ -75,8 +75,7 @@
                                                 <option
                                                     value="appetizer"{{ $record->term == 'appetizer' ? 'selected' : '' }}>
                                                     Appetizer</option>
-                                                <option
-                                                    value="dessert"{{ $record->term == 'dessert' ? 'selected' : '' }}>
+                                                <option value="dessert"{{ $record->term == 'dessert' ? 'selected' : '' }}>
                                                     Dessert</option>
                                             </select>
                                         </div>

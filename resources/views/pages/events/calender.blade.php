@@ -1,4 +1,7 @@
 @extends('Dashboard.Master.master_layout')
+@section('title')
+    Event Calender - EatAnmol
+@endsection
 @section('content')
     <style>
         #calendar-container {
@@ -11,9 +14,9 @@
 
         .fc-header-toolbar {
             /*
-                                                                the calendar will be butting up against the edges,
-                                                                but let's scoot in the header's buttons
-                                                                */
+                                                                            the calendar will be butting up against the edges,
+                                                                            but let's scoot in the header's buttons
+                                                                            */
             padding-top: 1em;
             padding-left: 1em;
             padding-right: 1em;
@@ -103,7 +106,5 @@
             });
             calendar.render();
         });
-
     </script>
-
 @endsection

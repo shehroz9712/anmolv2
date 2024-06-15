@@ -40,6 +40,9 @@
 
 <style>
     /* Styling the toast container */
+    .main-footer.text-center {
+        z-index: 99;
+    }
 
     .toast {
         position: fixed;
