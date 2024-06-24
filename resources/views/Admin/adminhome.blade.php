@@ -86,7 +86,7 @@
                             <div class="card-order">
                                 <label class="main-content-label mb-3 pt-1">Today Event / Bookings</label>
                                 <h2 class="text-end"><i class="mdi mdi-cart icon-size float-start text-primary"></i><span
-                                        class="font-weight-bold">{{ $events }}</span></h2>
+                                        class="font-weight-bold">{{ $today_count }}</span></h2>
                             </div>
                         </div>
                     </div>

@@ -27,7 +27,15 @@ class menu extends Controller
         return view('pages.menu.menu-index', compact('categories', 'eventId'));
     }
 
+    function menu_edit(Request $request, $eventId = null)
+    {
 
+        $eventId = decrypt($eventId);
+        $menus  = EventMenu::with('dishes')->where('event_id', $eventId)->get();
+        $dishes = Dish::with('subcategory')->get();
+
+        return view('pages.menu.menu-edit', compact('menus', 'dishes', 'eventId'));
+    }
     public function getDishes(Request $request)
     {
         $dishes = null;

@@ -67,8 +67,9 @@ class HomeController extends Controller
 
                 // Retrieve events for the current month
                 $event_count = Event::whereBetween('date', [$startOfMonth, $endOfMonth])->count();
+                $today_count = Event::where('date', '=', now())->count();
 
-                return view('Admin.adminhome', compact('users', 'events', 'appointments', 'upcomingEvent'));
+                return view('Admin.adminhome', compact('users', 'today_count', 'event_count', 'events', 'appointments', 'upcomingEvent'));
             } else {
                 return Redirect::back();
                 // dd($role);

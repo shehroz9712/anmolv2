@@ -32,13 +32,13 @@
                 <div class="card custom-card p-3 mg-b-20">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="example2">
+                            <table class="table table-bordered" id="table">
                                 <thead>
                                     <tr>
+                                        <th class="wd-lg-10p">Date</th>
                                         <th class="wd-lg-20p">Name</th>
                                         <th class="wd-lg-20p">Guests</th>
-                                        <th class="wd-lg-10p">Date</th>
-                                        <th class="wd-lg-10p">Type</th>
+                                        {{-- <th class="wd-lg-10p">Type</th> --}}
                                         <th class="wd-lg-10p">Start Time</th>
                                         <th class="wd-lg-10p">End Time</th>
                                         <th class="wd-lg-20p">Actions</th>
@@ -47,10 +47,10 @@
                                 <tbody>
                                     @foreach ($events as $event)
                                         <tr>
+                                            <td>{{ \Carbon\Carbon::parse($event->date)->format('m/d/Y') }}</td>
                                             <td>{{ $event->name }}</td>
                                             <td>{{ $event->guests }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($event->date)->format('m/d/Y') }}</td>
-                                            <td>{{ $event->type }}</td>
+                                            {{-- <td>{{ $event->type }}</td> --}}
                                             <td>{{ $event->start_time }}</td>
                                             <td>{{ $event->end_time }}</td>
                                             <td class="d-flex"> <a href="{{ route('events.show', encrypt($event->id)) }}"
@@ -60,15 +60,18 @@
                                                     $eventDate = \Carbon\Carbon::parse($event->date);
                                                     $oneWeekAgo = \Carbon\Carbon::now()->subWeek(); // Calculate the date one week before today
                                                 @endphp
+
                                                 @if ($eventDate->greaterThanOrEqualTo($oneWeekAgo))
-                                                    <form class="mx-1"
-                                                        action="{{ route('continueJourney', ['eventId' => $event->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-primary">
-                                                            Continue Journey
-                                                        </button>
-                                                    </form>
+                                                    @if (Auth::user()->Role != 'Admin')
+                                                        <form class="mx-1"
+                                                            action="{{ route('continueJourney', ['eventId' => $event->id]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-primary">
+                                                                Continue Journey
+                                                            </button>
+                                                        </form>
+                                                    @endif
 
                                                     <div class="dropdown">
 
@@ -81,7 +84,7 @@
                                                             aria-labelledby="dropdownMenuButton2">
                                                             @if ($event->journey->eventid)
                                                                 <li><a class="dropdown-item "
-                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                        href="{{ route('events.edit', encrypt($event->journey->eventid)) }}">
                                                                         <i class="fa fa-pencil-alt"></i>
                                                                         Event </a></li>
                                                             @endif
@@ -92,15 +95,22 @@
                                                                         Venue </a></li>
                                                             @endif
                                                             @if ($event->journey->menu_submit)
+                                                                @if (Auth::user()->Role != 'Admin')
+                                                                    <li><a class="dropdown-item "
+                                                                            href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                            <i class="fa fa-pencil-alt"></i>
+                                                                            Change Full Menu
+                                                                        </a></li>
+                                                                    <li><a class="dropdown-item "
+                                                                            href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                            <i class="fa fa-pencil-alt"></i>
+                                                                            Change Form </a>
+                                                                    </li>
+                                                                @endif
                                                                 <li><a class="dropdown-item "
-                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                        href="{{ route('events.menu.edit', encrypt($event->journey->menu_submit)) }}">
                                                                         <i class="fa fa-pencil-alt"></i>
-                                                                        Change Full Menu
-                                                                    </a></li>
-                                                                <li><a class="dropdown-item "
-                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
-                                                                        <i class="fa fa-pencil-alt"></i>
-                                                                        Change Form </a>
+                                                                        Change Items </a>
                                                                 </li>
                                                             @endif
                                                             @if ($event->journey->service_styling_id)
@@ -149,4 +159,17 @@
 @endsection
 
 @section('js')
+    <script>
+        $('#table').DataTable({
+            responsive: true,
+            language: {
+                searchPlaceholder: 'Search...',
+                sSearch: '',
+                lengthMenu: '_MENU_ items/page',
+            },
+            order: [
+                [0, 'desc']
+            ] // Replace 0 with the column index you want to sort by
+        });
+    </script>
 @endsection

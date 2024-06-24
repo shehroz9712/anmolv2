@@ -25,10 +25,11 @@ class EventController extends Controller
 
         if (Auth::user()->Role == "Admin") {
 
-            $events = Event::with('journey')->get();
+            $events = Event::with('journey')->orderBy('date', 'DESC')->get();
         } else {
-            $events = Event::with('journey')->where('createdby', Auth::id())->get();
+            $events = Event::with('journey')->where('createdby', Auth::id())->orderBy('date')->get();
         }
+
         return view('pages.events.events_index', compact('events'));
     }
     function calender()

@@ -91,6 +91,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/menu/items/{eventId?}', [menu::class, 'items'])->name('custom.menu');
     Route::post('/menu/submit', [menu::class, 'submit'])->name('menu.submit');
     Route::post('/getDishes', [menu::class, 'getDishes'])->name('menu.getDishes');
+    Route::get('/menu/edit/{eventId?}', [menu::class, 'menu_edit'])->name('events.menu.edit');
+
 
     Route::get('/menu/addon/{eventId?}', [menu::class, 'addon'])->name('menu.addon');
     Route::get('/menu/detail/{id}/{eventId?}', [menu::class, 'detail'])->name('menu.detail');
