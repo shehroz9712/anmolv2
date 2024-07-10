@@ -109,113 +109,125 @@
                                                 <div class="col-sm-8">{{ $event->type }}</div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @if ($venue)
-                                <div class="row mt-3 ">
-                                    <h4>Venue</h4>
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            <div class="border-bottom col-md-6 mt-2">
-                                                <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">Address</h6>
-                                                    <div class="col-sm-8">{{ $venue->address }}</div>
+                                        <div class="border-bottom col-md-6 mt-2">
+                                            <div class="row">
+                                                <h6 class="col-sm-4 fw-bold">Total Amount</h6>
+                                                <div class="col-sm-8">$00.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="border-bottom col-md-6 mt-2">
+                                            <div class="row">
+                                                <h6 class="col-sm-4 fw-bold">Paid  Amount</h6>
+                                                <div class="col-sm-8">$00.00<< /div>
                                                 </div>
                                             </div>
-                                            <div class="border-bottom col-md-6 mt-2">
-                                                <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">City, State, ZipCode</h6>
-                                                    <div class="col-sm-8">{{ $venue->city }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="border-bottom col-md-6 mt-2">
-                                                <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">Contact Person</h6>
-                                                    <div class="col-sm-8">{{ $venue->ContactPerson }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="border-bottom col-md-6 mt-2">
-                                                <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">Contact Email</h6>
-                                                    <div class="col-sm-8">{{ $venue->ContactEmail }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="border-bottom col-md-6 mt-2">
-                                                <div class="row">
-                                                    <h6 class="col-sm-4 fw-bold">Contact Phone</h6>
-                                                    <div class="col-sm-8">{{ $venue->ContactPhone }}</div>
-                                                </div>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </div>
-                            @endif
-                            @if ($menu)
-                                @if ($package)
+                                @if ($venue)
                                     <div class="row mt-3 ">
-                                        <h4>Package</h4>
+                                        <h4>Venue</h4>
                                         <div class="col-lg-12">
                                             <div class="row">
+                                                <div class="border-bottom col-md-6 mt-2">
+                                                    <div class="row">
+                                                        <h6 class="col-sm-4 fw-bold">Address</h6>
+                                                        <div class="col-sm-8">{{ $venue->address }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="border-bottom col-md-6 mt-2">
+                                                    <div class="row">
+                                                        <h6 class="col-sm-4 fw-bold">City, State, ZipCode</h6>
+                                                        <div class="col-sm-8">{{ $venue->city }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="border-bottom col-md-6 mt-2">
+                                                    <div class="row">
+                                                        <h6 class="col-sm-4 fw-bold">Contact Person</h6>
+                                                        <div class="col-sm-8">{{ $venue->ContactPerson }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="border-bottom col-md-6 mt-2">
+                                                    <div class="row">
+                                                        <h6 class="col-sm-4 fw-bold">Contact Email</h6>
+                                                        <div class="col-sm-8">{{ $venue->ContactEmail }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="border-bottom col-md-6 mt-2">
+                                                    <div class="row">
+                                                        <h6 class="col-sm-4 fw-bold">Contact Phone</h6>
+                                                        <div class="col-sm-8">{{ $venue->ContactPhone }}</div>
+                                                    </div>
+                                                </div>
 
-                                                <div class="border-bottom col-md-6 mt-2">
-                                                    <div class="row">
-                                                        <h6 class="col-sm-4 fw-bold">Package Name</h6>
-                                                        <div class="col-sm-8">{{ $package->package_name }}</div>
-                                                    </div>
-                                                </div>
-                                                <div class="border-bottom col-md-6 mt-2">
-                                                    <div class="row">
-                                                        <h6 class="col-sm-4 fw-bold">Person</h6>
-                                                        <div class="col-sm-8">{{ $package->person }}</div>
-                                                    </div>
-                                                </div>
-                                                <div class="border-bottom col-md-6 mt-2">
-                                                    <div class="row">
-                                                        <h6 class="col-sm-4 fw-bold">Currency</h6>
-                                                        <div class="col-sm-8">{{ $package->currency }}
-                                                            {{ $package->price }}</div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="border-bottom col-md-6 mt-2">
-                                                    <div class="row">
-                                                        <h6 class="col-sm-4 fw-bold">Category</h6>
-                                                        <div class="col-sm-8">{{ $package->category->name }}</div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
-                                <div class="row mt-3 ">
-                                    <h4>Menu</h4>
-                                    <div class="col-lg-12">
-                                        <div class="row">
-                                            @foreach ($menu as $key => $item)
-                                                @if ($loop->first || $item->type !== $menu[$loop->index - 1]->type)
-                                                    <h4 class="my-3">{{ ucfirst($item->type) }} Items</h4>
-                                                @endif
-                                                <div class="border-bottom col-md-4 my-2">
-                                                    {{ $key + 1 }}-
-                                                    {{ $item->dishes->name }} ({{ ucfirst($item->type) }})
+                                @if ($menu)
+                                    @if ($package)
+                                        <div class="row mt-3 ">
+                                            <h4>Package</h4>
+                                            <div class="col-lg-12">
+                                                <div class="row">
 
+                                                    <div class="border-bottom col-md-6 mt-2">
+                                                        <div class="row">
+                                                            <h6 class="col-sm-4 fw-bold">Package Name</h6>
+                                                            <div class="col-sm-8">{{ $package->package_name }}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-bottom col-md-6 mt-2">
+                                                        <div class="row">
+                                                            <h6 class="col-sm-4 fw-bold">Person</h6>
+                                                            <div class="col-sm-8">{{ $package->person }}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-bottom col-md-6 mt-2">
+                                                        <div class="row">
+                                                            <h6 class="col-sm-4 fw-bold">Currency</h6>
+                                                            <div class="col-sm-8">{{ $package->currency }}
+                                                                {{ $package->price }}</div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="border-bottom col-md-6 mt-2">
+                                                        <div class="row">
+                                                            <h6 class="col-sm-4 fw-bold">Category</h6>
+                                                            <div class="col-sm-8">{{ $package->category->name }}</div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            @endforeach
+                                            </div>
+                                        </div>
+                                    @endif
+                                    <div class="row mt-3 ">
+                                        <h4>Menu</h4>
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                @foreach ($menu as $key => $item)
+                                                    @if ($loop->first || $item->type !== $menu[$loop->index - 1]->type)
+                                                        <h4 class="my-3">{{ ucfirst($item->type) }} Items</h4>
+                                                    @endif
+                                                    <div class="border-bottom col-md-4 my-2">
+                                                        {{ $key + 1 }}-
+                                                        {{ $item->dishes->name }} ({{ ucfirst($item->type) }})
+
+                                                    </div>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
-                            @if ($ServiceStyling)
-                            @endif
+                                @endif
+                                @if ($ServiceStyling)
+                                @endif
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endsection
+        @endsection
 
-    @section('js')
-    @endsection
+        @section('js')
+        @endsection
