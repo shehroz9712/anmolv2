@@ -141,6 +141,11 @@ class menu extends Controller
                     ]);
                 }
             }
+            if ($request->navigate_to_addon == "no") {
+                return redirect()->route('service.styling', $request->eventId)
+                    ->with('message', 'menu items submit successfully.');
+            }
+
             return redirect()->route('menu.addon', $request->eventId)
                 ->with('message', 'Menu submit successfully.');
         } elseif ($request->url == 'package') {

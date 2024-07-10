@@ -80,6 +80,8 @@ class ServiceController extends Controller
             ]
         );
 
+
+
         // Redirect to the venue creation page with the event ID
         return redirect()->route('equipment.index', $request->eventId)
             ->with([

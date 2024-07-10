@@ -223,14 +223,60 @@
                 $('#myModal').modal('show');
             });
         } else {
-            document.getElementById('save-button').addEventListener('click', function() {
-                document.getElementById('formid').submit();
+            var form = document.getElementById('formid');
+            var saveButton = document.getElementById('save-button');
+            var skipButton = document.getElementById('skip-button');
+
+            saveButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                Swal.fire({
+                    title: 'Do you want addons?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit the form with additional data indicating the choice
+                        submitForm(true);
+                    } else {
+                        // Continue with form submission without navigating
+                        submitForm(false);
+                    }
+                });
             });
 
-            // When skip button is clicked, submit the form
-            document.getElementById('skip-button').addEventListener('click', function() {
-                document.getElementById('formid').submit();
+            skipButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                Swal.fire({
+                    title: 'Do you want addons?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Submit the form with additional data indicating the choice
+                        submitForm(true);
+                    } else {
+                        // Continue with form submission without navigating
+                        submitForm(false);
+                    }
+                });
             });
+
+            function submitForm(navigateToAddon) {
+                // Append a hidden input to the form to indicate the user's choice
+                var navigateInput = document.createElement('input');
+                navigateInput.type = 'hidden';
+                navigateInput.name = 'navigate_to_addon';
+                navigateInput.value = navigateToAddon ? 'yes' : 'no';
+                form.appendChild(navigateInput);
+
+                // Submit the form
+                form.submit();
+            }
+
         }
 
         // When save button in the modal is clicked, submit the value

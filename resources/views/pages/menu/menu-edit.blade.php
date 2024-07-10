@@ -1,17 +1,17 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Menu Detail - EatAnmol
+    Edit Menu Request - EatAnmol
 @endsection
 @section('content')
     <div class="main-container container-fluid">
         <div class="inner-body">
             <div class="page-header">
                 <div>
-                    <h2 class="main-content-title tx-24 mg-b-5">Menu Edit </h2>
+                    <h2 class="main-content-title tx-24 mg-b-5">Edit Menu Request </h2>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
 
-                        <li class="breadcrumb-item active" aria-current="page">Menu Edit</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Menu Request</li>
                     </ol>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                                 <div class="form-group row align-items-end mb-3">
                                     <div class="col-lg-4 mb-3">
                                         <label for="category">Selected items</label>
-                                        <select class="form-control" name="olddishes[]">
+                                        <select class="form-control select2" name="olddishes[]">
                                             <option disabled selected value="">Select item
                                             </option>
                                             @foreach ($menus as $menu)
@@ -35,8 +35,8 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-4 mb-3">
-                                        <label for="category">All items</label>
-                                        <select class="form-control" name="newdishes[]">
+                                        <label for="category">Replace by</label>
+                                        <select class="form-control select2" name="newdishes[]">
                                             <option disabled selected value="">Select item
                                             </option>
                                             @foreach ($dishes as $dish)

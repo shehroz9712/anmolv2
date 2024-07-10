@@ -118,7 +118,7 @@
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">
-                                <form method="POST" action="{{ route('service.store') }}">
+                                <form method="POST" action="{{ route('service.store') }}"  id="formid">
                                     @csrf
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -303,6 +303,44 @@
 @endsection
 
 @section('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var submitButton = document.getElementById('submitBtn');
+        var form = document.getElementById('formid'); // Assuming your form ID is 'formid'
+
+        submitButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            Swal.fire({
+                title: 'Do you want Equipment?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Proceed to navigate to addon page or handle as needed
+                    submitForm(true);
+                } else {
+                    submitForm(false);
+                }
+            });
+        });
+
+        // Function for form submission based on user's choice
+        function submitForm(navigateToAddon) {
+            // Append a hidden input to the form to indicate the user's choice
+            var navigateInput = document.createElement('input');
+            navigateInput.type = 'hidden';
+            navigateInput.name = 'navigate_to_addon';
+            navigateInput.value = navigateToAddon ? 'yes' : 'no';
+            form.appendChild(navigateInput);
+
+            // Submit the form
+            form.submit();
+        }
+    });
+</script>
+
     <script>
         const descriptions = {
             "1": `<b>Buffet Style</b> - Most common way of serving food, food on Buffet table in serviceware and chaffers, Guest help themselves as Servers refill and Maintain the buffet.
