@@ -19,10 +19,10 @@ class Controller extends BaseController
         $extension = $image->getClientOriginalExtension();
 
         // Generate a unique image name using a random string and the current timestamp
-        $image_name = 'dish_' . str::random(2) . '_' . time() . '.' . $extension;
+        $image_name = 'dish_' . rand(1, 99) . '_' . time() . '.' . $extension;
 
         // Move the image to the desired folder
-        $image->move(public_path($folder), $image_name);
+        $image->move(public_path('uploads/' . $folder), $image_name);
 
         return $image_name;
     }

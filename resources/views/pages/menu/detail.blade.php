@@ -117,9 +117,15 @@
                                                                     <div class="align-items-center row">
                                                                         <div class="col-md-10">
                                                                             <label class="ckbox">
+                                                                                @php
+                                                                                    $image = $dishes->image
+                                                                                        ? $dishes->image
+                                                                                        : 'no-image.png';
+                                                                                @endphp
                                                                                 <input type="checkbox" class="dish-checkbox"
                                                                                     data-max="{{ $include->qty }}"
                                                                                     data-id="{{ $dishes->id }}"
+                                                                                    data-image="{{ asset('uploads/dishes/' . $image) }}"
                                                                                     data-category="{{ $include->sharable->name }}">
                                                                                 <span
                                                                                     class="tx-13">{{ $dishes->name }}</span>
@@ -287,12 +293,15 @@
                     // Iterate over selected checkboxes and add rows to the corresponding category table
                     selectedCheckboxes.forEach(function(selectedCheckbox) {
                         var category = selectedCheckbox.getAttribute('data-category');
+                        var dishImage = selectedCheckbox.getAttribute('data-image');
 
                         // If the category table doesn't exist, create a new one
                         if (!categoryTables[category]) {
                             categoryTables[category] = document.createElement('table');
                             categoryTables[category].classList.add(
-                                'your-table-class'); // Add your table class here
+                                'your-table-class');
+                            categoryTables[category].classList.add(
+                                'table');
 
                             // Create a table body for the current category
                             var categoryTableBody = document.createElement('tbody');
@@ -305,6 +314,7 @@
                             '.tx-13').textContent;
                         var dishDesc = selectedCheckbox.closest('li').querySelector('p')
                             .textContent;
+
                         var dishId = selectedCheckbox.dataset
                             .id; // Accessing data-id attribute directly
                         var limitedDishDesc = limitWords(dishDesc, 10);
@@ -313,7 +323,11 @@
                         var newRow = document.createElement('tr');
                         newRow.innerHTML = `
                         <td>
+ <div class="card-aside-img">
+                                  <img src="${dishImage}" alt="img" class="img-sm">
+                                </div>
                             <div class="media">
+
                                 <div class="media-body my-auto">
                                     <div class="card-item-desc mt-0">
                                         <h6 class="font-weight-semibold mt-0 text-uppercase">${dishName}</h6>

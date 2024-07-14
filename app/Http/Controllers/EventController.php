@@ -46,11 +46,29 @@ class EventController extends Controller
             $appointmentDate =  $formattedDate;
             $appointmentTime =  $appointment->end_time;
             $comment = $appointment->name ?? '';
-
+            $userName = $appointment->user->name ?? 'N/A';
+            $venueName = $appointment->journey->venue->name ?? 'N/A';
             $appointments[] = [
                 'title' =>  $appointment->name,
                 'start' => $appointment->date,
                 'end' => $appointment->end_time,
+                'extendedProps' => [
+                    'user' => $userName,
+                    'venue' => $venueName,
+                    'noOfGuests' => $appointment->guests,
+                    'totalAmount' => '$0.00',
+                    'paymentStatus' => 'pending',
+                    'lastEditDate' => $appointment->updated_at,
+                    'fullMessage' => "Event: {$appointment->name}<br>" .
+                        "User: {$userName}<br>" .
+                        "Venue: {$venueName}<br>" .
+                        "No of Guests: {$appointment->guests}<br>" .
+                        "Start Time: {$formattedDate}<br>" .
+                        "End Time: {$appointment->end_time}<br>" .
+                        "Total Amount: $0.00<br>" .
+                        "Payment Status: pending<br>" .
+                        "Last Edited: {$appointment->updated_at}",
+                ],
             ];
         }
         // dd($appointments);
@@ -180,6 +198,7 @@ class EventController extends Controller
             'occasion' => 'string',
             'start_time' => 'required',
             'end_time' => 'required',
+            'status' => 'integer',
         ]);
 
         // $decryptedId = Crypt::decryptString($request->input('encrypted_id'));
@@ -198,9 +217,9 @@ class EventController extends Controller
 
         $event->update($data);
         if (Auth::user()->Role != "Admin") {
-            $this->sendNotification('admin', 'Edit Event ', 'User edit this event event id#' . $request->name);
+            $this->sendNotification('admin', Auth::id(), 'Edit Event ', 'User edit this event event event name : ' . $request->name);
         } else {
-            $this->sendNotification('user', 'Edit Event ', 'Admin edit this event event id#' . $request->name);
+            $this->sendNotification('user',  $event->createdby, 'Edit Event ', 'Admin edit this event event name : ' . $request->name);
         }
 
 

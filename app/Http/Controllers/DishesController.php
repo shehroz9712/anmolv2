@@ -47,8 +47,7 @@ class DishesController extends Controller
             ]
         );
 
-        // $this->uploadImage($data->image, 'dishes');
-
+        $data['image'] =  $this->uploadImage($data['image'], 'dishes');
         $dish = Dish::create($data);
         $labour = $request->labour;
         foreach ($labour as $key => $value) {
@@ -58,14 +57,15 @@ class DishesController extends Controller
             ]);
         }
 
-        return redirect()->route('dishes.index')->with('message', 'Dish Added Successfully');
+        return redirect()->route('dishes.index')->with('message', 'Item Added Successfully');
     }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
-    { $id = decrypt($id);
+    {
+        $id = decrypt($id);
         $dish = Dish::with('equipment')->find($id);
 
         return view('Admin.dishes.view', compact('dish'));
@@ -75,7 +75,8 @@ class DishesController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    { $id = decrypt($id);
+    {
+        $id = decrypt($id);
         $subcategory = SubCategory::Active()->get();
         $labours = Labour::Active()->get();
         $equipments = Equipment::Active()->get();

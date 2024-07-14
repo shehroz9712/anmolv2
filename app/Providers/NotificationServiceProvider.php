@@ -33,8 +33,10 @@ class NotificationServiceProvider extends ServiceProvider
                 } else {
                     $admin_notifications = Notification::where('user_type', 'user')
                         ->where('user_id', Auth::user()->id)
+                        ->Orderby('is_read')
                         ->latest()
-                        ->latest()->get();
+                        ->get();
+
                 }
                 $view->with('admin_notifications', $admin_notifications);
             }

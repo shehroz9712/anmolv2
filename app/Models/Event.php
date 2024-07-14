@@ -12,7 +12,7 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'guests', 'type', 'date', 'occasion', 'start_time', 'end_time', 'createdby', 'location', 'address', 'otherType'];
+    protected $fillable = ['name','status', 'guests', 'type', 'date', 'occasion', 'start_time', 'end_time', 'createdby', 'location', 'address', 'otherType'];
     protected $dates = ['deleted_at'];
 
 
@@ -42,6 +42,6 @@ class Event extends Model
      */
     public function journey(): HasOne
     {
-        return $this->hasOne(Journey::class, 'eventid', 'id');
+        return $this->hasOne(Journey::class, 'eventid', 'id')->with('venue');
     }
 }

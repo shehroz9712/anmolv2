@@ -37,7 +37,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Price</th>
-                                        {{-- <th>Is Addon</th> --}}
+                                        <th>No of Pieces</th>
                                         {{-- <th>Single</th>
                                         <th>Double</th>
                                         <th>Trio</th> --}}
@@ -50,6 +50,7 @@
                                         <tr>
                                             <td>{{ $record->name }}</td>
                                             <td>${{ $record->price }}</td>
+                                            <td>{{ $record->pieces }}</td>
                                             {{-- <td>{{ $record->is_addon }}</td> --}}
                                             {{-- <td>{{ $record->single }}</td>
                                             <td>{{ $record->double }}</td>

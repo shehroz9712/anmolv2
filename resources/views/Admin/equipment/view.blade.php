@@ -38,8 +38,12 @@
                                                 <td class="col-sm-8">{{ $record->name }}</td>
                                             </tr>
                                             <tr>
+                                                <th class="col-sm-4">No of Pieces</th>
+                                                <td class="col-sm-8">{{ $record->pieces }}</td>
+                                            </tr>
+                                            <tr>
                                                 <th class="col-sm-4">Price</th>
-                                                <td class="col-sm-8">{{ $record->price }}</td>
+                                                <td class="col-sm-8">${{ $record->price }}</td>
                                             </tr>
 
                                             <tr>

@@ -27,14 +27,14 @@
                                 <span class="sidemenu-label">Dashboard</span>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('types.index') }}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
-                                <i class="fe fe-menu sidemenu-icon menu-icon "></i>
-                                <span class="sidemenu-label">Types</span>
+                                <i class="fe fe-user sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Contact</span>
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item @if (Request::is('events') || Request::is('events/*')) active @endif">
                             <a class="nav-link" href="{{ route('events.index') }}">
                                 <span class="shape1"></span>

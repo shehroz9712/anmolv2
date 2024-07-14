@@ -22,6 +22,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VanueCustomerController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -177,6 +178,7 @@ Route::middleware(['auth', 'admin.auth'])->group(function () {
     Route::put('/admin-venues/{adminVenue}', [AdminVenueController::class, 'update'])->name('admin-venues.update');
     Route::delete('/admin-venues/{adminVenue}', [AdminVenueController::class, 'destroy'])->name('admin-venues.destroy');
 
+    Route::resource('contact', UserController::class)->names('contact');
 
     Route::resource('packages', PackagesController::class);
     Route::resource('items', DishesController::class)->names('dishes');

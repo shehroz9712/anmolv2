@@ -33,18 +33,23 @@
                                     @csrf
                                     <div class="form-group row">
 
-                                        <div class="col-lg-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label for="name">Name</label>
                                             <input class="form-control" id="name" name="name" required
                                                 type="text">
                                         </div>
-                                        <div class="col-lg-4 mb-3">
-                                            <label for="price">price</label>
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="pieces">No of Pieces</label>
+                                            <input class="form-control" id="pieces" name="pieces" required value="1"
+                                                type="number">
+                                        </div>
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="price">Price</label>
                                             <input class="form-control" id="price" name="price" required
                                                 type="text">
                                         </div>
 
-                                        <div class="col-lg-4 mb-3">
+                                        <div class="col-lg-6 mb-3">
                                             <label for="status">Status</label>
                                             <select class="form-control" id="status" name="status" required>
                                                 <option value="0">Inactive</option>
