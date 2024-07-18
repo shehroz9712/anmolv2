@@ -11,7 +11,7 @@ class SubCategory extends Model
     use HasFactory;
     public function dishes()
     {
-        return $this->hasMany(Dish::class, 'subcategory_id', 'id')->where('status', 1);
+        return $this->hasMany(Dish::class, 'subcategory_id', 'id')->where('status', 1)->orderby('name', 'ASC');
     }
     public function price()
     {

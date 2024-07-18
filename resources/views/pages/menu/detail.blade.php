@@ -133,7 +133,7 @@
                                                                         </div>
                                                                         <div class="col-md-2">
                                                                             <a class="btn ripple"
-                                                                                data-bs-target="#modaldemo{{ $loop->index + 1 }}"
+                                                                                data-bs-target="#modaldemo{{ $dishes->id }}"
                                                                                 data-bs-toggle="modal" href="">
                                                                                 <i class="fa fa-info-circle"
                                                                                     style="font-size: 12px;"></i>
@@ -144,10 +144,9 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal fade"
-                                                                    id="modaldemo{{ $loop->index + 1 }}" tabindex="-1"
-                                                                    role="dialog" aria-labelledby="exampleModalLabel"
-                                                                    aria-hidden="true">
+                                                                <div class="modal fade" id="modaldemo{{ $dishes->id }}"
+                                                                    tabindex="-1" role="dialog"
+                                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                     <div class="modal-dialog" role="document">
                                                                         <div class="modal-content">
                                                                             <div class="modal-header">
@@ -161,6 +160,8 @@
                                                                                         class="fa fa-close fs-5"></i></button>
                                                                             </div>
                                                                             <div class="modal-body">
+                                                                                <img src="{{ asset('uploads/dishes/' . $image) }}"
+                                                                                    alt="image">
                                                                                 <p>{!! $dishes->long_desc !!}</p>
                                                                             </div>
                                                                         </div>
@@ -317,17 +318,17 @@
 
                         var dishId = selectedCheckbox.dataset
                             .id; // Accessing data-id attribute directly
-                        var limitedDishDesc = limitWords(dishDesc, 10);
+                        var limitedDishDesc = limitWords(dishDesc, 6);
 
                         // Create a new table row
                         var newRow = document.createElement('tr');
                         newRow.innerHTML = `
                         <td>
- <div class="card-aside-img">
-                                  <img src="${dishImage}" alt="img" class="img-sm">
-                                </div>
-                            <div class="media">
 
+                            <div class="media p-0">
+                                <div class="card-aside-img">
+                                  <img src="${dishImage}" alt="img" class="img-sm me-3 mx-0">
+                                </div>
                                 <div class="media-body my-auto">
                                     <div class="card-item-desc mt-0">
                                         <h6 class="font-weight-semibold mt-0 text-uppercase">${dishName}</h6>

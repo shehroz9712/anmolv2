@@ -27,14 +27,7 @@
                                 <span class="sidemenu-label">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('contact.index') }}">
-                                <span class="shape1"></span>
-                                <span class="shape2"></span>
-                                <i class="fe fe-user sidemenu-icon menu-icon "></i>
-                                <span class="sidemenu-label">Contact</span>
-                            </a>
-                        </li>
+
                         <li class="nav-item @if (Request::is('events') || Request::is('events/*')) active @endif">
                             <a class="nav-link" href="{{ route('events.index') }}">
                                 <span class="shape1"></span>
@@ -106,6 +99,14 @@
                                 <span class="shape2"></span>
                                 <i class="fa fa-toolbox sidemenu-icon menu-icon "></i>
                                 <span class="sidemenu-label">Staff</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('contact.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-phone sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Contact</span>
                             </a>
                         </li>
                         {{-- <li class="nav-item @if (Request::is('customer-venues') || Request::is('customer-venues/*')) active @endif">

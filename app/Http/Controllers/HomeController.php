@@ -38,6 +38,8 @@ class HomeController extends Controller
                 // dd("user");
                 return view('kithen.kitchen-home');
             } else if ($role == "Admin") {
+
+
                 $events = Event::all();
                 $upcomingEvent = Event::where('date', '>=', now())
                     ->orderBy('date', 'asc')

@@ -14,9 +14,9 @@
 
         .fc-header-toolbar {
             /*
-                                                                                the calendar will be butting up against the edges,
-                                                                                but let's scoot in the header's buttons
-                                                                                */
+                                                                                                the calendar will be butting up against the edges,
+                                                                                                but let's scoot in the header's buttons
+                                                                                                */
             padding-top: 1em;
             padding-left: 1em;
             padding-right: 1em;
@@ -129,31 +129,25 @@
                                                         <table class="table table-bordered" id="example2">
                                                             <thead>
                                                                 <tr>
-                                                                    {{-- <th class="wd-lg-10p">ID</th> --}}
-                                                                    <th class="wd-lg-20p">Name</th>
-                                                                    <th class="wd-lg-20p">guests</th>
+                                                                    <th class="wd-lg-10p">User</th>
+                                                                    <th class="wd-lg-20p">Event</th>
                                                                     <th class="wd-lg-10p">Date</th>
-                                                                    <th class="wd-lg-10p">Type</th>
-                                                                    {{-- <th class="wd-lg-10p">Occasion</th> --}}
-                                                                    {{-- <th class="wd-lg-10p">Start Time</th>
-                                                <th class="wd-lg-10p">End Time</th> --}}
+                                                                    <th class="wd-lg-10p">Total Amount</th>
+                                                                    <th class="wd-lg-10p">Paid Amount</th>
+                                                                    <th class="wd-lg-10p">Status</th>
+                                                                    <th class="wd-lg-20p">Venue </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 @foreach ($events as $event)
                                                                     <tr>
-                                                                        {{-- <td>{{ $event->id }}</td> --}}
+                                                                        <td>{{ $event->user->name }}</td>
                                                                         <td>{{ $event->name }}</td>
-                                                                        <td>{{ $event->guests }}</td>
-                                                                        {{-- <td>{{ $event->date }}</td> --}}
                                                                         <td>{{ \Carbon\Carbon::parse($event->date)->format('m/d/Y') }}
-                                                                        </td>
-                                                                        <td>{{ $event->type }}</td>
-                                                                        {{-- <td>{{ $event->occasion }}</td> --}}
-                                                                        {{-- <td>{{ $event->start_time }}</td>
-                                                    <td>{{ $event->end_time }}</td> --}}
-
-
+                                                                        <td>$0.00</td>
+                                                                        <td>$0.00</td>
+                                                                        <td>{{ $event->status }}</td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>

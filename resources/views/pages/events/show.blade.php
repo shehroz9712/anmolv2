@@ -118,8 +118,7 @@
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
                                                 <h6 class="col-sm-4 fw-bold">Paid  Amount</h6>
-                                                <div class="col-sm-8">$00.00<< /div>
-                                                </div>
+                                                <div class="col-sm-8">$00.00</div>
                                             </div>
                                         </div>
                                     </div>

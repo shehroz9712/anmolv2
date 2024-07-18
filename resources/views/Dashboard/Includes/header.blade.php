@@ -93,10 +93,12 @@
                                         data-notification-id="{{ $notification->id }}" data-toggle="modal"
                                         data-target="#notificationModal">
                                         {{-- <div class="main-img-user online"><i class="fe fe-bell header-icons"></i></div> --}}
-                                        <div class="align-items-center d-flex justify-content-between media-body">
+                                        <div class="align-items-center d-flex justify-content-around media-body ms-0">
+                                            <div class="main-img-user online"><img alt="avatar"
+                                                    src="{{ asset('assets/img/users/5.jpg') }}"></div>
                                             <div>
 
-                                                <p>{{ Illuminate\Support\Str::limit($notification->subject, 20, '...') }}
+                                                <p class="fw-bold">{{ Illuminate\Support\Str::limit($notification->subject, 20, '...') }}
                                                 </p>
                                                 <p>{{ Illuminate\Support\Str::limit($notification->message, 20, '...') }}
                                                 </p>
