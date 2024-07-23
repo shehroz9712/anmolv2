@@ -22,9 +22,9 @@
             <div class="page-header">
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Menu - Packages (${{ $package->price }})</h2>
-                     <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                       
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+
                         <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
 
                         <li class="breadcrumb-item">
@@ -374,23 +374,38 @@
     </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('saveButton').addEventListener('click', function() {
-                // Display SweetAlert confirmation dialog
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: " If you select a package, you don't have to select individual custom items, except for addons.",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, save it!',
-                    cancelButtonText: 'No, cancel!'
-                }).then((result) => {
-                    // If user confirms, submit the form
-                    if (result.isConfirmed) {
-                        document.getElementById('menuForm').submit();
-                    }
-                });
+        var form = document.getElementById('menuForm');
+        var saveButton = document.getElementById('saveButton');
+
+        saveButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            Swal.fire({
+                title: 'Would you like to add more items to your menu as addons?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Submit the form with additional data indicating the choice
+                    submitForm(true);
+                } else {
+                    // Continue with form submission without navigating
+                    submitForm(false);
+                }
             });
         });
+
+        function submitForm(navigateToAddon) {
+            // Append a hidden input to the form to indicate the user's choice
+            var navigateInput = document.createElement('input');
+            navigateInput.type = 'hidden';
+            navigateInput.name = 'navigate_to_addon';
+            navigateInput.value = navigateToAddon ? 'yes' : 'no';
+            form.appendChild(navigateInput);
+
+            // Submit the form
+            form.submit();
+        }
     </script>
 @endsection

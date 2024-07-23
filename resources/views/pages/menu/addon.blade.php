@@ -35,8 +35,8 @@
             <div class="page-header">
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Menu </h2>
-                     <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
 
                         <li class="breadcrumb-item active" aria-current="page">Menu</li>
@@ -230,7 +230,7 @@
             saveButton.addEventListener('click', function(event) {
                 event.preventDefault(); // Prevent the default form submission
                 Swal.fire({
-                    title: 'Do you want addons?',
+                    title: 'Would you like to add add-on Items?',
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonText: 'Yes',
@@ -249,7 +249,7 @@
             skipButton.addEventListener('click', function(event) {
                 event.preventDefault(); // Prevent the default form submission
                 Swal.fire({
-                    title: 'Do you want addons?',
+                    title: 'Would you like to add add-on Items?',
                     icon: 'question',
                     showCancelButton: true,
                     confirmButtonText: 'Yes',
