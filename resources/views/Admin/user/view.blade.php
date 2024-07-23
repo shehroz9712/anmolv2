@@ -163,12 +163,12 @@
                                                         @if ($event->journey->menu_submit)
                                                             @if (Auth::user()->Role != 'Admin')
                                                                 <li><a class="dropdown-item "
-                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                        href="{{ route('menu.index', encrypt($event->journey->eventid)) }}">
                                                                         <i class="fa fa-pencil-alt"></i>
                                                                         Change Full Menu
                                                                     </a></li>
                                                                 <li><a class="dropdown-item "
-                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                        href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
                                                                         <i class="fa fa-pencil-alt"></i>
                                                                         Change Form </a>
                                                                 </li>

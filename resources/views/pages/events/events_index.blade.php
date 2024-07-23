@@ -55,6 +55,8 @@
                                             <td>{{ $event->end_time }}</td>
                                             <td class="d-flex"> <a href="{{ route('events.show', encrypt($event->id)) }}"
                                                     class="btn btn-main-primary px-3">View</a>
+                                                {{-- <a href="{{ route('events.show', encrypt($event->id)) }}"
+                                                    class="btn btn-main-primary px-3">Download Invoice</a> --}}
                                                 @php
 
                                                     $eventDate = \Carbon\Carbon::parse($event->date);
@@ -97,12 +99,12 @@
                                                             @if ($event->journey->menu_submit)
                                                                 @if (Auth::user()->Role != 'Admin')
                                                                     <li><a class="dropdown-item "
-                                                                            href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                            href="{{ route('menu.index', encrypt($event->journey->eventid)) }}">
                                                                             <i class="fa fa-pencil-alt"></i>
                                                                             Change Full Menu
                                                                         </a></li>
                                                                     <li><a class="dropdown-item "
-                                                                            href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                            href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
                                                                             <i class="fa fa-pencil-alt"></i>
                                                                             Change Form </a>
                                                                     </li>
@@ -121,9 +123,9 @@
                                                             @endif
 
 
+
                                                         </ul>
                                                     </div>
-                                                    {{-- <a class="btn text-dark px-1" href="{{ route('events.edit', ['encryptedId' => Crypt::encryptString($event->id)]) }}"><i class="fe fe-eye"></i></a> --}}
                                                 @else
                                                     <p class="ms-3">Event Date Passout</p>
                                                 @endif

@@ -66,10 +66,16 @@
                                                             <div class="form-group mg-b-20 include-remaining">
                                                                 <div class="align-items-center row">
                                                                     <div class="col-md-10">
+                                                                        @php
+                                                                            $image = $dishes->image
+                                                                                ? $dishes->image
+                                                                                : 'no-image.png';
+                                                                        @endphp
                                                                         <label class="ckbox">
                                                                             <input type="checkbox" class="dish-checkbox "
                                                                                 data-max="{{ $include->qty }}"
                                                                                 data-id="{{ $include->sharable->id }}"
+                                                                                data-image="{{ asset('uploads/dishes/' . $image) }}"
                                                                                 data-category="{{ $include->sharable->name }}">
                                                                             <span
                                                                                 class="tx-13">{{ $include->sharable->name }}</span>
@@ -77,7 +83,7 @@
                                                                     </div>
                                                                     <div class="col-md-2">
                                                                         <a class="btn ripple"
-                                                                            data-bs-target="#modaldemo{{ $loop->index + 1 }}"
+                                                                            data-bs-target="#modaldemo{{ $dishes->id }}"
                                                                             data-bs-toggle="modal" href="">
                                                                             <i class="fa-info-circle"
                                                                                 style="font-size: 12px;"></i>
@@ -88,7 +94,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal fade" id="modaldemo{{ $loop->index + 1 }}"
+                                                            <div class="modal fade" id="modaldemo{{ $dishes->id }}"
                                                                 tabindex="-1" role="dialog"
                                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">

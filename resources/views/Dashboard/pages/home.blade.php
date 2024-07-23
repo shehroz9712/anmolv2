@@ -181,7 +181,7 @@
                                                                                             aria-labelledby="dropdownMenuButton2">
                                                                                             @if ($event->journey->eventid)
                                                                                                 <li><a class="dropdown-item "
-                                                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                                                        href="{{ route('events.edit', encrypt($event->journey->eventid)) }}">
                                                                                                         <i
                                                                                                             class="fa fa-pencil-alt"></i>
                                                                                                         Event </a></li>
@@ -194,17 +194,25 @@
                                                                                                         Venue </a></li>
                                                                                             @endif
                                                                                             @if ($event->journey->menu_submit)
+                                                                                                @if (Auth::user()->Role != 'Admin')
+                                                                                                    <li><a class="dropdown-item "
+                                                                                                            href="{{ route('menu.index', encrypt($event->journey->eventid)) }}">
+                                                                                                            <i
+                                                                                                                class="fa fa-pencil-alt"></i>
+                                                                                                            Change Full Menu
+                                                                                                        </a></li>
+                                                                                                    <li><a class="dropdown-item "
+                                                                                                            href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
+                                                                                                            <i
+                                                                                                                class="fa fa-pencil-alt"></i>
+                                                                                                            Change Form </a>
+                                                                                                    </li>
+                                                                                                @endif
                                                                                                 <li><a class="dropdown-item "
-                                                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
+                                                                                                        href="{{ route('events.menu.edit', encrypt($event->journey->menu_submit)) }}">
                                                                                                         <i
                                                                                                             class="fa fa-pencil-alt"></i>
-                                                                                                        Change Full Menu
-                                                                                                    </a></li>
-                                                                                                <li><a class="dropdown-item "
-                                                                                                        href="{{ route('events.edit', $event->journey->eventid) }}">
-                                                                                                        <i
-                                                                                                            class="fa fa-pencil-alt"></i>
-                                                                                                        Change Form </a>
+                                                                                                        Change Items </a>
                                                                                                 </li>
                                                                                             @endif
                                                                                             @if ($event->journey->service_styling_id)
@@ -218,9 +226,9 @@
 
                                                                                         </ul>
                                                                                     </div>
-                                                                                    {{-- <a class="btn text-dark px-1" href="{{ route('events.edit', ['encryptedId' => Crypt::encryptString($event->id)]) }}"><i class="fe fe-eye"></i></a> --}}
                                                                                 @else
-                                                                                    <p class="ms-3">Event Date Passout</p>
+                                                                                    <p class="ms-3">Event Date Passout
+                                                                                    </p>
                                                                                 @endif
                                                                             </td>
                                                                         </tr>

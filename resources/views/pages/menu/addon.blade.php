@@ -289,6 +289,7 @@
                 checkbox.addEventListener('change', function() {
                     var selectedCheckboxes = document.querySelectorAll('.dish-checkbox:checked');
                     var category = checkbox.getAttribute('data-category');
+                    var dishImage = selectedCheckbox.getAttribute('data-image');
 
                     // Check if the selected count exceeds the maximum allowed for the current category
                     var selectedCheckboxesForCategory = Array.from(selectedCheckboxes).filter(
@@ -359,8 +360,17 @@
                         // Iterate over the response and append rows to the table
                         response.forEach(function(dish) {
                             var newRow = document.createElement('tr');
-                            newRow.innerHTML = `<td>
-                                                    <div class="media">
+                            const image = dish.image ? dish.image : 'no-image.png';
+                            const data_image = `{{ asset('uploads/dishes/') }}/${image}`;
+
+                            newRow.innerHTML = `
+                                <td>
+                                    <div class="media p-0">
+                                        <div class="card-aside-img">
+                                            <img src="${data_image}" alt="img" class="img-sm me-3 mx-0">
+                                        </div>
+                                    </div>
+                                </td>
                                                         <div class="media-body my-auto">
                                                             <div class="card-item-desc mt-0">
                                                                 <h6 class="font-weight-semibold mt-0 text-uppercase">${dish.name}</h6>
