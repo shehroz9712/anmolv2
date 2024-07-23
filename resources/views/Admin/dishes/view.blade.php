@@ -11,6 +11,7 @@
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">Item Detail</h2>
             <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Item List</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Item Detail</li>
             </ol>
@@ -21,7 +22,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    =
+
                     <div class="container">
 
                         <div class="row">

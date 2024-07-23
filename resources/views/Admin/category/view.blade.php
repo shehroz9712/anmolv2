@@ -11,6 +11,7 @@
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">Category Detail</h2>
             <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Category Detail</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Category Detail</li>
             </ol>

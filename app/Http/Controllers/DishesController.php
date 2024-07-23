@@ -100,22 +100,25 @@ class DishesController extends Controller
         // Update the main package details
         $dishes = Dish::find($id);
         $dishes->update($data);
-        DishesEquipment::where(['dish_id' => $id])->delete();
         $equipment = $request->equipment;
-        foreach ($equipment as $key => $value) {
-            DishesEquipment::create([
-                'equipment_id' => $value,
-                'dish_id' => $id
-            ]);
+        if ($equipment) {
+            DishesEquipment::where(['dish_id' => $id])->delete();
+            foreach ($equipment as $key => $value) {
+                DishesEquipment::create([
+                    'equipment_id' => $value,
+                    'dish_id' => $id
+                ]);
+            }
         }
-        DishesLabour::where(['dish_id' => $id])->delete();
         $labour = $request->labour;
-
-        foreach ($labour as $key => $value) {
-            $lbrdata[] = [
-                'labour_id' => $value,
-                'dish_id' => $id
-            ];
+        if ($labour) {
+            DishesLabour::where(['dish_id' => $id])->delete();
+            foreach ($labour as $key => $value) {
+                $lbrdata[] = [
+                    'labour_id' => $value,
+                    'dish_id' => $id
+                ];
+            }
         }
         DishesLabour::insert($lbrdata);
         return redirect()->route('dishes.index')->with('message', 'Items Updated Successfully');

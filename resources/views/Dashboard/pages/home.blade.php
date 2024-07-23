@@ -11,10 +11,9 @@
                 <div class="page-header">
                     <div>
                         <h2 class="main-content-title tx-24 mg-b-5">Welcome To Infoboard</h2>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="javascript:void(0)">Home</a>
-                            </li>
+                         <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                            
                             <li class="breadcrumb-item active" aria-current="page">Personal Infoboard</li>
                         </ol>
                     </div>
@@ -611,10 +610,9 @@
         <div class="page-header">
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5">Welcome To Infoboard</h2>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="javascript:void(0)">Home</a>
-                    </li>
+                 <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    
                     <li class="breadcrumb-item active" aria-current="page">Personal Infoboard</li>
                 </ol>
             </div>

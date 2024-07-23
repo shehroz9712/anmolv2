@@ -10,7 +10,8 @@
         <div class="page-header">
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5">Item List</h2>
-                <ol class="breadcrumb">
+                 <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Items</a></li>
                     <li class="breadcrumb-item active" aria-current="page">List Items</li>
                 </ol>

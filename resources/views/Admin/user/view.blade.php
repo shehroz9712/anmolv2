@@ -10,7 +10,8 @@
     <div class="page-header">
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">User Detail</h2>
-            <ol class="breadcrumb">
+             <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-user"><a href="{{ route('contact.index') }}">User Detail</a></li>
                 <li class="breadcrumb-user active" aria-current="page">User Detail</li>
             </ol>

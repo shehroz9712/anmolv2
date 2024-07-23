@@ -9,7 +9,8 @@ EatAnmol - Manage Profile  - EatAnmol
             {{-- <div class="page-header">
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Profile</h2>
-                    <ol class="breadcrumb">
+                     <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item"><a href="#">Profile</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Manage</li>
                     </ol>

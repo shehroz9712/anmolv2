@@ -11,6 +11,8 @@
     <div>
         <h2 class="main-content-title tx-24 mg-b-5">Add Admin Venue</h2>
         <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+
             <li class="breadcrumb-item"><a href="{{ route('admin-venues.index') }}">Admin Venues</a></li>
             <li class="breadcrumb-item active" aria-current="page">Add Admin Venue</li>
         </ol>

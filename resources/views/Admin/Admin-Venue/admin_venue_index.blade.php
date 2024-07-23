@@ -7,6 +7,7 @@
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5">Admin Venues</h2>
                 <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">manageAdmin Venues</li>
                 </ol>
@@ -51,11 +52,14 @@
                                             <td>{{ optional($adminVenue->createdBy)->name }}</td>
 
                                             <td>
-                                                <a class="btn btn-main-primary px-3" href="{{ route('admin-venues.edit', $adminVenue->id) }}">Edit</a>
-                                                <form action="{{ route('admin-venues.destroy', $adminVenue->id) }}" method="POST" style="display: inline-block;">
+                                                <a class="btn btn-main-primary px-3"
+                                                    href="{{ route('admin-venues.edit', $adminVenue->id) }}">Edit</a>
+                                                <form action="{{ route('admin-venues.destroy', $adminVenue->id) }}"
+                                                    method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger px-3" onclick="return confirm('Are you sure you want to delete this admin venue?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger px-3"
+                                                        onclick="return confirm('Are you sure you want to delete this admin venue?')">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -71,5 +75,4 @@
 @endsection
 
 @section('js')
-
 @endsection

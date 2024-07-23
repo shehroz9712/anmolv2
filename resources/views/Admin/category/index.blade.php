@@ -12,8 +12,8 @@
         <div class="page-header">
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5">Categories</h2>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                 <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Manage Categories</li>
                 </ol>
             </div>

@@ -14,9 +14,8 @@ Venue Edit - EatAnmol
             <h2 class="main-content-title tx-24 mg-b-5"></h2>
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5">Venue Edit</h2>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('index') }}">Home</a></li>
-
+                 <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Edit Venue</li>
                 </ol>
