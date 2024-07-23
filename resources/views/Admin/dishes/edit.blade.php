@@ -46,8 +46,8 @@
                                             <label for="image">Image</label>
                                             <input type="file" class="form-control" id="image" name="image">
                                             <!-- Display current image -->
-                                            <img src="{{ asset('uploads/dishes/' . $dish->image) }}"
-                                                alt="Current Image" width="100">
+                                                <img src="{{ asset('uploads/dishes/' . $dish->image) }}"
+                                                    alt="Current Image" width="100">
                                         </div>
                                     </div>
 

@@ -11,7 +11,7 @@
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">Item Detail</h2>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Item Detail</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dishes.index') }}">Item List</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Item Detail</li>
             </ol>
         </div>
@@ -21,10 +21,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <div>
-                        <h6 class="main-content-label mb-1">Item Detail</h6>
-                        <p class="text-muted card-sub-title"> Item with details.</p>
-                    </div>
+                    =
                     <div class="container">
 
                         <div class="row">
@@ -42,10 +39,12 @@
                                                 <th class="col-sm-4">Price</th>
                                                 <td class="col-sm-8">{{ $dish->price }}</td>
                                             </tr>
-                                            {{-- <tr>
-                                                <th class="col-sm-4">Equipment ID</th>
-                                                <td class="col-sm-8">{{ $dish->equipment_id }}</td>
-                                            </tr> --}}
+                                            <tr>
+                                                <th class="col-sm-4">Image</th>
+                                                <td class="col-sm-8"> <img
+                                                        src="{{ asset('uploads/dishes/' . $dish->image) }}"
+                                                        alt="Current Image" width="100"></td>
+                                            </tr>
                                             <tr>
                                                 <th class="col-sm-4">Unit</th>
                                                 <td class="col-sm-8">{{ $dish->unit }}</td>
