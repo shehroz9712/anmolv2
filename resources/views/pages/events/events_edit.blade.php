@@ -200,12 +200,18 @@
                                     <div class="form-group" id="status">
                                         <label for="status">Status</label>
                                         <select name="status" id="status" class="form-control">
-                                            <option value="1" {{ $event->status == 1 ? 'selected' : '' }}>Prospect</option>
-                                            <option value="2" {{ $event->status == 2 ? 'selected' : '' }}>Definite</option>
-                                            <option value="3" {{ $event->status == 3 ? 'selected' : '' }}>Lost</option>
-                                            <option value="4" {{ $event->status == 4 ? 'selected' : '' }}>Tentative</option>
-                                            <option value="5" {{ $event->status == 5 ? 'selected' : '' }}>Close</option>
-                                            <option value="6" {{ $event->status == 6 ? 'selected' : '' }}>Waitlist</option>
+                                            <option value="1" {{ $event->status == 1 ? 'selected' : '' }}>Prospect
+                                            </option>
+                                            <option value="2" {{ $event->status == 2 ? 'selected' : '' }}>Definite
+                                            </option>
+                                            <option value="3" {{ $event->status == 3 ? 'selected' : '' }}>Lost
+                                            </option>
+                                            <option value="4" {{ $event->status == 4 ? 'selected' : '' }}>Tentative
+                                            </option>
+                                            <option value="5" {{ $event->status == 5 ? 'selected' : '' }}>Close
+                                            </option>
+                                            <option value="6" {{ $event->status == 6 ? 'selected' : '' }}>Waitlist
+                                            </option>
                                         </select>
                                         <small id="statusError" class="text-danger"></small>
                                     </div>
@@ -266,8 +272,11 @@
             });
 
             var input = document.getElementById('address');
-            var autocomplete = new google.maps.places.Autocomplete(input);
-
+            var autocomplete = new google.maps.places.Autocomplete(input, {
+                componentRestrictions: {
+                    country: 'US'
+                } // Restrict results to the United States
+            });
             autocomplete.addListener('place_changed', function() {
                 var place = autocomplete.getPlace();
                 if (!place.geometry) {

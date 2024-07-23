@@ -113,6 +113,7 @@ Venue Edit - EatAnmol
                                 </form>
 
 
+                                <div id="map" style="display: none;" style="height: 400px;"></div>
 
 
 
