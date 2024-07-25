@@ -54,11 +54,31 @@ class HomeController extends Controller
                     $appointmentDate =  $formattedDate;
                     $appointmentTime =  $appointment->end_time;
                     $comment = $appointment->name ?? '';
-
+                    $userName = $appointment->user->name ?? 'N/A';
+                    $venueName = $appointment->journey->venue->name ?? 'N/A';
                     $appointments[] = [
-                        'title' =>  $comment,
+                        'title' =>  $appointment->name,
                         'start' => $appointment->date,
                         'end' => $appointment->end_time,
+                        'extendedProps' => [
+                            'date' => $userName,
+                            'user' => $userName,
+                            'venue' => $venueName,
+                            'noOfGuests' => $appointment->guests,
+                            'totalAmount' => '$0.00',
+                            'paymentStatus' => 'pending',
+                            'lastEditDate' => $appointment->updated_at,
+                            'fullMessage' => "Date: {$dateTime->format('d M y')}<br>" .
+                                "Event: {$appointment->name}<br>" .
+                                "User: {$userName}<br>" .
+                                "Venue: {$venueName}<br>" .
+                                "No of Guests: {$appointment->guests}<br>" .
+                                "Start Time: {$formattedDate}<br>" .
+                                "End Time: {$appointment->end_time}<br>" .
+                                "Total Amount: $0.00<br>" .
+                                "Payment Status: pending<br>" .
+                                "Last Edited: {$appointment->updated_at}",
+                        ],
                     ];
                 }
                 // dd($appointments);

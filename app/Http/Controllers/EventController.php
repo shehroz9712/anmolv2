@@ -53,13 +53,15 @@ class EventController extends Controller
                 'start' => $appointment->date,
                 'end' => $appointment->end_time,
                 'extendedProps' => [
+                    'date' => $userName,
                     'user' => $userName,
                     'venue' => $venueName,
                     'noOfGuests' => $appointment->guests,
                     'totalAmount' => '$0.00',
                     'paymentStatus' => 'pending',
                     'lastEditDate' => $appointment->updated_at,
-                    'fullMessage' => "Event: {$appointment->name}<br>" .
+                    'fullMessage' => "Date: {$dateTime->format('d M y')}<br>" .
+                    "Event: {$appointment->name}<br>" .
                         "User: {$userName}<br>" .
                         "Venue: {$venueName}<br>" .
                         "No of Guests: {$appointment->guests}<br>" .

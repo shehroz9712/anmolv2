@@ -14,9 +14,9 @@
 
         .fc-header-toolbar {
             /*
-                                                                                                the calendar will be butting up against the edges,
-                                                                                                but let's scoot in the header's buttons
-                                                                                                */
+                                                                                                    the calendar will be butting up against the edges,
+                                                                                                    but let's scoot in the header's buttons
+                                                                                                    */
             padding-top: 1em;
             padding-left: 1em;
             padding-right: 1em;
@@ -145,8 +145,31 @@
                                                                         <td>{{ \Carbon\Carbon::parse($event->date)->format('m/d/Y') }}
                                                                         <td>$0.00</td>
                                                                         <td>$0.00</td>
-                                                                        <td>{{ $event->status }}</td>
-                                                                        <td></td>
+                                                                        <td>
+                                                                            @switch($event->status)
+                                                                                @case(1)
+                                                                                    Prospect
+                                                                                    @break
+                                                                                @case(2)
+                                                                                    Definite
+                                                                                    @break
+                                                                                @case(3)
+                                                                                    Lost
+                                                                                    @break
+                                                                                @case(4)
+                                                                                    Tentative
+                                                                                    @break
+                                                                                @case(5)
+                                                                                    Close
+                                                                                    @break
+                                                                                @case(6)
+                                                                                    Waitlist
+                                                                                    @break
+                                                                                @default
+                                                                                    pending
+                                                                            @endswitch
+                                                                        </td>
+                                                                        <td>{{ $event->journey->venue->name ?? 'N/A' }}</td>
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
