@@ -29,7 +29,12 @@ class Controller extends BaseController
 
     public function timeConvert($time)
     {
-        $time = Carbon::createFromFormat('h:i A', $time)->format('H:i:s');
+        if ($time) {
+            $time = Carbon::createFromFormat('h:i A', $time)->format('H:i:s');
+            # code...
+        } else {
+            $time = '00:00:00';
+        }
         return $time;
     }
 }

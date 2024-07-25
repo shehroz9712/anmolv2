@@ -311,7 +311,7 @@
         submitButton.addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the default form submission
             Swal.fire({
-                title: 'Do you want Equipment?',
+                title: 'Would you like to buy equipments? ',
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
