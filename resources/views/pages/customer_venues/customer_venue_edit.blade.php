@@ -105,7 +105,7 @@ Venue Edit - EatAnmol
                                         <div class="d-flex justify-content-end w-100">
                                             <div class="d-inline-block my-2">
                                                 <button class="btn ripple btn-main-primary d-inline-block"
-                                                    id="submitBtn">Save & Continue</button>
+                                                    id="submitBtn">Edit </button>
                                             </div>
                                         </div>
                                     </div>
