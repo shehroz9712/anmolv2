@@ -10,8 +10,8 @@
                 <h2 class="main-content-title tx-24 mg-b-5"></h2>
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Event List</h2>
-                     <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                         <li class="breadcrumb-item active" aria-current="page">List Event</li>
                     </ol>
@@ -106,14 +106,9 @@
                                                                     <li><a class="dropdown-item "
                                                                             href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
                                                                             <i class="fa fa-pencil-alt"></i>
-                                                                            Change Form </a>
+                                                                            Change items </a>
                                                                     </li>
                                                                 @endif
-                                                                <li><a class="dropdown-item "
-                                                                        href="{{ route('events.menu.edit', encrypt($event->journey->menu_submit)) }}">
-                                                                        <i class="fa fa-pencil-alt"></i>
-                                                                        Change Items </a>
-                                                                </li>
                                                             @endif
                                                             @if ($event->journey->service_styling_id)
                                                                 <li><a class="dropdown-item "
