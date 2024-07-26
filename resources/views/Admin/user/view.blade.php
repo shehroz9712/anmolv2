@@ -10,7 +10,7 @@
     <div class="page-header">
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">User Detail</h2>
-             <ol class="breadcrumb">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-user"><a href="{{ route('contact.index') }}">User Detail</a></li>
                 <li class="breadcrumb-user active" aria-current="page">User Detail</li>
@@ -162,22 +162,15 @@
                                                                     Venue </a></li>
                                                         @endif
                                                         @if ($event->journey->menu_submit)
-                                                            @if (Auth::user()->Role != 'Admin')
-                                                                <li><a class="dropdown-item "
-                                                                        href="{{ route('menu.index', encrypt($event->journey->eventid)) }}">
-                                                                        <i class="fa fa-pencil-alt"></i>
-                                                                        Change Full Menu
-                                                                    </a></li>
-                                                                <li><a class="dropdown-item "
-                                                                        href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
-                                                                        <i class="fa fa-pencil-alt"></i>
-                                                                        Change Form </a>
-                                                                </li>
-                                                            @endif
                                                             <li><a class="dropdown-item "
-                                                                    href="{{ route('events.menu.edit', encrypt($event->journey->menu_submit)) }}">
+                                                                    href="{{ route('menu.index', encrypt($event->journey->eventid)) }}">
                                                                     <i class="fa fa-pencil-alt"></i>
-                                                                    Change Items </a>
+                                                                    Change Full Menu
+                                                                </a></li>
+                                                            <li><a class="dropdown-item "
+                                                                    href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
+                                                                    <i class="fa fa-pencil-alt"></i>
+                                                                    Change items </a>
                                                             </li>
                                                         @endif
                                                         @if ($event->journey->service_styling_id)

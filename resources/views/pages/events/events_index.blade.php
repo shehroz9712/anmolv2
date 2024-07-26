@@ -97,18 +97,16 @@
                                                                         Venue </a></li>
                                                             @endif
                                                             @if ($event->journey->menu_submit)
-                                                                @if (Auth::user()->Role != 'Admin')
-                                                                    <li><a class="dropdown-item "
-                                                                            href="{{ route('menu.index', encrypt($event->journey->eventid)) }}">
-                                                                            <i class="fa fa-pencil-alt"></i>
-                                                                            Change Full Menu
-                                                                        </a></li>
-                                                                    <li><a class="dropdown-item "
-                                                                            href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
-                                                                            <i class="fa fa-pencil-alt"></i>
-                                                                            Change items </a>
-                                                                    </li>
-                                                                @endif
+                                                                <li><a class="dropdown-item "
+                                                                        href="{{ route('menu.index', encrypt($event->journey->eventid)) }}">
+                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                        Change Full Menu
+                                                                    </a></li>
+                                                                <li><a class="dropdown-item "
+                                                                        href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
+                                                                        <i class="fa fa-pencil-alt"></i>
+                                                                        Change items </a>
+                                                                </li>
                                                             @endif
                                                             @if ($event->journey->service_styling_id)
                                                                 <li><a class="dropdown-item "
