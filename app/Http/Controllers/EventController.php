@@ -61,7 +61,7 @@ class EventController extends Controller
                     'paymentStatus' => 'pending',
                     'lastEditDate' => $appointment->updated_at,
                     'fullMessage' => "Date: {$dateTime->format('d M y')}<br>" .
-                    "Event: {$appointment->name}<br>" .
+                        "Event: {$appointment->name}<br>" .
                         "User: {$userName}<br>" .
                         "Venue: {$venueName}<br>" .
                         "No of Guests: {$appointment->guests}<br>" .
@@ -234,5 +234,14 @@ class EventController extends Controller
         $event->delete();
 
         return redirect()->route('events.index')->with('message', 'Event deleted successfully.');
+    }
+
+
+    function invoice(Request $request, $id)
+    {
+        $id = decrypt($id);
+        $journey = Journey::where('eventid', $id)->with('event', 'venue', 'ServiceStyling', 'package')->firstOrFail();
+        $menu = EventMenu::where('event_id', $journey->eventid)->with('dishes')->get();
+        return view('pages.events.invoice', compact('journey', 'menu'));
     }
 }

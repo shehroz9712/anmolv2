@@ -55,8 +55,8 @@
                                             <td>{{ $event->end_time }}</td>
                                             <td class="d-flex"> <a href="{{ route('events.show', encrypt($event->id)) }}"
                                                     class="btn btn-main-primary px-3">View</a>
-                                                {{-- <a href="{{ route('events.show', encrypt($event->id)) }}"
-                                                    class="btn btn-main-primary px-3">Download Invoice</a> --}}
+                                                <a href="{{ route('events.invoice.show', encrypt($event->id)) }}"
+                                                    class="btn btn-main-primary px-3">Show Invoice</a>
                                                 @php
 
                                                     $eventDate = \Carbon\Carbon::parse($event->date);
