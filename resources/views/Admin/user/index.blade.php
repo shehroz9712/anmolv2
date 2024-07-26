@@ -17,13 +17,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Contacts List</li>
                 </ol>
             </div>
-            <div class="d-flex">
-                <div class="justify-content-center">
-                    <a href="{{ route('subcategories.create') }}" class="btn btn-primary my-2 btn-icon-text">
-                        <i class="fe fe-plus me-2"></i> Contacts List
-                    </a>
-                </div>
-            </div>
+
         </div>
 
         <!-- End Page Header -->

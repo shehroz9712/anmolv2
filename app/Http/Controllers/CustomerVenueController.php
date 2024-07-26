@@ -117,9 +117,9 @@ class CustomerVenueController extends Controller
 
             $event = Event::find($journey->eventid);
             if (Auth::user()->Role != "Admin") {
-                $this->sendNotification('admin', 'Edit Venue ', 'User edit this venue event id#' . $event->name);
+                $this->sendNotification('admin', 10, 'Edit Venue ', 'User edit this venue event id#' . $event->name);
             } else {
-                $this->sendNotification('user', 'Edit Event ', 'Admin edit this venue event id#' . $event->name);
+                $this->sendNotification('user', $venue->createdby, 'Edit Event ', 'Admin edit this venue event id#' . $event->name);
             }
         }
         return redirect()->route('events.index')->with('message', 'Updated Successfully');
