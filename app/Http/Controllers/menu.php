@@ -9,15 +9,19 @@ use App\Models\Equipment;
 use App\Models\Event;
 use App\Models\EventMenu;
 use App\Models\Journey;
+use App\Models\MenuQuery;
 use App\Models\Package;
 use App\Models\Price;
 use App\Models\SubCategory;
+use App\Traits\NotificationTrait;
 use Exception;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class menu extends Controller
 {
+    use NotificationTrait;
     public function index(Request $request, $eventId = null)
     {
 
@@ -35,6 +39,61 @@ class menu extends Controller
         $dishes = Dish::with('subcategory')->get();
 
         return view('pages.menu.menu-edit', compact('menus', 'dishes', 'eventId'));
+    }
+    function menu_edit_request(Request $request, $eventId = null)
+    {
+
+        $eventId = decrypt($eventId);
+        $menus  = EventMenu::with('dishes')->where('event_id', $eventId)->get();
+        $dishes = Dish::with('subcategory')->get();
+
+        $request_dishes =  MenuQuery::where('eventId', $eventId)->with('oldDish', 'newDish')->get();
+
+        return view('pages.menu.menu-edit', compact('menus', 'dishes', 'request_dishes', 'eventId'));
+    }
+    function acceptDishChange(Request $request)
+    {
+        // Create or update the MenuQuery record
+        $query = MenuQuery::updateOrCreate(
+            ['old_dish_id' => $request->old_dish_id],
+            ['new_dish_id' => $request->new_dish_id, 'status' => 1] // Assuming status 1 means accepted
+        );
+
+
+        $dish = EventMenu::where(['event_id' => $request->eventId, 'dish_id' => $request->old_dish_id])->first();
+
+        $dish->update([
+            'dish_id' => $request->new_dish_id
+        ]);
+        return response()->json(['message' => 'Dish change accepted successfully.']);
+    }
+    function menu_query(Request $request)
+    {
+        // Retrieve the old and new dishes arrays from the request
+        $oldDishes = $request->input('olddishes', []);
+        $newDishes = $request->input('newdishes', []);
+        $eventId = $request->input('eventId');
+
+        // Loop through the arrays and create a MenuQuery record for each pair
+        foreach ($oldDishes as $index => $oldDishId) {
+            // Ensure there is a corresponding new dish for the current old dish
+            if (isset($newDishes[$index])) {
+                $newDishId = $newDishes[$index];
+                MenuQuery::where('old_dish_id', $oldDishId)->delete();
+                MenuQuery::create([
+                    'old_dish_id' => $oldDishId,
+                    'new_dish_id' => $newDishId,
+                    'eventId' => $eventId,
+                    'status' => 0,
+                ]);
+            } else {
+                continue;
+            }
+            $this->sendNotification('admin', 10, 'Edit Event ', 'User edit this Menu');
+        }
+
+        // Optionally, you can return a response or redirect
+        return redirect()->back()->with('success', 'Menu queries created successfully.');
     }
     public function getDishes(Request $request)
     {
@@ -103,6 +162,16 @@ class menu extends Controller
             ->with('sub_category')
             ->get();
         return view('pages.menu.addon', compact('categories', 'eventId'));
+    }
+    public function getNewDishes(Request $request)
+    {
+
+
+        $dish = Dish::find($request->oldDishId);
+        $dishes = Dish::where('subcategory_id', $dish->subcategory_id)->with('subcategory')->get();
+
+        return response()->json($dishes); // Use response() helper function
+
     }
     public function items(Request $request, $eventId = null)
     {

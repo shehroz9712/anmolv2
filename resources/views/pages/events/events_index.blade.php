@@ -102,11 +102,20 @@
                                                                         <i class="fa fa-pencil-alt"></i>
                                                                         Change Full Menu
                                                                     </a></li>
-                                                                <li><a class="dropdown-item "
-                                                                        href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
-                                                                        <i class="fa fa-pencil-alt"></i>
-                                                                        Change items </a>
-                                                                </li>
+
+                                                                @if (Auth::user()->Role == 'Admin')
+                                                                    <li><a class="dropdown-item "
+                                                                            href="{{ route('events.menu.edit.request', encrypt($event->journey->eventid)) }}">
+                                                                            <i class="fa fa-pencil-alt"></i>
+                                                                            Request Change items </a>
+                                                                    </li>
+                                                                @else
+                                                                    <li><a class="dropdown-item "
+                                                                            href="{{ route('events.menu.edit', encrypt($event->journey->eventid)) }}">
+                                                                            <i class="fa fa-pencil-alt"></i>
+                                                                            Change items </a>
+                                                                    </li>
+                                                                @endif
                                                             @endif
                                                             @if ($event->journey->service_styling_id)
                                                                 <li><a class="dropdown-item "
