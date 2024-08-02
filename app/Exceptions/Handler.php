@@ -26,6 +26,7 @@ class Handler extends ExceptionHandler
         return response()->view('Common.404', [], 404);
     }
 
+
     return parent::render($request, $exception);
 }
     /**

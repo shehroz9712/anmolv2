@@ -90,25 +90,30 @@ class EventController extends Controller
             'name' => 'required|string',
             'date' => 'required|date',
             'guests' => 'required',
-            'type' => 'string'
+            'type' => 'string',
+            'start_time' => 'string',
+            'end_time' => 'string'
         ]);
         // dd($data);
 
         if ($request['type'] == 'Other') {
             // If the type is "Other," use the value from the "Other Type" field
-            $request['type'] = $request->input('otherType');
+            $data['type'] = $request->input('otherType');
         }
-
+        if (!$request->type == 'Pick up') {
+            $data['type'] = '';
+        }
         // Convert the 'date' field to 'YYYY-MM-DD' format
         $date = Carbon::parse($data['date'])->format('Y-m-d');
-        $request['date'] = $date;
-        $request['occasion'] = '';
+        $data['date'] = $date;
+        $data['occasion'] = '';
 
         // Assign the currently authenticated user as the creator of the event
-        $request['createdby'] = Auth::user()->id;
+        $data['createdby'] = Auth::user()->id;
+
 
         // Create a new Event instance
-        $event = Event::create($request->all());
+        $event = Event::create($data);
 
         // Get the ID of the created event
         $eventId = $event->id;
@@ -211,6 +216,9 @@ class EventController extends Controller
             $data['type'] = $request->input('otherType');
         }
 
+        if (!$request->type == 'Pick up') {
+            $data['type'] = '';
+        }
         // if ($data['occasion'] === 'Other') {
         //     $data['occasion'] = $request->input('otherOccasion');
         // }

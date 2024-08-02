@@ -191,8 +191,10 @@ Event Create - EatAnmol
                                     <div class="form-group" style="display: none;" id="locationField">
                                         <label for="location">Location</label>
                                         <select class="form-control" id="location" name="location">
-                                            <option value="Milwaukee">Milwaukee</option>
+                                            <option label="Select Event Type"></option>
+
                                             <option value="Naperville">Naperville</option>
+                                            <option value="Milwaukee">Milwaukee</option>
                                         </select>
                                         <small id="locationError" class="text-danger"></small>
                                     </div>
