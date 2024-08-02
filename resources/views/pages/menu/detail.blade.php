@@ -259,10 +259,10 @@
                         //     ' items in ' + category + '.');
                         Swal.fire({
                             icon: 'warning',
-                            title: 'Oops...',
+                            title: '',
                             // text: 'If you want to change the selected  items in ' + category +
                             //     ', kindly unselect the checked  items.',
-                            text: 'You will be able to select more items on next screen'
+                            text: 'To change the selected items, please uncheck the currently selected ones.'
                         });
                     }
                 });

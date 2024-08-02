@@ -34,7 +34,7 @@
     <div class="page-header">
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">Edit Event</h2>
-             <ol class="breadcrumb">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit Event</li>
@@ -197,24 +197,31 @@
                                             value="{{ $event->type_id === null ? $event->type : '' }}">
                                         <small id="otherTypeError" class="text-danger"></small>
                                     </div>
-                                    <div class="form-group" id="status">
-                                        <label for="status">Status</label>
-                                        <select name="status" id="status" class="form-control">
-                                            <option value="1" {{ $event->status == 1 ? 'selected' : '' }}>Prospect
-                                            </option>
-                                            <option value="2" {{ $event->status == 2 ? 'selected' : '' }}>Definite
-                                            </option>
-                                            <option value="3" {{ $event->status == 3 ? 'selected' : '' }}>Lost
-                                            </option>
-                                            <option value="4" {{ $event->status == 4 ? 'selected' : '' }}>Tentative
-                                            </option>
-                                            <option value="5" {{ $event->status == 5 ? 'selected' : '' }}>Close
-                                            </option>
-                                            <option value="6" {{ $event->status == 6 ? 'selected' : '' }}>Waitlist
-                                            </option>
-                                        </select>
-                                        <small id="statusError" class="text-danger"></small>
-                                    </div>
+                                    @if (Auth::user()->Role == 'Admin')
+                                        <div class="form-group" id="status">
+                                            <label for="status">Status</label>
+                                            <select name="status" id="status" class="form-control">
+                                                <option value="1" {{ $event->status == 1 ? 'selected' : '' }}>
+                                                    Prospect
+                                                </option>
+                                                <option value="2" {{ $event->status == 2 ? 'selected' : '' }}>
+                                                    Definite
+                                                </option>
+                                                <option value="3" {{ $event->status == 3 ? 'selected' : '' }}>Lost
+                                                </option>
+                                                <option value="4" {{ $event->status == 4 ? 'selected' : '' }}>
+                                                    Tentative
+                                                </option>
+                                                <option value="5" {{ $event->status == 5 ? 'selected' : '' }}>Close
+                                                </option>
+                                                <option value="6" {{ $event->status == 6 ? 'selected' : '' }}>
+                                                    Waitlist
+                                                </option>
+                                            </select>
+                                            <small id="statusError" class="text-danger"></small>
+                                        </div>
+                                    @endif
+
 
                                     <div class="d-flex">
                                         <div class="d-flex justify-content-end w-100">
