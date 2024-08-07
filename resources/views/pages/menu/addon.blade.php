@@ -76,10 +76,10 @@
                                                                             </label>
                                                                         </div>
                                                                         @php
-                                                                        $image = $dishes->image
-                                                                            ? $dishes->image
-                                                                            : 'no-image.png';
-                                                                    @endphp
+                                                                            $image = $dishes->image
+                                                                                ? $dishes->image
+                                                                                : 'no-image.png';
+                                                                        @endphp
                                                                         <div class="col-md-2">
                                                                             <a class="btn ripple"
                                                                                 data-bs-target="#modaldemo{{ $dishes->id }}"
@@ -111,7 +111,7 @@
                                                                             </div>
                                                                             <div class="modal-body text-justify">
                                                                                 <img src="{{ asset('uploads/dishes/' . $image) }}"
-                                                                                alt="image">
+                                                                                    alt="image">
                                                                                 <p>{!! $dishes->long_desc !!}</p>
                                                                             </div>
                                                                         </div>
@@ -234,27 +234,21 @@
             var saveButton = document.getElementById('save-button');
             var skipButton = document.getElementById('skip-button');
 
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+            });
+
             saveButton.addEventListener('click', function(event) {
                 event.preventDefault(); // Prevent the default form submission
-                Swal.fire({
-                    title: 'Would you like to add add-on Items?',
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes',
-                    cancelButtonText: 'No'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Submit the form with additional data indicating the choice
-                        submitForm(true);
-                    } else {
-                        // Continue with form submission without navigating
-                        submitForm(false);
-                    }
-                });
+                showConfirmationDialog();
             });
 
             skipButton.addEventListener('click', function(event) {
                 event.preventDefault(); // Prevent the default form submission
+                showConfirmationDialog();
+            });
+
+            function showConfirmationDialog() {
                 Swal.fire({
                     title: 'Would you like to add add-on Items?',
                     icon: 'question',
@@ -263,14 +257,15 @@
                     cancelButtonText: 'No'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // Submit the form with additional data indicating the choice
                         submitForm(true);
-                    } else {
-                        // Continue with form submission without navigating
+                    } else if (result.isDenied) {
                         submitForm(false);
+                    } else {
+                        // Do nothing if the modal is dismissed
+                        console.log("Modal dismissed without selection");
                     }
                 });
-            });
+            }
 
             function submitForm(navigateToAddon) {
                 // Append a hidden input to the form to indicate the user's choice
@@ -283,9 +278,7 @@
                 // Submit the form
                 form.submit();
             }
-
         }
-
         // When save button in the modal is clicked, submit the value
     </script>
     <script>

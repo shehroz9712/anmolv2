@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    User Detail - EatAnmol
+    Contact Detail - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -9,35 +9,26 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">User Detail</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Contact Detail</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-user"><a href="{{ route('contact.index') }}">User Detail</a></li>
-                <li class="breadcrumb-user active" aria-current="page">User Detail</li>
+                <li class="breadcrumb-item"><a href="{{ route('contact.index') }}">Contact list</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Details</li>
             </ol>
         </div>
     </div>
-
     <div class="row row-sm">
         <div class="col-lg-12 col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
-                    <div>
-                        <h6 class="main-content-label mb-1">User Detail</h6>
-                        <p class="text-muted card-sub-title"> User with details.</p>
-                    </div>
                     <div class="container">
 
                         <div class="row">
                             <div class="col-md-6">
-                                <h2>User Details</h2>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tbody>
-                                            <tr>
-                                                <th class="col-sm-4">ID</th>
-                                                <td class="col-sm-8">{{ $user->id }}</td>
-                                            </tr>
+
                                             <tr>
                                                 <th class="col-sm-4">Name</th>
                                                 <td class="col-sm-8">{{ $user->name }}</td>
@@ -76,12 +67,12 @@
                                                 <th class="col-sm-4">Created At</th>
 
                                                 <td class="col-sm-8">
-                                                    {{ \Carbon\Carbon::parse($user->created_at)->format('m/d/Y') }}</td>
+                                                    {{ \Carbon\Carbon::parse($user->created_at)->format('d M Y') }}</td>
                                             </tr>
                                             <tr>
                                                 <th class="col-sm-4">Updated At</th>
                                                 <td class="col-sm-8">
-                                                    {{ \Carbon\Carbon::parse($user->updated_at)->format('m/d/Y') }}</td>
+                                                    {{ \Carbon\Carbon::parse($user->updated_at)->format('d M Y') }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

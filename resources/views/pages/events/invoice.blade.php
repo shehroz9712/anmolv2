@@ -88,10 +88,13 @@
                                                 <div class="py-2 mt-4">
                                                     <h5 class="font-size-15">Venue Details</h5>
                                                     <div class="text-muted">
-                                                        <p class="mb-1"><strong>Address:</strong> {{ $venue->address }}</p>
+                                                        <p class="mb-1"><strong>Address:</strong> {{ $venue->address }}
+                                                        </p>
                                                         <p class="mb-1"><strong>City:</strong> {{ $venue->city }}</p>
-                                                        <p class="mb-1"><strong>Contact Person:</strong> {{ $venue->contact_person }}</p>
-                                                        <p class="mb-1"><strong>Contact Email:</strong> {{ $venue->contact_email }}</p>
+                                                        <p class="mb-1"><strong>Contact Person:</strong>
+                                                            {{ $venue->contact_person }}</p>
+                                                        <p class="mb-1"><strong>Contact Email:</strong>
+                                                            {{ $venue->contact_email }}</p>
                                                         <p><strong>Contact Phone:</strong> {{ $venue->contact_phone }}</p>
                                                     </div>
                                                 </div>
@@ -101,9 +104,12 @@
                                                 <div class="py-2 mt-4">
                                                     <h5 class="font-size-15">Package Details</h5>
                                                     <div class="text-muted">
-                                                        <p class="mb-1"><strong>Package Name:</strong> {{ $package->package_name }}</p>
-                                                        <p class="mb-1"><strong>Person Count:</strong> {{ $package->person }}</p>
-                                                        <p class="mb-1"><strong>Currency:</strong> {{ $package->currency }} {{ $package->price }}</p>
+                                                        <p class="mb-1"><strong>Package Name:</strong>
+                                                            {{ $package->package_name }}</p>
+                                                        <p class="mb-1"><strong>Person Count:</strong>
+                                                            {{ $package->person }}</p>
+                                                        <p class="mb-1"><strong>Currency:</strong>
+                                                            {{ $package->currency }} {{ $package->price }}</p>
                                                         <p><strong>Category:</strong> {{ $package->category->name }}</p>
                                                     </div>
                                                 </div>
@@ -115,9 +121,11 @@
                                                     <div class="text-muted">
                                                         @foreach ($menu as $key => $item)
                                                             @if ($loop->first || $item->type !== $menu[$loop->index - 1]->type)
-                                                                <h6 class="font-size-15 mb-2">{{ ucfirst($item->type) }} Items</h6>
+                                                                <h6 class="font-size-15 mb-2">{{ ucfirst($item->type) }}
+                                                                    Items</h6>
                                                             @endif
-                                                            <p class="mb-1">{{ $key + 1 }}. {{ $item->dishes->name }} ({{ ucfirst($item->type) }})</p>
+                                                            <p class="mb-1">{{ $key + 1 }}.
+                                                                {{ $item->dishes->name }} ({{ ucfirst($item->type) }})</p>
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -125,7 +133,8 @@
 
                                             <div class="d-print-none mt-4">
                                                 <div class="float-end">
-                                                    <a href="javascript:printInvoice()" class="btn btn-success me-1"><i class="fa fa-print"></i> Print</a>
+                                                    <a href="javascript:printInvoice()" class="btn btn-success me-1"><i
+                                                            class="fa fa-print"></i> Print</a>
                                                     <a href="#" class="btn btn-primary w-md">Send</a>
                                                 </div>
                                             </div>
@@ -169,14 +178,15 @@
 @endsection
 
 @section('js')
-<script>
-    function printInvoice() {
-        var printContent = document.getElementById('invoice').innerHTML;
-        var originalContent = document.body.innerHTML;
+    <script>
+        function printInvoice() {
+            var printContent = document.getElementById('invoice').innerHTML;
+            var originalContent = document.body.innerHTML;
 
-        document.body.innerHTML = printContent;
-        window.print();
-        document.body.innerHTML = originalContent;
-    }
-</script>
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+        }
+    </script>
 @endsection
+s
