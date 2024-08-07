@@ -12,8 +12,8 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name','status', 'guests', 'type', 'date', 'occasion', 'start_time', 'end_time', 'createdby', 'location', 'address', 'otherType'];
-    protected $dates = ['deleted_at'];
+    protected $fillable = ['name', 'status', 'guests', 'type', 'date', 'occasion', 'start_time', 'end_time', 'createdby', 'location', 'address', 'otherType'];
+    protected $dates = ['deleted_at', 'date'];
 
 
     public function createdby()

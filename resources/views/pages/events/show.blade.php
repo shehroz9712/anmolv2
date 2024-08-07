@@ -10,9 +10,9 @@
                 <h2 class="main-content-title tx-24 mg-b-5"></h2>
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Event Details</h2>
-                   
-                     <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                         <li class="breadcrumb-item active" aria-current="page">show Event</li>
                     </ol>
@@ -31,15 +31,16 @@
                             $ServiceStyling = $journey->ServiceStyling;
                             $package = $journey->package;
                         @endphp
-                        <div class="container" >
+                        <div class="container">
 
                             <div class="row ">
                                 <div class="align-items-center d-flex justify-content-between mb-4">
-                                
-                                <h4 class="mb-0">Event</h4>
-                                 <a href="{{ route('index') }}"><img src="https://anmolv2.jmahalal.com/assets/img/brand/logo.png" height="50px"
-                        class="mobile-logo" alt="logo"></a>
-                                                                </div>
+
+                                    <h4 class="mb-0">Event</h4>
+                                    <a href="{{ route('index') }}"><img
+                                            src="https://anmolv2.jmahalal.com/assets/img/brand/logo.png" height="50px"
+                                            class="mobile-logo" alt="logo"></a>
+                                </div>
                                 <hr>
                                 <div class="col-lg-12">
                                     <div class="row">
@@ -65,7 +66,13 @@
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
                                                 <h6 class="col-sm-4 fw-bold">Date</h6>
-                                                <div class="col-sm-8">{{ $event->date }}</div>
+
+                                                @php
+                                                    $formattedDate = Carbon\Carbon::parse($event->date)->format(
+                                                        'd M Y',
+                                                    );
+                                                @endphp
+                                                <div class="col-sm-8">{{ $formattedDate }}</div>
                                             </div>
                                         </div>
 
@@ -85,21 +92,25 @@
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
                                                 <h6 class="col-sm-4 fw-bold">Created At</h6>
-                                                <div class="col-sm-8">{{ $event->created_at }}</div>
+                                                <div class="col-sm-8">{{ $event->created_at->format('d M Y') }}</div>
                                             </div>
                                         </div>
+
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
                                                 <h6 class="col-sm-4 fw-bold">Created By</h6>
                                                 <div class="col-sm-8">{{ $event->created_user }}</div>
                                             </div>
                                         </div>
-                                        <div class="border-bottom col-md-6 mt-2">
-                                            <div class="row">
-                                                <h6 class="col-sm-4 fw-bold">Location</h6>
-                                                <div class="col-sm-8">{{ $event->location }}</div>
+                                        @if ($event->type == 'Pick up')
+                                            <div class="border-bottom col-md-6 mt-2">
+                                                <div class="row">
+                                                    <h6 class="col-sm-4 fw-bold">Location</h6>
+                                                    <div class="col-sm-8">{{ $event->location }}</div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
+
                                         @if ($event->type == 'Drop-off')
                                             <div class="border-bottom col-md-6 mt-2">
                                                 <div class="row">
@@ -109,22 +120,17 @@
                                             </div>
                                         @endif
 
-                                        <div class="border-bottom col-md-6 mt-2">
-                                            <div class="row">
-                                                <h6 class="col-sm-4 fw-bold">Event Type</h6>
-                                                <div class="col-sm-8">{{ $event->type }}</div>
-                                            </div>
-                                        </div>
+
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
                                                 <h6 class="col-sm-4 fw-bold">Total Amount</h6>
-                                                <div class="col-sm-8">$00.00</div>
+                                                <div class="col-sm-8">$ 00.<small>00</small> </div>
                                             </div>
                                         </div>
                                         <div class="border-bottom col-md-6 mt-2">
                                             <div class="row">
-                                                <h6 class="col-sm-4 fw-bold">Paid  Amount</h6>
-                                                <div class="col-sm-8">$00.00</div>
+                                                <h6 class="col-sm-4 fw-bold">Paid Amount</h6>
+                                                <div class="col-sm-8">$ 00.<small>00</small></div>
                                             </div>
                                         </div>
                                     </div>
@@ -226,12 +232,13 @@
                                 @endif
                                 @if ($ServiceStyling)
                                 @endif
-                                
+
                                 <!--<div class="row">-->
-                                    <div class="col-lg-12 text-end">
-                                        
-                                     <a href="javascript:printInvoice()" class="btn btn-main-primary me-1"><i class="fa fa-print"></i> Print</a>
-                                    </div>
+                                <div class="col-lg-12 text-end">
+
+                                    <a href="javascript:printInvoice()" class="btn btn-main-primary me-1"><i
+                                            class="fa fa-print"></i> Print</a>
+                                </div>
                                 <!--</div>-->
 
                             </div>
@@ -242,14 +249,13 @@
         @endsection
 
         @section('js')
-        <script>
-            function printInvoice() {
-             var printContent = document.getElementById('invoice').innerHTML;
+            <script>
+                function printInvoice() {
+                    var printContent = document.getElementById('invoice').innerHTML;
 
-        document.body.innerHTML = printContent;
-        window.print();
-        document.body.innerHTML = originalContent;
-            }
-        </script>
-
+                    document.body.innerHTML = printContent;
+                    window.print();
+                    document.body.innerHTML = originalContent;
+                }
+            </script>
         @endsection
