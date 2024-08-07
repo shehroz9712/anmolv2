@@ -66,7 +66,7 @@
                                                                 <div class="align-items-center row">
                                                                     <div class="col-md-10">
                                                                         @php
-                                                                            $image = $dishes->image
+                                                                            $image = $include->sharable->image
                                                                                 ? $dishes->image
                                                                                 : 'no-image.png';
                                                                         @endphp
@@ -82,7 +82,7 @@
                                                                     </div>
                                                                     <div class="col-md-2">
                                                                         <a class="btn ripple"
-                                                                            data-bs-target="#modaldemo{{ $dishes->id }}"
+                                                                            data-bs-target="#modaldemo{{ $include->sharable->id }}"
                                                                             data-bs-toggle="modal" href="">
                                                                             <i class="fa-info-circle"
                                                                                 style="font-size: 12px;"></i>
@@ -93,7 +93,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="modal fade" id="modaldemo{{ $dishes->id }}"
+                                                            <div class="modal fade" id="modaldemo{{ $include->sharable->id }}"
                                                                 tabindex="-1" role="dialog"
                                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
@@ -108,6 +108,8 @@
                                                                                     class="fa fa-close fs-5"></i></button>
                                                                         </div>
                                                                         <div class="modal-body">
+                                                                            <img src="{{ asset('uploads/dishes/' . $image) }}"
+                                                                                alt="image">
                                                                             <p>{!! $include->sharable->long_desc !!}</p>
                                                                         </div>
                                                                     </div>

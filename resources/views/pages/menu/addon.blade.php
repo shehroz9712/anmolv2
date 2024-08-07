@@ -75,6 +75,11 @@
                                                                                     class="tx-13">{{ $dishes->name }}</span>
                                                                             </label>
                                                                         </div>
+                                                                        @php
+                                                                        $image = $dishes->image
+                                                                            ? $dishes->image
+                                                                            : 'no-image.png';
+                                                                    @endphp
                                                                         <div class="col-md-2">
                                                                             <a class="btn ripple"
                                                                                 data-bs-target="#modaldemo{{ $dishes->id }}"
@@ -105,6 +110,8 @@
                                                                                 </button>
                                                                             </div>
                                                                             <div class="modal-body">
+                                                                                <img src="{{ asset('uploads/dishes/' . $image) }}"
+                                                                                alt="image">
                                                                                 <p>{!! $dishes->long_desc !!}</p>
                                                                             </div>
                                                                         </div>
