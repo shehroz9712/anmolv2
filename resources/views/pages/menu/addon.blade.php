@@ -109,7 +109,7 @@
                                                                                     <i class="fa fa-close fs-5"></i>
                                                                                 </button>
                                                                             </div>
-                                                                            <div class="modal-body">
+                                                                            <div class="modal-body text-justify">
                                                                                 <img src="{{ asset('uploads/dishes/' . $image) }}"
                                                                                 alt="image">
                                                                                 <p>{!! $dishes->long_desc !!}</p>
