@@ -20,7 +20,7 @@
             <div class="d-flex">
                 <div class="justify-content-center">
                     <a href="{{ route('dishes.create') }}" class="btn btn-primary my-2 btn-icon-text">
-                        <i class="fe fe-plus me-2"></i> Add Item
+                     Add Item
                     </a>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Price</th>
-                                        <th>Unit</th>
+                                        {{-- <th>Unit</th> --}}
                                         <th>Sub Category</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -48,7 +48,7 @@
                                         <tr>
                                             <td>{{ $dish->name }}</td>
                                             <td>${{ $dish->price }}</td>
-                                            <td>{{ $dish->unit }}</td>
+                                            {{-- <td>{{ $dish->unit }}</td> --}}
                                             <td>{{ $dish->subcategory ? $dish->subcategory->name : '' }}</td>
                                             <td>{{ $dish->status == 1 ? 'Active' : 'Inactive' }}</td>
                                             <td>

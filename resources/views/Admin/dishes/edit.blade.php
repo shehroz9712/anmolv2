@@ -78,11 +78,11 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        {{-- <div class="col-md-6 mb-3">
                                             <label for="unit">Unit</label>
                                             <input type="text" class="form-control" id="unit" name="unit"
                                                 value="{{ $dish->unit }}">
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6 mb-3">
                                             <label for="desc">Description</label>
                                             <input type="text" class="form-control" id="desc" name="desc"

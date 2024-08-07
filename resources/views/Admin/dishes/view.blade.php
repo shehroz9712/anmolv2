@@ -27,7 +27,6 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <h2>Main Item Details</h2>
                                 <div class="table-responsive">
                                     <table class="table ">
                                         <tbody>
@@ -46,10 +45,10 @@
                                                         src="{{ asset('uploads/dishes/' . $dish->image) }}"
                                                         alt="Current Image" width="100"></td>
                                             </tr>
-                                            <tr>
+                                            {{-- <tr>
                                                 <th class="col-sm-4">Unit</th>
                                                 <td class="col-sm-8">{{ $dish->unit }}</td>
-                                            </tr>
+                                            </tr> --}}
                                             <tr>
                                                 <th class="col-sm-4">Description</th>
                                                 <td class="col-sm-8">{{ $dish->desc }}</td>
