@@ -15,7 +15,10 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Crypt;
-
+use PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Mpdf\Mpdf;
 
 class EventController extends Controller
 {
@@ -250,5 +253,24 @@ class EventController extends Controller
         $journey = Journey::where('eventid', $id)->with('event', 'venue', 'ServiceStyling', 'package')->firstOrFail();
         $menu = EventMenu::where('event_id', $journey->eventid)->with('dishes')->get();
         return view('pages.events.invoice', compact('journey', 'menu'));
+    }
+    function print_invoice(Request $request, $id)
+    {
+        $id = decrypt($id);
+        $journey = Journey::where('eventid', $id)->with('event', 'venue', 'ServiceStyling', 'package')->firstOrFail();
+        $menu = EventMenu::where('event_id', $journey->eventid)->with('dishes')->get();
+
+
+        $html = view('pages.events.invoice', compact('journey', 'menu'))->render();
+
+        // Initialize MPDF
+        $mpdf = new Mpdf();
+
+        // Write HTML to the MPDF object
+        $mpdf->WriteHTML($html);
+
+        // Output the PDF
+        return response($mpdf->Output('invoice.pdf', 'D'), 200)
+            ->header('Content-Type', 'application/pdf');
     }
 }

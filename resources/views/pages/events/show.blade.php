@@ -236,8 +236,8 @@
                                 <!--<div class="row">-->
                                 <div class="col-lg-12 text-end">
 
-                                    <a href="javascript:printInvoice()" class="btn btn-main-primary me-1"><i
-                                            class="fa fa-print"></i> Print</a>
+                                    <a href="{{ route('event.print.invoice', encrypt($event->id)) }}"
+                                        class="btn btn-main-primary me-1"><i class="fa fa-print"></i> Print</a>
                                 </div>
                                 <!--</div>-->
 
@@ -246,17 +246,9 @@
                     </div>
                 </div>
             </div>
-        @endsection
+        </div>
+    </div>
+@endsection
 
-        @section('js')
-            <script>
-                function printInvoice() {
-                    var printContent = document.getElementById('invoice').innerHTML;
-
-                    var originalContent = document.body.innerHTML;
-                    document.body.innerHTML = printContent;
-                    window.print();
-                    document.body.innerHTML = originalContent;
-                }
-            </script>
-        @endsection
+@section('js')
+@endsection

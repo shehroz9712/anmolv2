@@ -114,6 +114,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/events-create', [EventController::class, 'create'])->name('events.create');
     Route::post('/events', [EventController::class, 'store'])->name('events.store');
     Route::get('/events/invoice/show/{id}', [EventController::class, 'invoice'])->name('events.invoice.show');
+    Route::get('/events/invoice/print/{id}', [EventController::class, 'print_invoice'])->name('event.print.invoice');
 
     Route::get('/service/styling/{eventId?}', [ServiceController::class, 'create'])->name('service.styling');
     Route::get('/edit/service/{serviceid}', [ServiceController::class, 'edit'])->name('service.styling.edit');
