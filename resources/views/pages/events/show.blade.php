@@ -10,6 +10,7 @@
                 <h2 class="main-content-title tx-24 mg-b-5"></h2>
                 <div>
                     <h2 class="main-content-title tx-24 mg-b-5">Event Details</h2>
+                   
                      <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
@@ -21,7 +22,7 @@
         <!-- End Page Header -->
         <div class="row row-sm">
             <div class="col-lg-12">
-                <div class="card custom-card p-3 mg-b-20">
+                <div class="card custom-card p-3 mg-b-20" id="invoice">
                     <div class="card-body">
 
                         @php
@@ -30,10 +31,15 @@
                             $ServiceStyling = $journey->ServiceStyling;
                             $package = $journey->package;
                         @endphp
-                        <div class="container">
+                        <div class="container" >
 
-                            <div class="row">
-                                <h4>Event</h4>
+                            <div class="row ">
+                                <div class="align-items-center d-flex justify-content-between mb-4">
+                                
+                                <h4 class="mb-0">Event</h4>
+                                 <a href="{{ route('index') }}"><img src="https://anmolv2.jmahalal.com/assets/img/brand/logo.png" height="50px"
+                        class="mobile-logo" alt="logo"></a>
+                                                                </div>
                                 <hr>
                                 <div class="col-lg-12">
                                     <div class="row">
@@ -220,6 +226,13 @@
                                 @endif
                                 @if ($ServiceStyling)
                                 @endif
+                                
+                                <!--<div class="row">-->
+                                    <div class="col-lg-12 text-end">
+                                        
+                                     <a href="javascript:printInvoice()" class="btn btn-main-primary me-1"><i class="fa fa-print"></i> Print</a>
+                                    </div>
+                                <!--</div>-->
 
                             </div>
                         </div>
@@ -229,4 +242,14 @@
         @endsection
 
         @section('js')
+        <script>
+            function printInvoice() {
+             var printContent = document.getElementById('invoice').innerHTML;
+
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = originalContent;
+            }
+        </script>
+
         @endsection
