@@ -47,8 +47,8 @@
                                             <label for="image">Image</label>
                                             <input type="file" class="form-control" id="image" name="image">
                                             <!-- Display current image -->
-                                                <img src="{{ asset('uploads/dishes/' . $dish->image) }}"
-                                                    alt="Current Image" width="100">
+                                            <img src="{{ asset('uploads/dishes/' . $dish->image) }}" alt="Current Image"
+                                                width="100">
                                         </div>
                                     </div>
 
@@ -83,7 +83,7 @@
                                             <input type="text" class="form-control" id="unit" name="unit"
                                                 value="{{ $dish->unit }}">
                                         </div> --}}
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-12 mb-3">
                                             <label for="desc">Description</label>
                                             <input type="text" class="form-control" id="desc" name="desc"
                                                 value="{{ $dish->desc }}">
