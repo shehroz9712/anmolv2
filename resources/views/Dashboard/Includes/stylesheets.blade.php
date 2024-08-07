@@ -115,7 +115,8 @@
     .btn-primary,
     .btn-main-primary {
         background-color: #fc7b03 !important;
-        border: 0px !important
+        border: 0px !important;
+        padding: 8px 30px;
     }
 
     .btn-primary:hover,

@@ -100,8 +100,8 @@ class EventController extends Controller
             // If the type is "Other," use the value from the "Other Type" field
             $data['type'] = $request->input('otherType');
         }
-        if (!$request->type == 'Pick up') {
-            $data['type'] = '';
+        if ($request->type != 'Pick up') {
+            $data['location'] = '';
         }
         // Convert the 'date' field to 'YYYY-MM-DD' format
         $date = Carbon::parse($data['date'])->format('Y-m-d');
@@ -216,15 +216,14 @@ class EventController extends Controller
             $data['type'] = $request->input('otherType');
         }
 
-        if (!$request->type == 'Pick up') {
-            $data['type'] = '';
+        if ($request->type != 'Pick up') {
+            $data['location'] = '';
         }
         // if ($data['occasion'] === 'Other') {
         //     $data['occasion'] = $request->input('otherOccasion');
         // }
         $date = Carbon::parse($data['date'])->format('Y-m-d');
         $data['date'] = $date;
-
         $event->update($data);
         if (Auth::user()->Role != "Admin") {
             $this->sendNotification('admin', Auth::id(), 'Edit Event ', 'User edit this event event event name : ' . $request->name);

@@ -99,6 +99,8 @@ class DishesController extends Controller
 
         // Update the main package details
         $dishes = Dish::find($id);
+        $data['image'] =  $this->uploadImage($data['image'], 'dishes');
+
         $dishes->update($data);
         $equipment = $request->equipment;
         if ($equipment) {
