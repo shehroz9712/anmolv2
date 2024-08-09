@@ -22,3 +22,11 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/jmahalal/anmolv2.jmahalal.com/public/index.php on line 34
+[07-Aug-2024 22:59:32 UTC] PHP Warning:  require(/home/jmahalal/anmolv2.jmahalal.com/vendor/composer/../phpseclib/phpseclib/phpseclib/bootstrap.php): Failed to open stream: No such file or directory in /home/jmahalal/anmolv2.jmahalal.com/vendor/composer/autoload_real.php on line 41
+[07-Aug-2024 22:59:32 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/jmahalal/anmolv2.jmahalal.com/vendor/composer/../phpseclib/phpseclib/phpseclib/bootstrap.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/jmahalal/anmolv2.jmahalal.com/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home/jmahalal/anmolv2.jmahalal.com/vendor/composer/autoload_real.php(45): {closure}()
+#1 /home/jmahalal/anmolv2.jmahalal.com/vendor/autoload.php(25): ComposerAutoloaderInitf1c383a17d32a30aadd5ecff2f7319ce::getLoader()
+#2 /home/jmahalal/anmolv2.jmahalal.com/public/index.php(34): require('/home/jmahalal/...')
+#3 {main}
+  thrown in /home/jmahalal/anmolv2.jmahalal.com/vendor/composer/autoload_real.php on line 41
