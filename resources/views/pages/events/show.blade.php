@@ -237,7 +237,7 @@
                                 <div class="col-lg-12 text-end">
 
                                     <a href="{{ route('event.print.invoice', encrypt($event->id)) }}"
-                                        class="btn btn-main-primary me-1"><i class="fa fa-print"></i> Print</a>
+                                        class="btn btn-main-primary me-1"><i class="fa fa-print"></i> PDF</a>
                                 </div>
                                 <!--</div>-->
 
