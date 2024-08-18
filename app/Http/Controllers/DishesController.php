@@ -46,8 +46,10 @@ class DishesController extends Controller
                 'labour',
             ]
         );
-
-        $data['image'] =  $this->uploadImage($data['image'], 'dishes');
+if($request->has('image')){
+    
+        $data['image'] =  $this->uploadImage($request->image, 'dishes');
+}
         $dish = Dish::create($data);
         $labour = $request->labour;
         foreach ($labour as $key => $value) {
@@ -99,8 +101,10 @@ class DishesController extends Controller
 
         // Update the main package details
         $dishes = Dish::find($id);
-        $data['image'] =  $this->uploadImage($data['image'], 'dishes');
-
+if($request->has('image')){
+    
+        $data['image'] =  $this->uploadImage($request->image, 'dishes');
+}
         $dishes->update($data);
         $equipment = $request->equipment;
         if ($equipment) {
@@ -121,8 +125,11 @@ class DishesController extends Controller
                     'dish_id' => $id
                 ];
             }
+        if(isset($lbrdata)){
+            DishesLabour::insert($lbrdata);
         }
-        DishesLabour::insert($lbrdata);
+            
+        }
         return redirect()->route('dishes.index')->with('message', 'Items Updated Successfully');
     }
 

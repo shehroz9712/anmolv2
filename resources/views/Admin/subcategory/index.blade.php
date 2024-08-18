@@ -38,7 +38,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Category</th>
-                                        <th>Is Addon</th>
+                                        <!--<th>Is Addon</th>-->
                                         <th>It is</th>
                                         {{-- <th>Single</th>
                                         <th>Trio</th> --}}
@@ -51,7 +51,7 @@
                                         <tr>
                                             <td>{{ $record->name }}</td>
                                             <td>{{ $record->category->name }}</td>
-                                            <td>{{ $record->is_addon }}</td>
+                                            <!--<td>{{ $record->is_addon }}</td>-->
                                             <td>{{ $record->term }}</td>
                                             {{-- <td>{{ $record->single }}</td>
                                             <td>{{ $record->trio }}</td> --}}

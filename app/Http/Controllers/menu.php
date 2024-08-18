@@ -73,6 +73,7 @@ class menu extends Controller
         $oldDishes = $request->input('olddishes', []);
         $newDishes = $request->input('newdishes', []);
         $eventId = $request->input('eventId');
+        $event = Event::find($eventId);
 
         // Loop through the arrays and create a MenuQuery record for each pair
         foreach ($oldDishes as $index => $oldDishId) {
@@ -89,7 +90,7 @@ class menu extends Controller
             } else {
                 continue;
             }
-            $this->sendNotification('admin', 10, 'Edit Event ', 'User edit this Menu');
+            $this->sendNotification('admin', 10, 'Edit Event ', $event->user->name ." create a change menu request for event: ". $event->name);
         }
 
         // Optionally, you can return a response or redirect

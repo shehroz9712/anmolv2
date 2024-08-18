@@ -163,7 +163,7 @@
                                     <div class="text-center">
 
                                         <a href="{{ route('index') }}" style="text-align: center"><img
-                                                src="https://anmolv2.jmahalal.com/assets/img/brand/logo.png"
+                                                src="data:image/png;base64,{{ base64_encode(file_get_contents('https://anmolv2.jmahalal.com/assets/img/brand/logo.png')) }}"
                                                 height="50px" class="mobile-logo" alt="logo"></a>
                                     </div>
                                     @php

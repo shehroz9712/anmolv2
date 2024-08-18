@@ -41,8 +41,8 @@
                                         <th class="wd-lg-10p">ID</th>
                                         <th class="wd-lg-20p">Category</th>
                                         <th class="wd-lg-20p">Price</th>
-                                        <th class="wd-lg-20p">No of items</th>
-                                        <th class="wd-lg-20p">No of Person</th>
+                                        <th class="wd-lg-20p">Items</th>
+                                        <!--<th class="wd-lg-20p">No of Person</th>-->
                                         <th class="wd-lg-20p">status</th>
 
                                         <th class="wd-lg-20p">Actions</th>
@@ -53,8 +53,8 @@
                                         <tr>
                                             <td>{{ $package->id }}</td>
                                             <td>{{ $package->category->name }}</td>
-                                            <td>{{ $package->price }}</td>
-                                            <td>{{ $package->person }}</td>
+                                            <td>${{ $package->price }}</td>
+                                            <!--<td>{{ $package->person }}</td>-->
                                             <td>{{ count($package->include) }}</td>
                                             <td>
                                                 @if ($package->status == 1)

@@ -265,17 +265,31 @@ class EventController extends Controller
         $journey = Journey::where('eventid', $id)->with('event', 'venue', 'ServiceStyling', 'package')->firstOrFail();
         $menu = EventMenu::where('event_id', $journey->eventid)->with('dishes')->get();
 
+        $pdf = new Dompdf();
 
-        $html = view('pages.events.invoice', compact('journey', 'menu'))->render();
 
-        // Initialize MPDF
-        $mpdf = new Mpdf();
+        $pdf->loadHtml(view('pages.events.invoice', compact('journey', 'menu')));
+            $pdf->setPaper('legal', 'portrait');
+            $pdf->render();
 
-        // Write HTML to the MPDF object
-        $mpdf->WriteHTML($html);
+            $output = $pdf->output();
+            return response($output, 200)
+                ->header('Content-Type', 'application/pdf')
+                ->header('Content-Disposition', 'attachment; filename="form.pdf"');
 
-        // Output the PDF
-        return response($mpdf->Output('invoice.pdf', 'D'), 200)
-            ->header('Content-Type', 'application/pdf');
+
+
+//         $html = view('pages.events.invoice', compact('journey', 'menu'))->render();
+
+//         // Initialize MPDF
+       
+// $mpdf = new \Mpdf\Mpdf(['tempDir' => storage_path('temp'), 'memory_limit' => '512M']);
+
+//         // Write HTML to the MPDF object
+//         $mpdf->WriteHTML($html);
+
+//         // Output the PDF
+//         return response($mpdf->Output('invoice.pdf', 'i'), 200)
+//             ->header('Content-Type', 'application/pdf');
     }
 }

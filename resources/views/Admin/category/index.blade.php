@@ -39,8 +39,8 @@
                                         <th>Name</th>
                                         <th>Status</th>
                                         <th>Type</th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
+                                        <!--<th>Created At</th>-->
+                                        <!--<th>Updated At</th>-->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
