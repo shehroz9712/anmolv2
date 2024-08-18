@@ -57,8 +57,7 @@ class HomeController extends Controller
                     $userName = $appointment->user->name ?? 'N/A';
                     $venueName = $appointment->journey->venue->name ?? 'N/A';
                     $appointments[] = [
-                        'title' => \Carbon\Carbon::parse($appointment->start_time)->format('H:i') . ' ' . $appointment->name . ' ' . $appointment->type . ' ' . $appointment->guests,
-                        'event_title' => $appointment->name,
+                        'title' => $appointment->start_time . ' - ' . $appointment->name . ' - ' . $appointment->type. ' - ' . $appointment->guests,                        'event_title' => $appointment->name,
                         'start' => $appointment->date,
                         'end' => $appointment->end_time,
                         'extendedProps' => [
