@@ -35,10 +35,14 @@ class EventController extends Controller
 
         return view('pages.events.events_index', compact('events'));
     }
-    function calender()
+    function calender($type = null)
     {
 
-        $events = Event::with('journey')->get();
+        $eventData = Event::with('journey');
+        if ($type && $type != 'all') {
+            $eventData->where('type', $type);
+        }
+        $events = $eventData->get();
         $appointments = [];
         foreach ($events as $appointment) {
             $originalDate = $appointment->date . $appointment->start_time;
@@ -52,7 +56,8 @@ class EventController extends Controller
             $userName = $appointment->user->name ?? 'N/A';
             $venueName = $appointment->journey->venue->name ?? 'N/A';
             $appointments[] = [
-                'title' =>  $appointment->name,
+                'title' => \Carbon\Carbon::parse($appointment->start_time)->format('H:i') . ' ' . $appointment->name . ' ' . $appointment->type. ' ' . $appointment->guests,
+                'event_title' => $appointment->name,
                 'start' => $appointment->date,
                 'end' => $appointment->end_time,
                 'extendedProps' => [
@@ -77,7 +82,7 @@ class EventController extends Controller
             ];
         }
         // dd($appointments);
-        return view('pages.events.calender', compact('appointments'));
+        return view('pages.events.calender', compact('appointments', 'type'));
     }
 
     public function create()

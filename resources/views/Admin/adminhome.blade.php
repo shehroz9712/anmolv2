@@ -21,6 +21,9 @@
             padding-left: 1em;
             padding-right: 1em;
         }
+        .fc-event-title.fc-sticky {
+            text-wrap: pretty;
+        }
     </style>
 
     </style>
@@ -552,13 +555,11 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var currentDate = new Date();
-
             var currentDateString = currentDate.toISOString().slice(0, 10);
 
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-
                 height: 'auto',
                 selectMirror: true,
                 nowIndicator: true,
@@ -568,32 +569,41 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
                 },
                 initialDate: currentDateString,
-                navLinks: true, // can click day/week names to navigate views
-                businessHours: true, // display business hours
-                // editable: true,
+                navLinks: true,
+                businessHours: true,
                 selectable: true,
                 events: @json($appointments),
                 eventClick: function(info) {
-                    // Destroy existing popovers
+                    // Dispose of any existing popover
                     $('.popover').popover('dispose');
 
-                    // Create popover content
+                    // Create a new popover
                     var content = info.event.extendedProps.fullMessage || 'No additional details';
 
-                    // Use Bootstrap's popover
                     var popover = new bootstrap.Popover(info.el, {
-                        title: info.event.title,
+                        title: info.event.extendedProps.event_title,
                         content: content,
-                        html: true, // Allow HTML content
+                        html: true,
                         placement: 'top',
-                        trigger: 'focus'
+                        trigger: 'manual' // Use manual trigger for more control
                     });
 
                     // Show the popover
                     popover.show();
-                }
 
+                    // Function to handle click outside
+                    function handleClickOutside(event) {
+                        if (!info.el.contains(event.target) && !document.querySelector('.popover').contains(event.target)) {
+                            popover.hide();
+                            document.removeEventListener('click', handleClickOutside);
+                        }
+                    }
+
+                    // Attach event listener to document to handle click outside
+                    document.addEventListener('click', handleClickOutside);
+                }
             });
+
             calendar.render();
         });
     </script>

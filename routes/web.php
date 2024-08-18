@@ -108,7 +108,7 @@ Route::middleware('auth')->group(function () {
 
 
     //Events
-    Route::get('/calender', [EventController::class, 'calender'])->name('calender.index');
+    Route::get('/calender/{type?}', [EventController::class, 'calender'])->name('calender.index');
 
     Route::get('/events', [EventController::class, 'index'])->name('events.index');
     Route::get('/events-create', [EventController::class, 'create'])->name('events.create');
