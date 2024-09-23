@@ -75,7 +75,7 @@ class CustomerVenueController extends Controller
         }
 
 
-        return redirect()->route('menu.index', encrypt($request->event_id))->with('message', 'Venue Added Successfully');
+        return redirect()->route('service.styling', encrypt($request->event_id))->with('message', 'Venue Added Successfully');
     }
 
 

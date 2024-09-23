@@ -126,14 +126,14 @@
                             </a>
                         </li> --}}
                     @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('index') }}">
-                            <span class="shape1"></span>
-                            <span class="shape2"></span>
-                            <i class="ti-home sidemenu-icon menu-icon "></i>
-                            <span class="sidemenu-label">Infoboard</span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="ti-home sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Infoboard</span>
+                            </a>
+                        </li>
                         <li class="nav-item @if (Request::is('events') || Request::is('events/*')) active @endif">
                             <a class="nav-link " href="{{ route('events.create') }}">
                                 <span class="shape1"></span>
@@ -149,6 +149,15 @@
                                 <span class="shape2"></span>
                                 <i class="fe fe-globe sidemenu-icon menu-icon "></i>
                                 <span class="sidemenu-label">Venue</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  @if (Request::is('service') || Request::is('service/*')) active @endif">
+                            <a class="nav-link" href="#">
+                                {{-- <a class="nav-link" href="{{ route('service.styling') }}"> --}}
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="si si-earphones-alt sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Service Style</span>
                             </a>
                         </li>
                         <li class="nav-item  @if (Request::is('menu')) active @endif">
@@ -194,13 +203,13 @@
                                 </a>
                             </li>
                         @endif
-                        <li class="nav-item  @if (Request::is('service') || Request::is('service/*')) active @endif">
+                        <li class="nav-item  @if (Request::is('service') || Request::is('service/*')) acstive @endif">
                             <a class="nav-link" href="#">
                                 {{-- <a class="nav-link" href="{{ route('service.styling') }}"> --}}
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="si si-earphones-alt sidemenu-icon menu-icon "></i>
-                                <span class="sidemenu-label">Service Style</span>
+                                <span class="sidemenu-label">Service Style Timing</span>
                             </a>
                         </li>
                         <li class="nav-item  @if (Request::is('equipment') || Request::is('equipment/*')) active @endif">
