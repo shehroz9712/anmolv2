@@ -118,7 +118,6 @@
                     <div class="row row-sm">
                         <div class="col-sm-12 col-lg-12 col-xl-12">
                             <div class="card custom-card overflow-hidden">
-
                                 <div class="card-body ps-0">
                                     <div class="row row-sm">
                                         <div class="col-lg-12">
@@ -142,8 +141,9 @@
                                                             </thead>
                                                             <tbody>
                                                                 @foreach ($events as $event)
+
                                                                     <tr>
-                                                                        <td>{{ $event->user->name }}</td>
+                                                                        <td>{{ $event->user?->name }}</td>
                                                                         <td>{{ $event->name }}</td>
                                                                         <td>{{ \Carbon\Carbon::parse($event->date)->format('m/d/Y') }}
                                                                         <td>$0.00</td>
