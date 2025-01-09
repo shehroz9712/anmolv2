@@ -103,7 +103,7 @@
     <div class="page-header">
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">Service Style</h2>
-             <ol class="breadcrumb">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Service Style</li>
@@ -118,9 +118,60 @@
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">
-                                <form method="POST" action="{{ route('service.store') }}"  id="formid">
+                                <h4>Select Service Styleing</h4>
+                                <form method="POST" action="{{ route('service.store') }}" id="formid">
                                     @csrf
                                     <div class="row">
+                                        <div class="col-lg-12 mt-4">
+                                            <label class="form-label">Appetizer Selection</label>
+                                            <select class="form-control select2" name="appetizer_selection"
+                                                id="appetizer_selection" required>
+                                                <option value="">Select Station</option>
+                                                <option value="1">Action Station</option>
+                                                <option value="2">Butler</option>
+                                                <option value="3">Buffet</option>
+                                                <option value="3">Display Station</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-12 mt-4">
+                                            <label class="form-label">Main Course Selection</label>
+                                            <select class="form-control select2" name="main_course_selection"
+                                                id="main_course_selection" required>
+                                                <option value="">Select Main Course Station</option>
+                                                <option value="1">Action Station</option>
+                                                <option value="2">Butler</option>
+                                                <option value="3">Buffet</option>
+                                                <option value="3">Display Station</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-12 mt-4">
+                                            <label class="form-label">Dessert Selection</label>
+                                            <select class="form-control select2" name="dessert_selection"
+                                                id="dessert_selection" required>
+                                                <option value="">Select Dessert Station</option>
+                                                <option value="1">Action Station</option>
+                                                <option value="2">Butler</option>
+                                                <option value="3">Buffet</option>
+                                                <option value="3">Display Station</option>
+                                            </select>
+                                        </div>
+
+                                        {{-- <div class="col-lg-12">
+                                            <label class="form-label">Add Ons</label>
+                                            <select class="form-control" name="add_ons" id="add_ons" required>
+                                                <option value="">Select Add Ons</option>
+                                                <option value="1">Add On 1</option>
+                                                <option value="2">Add On 2</option>
+                                                <option value="3">Add On 3</option>
+                                            </select>
+                                        </div> --}}
+                                    </div>
+
+
+
+                                    {{-- <div class="row">
                                         <div class="col-lg-12">
                                             <label class="form-label">Service Type</label>
                                             <select class="form-control" name="service_type" id="service_type" required>
@@ -291,7 +342,7 @@
                                                     Continue</button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </form>
                             </div>
                         </div>
@@ -303,43 +354,43 @@
 @endsection
 
 @section('js')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var submitButton = document.getElementById('submitBtn');
-        var form = document.getElementById('formid'); // Assuming your form ID is 'formid'
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var submitButton = document.getElementById('submitBtn');
+            var form = document.getElementById('formid'); // Assuming your form ID is 'formid'
 
-        submitButton.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            Swal.fire({
-                title: 'Would you like to buy equipments? ',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'No'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Proceed to navigate to addon page or handle as needed
-                    submitForm(true);
-                } else {
-                    submitForm(false);
-                }
+            submitButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                Swal.fire({
+                    title: 'Would you like to buy equipments? ',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Proceed to navigate to addon page or handle as needed
+                        submitForm(true);
+                    } else {
+                        submitForm(false);
+                    }
+                });
             });
+
+            // Function for form submission based on user's choice
+            function submitForm(navigateToAddon) {
+                // Append a hidden input to the form to indicate the user's choice
+                var navigateInput = document.createElement('input');
+                navigateInput.type = 'hidden';
+                navigateInput.name = 'navigate_to_addon';
+                navigateInput.value = navigateToAddon ? 'yes' : 'no';
+                form.appendChild(navigateInput);
+
+                // Submit the form
+                form.submit();
+            }
         });
-
-        // Function for form submission based on user's choice
-        function submitForm(navigateToAddon) {
-            // Append a hidden input to the form to indicate the user's choice
-            var navigateInput = document.createElement('input');
-            navigateInput.type = 'hidden';
-            navigateInput.name = 'navigate_to_addon';
-            navigateInput.value = navigateToAddon ? 'yes' : 'no';
-            form.appendChild(navigateInput);
-
-            // Submit the form
-            form.submit();
-        }
-    });
-</script>
+    </script>
 
     <script>
         const descriptions = {
