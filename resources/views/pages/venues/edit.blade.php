@@ -23,7 +23,7 @@ Venue Edit - EatAnmol
         </div>
         {{-- <div class="d-flex">
         <div class="justify-content-center">
-            <a href="{{ route('customer-venues.index') }}" class="btn btn-primary my-2 btn-icon-text">
+            <a href="{{ route('Venues.index') }}" class="btn btn-primary my-2 btn-icon-text">
                 <i class="fe fe-grid me-2"></i> View All
             </a>
         </div>
@@ -37,7 +37,7 @@ Venue Edit - EatAnmol
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">
                                 <form id="editEventForm" method="POST"
-                                    action="{{ route('customer-venues.update', $venue->id) }}">
+                                    action="{{ route('Venues.update', $venue->id) }}">
                                     @csrf
                                     @method('PUT') <!-- Use PUT for updating existing resource -->
 

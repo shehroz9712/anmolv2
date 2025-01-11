@@ -56,7 +56,7 @@
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">
-                                <form method="POST" action="{{ route('customer-venues.store') }}">
+                                <form method="POST" action="{{ route('Venues.store') }}">
                                     @csrf
 
                                     <input type="hidden" name="event_id" id="event_id"
@@ -117,7 +117,7 @@
                                     </div>
                                     <div class="d-flex ">
                                         <div class="d-flex justify-content-end w-100">
-                                            {{-- <a href="{{ route('customer-venues.index') }}" class="btn btn-purple my-2 btn-icon-text">
+                                            {{-- <a href="{{ route('Venues.index') }}" class="btn btn-purple my-2 btn-icon-text">
                                             <i class="fe fe-grid me-2"></i> View All Venues
                                         </a> --}}
                                             <div class="d-inline-block my-2"> <button

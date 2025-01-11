@@ -6,56 +6,52 @@ use App\Models\AdminVenue;
 use App\Models\Journey;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\CustomerVenue;
+use App\Models\Venue;
 use App\Models\Event;
 use App\Traits\NotificationTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
 
-class CustomerVenueController extends Controller
+class VenueController extends Controller
 {
     use NotificationTrait;
     public function index()
     {
         // Retrieve all customer venues with relations
-        $customerVenues = CustomerVenue::with(['adminVenue', 'createdBy'])->where('createdBy', Auth::id())->get();
+        $Venues = Venue::with(['adminVenue', 'createdBy'])->where('createdBy', Auth::id())->get();
 
-        return view('pages.customer_venues.customer_venue_index', compact('customerVenues'));
+        return view('pages.venues.index', compact('Venues'));
     }
 
-public function getContactDetails(Request $request)
-{
-    $address = $request->input('address');
+    public function getContactDetails(Request $request)
+    {
+        $address = $request->input('address');
 
-    // Search for the venue in the database based on the address
-    $venue = AdminVenue::where('address', $address)->first();
+        // Search for the venue in the database based on the address
+        $venue = AdminVenue::where('address', $address)->first();
 
-    if ($venue) {
-        return response()->json([
-            'status' => 'success',
-            'data' => [
-                'contact_person' => $venue->contact_person,
-                'contact_email' => $venue->contact_email,
-                'contact_phone' => $venue->contact_phone,
-            ],
-        ]);
+        if ($venue) {
+            return response()->json([
+                'status' => 'success',
+                'data' => [
+                    'contact_person' => $venue->contact_person,
+                    'contact_email' => $venue->contact_email,
+                    'contact_phone' => $venue->contact_phone,
+                ],
+            ]);
+        }
+
+        return response()->json(['status' => 'error', 'message' => 'No contact details found.']);
     }
-
-    return response()->json(['status' => 'error', 'message' => 'No contact details found.']);
-}
 
 
     public function create(Request $request, $eventId = null)
     {
 
-        $eventId = $eventId;
-
-        // Provide data for creating a new customer venue (e.g., admin venues and users)
-        // $venues  = AdminVenue::all();
         $users = User::all();
 
-        return view('pages.customer_venues.customer_venue_create', compact( 'users', 'eventId'));
+        return view('pages.venues.create', compact('users', 'eventId'));
     }
 
     public function store(Request $request)
@@ -71,7 +67,7 @@ public function getContactDetails(Request $request)
         ]);
 
         // Create an AdminVenue and associate it with the authenticated user
-        $customerVenue = CustomerVenue::create([
+        $Venue = Venue::create([
             'createdby' => auth()->user()->id,
             'name' => $request->venueAddress,
             'address' => $request->address,
@@ -82,8 +78,6 @@ public function getContactDetails(Request $request)
         ]);
 
 
-
-
         if ($request->event_id != null) {
 
             $journey = Journey::where(
@@ -92,10 +86,9 @@ public function getContactDetails(Request $request)
             )->firstOrFail();
 
             $journey->update([
-                'venueid' => $customerVenue->id,
+                'venueid' => $Venue->id,
             ]);
         }
-
 
         return redirect()->route('service.styling', encrypt($request->event_id))->with('message', 'Venue Added Successfully');
     }
@@ -108,8 +101,8 @@ public function getContactDetails(Request $request)
     {
         $venueId = decrypt($id);
 
-        $venue = CustomerVenue::findOrFail($venueId);
-        return view('pages.customer_venues.customer_venue_edit', compact('venueId', 'venue'));
+        $venue = Venue::findOrFail($venueId);
+        return view('pages.venues.edit', compact('venueId', 'venue'));
     }
 
     public function update(Request $request)
@@ -122,7 +115,7 @@ public function getContactDetails(Request $request)
             'address' => 'required|nullable|string',
 
         ]);
-        $venue = CustomerVenue::find($request->venueId);
+        $venue = Venue::find($request->venueId);
 
         // Create an AdminVenue and associate it with the authenticated user
         $venue->update([
@@ -148,10 +141,10 @@ public function getContactDetails(Request $request)
     }
 
 
-    public function destroy(CustomerVenue $customerVenue)
+    public function destroy(Venue $Venue)
     {
-        $customerVenue->delete();
+        $Venue->delete();
 
-        return redirect()->route('customer-venues.index')->with('message', 'Deleted Successfully');
+        return redirect()->route('Venues.index')->with('message', 'Deleted Successfully');
     }
 }

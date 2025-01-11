@@ -111,7 +111,7 @@ class ServiceController extends Controller
         if (!$journey->venue) {
             Session::put('eventId', $request->eventId);
 
-            return redirect()->route('customer-venues.createWithId');
+            return redirect()->route('Venues.createWithId');
         } else {
             return redirect()->route('menu.index');
         }
