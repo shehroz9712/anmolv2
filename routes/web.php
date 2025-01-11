@@ -138,6 +138,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/event/venues/edit/{id}', [CustomerVenueController::class, 'edit'])->name('customer-venues.edit');
     Route::put('/customer-venues', [CustomerVenueController::class, 'update'])->name('customer-venues.update');
     Route::delete('/customer-venues/{customerVenue}', [CustomerVenueController::class, 'destroy'])->name('customer-venues.destroy');
+Route::post('/get-contact-details', [CustomerVenueController::class, 'getContactDetails'])->name('get.contact.details');
 
 
     //password

@@ -40,8 +40,8 @@
             <h2 class="main-content-title tx-24 mg-b-5"></h2>
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5">Venue</h2>
-                 <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Add Venue</li>
                 </ol>
@@ -172,20 +172,44 @@
 
                 document.getElementById('address').value = place.name;
 
-
-                var cityzip = ''; // Declare the variable
+                var cityzip = '';
                 place.address_components.forEach(function(component) {
                     if (component.types.includes('locality')) {
-                        cityzip += component.long_name + ', '; // Concatenate locality
+                        cityzip += component.long_name + ', ';
                     } else if (component.types.includes('administrative_area_level_1')) {
-                        cityzip += component.long_name + ', '; // Concatenate administrative_area_level_1
+                        cityzip += component.long_name + ', ';
                     } else if (component.types.includes('postal_code')) {
-                        cityzip += component.long_name; // Concatenate postal_code
+                        cityzip += component.long_name;
                     }
                 });
 
                 document.getElementById('city').value = cityzip;
+
+                // Fetch contact details via AJAX
+                fetch('{{ route('get.contact.details') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            address: document.getElementById('address').value
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            document.getElementById('ContactPerson').value = data.data.contact_person;
+                            document.getElementById('ContactEmail').value = data.data.contact_email;
+                            document.getElementById('ContactPhone').value = data.data.contact_phone;
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
             });
+
+
         }
     </script>
 

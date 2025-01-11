@@ -24,16 +24,38 @@ class CustomerVenueController extends Controller
         return view('pages.customer_venues.customer_venue_index', compact('customerVenues'));
     }
 
+public function getContactDetails(Request $request)
+{
+    $address = $request->input('address');
+
+    // Search for the venue in the database based on the address
+    $venue = AdminVenue::where('address', $address)->first();
+
+    if ($venue) {
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'contact_person' => $venue->contact_person,
+                'contact_email' => $venue->contact_email,
+                'contact_phone' => $venue->contact_phone,
+            ],
+        ]);
+    }
+
+    return response()->json(['status' => 'error', 'message' => 'No contact details found.']);
+}
+
+
     public function create(Request $request, $eventId = null)
     {
 
         $eventId = $eventId;
 
         // Provide data for creating a new customer venue (e.g., admin venues and users)
-        $venues  = AdminVenue::all();
+        // $venues  = AdminVenue::all();
         $users = User::all();
 
-        return view('pages.customer_venues.customer_venue_create', compact('venues', 'users', 'eventId'));
+        return view('pages.customer_venues.customer_venue_create', compact( 'users', 'eventId'));
     }
 
     public function store(Request $request)
