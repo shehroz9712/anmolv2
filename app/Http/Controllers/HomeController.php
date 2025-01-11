@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerVenue;
+use App\Models\Venue;
 use App\Models\Event;
 use App\Models\Journey;
 use App\Models\User;
@@ -29,7 +29,7 @@ class HomeController extends Controller
                 $venue = null;
                 if ($upcomingEvent != null) {
 
-                    $venue = CustomerVenue::with(['adminVenue',])->where('event_id', $upcomingEvent->id)->first();
+                    $venue = Venue::with(['adminVenue',])->where('event_id', $upcomingEvent->id)->first();
                 }
                 $journey = Journey::where('created_by', Auth::id())->first();
 

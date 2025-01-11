@@ -109,8 +109,8 @@
                                 <span class="sidemenu-label">Contact</span>
                             </a>
                         </li>
-                        {{-- <li class="nav-item @if (Request::is('customer-venues') || Request::is('customer-venues/*')) active @endif">
-                            <a class="nav-link" href="{{ route('customer-venues.index') }}">
+                        {{-- <li class="nav-item @if (Request::is('Venues') || Request::is('Venues/*')) active @endif">
+                            <a class="nav-link" href="{{ route('Venues.index') }}">
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-globe sidemenu-icon menu-icon "></i>
@@ -142,9 +142,9 @@
                                 <span class="sidemenu-label">Events</span>
                             </a>
                         </li>
-                        <li class="nav-item @if (Request::is('customer-venues') || Request::is('customer-venues/*')) active @endif">
+                        <li class="nav-item @if (Request::is('Venues') || Request::is('Venues/*')) active @endif">
                             <a class="nav-link " href="#">
-                                {{-- <a class="nav-link" href="{{ route('customer-venues.create') }}"> --}}
+                                {{-- <a class="nav-link" href="{{ route('Venues.create') }}"> --}}
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-globe sidemenu-icon menu-icon "></i>

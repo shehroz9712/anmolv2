@@ -4,7 +4,7 @@ use App\Http\Controllers\admin;
 use App\Http\Controllers\AdminVenueController;
 use App\Http\Controllers\AppleAuthController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\CustomerVenueController;
+use App\Http\Controllers\VenueController;
 use App\Http\Controllers\DishesController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\EventController;
@@ -129,30 +129,11 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
 
-    //customer venue
-
-    Route::get('/customer-venues', [CustomerVenueController::class, 'index'])->name('customer-venues.index');
-    Route::get('/customer-venues-create', [CustomerVenueController::class, 'create'])->name('customer-venues.create');
-    Route::get('/customer-venues-create/{id?}', [CustomerVenueController::class, 'create'])->name('customer-venues.createWithId');
-    Route::post('/customer-venues', [CustomerVenueController::class, 'store'])->name('customer-venues.store');
-    Route::get('/event/venues/edit/{id}', [CustomerVenueController::class, 'edit'])->name('customer-venues.edit');
-    Route::put('/customer-venues', [CustomerVenueController::class, 'update'])->name('customer-venues.update');
-    Route::delete('/customer-venues/{customerVenue}', [CustomerVenueController::class, 'destroy'])->name('customer-venues.destroy');
-Route::post('/get-contact-details', [CustomerVenueController::class, 'getContactDetails'])->name('get.contact.details');
 
 
     //password
     Route::get('/change-password', [PasswordChangeController::class, 'showChangePasswordForm'])->name('passwordChange');
     Route::post('/changePassword', [PasswordChangeController::class, 'changePassword'])->name('password.change');
-
-    // Route::group(['prefix' => 'items'], function () {
-    //     Route::get('/', [ItemController::class, 'index'])->name('items.index');
-    //     Route::get('/add', [ItemController::class, 'create'])->name('items.create');
-    //     Route::post('/', [ItemController::class, 'store'])->name('items.store');
-    //     Route::get('/{item}', [ItemController::class, 'edit'])->name('items.edit');
-    //     Route::put('/{item}', [ItemController::class, 'update'])->name('items.update');
-    //     Route::delete('/{item}', [ItemController::class, 'destroy'])->name('items.destroy');
-    // });
 });
 
 Route::get('auth/twitter', [TwitterController::class, 'loginwithTwitter']);
@@ -201,3 +182,23 @@ Route::prefix('admin')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+
+
+
+///////////////////////////////////////////// clean code /////////////////////////////////////////////
+
+
+Route::middleware('auth')->group(function () {
+
+    //customer venue
+
+    Route::get('/venues', [VenueController::class, 'index'])->name('Venues.index');
+    Route::get('/venues-create', [VenueController::class, 'create'])->name('Venues.create');
+    Route::get('/venues-create/{id?}', [VenueController::class, 'create'])->name('Venues.createWithId');
+    Route::post('/venues', [VenueController::class, 'store'])->name('Venues.store');
+    Route::get('/event/venues/edit/{id}', [VenueController::class, 'edit'])->name('Venues.edit');
+    Route::put('/venues', [VenueController::class, 'update'])->name('Venues.update');
+    Route::delete('/venues/{Venue}', [VenueController::class, 'destroy'])->name('Venues.destroy');
+    Route::post('/venues/contact-details', [VenueController::class, 'getContactDetails'])->name('get.contact.details');
+});

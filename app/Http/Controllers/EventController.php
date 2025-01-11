@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerVenue;
+use App\Models\Venue;
 use App\Models\Event;
 use App\Models\EventMenu;
 use App\Models\Journey;
@@ -140,7 +140,7 @@ class EventController extends Controller
                 ->with('message', 'Event created successfully.');
         } else
             // Redirect to the venue creation page with the event ID
-            return redirect()->route('customer-venues.createWithId', encrypt($eventId))
+            return redirect()->route('Venues.createWithId', encrypt($eventId))
                 ->with([
                     'message' => 'Event created successfully.',
 
@@ -169,7 +169,7 @@ class EventController extends Controller
         if (!$journey->venue) {
             Session::put('eventId', $request->eventId);
 
-            return redirect()->route('customer-venues.createWithId', $eventId);
+            return redirect()->route('Venues.createWithId', $eventId);
         }
         if (!$journey->menu_submit) {
             return redirect()->route('menu.index', $eventId);

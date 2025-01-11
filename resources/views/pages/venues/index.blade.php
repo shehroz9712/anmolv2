@@ -11,14 +11,14 @@
                     <h2 class="main-content-title tx-24 mg-b-5">Venue List</h2>
                      <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('customer-venues.index') }}">Venue</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('Venues.index') }}">Venue</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Edit Venue</li>
                     </ol>
                 </div>
             </div>
             <div class="d-flex">
                 <div class="justify-content-center">
-                    <a href="{{ route('customer-venues.create') }}" class="btn btn-primary my-2 btn-icon-text">
+                    <a href="{{ route('Venues.create') }}" class="btn btn-primary my-2 btn-icon-text">
                         <i class="fe fe-grid me-2"></i> Venue List
                     </a>
                 </div>
@@ -48,31 +48,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($customerVenues as $customerVenue)
+                                    @foreach ($Venues as $Venue)
                                         <tr>
-                                            {{-- <td>{{ $customerVenue->id }}</td> --}}
-                                            <td>{{ $customerVenue->ContactPerson }}</td>
-                                            <td>{{ $customerVenue->ContactEmail }}</td>
-                                            <td>{{ $customerVenue->ContactPhone }}</td>
-                                            <td>{{ $customerVenue->adminVenue->name }}</td>
-                                            <td>{{ $customerVenue->adminVenue->address }}</td>
-                                            <td>{{ $customerVenue->adminVenue->city }}</td>
-                                            {{-- <td>{{ $customerVenue->adminVenue->state }}</td>
-                                        <td>{{ $customerVenue->adminVenue->zipcode }}</td>    --}}
-                                            <td>{{ optional($customerVenue->createdBy)->name }}</td>
+                                            {{-- <td>{{ $Venue->id }}</td> --}}
+                                            <td>{{ $Venue->ContactPerson }}</td>
+                                            <td>{{ $Venue->ContactEmail }}</td>
+                                            <td>{{ $Venue->ContactPhone }}</td>
+                                            <td>{{ $Venue->adminVenue->name }}</td>
+                                            <td>{{ $Venue->adminVenue->address }}</td>
+                                            <td>{{ $Venue->adminVenue->city }}</td>
+                                            {{-- <td>{{ $Venue->adminVenue->state }}</td>
+                                        <td>{{ $Venue->adminVenue->zipcode }}</td>    --}}
+                                            <td>{{ optional($Venue->createdBy)->name }}</td>
 
                                             <td>
                                                 <form id="editEventForm" class=" mx-1" method="POST"
-                                                    action="{{ route('customer-venues.edit') }}">
+                                                    action="{{ route('Venues.edit') }}">
                                                     @csrf
                                                     @method('POST')
                                                     <!-- Adding this line to specify the method as POST -->
-                                                    <input type="hidden" name="venueId" value="{{ $customerVenue->id }}">
+                                                    <input type="hidden" name="venueId" value="{{ $Venue->id }}">
                                                     <button type="submit" class="btn btn-main-primary px-3">Edit</button>
                                                 </form>
 
-                                                {{-- <a class="btn btn-main-primary px-3" href="{{ route('customer-venues.edit', ['encryptedId' => Crypt::encryptString($customerVenue->id)]) }}">Edit</a> --}}
-                                                <form action="{{ route('customer-venues.destroy', $customerVenue->id) }}"
+                                                {{-- <a class="btn btn-main-primary px-3" href="{{ route('Venues.edit', ['encryptedId' => Crypt::encryptString($Venue->id)]) }}">Edit</a> --}}
+                                                <form action="{{ route('Venues.destroy', $Venue->id) }}"
                                                     method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
