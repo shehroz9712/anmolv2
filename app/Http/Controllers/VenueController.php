@@ -35,7 +35,7 @@ class VenueController extends Controller
             return response()->json([
                 'status' => 'success',
                 'data' => [
-                    'contact_person' => $venue->contact_person,
+                    'contact_person' => $venue->contact_name,
                     'contact_email' => $venue->contact_email,
                     'contact_phone' => $venue->contact_phone,
                 ],

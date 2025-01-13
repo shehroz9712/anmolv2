@@ -117,7 +117,7 @@
             autocomplete.addListener('place_changed', function() {
                 var place = autocomplete.getPlace();
                 if (!place.geometry) {
-                    window.alert("No details available for input: '" + place.name + "'");
+                    // window.alert("No details available for input: '" + place.name + "'");
                     return;
                 }
 
@@ -139,28 +139,7 @@
 
                 document.getElementById('city').value = cityzip;
 
-                // Fetch contact details via AJAX
-                fetch('{{ route('get.contact.details') }}', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                        },
-                        body: JSON.stringify({
-                            address: document.getElementById('address').value
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            document.getElementById('ContactPerson').value = data.data.contact_person;
-                            document.getElementById('ContactEmail').value = data.data.contact_email;
-                            document.getElementById('ContactPhone').value = data.data.contact_phone;
-                        } else {
-                            alert(data.message);
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
+
             });
 
 
