@@ -5,11 +5,11 @@
         <!-- Page Header -->
         <div class="page-header">
             <div>
-                <h2 class="main-content-title tx-24 mg-b-5">Venue Infos</h2>
+                <h2 class="main-content-title tx-24 mg-b-5">Venue Info</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">manageVenue Info</li>
+                    <li class="breadcrumb-item active" aria-current="page">manage Venue Info</li>
                 </ol>
             </div>
             <div class="d-flex">
@@ -34,8 +34,6 @@
                                         <th class="wd-lg-20p">Name</th>
                                         <th class="wd-lg-20p">Address</th>
                                         <th class="wd-lg-20p">City, State, ZipCode</th>
-                                        {{-- <th class="wd-lg-20p">State</th>
-                                        <th class="wd-lg-20p">Zipcode</th> --}}
                                         <th class="wd-lg-20p">Created By</th>
                                         <th class="wd-lg-20p">Actions</th>
                                     </tr>
@@ -47,8 +45,6 @@
                                             <td>{{ $venueInfo->name }}</td>
                                             <td>{{ $venueInfo->address }}</td>
                                             <td>{{ $venueInfo->city }}</td>
-                                            {{-- <td>{{ $venueInfo->state }}</td>
-                                            <td>{{ $venueInfo->zipcode }}</td> --}}
                                             <td>{{ optional($venueInfo->createdBy)->name }}</td>
 
                                             <td>
