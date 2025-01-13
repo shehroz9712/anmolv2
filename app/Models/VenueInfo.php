@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AdminVenue extends Model
+class VenueInfo extends Model
 {
     use HasFactory, SoftDeletes;
     public function createdBy()
@@ -15,7 +15,7 @@ class AdminVenue extends Model
     }
 
 
-    protected $fillable = ['name', 'address', 'city', 'state', 'zipcode', 'createdby'];
+    protected $guarded = [];
 
     protected $dates = ['deleted_at'];
 }

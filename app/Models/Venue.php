@@ -13,9 +13,9 @@ class Venue extends Model
     protected $guarded = [];
 
 
-    public function adminVenue()
+    public function venueInfo()
     {
-        return $this->belongsTo(AdminVenue::class, 'admin_venue_id');
+        return $this->belongsTo(VenueInfo::class, 'admin_venue_id');
     }
     public function event()
     {

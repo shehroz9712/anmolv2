@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('ContactEmail')->nullable();
             $table->string('event_id')->nullable();
             $table->string('ContactPhone');
-            $table->unsignedBigInteger('admin_venue_id')->nullable(); // Foreign key to AdminVenue
+            $table->unsignedBigInteger('admin_venue_id')->nullable(); // Foreign key to VenueInfo
             $table->unsignedBigInteger('createdby')->nullable(); // Foreign key to User
             $table->softDeletes(); // Soft delete column
             $table->timestamps();

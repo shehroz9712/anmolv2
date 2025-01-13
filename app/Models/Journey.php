@@ -35,7 +35,7 @@ class Journey extends Model
      */
     public function venue()
     {
-        return $this->belongsTo(Venue::class, 'venueid')->with('adminVenue');
+        return $this->belongsTo(Venue::class, 'venueid')->with('venueInfo');
     }
 
     /**

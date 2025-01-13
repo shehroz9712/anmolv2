@@ -11,7 +11,7 @@
             <h2 class="main-content-title tx-24 mg-b-5">Edit Admin Venue</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('admin-venues.index') }}">Admin Venues</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('venue-info.index') }}">Admin Venues</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit Admin Venue</li>
             </ol>
         </div>
@@ -28,39 +28,54 @@
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">
-                                <form method="POST" action="{{ route('admin-venues.update', $adminVenue->id) }}"
-                                    onsubmit="return validateForm();">
+                                <form method="POST" action="{{ route('venue-info.update', $venueInfo->id) }}" onsubmit="return validateForm();">
                                     @csrf
-                                    @method('PUT') <!-- Use the appropriate HTTP method for updating -->
+                                    @method('PUT')
+                                    <div class="form-group">
+                                        <label for="venueAddress">Venue Name</label>
+                                        <input value="{{ $venueInfo->name }}" required placeholder="Venue name" 
+                                               class="form-control @error('venueAddress') is-invalid @enderror" 
+                                               id="venueAddress" name="venueAddress" type="text">
+                                    </div>
 
                                     <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input class="form-control" id="name" name="name" required type="text"
-                                            value="{{ $adminVenue->name }}">
-                                        <small id="nameError" class="text-danger"></small>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="address">Address</label>
-                                        <input class="form-control" id="address" name="address" required type="text"
-                                            value="{{ $adminVenue->address }}">
-                                        <small id="addressError" class="text-danger"></small>
+                                        <input value="{{ $venueInfo->address }}" required placeholder="123 Main St" 
+                                               class="form-control @error('address') is-invalid @enderror" 
+                                               id="address" name="address" type="text">
                                     </div>
+
                                     <div class="form-group">
                                         <label for="city">City, State, ZipCode</label>
-                                        <input class="form-control" id="city" name="city" required type="text"
-                                            value="{{ $adminVenue->city }}">
-                                        <small id="cityError" class="text-danger"></small>
+                                        <input value="{{ $venueInfo->city }}" required placeholder="City, State, ZipCode" 
+                                               class="form-control @error('city') is-invalid @enderror" 
+                                               id="city" name="city" type="text">
                                     </div>
-                                    {{-- <div class="form-group">
-                                    <label for="state">State</label>
-                                    <input class="form-control" id="state" name="state" required type="text" value="{{ $adminVenue->state }}">
-                                    <small id="stateError" class="text-danger"></small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="zipcode">Zipcode</label>
-                                    <input class="form-control" id="zipcode" name="zipcode" required type="text" value="{{ $adminVenue->zipcode }}">
-                                    <small id="zipcodeError" class="text-danger"></small>
-                                </div> --}}
+
+                                    <div class="form-group">
+                                        <label for="ContactPerson">Contact Person</label>
+                                        <input value="{{ $venueInfo->contact_name }}" placeholder="John Doe" 
+                                               class="form-control @error('ContactPerson') is-invalid @enderror" 
+                                               id="ContactPerson" name="ContactPerson" type="text">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ContactEmail">Contact Email</label>
+                                        <input value="{{ $venueInfo->contact_email }}" placeholder="john.doe@example.com" 
+                                               class="form-control @error('ContactEmail') is-invalid @enderror" 
+                                               id="ContactEmail" name="ContactEmail" type="email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="ContactPhone">Contact Phone</label>
+                                        <input value="{{ $venueInfo->contact_phone }}" placeholder="+1 (555) 123-4567" 
+                                               class="form-control @error('ContactPhone') is-invalid @enderror" 
+                                               id="ContactPhone" name="ContactPhone" type="tel">
+                                    </div>
+
+                                    <input type="hidden" id="lat" name="lat" value="{{ $venueInfo->lat }}">
+                                    <input type="hidden" id="long" name="long" value="{{ $venueInfo->long }}">
+
                                     <button class="btn ripple btn-main-primary btn-block">Update</button>
                                 </form>
                             </div>

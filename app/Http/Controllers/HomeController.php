@@ -29,7 +29,7 @@ class HomeController extends Controller
                 $venue = null;
                 if ($upcomingEvent != null) {
 
-                    $venue = Venue::with(['adminVenue',])->where('event_id', $upcomingEvent->id)->first();
+                    $venue = Venue::with(['venueInfo',])->where('event_id', $upcomingEvent->id)->first();
                 }
                 $journey = Journey::where('created_by', Auth::id())->first();
 

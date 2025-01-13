@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminVenue;
+use App\Models\VenueInfo;
 use App\Models\Journey;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class VenueController extends Controller
     public function index()
     {
         // Retrieve all customer venues with relations
-        $Venues = Venue::with(['adminVenue', 'createdBy'])->where('createdBy', Auth::id())->get();
+        $Venues = Venue::with(['venueInfo', 'createdBy'])->where('createdBy', Auth::id())->get();
 
         return view('pages.venues.index', compact('Venues'));
     }
@@ -29,7 +29,7 @@ class VenueController extends Controller
         $address = $request->input('address');
 
         // Search for the venue in the database based on the address
-        $venue = AdminVenue::where('address', $address)->first();
+        $venue = VenueInfo::where('address', $address)->first();
 
         if ($venue) {
             return response()->json([
@@ -66,7 +66,7 @@ class VenueController extends Controller
 
         ]);
 
-        // Create an AdminVenue and associate it with the authenticated user
+        // Create an VenueInfo and associate it with the authenticated user
         $Venue = Venue::create([
             'createdby' => auth()->user()->id,
             'name' => $request->venueAddress,
@@ -117,7 +117,7 @@ class VenueController extends Controller
         ]);
         $venue = Venue::find($request->venueId);
 
-        // Create an AdminVenue and associate it with the authenticated user
+        // Create an VenueInfo and associate it with the authenticated user
         $venue->update([
             'createdby' => auth()->user()->id,
             'name' => $request->name,

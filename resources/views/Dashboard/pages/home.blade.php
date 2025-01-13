@@ -68,14 +68,14 @@
                                         <div class="card-item">
                                             <div class="card-item-title mb-2">
                                                 <label
-                                                    class="main-content-label tx-13 font-weight-bold mb-1">{{ $venue->adminvenue->name ?? '--' }}</label>
+                                                    class="main-content-label tx-13 font-weight-bold mb-1">{{ $venue->venueinfo->name ?? '--' }}</label>
                                             </div>
                                             <div class="card-item-food">
                                                 {{-- <h6 class="d-block tx-12 mb-0 text-muted">Address</h6> --}}
                                                 <div class="card-item-stat">
-                                                    <h6 class="font-weight-bold">{{ $venue->adminvenue->city ?? '---' }}
+                                                    <h6 class="font-weight-bold">{{ $venue->venueinfo->city ?? '---' }}
                                                     </h6>
-                                                    <h6 class="font-weight-bold">{{ $venue->adminvenue->address ?? '---' }}
+                                                    <h6 class="font-weight-bold">{{ $venue->venueinfo->address ?? '---' }}
                                                     </h6>
                                                 </div>
                                             </div>

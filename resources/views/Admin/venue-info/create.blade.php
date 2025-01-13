@@ -1,130 +1,84 @@
-{{-- {{dd($eventId)}} --}}
 @extends('Dashboard.Master.master_layout')
-@section('title')
-    Venue Create - EatAnmol
-@endsection
+
 @section('stylesheet')
     <style>
-        .custom-input {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px;
-            width: 100%;
-            height: 36px;
-            font-size: 14px;
-        }
-
-        .custom-addon {
-            border: 1px solid #ccc;
-            border-left: none;
-            border-radius: 4px;
-            padding-right: 10px;
-            padding-left: 10px;
-            cursor: pointer;
-        }
-
-        .custom-addon i {
-            color: #333;
-        }
-
-        .error-message {
-            color: #ff0000;
-            font-size: 12px;
-        }
+        /* Add your custom CSS styles here */
     </style>
 @endsection
 
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5"></h2>
-            <div>
-                <h2 class="main-content-title tx-24 mg-b-5">Venue</h2>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('events.index') }}">Events</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add Venue</li>
-                </ol>
-            </div>
-        </div>
+            <h2 class="main-content-title tx-24 mg-b-5">Add Admin Venue</h2>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
+                <li class="breadcrumb-item"><a href="{{ route('venue-info.index') }}">Admin Venues</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Admin Venue</li>
+            </ol>
+        </div>
     </div>
+
     <div class="row row-sm">
-        <div class=" col-md-12">
+        <div class="col-lg-12 col-md-12">
             <div class="card custom-card">
                 <div class="card-body">
+                    <div>
+                        <h6 class="main-content-label mb-1">Add Admin Venue</h6>
+                        <p class="text-muted card-sub-title">Add a new admin venue with details.</p>
+                    </div>
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">
                             <div class="">
-                                <form method="POST" action="{{ route('Venues.store') }}">
+                                <form method="POST" action="{{ route('venue-info.store') }}"
+                                    onsubmit="return validateForm();">
                                     @csrf
-
-                                    <input type="hidden" name="event_id" id="event_id"
-                                        value="{{ $eventId ? decrypt($eventId) : null }}">
                                     <div class="form-group">
                                         <label for="venueAddress">Venue Name</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" aria-autocomplete="false"
-                                            required placeholder="Venue name" title="Address"
-                                            class="form-control  @error('venueAddress') is-invalid @enderror"
-                                            autocomplete="false" id="venueAddress" name="venueAddress" type="text">
-                                        <small id="addressError" class="text-danger"></small>
+                                        <input required placeholder="Venue name" title="Venue Name"
+                                            class="form-control @error('venueAddress') is-invalid @enderror"
+                                            id="venueAddress" name="venueAddress" type="text">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="address">Address</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="123 Main St"
-                                            title="Address" class="form-control  @error('address') is-invalid @enderror"
-                                            id="address" name="address" type="text" required>
-                                        <small class="error-message" id="address_error"></small>
+                                        <input required placeholder="123 Main St" title="Address"
+                                            class="form-control @error('address') is-invalid @enderror" id="address"
+                                            name="address" type="text">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="city">City, State, ZipCode</label>
-                                        <input data-toggle="tooltip" data-placement="bottom"
-                                            placeholder="City, State, ZipCode" title="City"
-                                            class="form-control  @error('city') is-invalid @enderror" id="city"
-                                            name="city" type="text" required>
-                                        <small class="error-message" id="city_error"></small>
+                                        <input required placeholder="City, State, ZipCode" title="City, State, ZipCode"
+                                            class="form-control @error('city') is-invalid @enderror" id="city"
+                                            name="city" type="text">
                                     </div>
-
-
-
-
 
                                     <div class="form-group">
                                         <label for="ContactPerson">Contact Person</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="John Doe"
-                                            title="Contact Person"
-                                            class="form-control  @error('ContactPerson') is-invalid @enderror"
+                                        <input placeholder="John Doe" title="Contact Person"
+                                            class="form-control @error('ContactPerson') is-invalid @enderror"
                                             id="ContactPerson" name="ContactPerson" type="text">
-                                        <small class="error-message" id="ContactPerson_error"></small>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="ContactEmail">Contact Email</label>
-                                        <input data-toggle="tooltip" data-placement="bottom"
-                                            placeholder="john.doe@example.com" title="Contact Email"
-                                            class="form-control  @error('ContactEmail') is-invalid @enderror"
+                                        <input placeholder="john.doe@example.com" title="Contact Email"
+                                            class="form-control @error('ContactEmail') is-invalid @enderror"
                                             id="ContactEmail" name="ContactEmail" type="email">
-                                        <small class="error-message" id="ContactEmail_error"></small>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="ContactPhone">Contact Phone</label>
-                                        <input data-toggle="tooltip" data-placement="bottom" placeholder="+1 (555) 123-4567"
-                                            title="Contact Phone"
-                                            class="form-control  @error('ContactPhone') is-invalid @enderror"
+                                        <input placeholder="+1 (555) 123-4567" title="Contact Phone"
+                                            class="form-control @error('ContactPhone') is-invalid @enderror"
                                             id="ContactPhone" name="ContactPhone" type="tel">
-                                        <small class="error-message" id="ContactPhone_error"></small>
                                     </div>
-                                    <div class="d-flex ">
-                                        <div class="d-flex justify-content-end w-100">
-                                            {{-- <a href="{{ route('Venues.index') }}" class="btn btn-purple my-2 btn-icon-text">
-                                            <i class="fe fe-grid me-2"></i> View All Venues
-                                        </a> --}}
-                                            <div class="d-inline-block my-2"> <button
-                                                    class="btn ripple btn-main-primary d-inline-block" id="submitBtn">Save
-                                                    & Continue</button></div>
-                                        </div>
-                                    </div>
+
+                                    <input type="hidden" id="lat" name="lat">
+                                    <input type="hidden" id="long" name="long">
+
+                                    <button class="btn ripple btn-main-primary btn-block">Submit</button>
                                 </form>
                                 <div id="map" style="display: none;" style="height: 400px;"></div>
 
@@ -212,5 +166,4 @@
 
         }
     </script>
-
 @endsection

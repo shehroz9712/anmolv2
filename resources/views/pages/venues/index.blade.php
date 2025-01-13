@@ -54,11 +54,11 @@
                                             <td>{{ $Venue->ContactPerson }}</td>
                                             <td>{{ $Venue->ContactEmail }}</td>
                                             <td>{{ $Venue->ContactPhone }}</td>
-                                            <td>{{ $Venue->adminVenue->name }}</td>
-                                            <td>{{ $Venue->adminVenue->address }}</td>
-                                            <td>{{ $Venue->adminVenue->city }}</td>
-                                            {{-- <td>{{ $Venue->adminVenue->state }}</td>
-                                        <td>{{ $Venue->adminVenue->zipcode }}</td>    --}}
+                                            <td>{{ $Venue->venueInfo->name }}</td>
+                                            <td>{{ $Venue->venueInfo->address }}</td>
+                                            <td>{{ $Venue->venueInfo->city }}</td>
+                                            {{-- <td>{{ $Venue->venueInfo->state }}</td>
+                                        <td>{{ $Venue->venueInfo->zipcode }}</td>    --}}
                                             <td>{{ optional($Venue->createdBy)->name }}</td>
 
                                             <td>

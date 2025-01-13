@@ -36,6 +36,14 @@
                                 <span class="sidemenu-label">Events</span>
                             </a>
                         </li>
+                        <li class="nav-item @if (Request::is('venue-info') || Request::is('venue-info/*')) active @endif">
+                            <a class="nav-link" href="{{ route('venue-info.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-globe sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Admin Venue</span>
+                            </a>
+                        </li>
                         <li class="nav-item @if (Request::is('calender') || Request::is('calender/*')) active @endif">
                             <a class="nav-link" href="{{ route('calender.index') }}">
                                 <span class="shape1"></span>
@@ -117,14 +125,7 @@
                                 <span class="sidemenu-label">Venue</span>
                             </a>
                         </li>
-                        <li class="nav-item @if (Request::is('admin-venues') || Request::is('admin-venues/*')) active @endif">
-                            <a class="nav-link" href="{{ route('admin-venues.index') }}">
-                                <span class="shape1"></span>
-                                <span class="shape2"></span>
-                                <i class="fe fe-globe sidemenu-icon menu-icon "></i>
-                                <span class="sidemenu-label">Admin Venue</span>
-                            </a>
-                        </li> --}}
+                     --}}
                     @else
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('index') }}">

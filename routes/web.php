@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin;
-use App\Http\Controllers\AdminVenueController;
+use App\Http\Controllers\VenueInfoController;
 use App\Http\Controllers\AppleAuthController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\VenueController;
@@ -159,14 +159,7 @@ Route::middleware(['auth', 'admin.auth'])->group(function () {
     Route::get('/menus', [PackagesController::class, 'menuLinks'])->name('menu.link.index');
 
 
-    Route::get('/admin-venues', [AdminVenueController::class, 'index'])->name('admin-venues.index');
-    Route::get('/admin-venues/create', [AdminVenueController::class, 'create'])->name('admin-venues.create');
-    Route::post('/admin-venues', [AdminVenueController::class, 'store'])->name('admin-venues.store');
-    Route::get('/admin-venues/{adminVenue}', [AdminVenueController::class, 'show'])->name('admin-venues.show');
-    Route::get('/admin-venues/{adminVenue}/edit', [AdminVenueController::class, 'edit'])->name('admin-venues.edit');
-    Route::put('/admin-venues/{adminVenue}', [AdminVenueController::class, 'update'])->name('admin-venues.update');
-    Route::delete('/admin-venues/{adminVenue}', [AdminVenueController::class, 'destroy'])->name('admin-venues.destroy');
-
+    
     Route::resource('contact', UserController::class)->names('contact');
 
     Route::resource('packages', PackagesController::class);
@@ -192,6 +185,14 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth')->group(function () {
 
     //customer venue
+
+    Route::get('/venue-info', [VenueInfoController::class, 'index'])->name('venue-info.index');
+    Route::get('/venue-info/create', [VenueInfoController::class, 'create'])->name('venue-info.create');
+    Route::post('/venue-info', [VenueInfoController::class, 'store'])->name('venue-info.store');
+    Route::get('/venue-info/{venueInfo}', [VenueInfoController::class, 'show'])->name('venue-info.show');
+    Route::get('/venue-info/{venueInfo}/edit', [VenueInfoController::class, 'edit'])->name('venue-info.edit');
+    Route::put('/venue-info/{venueInfo}', [VenueInfoController::class, 'update'])->name('venue-info.update');
+    Route::delete('/venue-info/{venueInfo}', [VenueInfoController::class, 'destroy'])->name('venue-info.destroy');
 
     Route::get('/venues', [VenueController::class, 'index'])->name('Venues.index');
     Route::get('/venues-create', [VenueController::class, 'create'])->name('Venues.create');

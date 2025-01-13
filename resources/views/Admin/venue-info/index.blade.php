@@ -14,7 +14,7 @@
             </div>
             <div class="d-flex">
                 <div class="justify-content-center">
-                    <a href="{{ route('admin-venues.create') }}" class="btn btn-primary my-2 btn-icon-text">
+                    <a href="{{ route('venue-info.create') }}" class="btn btn-primary my-2 btn-icon-text">
                         <i class="fe fe-plus me-2"></i> Add Admin Venue
                     </a>
                 </div>
@@ -41,20 +41,20 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($adminVenues as $adminVenue)
+                                    @foreach ($venueInfos as $venueInfo)
                                         <tr>
-                                            <td>{{ $adminVenue->id }}</td>
-                                            <td>{{ $adminVenue->name }}</td>
-                                            <td>{{ $adminVenue->address }}</td>
-                                            <td>{{ $adminVenue->city }}</td>
-                                            {{-- <td>{{ $adminVenue->state }}</td>
-                                            <td>{{ $adminVenue->zipcode }}</td> --}}
-                                            <td>{{ optional($adminVenue->createdBy)->name }}</td>
+                                            <td>{{ $venueInfo->id }}</td>
+                                            <td>{{ $venueInfo->name }}</td>
+                                            <td>{{ $venueInfo->address }}</td>
+                                            <td>{{ $venueInfo->city }}</td>
+                                            {{-- <td>{{ $venueInfo->state }}</td>
+                                            <td>{{ $venueInfo->zipcode }}</td> --}}
+                                            <td>{{ optional($venueInfo->createdBy)->name }}</td>
 
                                             <td>
                                                 <a class="btn btn-main-primary px-3"
-                                                    href="{{ route('admin-venues.edit', $adminVenue->id) }}">Edit</a>
-                                                <form action="{{ route('admin-venues.destroy', $adminVenue->id) }}"
+                                                    href="{{ route('venue-info.edit', $venueInfo->id) }}">Edit</a>
+                                                <form action="{{ route('venue-info.destroy', $venueInfo->id) }}"
                                                     method="POST" style="display: inline-block;">
                                                     @csrf
                                                     @method('DELETE')
