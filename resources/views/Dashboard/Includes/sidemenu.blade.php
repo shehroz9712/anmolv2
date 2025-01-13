@@ -41,7 +41,7 @@
                                 <span class="shape1"></span>
                                 <span class="shape2"></span>
                                 <i class="fe fe-globe sidemenu-icon menu-icon "></i>
-                                <span class="sidemenu-label">Admin Venue</span>
+                                <span class="sidemenu-label">Venue Info</span>
                             </a>
                         </li>
                         <li class="nav-item @if (Request::is('calender') || Request::is('calender/*')) active @endif">

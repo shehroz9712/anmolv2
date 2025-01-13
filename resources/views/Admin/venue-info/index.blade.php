@@ -5,17 +5,17 @@
         <!-- Page Header -->
         <div class="page-header">
             <div>
-                <h2 class="main-content-title tx-24 mg-b-5">Admin Venues</h2>
+                <h2 class="main-content-title tx-24 mg-b-5">Venue Infos</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">manageAdmin Venues</li>
+                    <li class="breadcrumb-item active" aria-current="page">manageVenue Info</li>
                 </ol>
             </div>
             <div class="d-flex">
                 <div class="justify-content-center">
                     <a href="{{ route('venue-info.create') }}" class="btn btn-primary my-2 btn-icon-text">
-                        <i class="fe fe-plus me-2"></i> Add Admin Venue
+                        <i class="fe fe-plus me-2"></i> Add Venue Info
                     </a>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger px-3"
-                                                        onclick="return confirm('Are you sure you want to delete this admin venue?')">Delete</button>
+                                                        onclick="return confirm('Are you sure you want to delete this venue info?')">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

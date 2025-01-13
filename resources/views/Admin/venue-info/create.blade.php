@@ -9,12 +9,12 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Add Admin Venue</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Add Venue Info</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
 
-                <li class="breadcrumb-item"><a href="{{ route('venue-info.index') }}">Admin Venues</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Add Admin Venue</li>
+                <li class="breadcrumb-item"><a href="{{ route('venue-info.index') }}">Venue Info</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Venue Info</li>
             </ol>
         </div>
     </div>
@@ -24,8 +24,8 @@
             <div class="card custom-card">
                 <div class="card-body">
                     <div>
-                        <h6 class="main-content-label mb-1">Add Admin Venue</h6>
-                        <p class="text-muted card-sub-title">Add a new admin venue with details.</p>
+                        <h6 class="main-content-label mb-1">Add Venue Info</h6>
+                        <p class="text-muted card-sub-title">Add a new Venue Info with details.</p>
                     </div>
                     <div class="row row-sm">
                         <div class="col-md-12 col-lg-12 col-xl-12">

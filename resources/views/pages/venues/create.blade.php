@@ -203,7 +203,10 @@
                             document.getElementById('ContactEmail').value = data.data.contact_email;
                             document.getElementById('ContactPhone').value = data.data.contact_phone;
                         } else {
-                            alert(data.message);
+                            document.getElementById('ContactPerson').value = '';
+                            document.getElementById('ContactEmail').value = '';
+                            document.getElementById('ContactPhone').value = '';
+
                         }
                     })
                     .catch(error => console.error('Error:', error));
@@ -212,5 +215,4 @@
 
         }
     </script>
-
 @endsection
