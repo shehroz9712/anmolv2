@@ -90,7 +90,7 @@ class menu extends Controller
             } else {
                 continue;
             }
-            $this->sendNotification('admin', 10, 'Edit Event ', $event->user->name ." create a change menu request for event: ". $event->name);
+            $this->sendNotification('admin', 10, 'Edit Event ', $event->user->name . " create a change menu request for event: " . $event->name);
         }
 
         // Optionally, you can return a response or redirect

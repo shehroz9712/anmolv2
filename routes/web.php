@@ -19,6 +19,7 @@ use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\PasswordChangeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceStyleController;
 use App\Http\Controllers\SubCategoriesController;
 use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\TypeController;
@@ -185,6 +186,7 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth')->group(function () {
 
     //customer venue
+    Route::post('/service_style/submit', [ServiceStyleController::class, 'store'])->name('service_style.submit');
 
     Route::get('/venue-info', [VenueInfoController::class, 'index'])->name('venue-info.index');
     Route::get('/venue-info/create', [VenueInfoController::class, 'create'])->name('venue-info.create');
