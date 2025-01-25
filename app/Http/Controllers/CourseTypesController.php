@@ -37,7 +37,7 @@ class CourseTypesController extends Controller
         );
 
         $Coursetype = CourseType::create($data);
-        return redirect()->route('coursetypes.index')->with('message', 'Coursetype Added Successfully');
+        return redirect()->route('coursetypes.index')->with('message', 'Course Type Added Successfully');
     }
 
     /**
@@ -73,7 +73,7 @@ class CourseTypesController extends Controller
         // Update the main package details
         $coursetypes = CourseType::find($id);
         $coursetypes->update($data);
-        return redirect()->route('coursetypes.index')->with('message', 'Coursetypes Updated Successfully');
+        return redirect()->route('coursetypes.index')->with('message', 'Course Type Updated Successfully');
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Price;
+use App\Models\ServiceStyle;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class SubCategoriesController extends Controller
      */
     public function index()
     {
-        $subcategories = SubCategory::with('category','serviceStyle')->get();
+        $subcategories = SubCategory::with('category', 'serviceStyle')->get();
         return view('Admin.subcategory.index', compact('subcategories'));
     }
 
@@ -24,7 +25,9 @@ class SubCategoriesController extends Controller
     public function create()
     {
         $categories = Category::where(['type' => 2, 'status' => 1])->get();
-        return view('Admin.subcategory.create', compact('categories'));
+        $servicestyles = ServiceStyle::with('coursetype')->get();
+
+        return view('Admin.subcategory.create', compact('categories', 'servicestyles'));
     }
 
     /**
@@ -75,8 +78,10 @@ class SubCategoriesController extends Controller
     {
         $id = decrypt($id);
         $categories = Category::where(['type' => 2, 'status' => 1])->get();
-        $record = SubCategory::with('category','serviceStyle')->find($id);
-        return view('Admin.subcategory.edit', compact('record', 'categories'));
+        $record = SubCategory::with('category', 'serviceStyle')->find($id);
+        $servicestyles = ServiceStyle::with('coursetype')->get();
+
+        return view('Admin.subcategory.edit', compact('record', 'categories', 'servicestyles'));
     }
 
     /**

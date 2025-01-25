@@ -10,7 +10,7 @@ s
     <div class="page-header">
         <div>
             <h2 class="main-content-title tx-24 mg-b-5">Edit Sub Category</h2>
-             <ol class="breadcrumb">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('subcategories.index') }}">Sub Category</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Edit Sub Category</li>
@@ -68,16 +68,17 @@ s
                                             </select>
                                         </div>
                                         <div class="col-lg-3 mb-3">
-                                            <label for="service_style_id">It is</label>
-                                            <select class="form-control" id="service_style_id" name="service_style_id" required>
-                                                <option
-                                                    value="main course"{{ $record->service_style_id == 'main course' ? 'selected' : '' }}>
-                                                    Main Course</option>
-                                                <option
-                                                    value="appetizer"{{ $record->term == 'appetizer' ? 'selected' : '' }}>
-                                                    Appetizer</option>
-                                                <option value="dessert"{{ $record->term == 'dessert' ? 'selected' : '' }}>
-                                                    Dessert</option>
+                                            <label for="service_style_id">Service Style</label>
+                                            <select class="form-control" id="service_style_id" name="service_style_id"
+                                                required>
+
+
+                                                @foreach ($servicestyles as $item)
+                                                    <option value="{{ $item->id }}"
+                                                        {{ $record->service_style_id == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div id="formContainer" class="col-12">

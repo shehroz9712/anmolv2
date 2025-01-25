@@ -43,7 +43,7 @@ class ServiceStylesController extends Controller
 
         $servicestyle = ServiceStyle::create($data);
 
-        return redirect()->route('servicestyles.index')->with('message', 'Sub Coursetype Added Successfully');
+        return redirect()->route('servicestyles.index')->with('message', 'Service Style Added Successfully');
     }
 
     /**
@@ -85,7 +85,7 @@ class ServiceStylesController extends Controller
 
 
 
-        return redirect()->route('servicestyles.index')->with('message', 'Sub Coursetype Update Successfully');
+        return redirect()->route('servicestyles.index')->with('message', 'Service Style Update Successfully');
     }
 
     /**
