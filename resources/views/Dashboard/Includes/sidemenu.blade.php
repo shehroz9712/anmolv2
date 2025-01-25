@@ -69,6 +69,22 @@
                                 <span class="sidemenu-label">Categories</span>
                             </a>
                         </li>
+                        <li class="nav-item @if (Request::is('coursetypes') || Request::is('coursetypes/*')) active  @else d-none @endif">
+                            <a class="nav-link" href="{{ route('coursetypes.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Course Type</span>
+                            </a>
+                        </li>
+                        <li class="nav-item @if (Request::is('servicestyles') || Request::is('servicestyles/*')) active  @else d-none @endif">
+                            <a class="nav-link" href="{{ route('servicestyles.index') }}">
+                                <span class="shape1"></span>
+                                <span class="shape2"></span>
+                                <i class="fe fe-calendar sidemenu-icon menu-icon "></i>
+                                <span class="sidemenu-label">Service Style</span>
+                            </a>
+                        </li>
                         <li class="nav-item  @if (Request::is('subcategories') || Request::is('subcategories')) active  @else d-none @endif">
                             <a class="nav-link" href="{{ route('subcategories.index') }}">
                                 <span class="shape1"></span>

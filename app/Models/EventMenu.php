@@ -22,6 +22,16 @@ class EventMenu extends Model
      */
     public function dishes(): HasOne
     {
-        return $this->hasOne(Dish::class, 'id', 'dish_id');
+        return $this->hasOne(Item::class, 'id', 'item_id');
+    }
+
+    /**
+     * Get all of the items for the EventMenu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */ 
+    public function item(): HasOne
+    {
+        return $this->hasOne(Item::class, 'id', 'item_id');
     }
 }

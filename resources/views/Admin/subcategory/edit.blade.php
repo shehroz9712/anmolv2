@@ -68,10 +68,10 @@ s
                                             </select>
                                         </div>
                                         <div class="col-lg-3 mb-3">
-                                            <label for="term">It is</label>
-                                            <select class="form-control" id="term" name="term" required>
+                                            <label for="service_style_id">It is</label>
+                                            <select class="form-control" id="service_style_id" name="service_style_id" required>
                                                 <option
-                                                    value="main course"{{ $record->term == 'main course' ? 'selected' : '' }}>
+                                                    value="main course"{{ $record->service_style_id == 'main course' ? 'selected' : '' }}>
                                                     Main Course</option>
                                                 <option
                                                     value="appetizer"{{ $record->term == 'appetizer' ? 'selected' : '' }}>

@@ -15,7 +15,10 @@
                         <li class="breadcrumb-item active" aria-current="page">Menu</li>
                     </ol>
                 </div>
-                <a href="{{ route('custom.menu', $eventId) }}"><button class="btn ripple btn-primary col-md-12"
+                <a href="   
+                
+                
+                "><button class="btn ripple btn-primary col-md-12"
                         style="padding: 5px; ">Customize Package</button></a>
 
             </div>

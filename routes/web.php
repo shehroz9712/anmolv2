@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\admin;
+use App\Http\Controllers\ServiceStylesController;
 use App\Http\Controllers\VenueInfoController;
 use App\Http\Controllers\AppleAuthController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CourseTypesController;
 use App\Http\Controllers\VenueController;
 use App\Http\Controllers\DishesController;
 use App\Http\Controllers\EquipmentController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LabourController;
 use App\Http\Controllers\menu;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OccasionController;
 use App\Http\Controllers\PackagesController;
 use App\Http\Controllers\PasswordChangeController;
@@ -91,7 +94,6 @@ Route::middleware('auth')->group(function () {
 
     //menu
     Route::get('/menu/items/{eventId?}', [menu::class, 'items'])->name('custom.menu');
-    Route::post('/menu/submit', [menu::class, 'submit'])->name('menu.submit');
     Route::get('/getNewDishes', [menu::class, 'getNewDishes'])->name('menu.getNewDishes');
     Route::post('/getDishes', [menu::class, 'getDishes'])->name('menu.getDishes');
     Route::get('/menu/edit/request/{eventId?}', [menu::class, 'menu_edit_request'])->name('events.menu.edit.request');
@@ -105,7 +107,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/menu/detail/{id}/{eventId?}', [menu::class, 'detail'])->name('menu.detail');
 
     Route::get('/equipment/{eventId?}', [menu::class, 'equipment'])->name('equipment.index');
-    Route::get('/menu/{id?}', [menu::class, 'index'])->name('menu.index');
 
 
     //Events
@@ -117,7 +118,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/events/invoice/show/{id}', [EventController::class, 'invoice'])->name('events.invoice.show');
     Route::get('/events/invoice/print/{id}', [EventController::class, 'print_invoice'])->name('event.print.invoice');
 
-    Route::get('/service/styling/{eventId?}', [ServiceController::class, 'create'])->name('service.styling');
     Route::get('/edit/service/{serviceid}', [ServiceController::class, 'edit'])->name('service.styling.edit');
     Route::post('/service/styling', [ServiceController::class, 'store'])->name('service.store');
     Route::post('/update/service', [ServiceController::class, 'update'])->name('service.update');
@@ -129,7 +129,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/events', [EventController::class, 'update'])->name('events.update');
 
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
-
+    Route::get('/menu/{id?}', [menu::class, 'index'])->name('menu.index');
 
 
     //password
@@ -160,11 +160,13 @@ Route::middleware(['auth', 'admin.auth'])->group(function () {
     Route::get('/menus', [PackagesController::class, 'menuLinks'])->name('menu.link.index');
 
 
-    
+
     Route::resource('contact', UserController::class)->names('contact');
 
     Route::resource('packages', PackagesController::class);
     Route::resource('items', DishesController::class)->names('dishes');
+    Route::resource('servicestyles', ServiceStylesController::class);
+    Route::resource('coursetypes', CourseTypesController::class);
     Route::resource('categories', CategoriesController::class);
     Route::resource('subcategories', SubCategoriesController::class);
     Route::resource('equipments', EquipmentController::class);
@@ -186,7 +188,13 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth')->group(function () {
 
     //customer venue
+    Route::get('/service/styling/{eventId?}', [ServiceStyleController::class, 'create'])->name('service.styling');
     Route::post('/service_style/submit', [ServiceStyleController::class, 'store'])->name('service_style.submit');
+    Route::post('/item/list', [ServiceStyleController::class, 'store'])->name('item.list');
+
+    Route::post('/menu/submit', [MenuController::class, 'submit'])->name('menu.submit');
+    Route::get('/item/cart/{id?}', [MenuController::class, 'cart'])->name('menu.cart');
+
 
     Route::get('/venue-info', [VenueInfoController::class, 'index'])->name('venue-info.index');
     Route::get('/venue-info/create', [VenueInfoController::class, 'create'])->name('venue-info.create');

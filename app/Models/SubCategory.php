@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SubCategory extends Model
 {
@@ -11,7 +12,7 @@ class SubCategory extends Model
     use HasFactory;
     public function dishes()
     {
-        return $this->hasMany(Dish::class, 'subcategory_id', 'id')->where('status', 1)->orderby('name', 'ASC');
+        return $this->hasMany(Item::class, 'subcategory_id', 'id')->where('status', 1)->orderby('name', 'ASC');
     }
     public function price()
     {
@@ -27,5 +28,15 @@ class SubCategory extends Model
     public function scopeActive($query)
     {
         return $query->where('status', 1);
+    }
+
+    /**
+     * Get the serviceStyle that owns the SubCategory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function serviceStyle(): BelongsTo
+    {
+        return $this->belongsTo(ServiceStyle::class);
     }
 }

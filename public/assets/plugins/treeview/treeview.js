@@ -61,11 +61,9 @@ $.fn.extend({
 
 //Initialization of treeviews
 
-$('#treeview1').treed();
+$('[id^=treeview]').treed();
 
-$('#treeview2').treed();
 
-$('#treeview3').treed();
 
 $('#tree1').treed();
 

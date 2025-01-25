@@ -18,7 +18,7 @@ class MenuQuery extends Model
      */
     public function oldDish(): BelongsTo
     {
-        return $this->belongsTo(Dish::class, 'old_dish_id', 'id');
+        return $this->belongsTo(Item::class, 'old_dish_id', 'id');
     }
     /**
      * Get the newDishe associated with the MenuQuery
@@ -27,6 +27,6 @@ class MenuQuery extends Model
      */
     public function newDish(): BelongsTo
     {
-        return $this->belongsTo(Dish::class, 'new_dish_id', 'id');
+        return $this->belongsTo(Item::class, 'new_dish_id', 'id');
     }
 }

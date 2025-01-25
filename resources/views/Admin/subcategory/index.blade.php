@@ -39,7 +39,7 @@
                                         <th>Name</th>
                                         <th>Category</th>
                                         <!--<th>Is Addon</th>-->
-                                        <th>It is</th>
+                                        <th>Service Style</th>
                                         {{-- <th>Single</th>
                                         <th>Trio</th> --}}
                                         <th class="wd-lg-20p">status</th>
@@ -52,7 +52,7 @@
                                             <td>{{ $record->name }}</td>
                                             <td>{{ $record->category->name }}</td>
                                             <!--<td>{{ $record->is_addon }}</td>-->
-                                            <td>{{ $record->term }}</td>
+                                            <td>{{ $record->serviceStyle->name }}</td>
                                             {{-- <td>{{ $record->single }}</td>
                                             <td>{{ $record->trio }}</td> --}}
 

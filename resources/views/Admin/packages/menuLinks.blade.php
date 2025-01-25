@@ -24,6 +24,34 @@
             <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
                 <div class="card custom-card">
                     <div class="card-header custom-card-header border-bottom-0">
+                        <h5 class="main-content-label tx-dark tx-medium mb-0">Course type</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="">Course type</h6>
+                        <p class="card-text">Explore diverse Course type for your Course type management system.
+                        </p>
+                        <a href="{{ route('coursetypes.index') }}" class="btn btn-primary ripple "
+                            style="float: inline-end;padding: 8px 25px;">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header custom-card-header border-bottom-0">
+                        <h5 class="main-content-label tx-dark tx-medium mb-0">service Style</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="">service Style</h6>
+                        <p class="card-text">Explore diverse service Style for your service Style management system.
+                        </p>
+                        <a href="{{ route('servicestyles.index') }}" class="btn btn-primary ripple "
+                            style="float: inline-end;padding: 8px 25px;">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header custom-card-header border-bottom-0">
                         <h5 class="main-content-label tx-dark tx-medium mb-0">Categories</h5>
                     </div>
                     <div class="card-body">

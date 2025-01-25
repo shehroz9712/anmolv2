@@ -14,7 +14,7 @@ class SubCategoriesController extends Controller
      */
     public function index()
     {
-        $subcategories = SubCategory::with('category')->get();
+        $subcategories = SubCategory::with('category','serviceStyle')->get();
         return view('Admin.subcategory.index', compact('subcategories'));
     }
 
@@ -75,7 +75,7 @@ class SubCategoriesController extends Controller
     {
         $id = decrypt($id);
         $categories = Category::where(['type' => 2, 'status' => 1])->get();
-        $record = SubCategory::with('category')->find($id);
+        $record = SubCategory::with('category','serviceStyle')->find($id);
         return view('Admin.subcategory.edit', compact('record', 'categories'));
     }
 

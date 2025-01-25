@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dish;
+use App\Models\Item;
 use App\Models\DishesEquipment;
 use App\Models\DishesLabour;
 use App\Models\Equipment;
@@ -17,7 +17,7 @@ class DishesController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::with('subcategory')->get();
+        $dishes = Item::with('subcategory')->get();
         return view('Admin.dishes.index', compact('dishes'));
     }
 
@@ -50,7 +50,7 @@ if($request->has('image')){
     
         $data['image'] =  $this->uploadImage($request->image, 'dishes');
 }
-        $dish = Dish::create($data);
+        $dish = Item::create($data);
         $labour = $request->labour;
         foreach ($labour as $key => $value) {
             DishesLabour::create([
@@ -68,7 +68,7 @@ if($request->has('image')){
     public function show(string $id)
     {
         $id = decrypt($id);
-        $dish = Dish::with('equipment')->find($id);
+        $dish = Item::with('equipment')->find($id);
 
         return view('Admin.dishes.view', compact('dish'));
     }
@@ -82,7 +82,7 @@ if($request->has('image')){
         $subcategory = SubCategory::Active()->get();
         $labours = Labour::Active()->get();
         $equipments = Equipment::Active()->get();
-        $dish = Dish::with('equipment', 'labour')->find($id);
+        $dish = Item::with('equipment', 'labour')->find($id);
         return view('Admin.dishes.edit', compact('dish', 'subcategory', 'equipments', 'labours'));
     }
 
@@ -100,7 +100,7 @@ if($request->has('image')){
         ]);
 
         // Update the main package details
-        $dishes = Dish::find($id);
+        $dishes = Item::find($id);
 if($request->has('image')){
     
         $data['image'] =  $this->uploadImage($request->image, 'dishes');

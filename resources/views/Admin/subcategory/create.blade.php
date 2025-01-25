@@ -63,8 +63,8 @@
                                             </select>
                                         </div>
                                         <div class="col-lg-3 mb-3">
-                                            <label for="term">It is</label>
-                                            <select class="form-control" id="term" name="term" required>
+                                            <label for="service_style_id">Service Style</label>
+                                            <select class="form-control" id="service_style_id" name="service_style_id" required>
                                                 <option value="main course">Main Course</option>
                                                 <option value="appetizer">Appetizer</option>
                                                 <option value="dessert">Dessert</option>

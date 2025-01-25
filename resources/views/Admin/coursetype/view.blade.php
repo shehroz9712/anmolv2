@@ -1,6 +1,6 @@
 @extends('Dashboard.Master.master_layout')
 @section('title')
-    Sub Category Detail - EatAnmol
+    Course Type Detail - EatAnmol
 @endsection
 
 @section('stylesheet')
@@ -9,11 +9,11 @@
 @section('content')
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">Sub Category Detail</h2>
-             <ol class="breadcrumb">
+            <h2 class="main-content-title tx-24 mg-b-5">Course Type Detail</h2>
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('subcategories.index') }}">Sub Category Detail</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Sub Category Detail</li>
+                <li class="breadcrumb-item"><a href="{{ route('coursetypes.index') }}">Course Type Detail</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Course Type Detail</li>
             </ol>
         </div>
     </div>
@@ -23,45 +23,30 @@
             <div class="card custom-card">
                 <div class="card-body">
                     <div>
-                        <h6 class="main-content-label mb-1">Sub Category Detail</h6>
-                        <p class="text-muted card-sub-title"> Sub Category with details.</p>
+                        <h6 class="main-content-label mb-1">Course Type Detail</h6>
+                        <p class="text-muted card-sub-title"> Course Type with details.</p>
                     </div>
                     <div class="container">
 
                         <div class="row">
-                            <div class="col-md-12">
-                                <h2>Main Subategory Details</h2>
+                            <div class="col-md-6">
+                                <h2>{{ $course->name }} Course Type Details</h2>
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table ">
                                         <tbody>
                                             <tr>
                                                 <th class="col-sm-4">Name</th>
-                                                <td class="col-sm-8">{{ $record->name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Category</th>
-                                                <td class="col-sm-8">{{ $record->category->name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Service Style</th>
-                                                <td class="col-sm-8">{{ $record->serviceStyle->name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th class="col-sm-4">Is Addon</th>
-                                                <td class="col-sm-8">{{ $record->is_addon ? 'Yes' : 'No' }}</td>
+                                                <td class="col-sm-8">{{ $course->type }}</td>
                                             </tr>
                                             <tr>
                                                 <th class="col-sm-4">Status</th>
-                                                <td class="col-sm-8">{{ $record->status ? 'Active' : 'Inactive' }}</td>
+                                                <td class="col-sm-8">{{ $course->status == 1 ? 'Active' : 'Inactive' }}
+                                                </td>
                                             </tr>
-                                            @foreach ($record->price as $item)
-                                                <tr>
-                                                    <th class="col-sm-4">{{ $item->pick }} Pick</th>
-                                                    <td class="col-sm-8">${{ $item->price }}</td>
-                                                </tr>
-                                            @endforeach
+
 
                                         </tbody>
+                                    </table>
                                     </table>
                                 </div>
 
@@ -71,8 +56,8 @@
                         </div>
                         <div class="d-flex">
                             <div class="justify-content-center">
-                                <a href="{{ route('subcategories.index') }}" class="btn btn-primary ">
-                                    Back to Sub Category
+                                <a href="{{ route('coursetypes.index') }}" class="btn btn-primary ">
+                                    Back to Coursetypes
                                 </a>
                             </div>
                         </div>
@@ -88,8 +73,8 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            // Array to store selected categories
-            var selectedCategories = [];
+            // Array to store selected coursetypes
+            var selectedCoursetypes = [];
 
             // Add field button functionality
             $("#addField").click(function() {
@@ -97,8 +82,8 @@
                 var clonedField = $("#formContainer .form-group:first").clone();
                 clonedField.find("select").val(""); // Clear the selected value
                 clonedField.find("input").val(""); // Clear the selected value
-                // Disable already selected categories in the cloned field
-                disableSelectedCategories(clonedField);
+                // Disable already selected coursetypes in the cloned field
+                disableSelectedCoursetypes(clonedField);
 
                 $("#formContainer").append(clonedField);
                 updateRemoveButtonVisibility();
@@ -108,11 +93,11 @@
             $("#formContainer").on("click", ".removeField", function() {
                 // Remove the parent form group only if there is more than one
                 if ($("#formContainer .form-group").length > 1) {
-                    var removedCategory = $(this).closest(".form-group").find("select").val();
+                    var removedCourse Type = $(this).closest(".form-group").find("select").val();
                     $(this).closest(".form-group").remove();
-                    // Remove the category from the selectedCategories array
-                    selectedCategories = selectedCategories.filter(function(category) {
-                        return category !== removedCategory;
+                    // Remove the course type from the selectedCoursetypes array
+                    selectedCoursetypes = selectedCoursetypes.filter(function(course type) {
+                        return course type !== removedCourse Type;
                     });
                     updateRemoveButtonVisibility();
                 }
@@ -124,21 +109,21 @@
                 removeButtons.prop("disabled", removeButtons.length === 1);
             }
 
-            // Function to disable selected categories in a given field
-            function disableSelectedCategories(field) {
+            // Function to disable selected coursetypes in a given field
+            function disableSelectedCoursetypes(field) {
                 field.find("select option").prop("disabled", false); // Enable all options
-                selectedCategories.forEach(function(category) {
-                    field.find("select option[value='" + category + "']").prop("disabled", true);
+                selectedCoursetypes.forEach(function(course type) {
+                    field.find("select option[value='" + course type + "']").prop("disabled", true);
                 });
             }
 
-            // Function to handle change event in category dropdown
-            $("#formContainer").on("change", "select[name='category[]']", function() {
-                // Add the selected category to the array
-                var selectedCategory = $(this).val();
-                selectedCategories.push(selectedCategory);
-                // Disable selected categories in other fields
-                disableSelectedCategories($("#formContainer .form-group:not(:has(.removeField))"));
+            // Function to handle change event in course type dropdown
+            $("#formContainer").on("change", "select[name='course type[]']", function() {
+                // Add the selected course type to the array
+                var selectedCourse Type = $(this).val();
+                selectedCoursetypes.push(selectedCourse Type);
+                // Disable selected coursetypes in other fields
+                disableSelectedCoursetypes($("#formContainer .form-group:not(:has(.removeField))"));
             });
 
             // Initial update of the "Remove" button visibility

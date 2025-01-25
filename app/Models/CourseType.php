@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class CourseType extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
+    
     /**
      * Get all of the ServiceStyles for the CourseType
      *
@@ -17,6 +18,6 @@ class CourseType extends Model
      */
     public function ServiceStyles(): HasMany
     {
-        return $this->hasMany(ServiceStyle::class,);
+        return $this->hasMany(ServiceStyle::class);
     }
 }

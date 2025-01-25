@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEventMenuRequest;
 use App\Models\Category;
-use App\Models\Dish;
+use App\Models\Item;
 use App\Models\Equipment;
 use App\Models\Event;
 use App\Models\EventMenu;
+use App\Models\Item;
 use App\Models\Journey;
 use App\Models\MenuQuery;
 use App\Models\Package;
@@ -36,7 +37,7 @@ class menu extends Controller
 
         $eventId = decrypt($eventId);
         $menus  = EventMenu::with('dishes')->where('event_id', $eventId)->get();
-        $dishes = Dish::with('subcategory')->get();
+        $dishes = Item::with('subcategory')->get();
 
         return view('pages.menu.menu-edit', compact('menus', 'dishes', 'eventId'));
     }
@@ -45,7 +46,7 @@ class menu extends Controller
 
         $eventId = decrypt($eventId);
         $menus  = EventMenu::with('dishes')->where('event_id', $eventId)->get();
-        $dishes = Dish::with('subcategory')->get();
+        $dishes = Item::with('subcategory')->get();
 
         $request_dishes =  MenuQuery::where('eventId', $eventId)->with('oldDish', 'newDish')->get();
 
@@ -100,7 +101,7 @@ class menu extends Controller
     {
         $dishes = null;
         if ($request->id) {
-            $dishes = Dish::whereIn('id', $request->id)->with('subcategory')->where('status', 1)->get();
+            $dishes = Item::whereIn('id', $request->id)->with('subcategory')->where('status', 1)->get();
 
             foreach ($dishes as $dish) {
                 if ($dish->price != 0) {
@@ -168,8 +169,8 @@ class menu extends Controller
     {
 
 
-        $dish = Dish::find($request->oldDishId);
-        $dishes = Dish::where('subcategory_id', $dish->subcategory_id)->with('subcategory')->get();
+        $dish = Item::find($request->oldDishId);
+        $dishes = Item::where('subcategory_id', $dish->subcategory_id)->with('subcategory')->get();
 
         return response()->json($dishes); // Use response() helper function
 
