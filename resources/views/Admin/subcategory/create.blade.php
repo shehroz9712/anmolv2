@@ -60,7 +60,7 @@
                                             <select class="form-control" id="status" name="status" required>
                                                 <option value="0">Inactive</option>
                                                 <option value="1">Active</option>
-                                                s
+
                                             </select>
                                         </div>
                                         <div class="col-lg-3 mb-3">
@@ -72,6 +72,9 @@
                                                 @endforeach
                                             </select>
                                         </div>
+
+                                        <h6 class="main-content-label mb-3">Sub Category Prices </h6>
+
                                         <div id="formContainer" class="col-12">
                                             <!-- Initial category and number fields -->
                                             <div class="form-group row align-items-end mb-3">

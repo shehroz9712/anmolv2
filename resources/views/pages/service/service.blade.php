@@ -113,7 +113,7 @@
                                 <li class="breadcrumb-item active" aria-current="page">Service Style</li>
                             </ol>
                         </div>
-                        <a href="{{ route('custom.menu', $eventId) }}">
+                        <a href="#">
                             <button class="btn ripple btn-primary col-md-12 float-left" style="padding: 5px; ">Pre
                                 designed Packages</button>
                         </a>
