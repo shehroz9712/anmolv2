@@ -67,8 +67,7 @@
                                                         {{ $item->name }} <small>
                                                             @if ($item->is_addon)
                                                                 (Addon Items)
-                                                            @else
-                                                                ( Regular)
+                                                           
                                                             @endif
                                                         </small>
                                                     </option>
@@ -88,7 +87,7 @@
                                             <input type="text" class="form-control" id="desc" name="desc"
                                                 value="{{ $dish->desc }}">
                                         </div>
-                                        <div class="col-md-12 mb-3">
+                                        {{-- <div class="col-md-12 mb-3">
                                             <div class="form-group mb-3">
                                                 <label for="labour">Labours Name </label>
                                                 <select name="labour[]" class="select2" multiple id="">
@@ -111,7 +110,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mb-3">

@@ -18,7 +18,7 @@ class DishesController extends Controller
     public function index()
     {
         $dishes = Item::with('subcategory')->get();
-        return view('Admin.dishes.index', compact('dishes'));
+        return view('Admin.items.index', compact('dishes'));
     }
 
     /**
@@ -30,7 +30,7 @@ class DishesController extends Controller
         $subcategory = SubCategory::Active()->get();
         $labours = Labour::Active()->get();
         $equipments = Equipment::Active()->get();
-        return view('Admin.dishes.create', compact('subcategory', 'equipments', 'labours'));
+        return view('Admin.items.create', compact('subcategory', 'equipments', 'labours'));
     }
 
     /**
@@ -44,19 +44,24 @@ class DishesController extends Controller
                 '_method',
                 'equipment',
                 'labour',
+                'allergies'
             ]
         );
-if($request->has('image')){
-    
-        $data['image'] =  $this->uploadImage($request->image, 'dishes');
-}
+        if ($request->has('image')) {
+
+            $data['image'] =  $this->uploadImage($request->image, 'dishes');
+        }
         $dish = Item::create($data);
+
         $labour = $request->labour;
-        foreach ($labour as $key => $value) {
-            DishesLabour::create([
-                'labour_id' => $value,
-                'dish_id' => $dish->id
-            ]);
+        if ($labour) {
+
+            foreach ($labour as $key => $value) {
+                DishesLabour::create([
+                    'labour_id' => $value,
+                    'dish_id' => $dish->id
+                ]);
+            }
         }
 
         return redirect()->route('dishes.index')->with('message', 'Item Added Successfully');
@@ -70,7 +75,7 @@ if($request->has('image')){
         $id = decrypt($id);
         $dish = Item::with('equipment')->find($id);
 
-        return view('Admin.dishes.view', compact('dish'));
+        return view('Admin.items.view', compact('dish'));
     }
 
     /**
@@ -83,7 +88,7 @@ if($request->has('image')){
         $labours = Labour::Active()->get();
         $equipments = Equipment::Active()->get();
         $dish = Item::with('equipment', 'labour')->find($id);
-        return view('Admin.dishes.edit', compact('dish', 'subcategory', 'equipments', 'labours'));
+        return view('Admin.items.edit', compact('dish', 'subcategory', 'equipments', 'labours'));
     }
 
     /**
@@ -101,10 +106,10 @@ if($request->has('image')){
 
         // Update the main package details
         $dishes = Item::find($id);
-if($request->has('image')){
-    
-        $data['image'] =  $this->uploadImage($request->image, 'dishes');
-}
+        if ($request->has('image')) {
+
+            $data['image'] =  $this->uploadImage($request->image, 'dishes');
+        }
         $dishes->update($data);
         $equipment = $request->equipment;
         if ($equipment) {
@@ -125,10 +130,9 @@ if($request->has('image')){
                     'dish_id' => $id
                 ];
             }
-        if(isset($lbrdata)){
-            DishesLabour::insert($lbrdata);
-        }
-            
+            if (isset($lbrdata)) {
+                DishesLabour::insert($lbrdata);
+            }
         }
         return redirect()->route('dishes.index')->with('message', 'Items Updated Successfully');
     }

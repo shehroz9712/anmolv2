@@ -55,25 +55,25 @@
                                                                         <li>
                                                                             {{ $subCategory->name }}
                                                                             <ul>
-                                                                                @forelse ($subCategory->dishes as $dish)
+                                                                                @forelse ($subCategory->items as $item)
                                                                                     <li class="align-items-end row">
                                                                                         <div class="col-lg-10"
                                                                                             style="padding-right:0px !important;">
                                                                                             <input type="checkbox"
                                                                                                 class="checkbox dish-checkbox selected_dish"
                                                                                                 name="dishid[]"
-                                                                                                value="{{ $dish->id }}|{{ $dish->price ?? 0 }}"
+                                                                                                value="{{ $item->id }}|{{ $item->price ?? 0 }}"
                                                                                                 data-subcategory-id="{{ $subCategory->id }}"
                                                                                                 data-single-price="{{ $subCategory->single }}"
                                                                                                 data-double-price="{{ $subCategory->double }}"
                                                                                                 data-trio-price="{{ $subCategory->trio }}">
-                                                                                            {{ $dish->name }}
+                                                                                            {{ $item->name }}
                                                                                         </div>
 
                                                                                         <div class="col-lg-2">
 
                                                                                             <a class="btn ripple float"
-                                                                                                data-bs-target="#modaldemo{{ $dish->id }}"
+                                                                                                data-bs-target="#modaldemo{{ $item->id }}"
                                                                                                 data-bs-toggle="modal"
                                                                                                 href="">
                                                                                                 <i class="fa fa-info-circle"
@@ -82,7 +82,7 @@
 
 
                                                                                             <div class="modal fade"
-                                                                                                id="modaldemo{{ $dish->id }}"
+                                                                                                id="modaldemo{{ $item->id }}"
                                                                                                 tabindex="-1"
                                                                                                 role="dialog"
                                                                                                 aria-labelledby="exampleModalLabel"
@@ -95,7 +95,7 @@
                                                                                                             class="modal-header">
                                                                                                             <h5 class="modal-title"
                                                                                                                 id="exampleModalLabel">
-                                                                                                                {{ $dish->name }}
+                                                                                                                {{ $item->name }}
                                                                                                             </h5>
                                                                                                             <button
                                                                                                                 type="button"
@@ -108,15 +108,15 @@
                                                                                                             </button>
                                                                                                         </div>
                                                                                                         @php
-                                                                                                            $image = $dish->image
-                                                                                                                ? $dish->image
+                                                                                                            $image = $item->image
+                                                                                                                ? $item->image
                                                                                                                 : 'no-image.png';
                                                                                                         @endphp
                                                                                                         <div
                                                                                                             class="modal-body text-justify">
-                                                                                                            <img src="{{ asset('uploads/dishes/' . ($dish->image ?? 'no-image.png')) }}"
+                                                                                                            <img src="{{ asset('uploads/dishes/' . ($item->image ?? 'no-image.png')) }}"
                                                                                                                 alt="image">
-                                                                                                            <p>{!! $dish->long_desc !!}
+                                                                                                            <p>{!! $item->long_desc !!}
                                                                                                             </p>
                                                                                                         </div>
                                                                                                     </div>

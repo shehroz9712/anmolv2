@@ -63,8 +63,6 @@
                                                     <option value="{{ $item->id }}">{{ $item->name }} <small>
                                                             @if ($item->is_addon)
                                                                 (Addon Items)
-                                                            @else
-                                                                ( main)
                                                             @endif
                                                         </small>
                                                     </option>
@@ -84,6 +82,23 @@
                                         </div>
                                     </div>
                                     <div class="row">
+
+                                        <div class="col-md-12 mb-3">
+                                            <div class="form-group mb-3">
+                                                <label for="allergies">allergies </label>
+                                                <select name="allergies[]" class="select2" multiple id="">
+                                                    <option value="milk">Milk</option>
+                                                    <option value="peanut">Peanut</option>
+                                                    <option value="coconut">Coconut</option>
+                                                    <option value="yogurt">Yogurt</option>
+                                                </select>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    {{-- <div class="row">
 
                                         <div class="col-md-12 mb-3">
                                             <div class="form-group mb-3">
@@ -114,7 +129,7 @@
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> --}}
 
                             </div>
                         </div>

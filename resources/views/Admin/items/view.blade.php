@@ -71,7 +71,7 @@
 
                             </div>
 
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <h2>Equipment Details</h2>
                                 @foreach ($dish->equipment as $item)
                                     <div class="table-responsive">
@@ -86,7 +86,7 @@
                                         </table>
                                     </div>
                                 @endforeach
-                            </div>
+                            </div> --}}
 
                         </div>
                         <div class="d-flex">

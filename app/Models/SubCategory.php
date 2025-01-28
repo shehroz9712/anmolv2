@@ -10,7 +10,7 @@ class SubCategory extends Model
 {
     protected $guarded = [];
     use HasFactory;
-    public function dishes()
+    public function items()
     {
         return $this->hasMany(Item::class, 'subcategory_id', 'id')->where('status', 1)->orderby('name', 'ASC');
     }

@@ -13,10 +13,15 @@ class ServiceStyleController extends Controller
 
     public function create(Request $request, $eventId)
     {
-        $course_types =  CourseType::with('ServiceStyles')->get();
-        $categories = Category::where(['type' => 2, 'status' => 1])->get();
+        $eventId = $request->eventId;
 
-        return view('pages.service.service', compact('course_types', 'eventId'));
+        // Fetch the required data with eager loading
+        $courseTypes = CourseType::with(['serviceStyles.subCategories.items'])
+           
+            ->get();
+        // Filter out only the selected service styles
+        
+        return view('pages.menu.item', compact('courseTypes', 'eventId'));
     }
 
      public function store(Request $request)
@@ -26,7 +31,7 @@ class ServiceStyleController extends Controller
         $selectedServiceStyles = collect($request->except('_token'))->flatten();
 
         // Fetch the required data with eager loading
-        $courseTypes = CourseType::with(['serviceStyles.subCategories.dishes'])
+        $courseTypes = CourseType::with(['serviceStyles.subCategories.items'])
             ->whereIn('id', $selectedCourseTypes)
             ->get();
  
