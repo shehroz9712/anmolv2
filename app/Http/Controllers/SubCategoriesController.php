@@ -16,10 +16,8 @@ class SubCategoriesController extends Controller
      */
     public function index()
     {
-        $subcategories = SubCategory::with( 'serviceStyle')->get();
-        $coursetype  =  CourseType::Active()->with('ServiceStyles')->get();
-
-        return view('Admin.subcategory.index', compact('coursetype ','subcategories'));
+        $subcategories = SubCategory::with('serviceStyle')->get();
+        return view('Admin.subcategory.index', compact('subcategories'));
     }
 
     /**
@@ -132,5 +130,5 @@ class SubCategoriesController extends Controller
         $serviceStyles = SubCategory::Active()->where('service_style_id', $serviceStyleId)->get();
 
         return response()->json($serviceStyles);
-    }       
+    }
 }

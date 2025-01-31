@@ -16,7 +16,14 @@ class Item extends Model
     {
         return $this->belongsTo(SubCategory::class, 'subcategory_id', 'id')->with('price');
     }
-
+    public function coursetype()
+    {
+        return $this->belongsTo(CourseType::class);
+    }
+    public function servicestyle()
+    {
+        return $this->belongsTo(ServiceStyle::class);
+    }
 
     public function packages()
     {

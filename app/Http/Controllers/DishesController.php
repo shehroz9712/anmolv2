@@ -19,7 +19,8 @@ class DishesController extends Controller
      */
     public function index()
     {
-        $dishes = Item::with('subcategory')->get();
+        $dishes = Item::with('subcategory', 'coursetype', 'serviceStyle')->get();
+        dd($dishes);
         return view('Admin.items.index', compact('dishes'));
     }
 
@@ -96,7 +97,7 @@ class DishesController extends Controller
         $dish = Item::with('equipment', 'labour')->find($id);
         $coursetype  =  CourseType::Active()->with('ServiceStyles')->get();
         $serviceStyles = ServiceStyle::Active()->get();
-        return view('Admin.items.edit', compact('dish','serviceStyles', 'coursetype', 'subcategories', 'equipments', 'labours'));
+        return view('Admin.items.edit', compact('dish', 'serviceStyles', 'coursetype', 'subcategories', 'equipments', 'labours'));
     }
 
     /**

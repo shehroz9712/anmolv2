@@ -20,7 +20,7 @@
             <div class="d-flex">
                 <div class="justify-content-center">
                     <a href="{{ route('dishes.create') }}" class="btn btn-primary my-2 btn-icon-text">
-                     Add Item
+                        Add Item
                     </a>
                 </div>
             </div>
@@ -36,9 +36,10 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Price</th>
-                                        {{-- <th>Unit</th> --}}
+                                        <th>Course Type</th>
+                                        <th>Service STyle</th>
                                         <th>Sub Category</th>
+                                        <th>Price</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -47,9 +48,10 @@
                                     @foreach ($dishes as $dish)
                                         <tr>
                                             <td>{{ $dish->name }}</td>
-                                            <td>${{ $dish->price }}</td>
-                                            {{-- <td>{{ $dish->unit }}</td> --}}
-                                            <td>{{ $dish->subcategory ? $dish->subcategory->name : '' }}</td>
+                                            <td>{{ $dish->coursetype?->type }}</td>
+                                            <td>{{ $dish->servicestyle?->name }}</td>
+                                            <td>{{ $dish->subcategory?->name }}</td>
+                                            <td>$ {{ $dish->price }} </td>
                                             <td>{{ $dish->status == 1 ? 'Active' : 'In Active' }}</td>
                                             <td>
                                                 <a class="btn btn-main-primary px-3"

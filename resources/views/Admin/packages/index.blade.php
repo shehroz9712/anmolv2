@@ -60,7 +60,7 @@
                                                 @if ($package->status == 1)
                                                     <span class="text-success">Active</span>
                                                 @else
-                                                    <span class="text-danger">Blocked</span>
+                                                    <span class="text-danger">In Active</span>
                                                 @endif
                                             </td>
 
