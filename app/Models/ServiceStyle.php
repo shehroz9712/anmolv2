@@ -26,4 +26,8 @@ class ServiceStyle extends Model
     {
         return $this->belongsTo(CourseType::class,'course_type_id','id');
     }
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }

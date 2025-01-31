@@ -49,20 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
-                <div class="card custom-card">
-                    <div class="card-header custom-card-header border-bottom-0">
-                        <h5 class="main-content-label tx-dark tx-medium mb-0">Categories</h5>
-                    </div>
-                    <div class="card-body">
-                        <h6 class="">Categories</h6>
-                        <p class="card-text">Explore diverse categories for your subcategories management system.
-                        </p>
-                        <a href="{{ route('categories.index') }}" class="btn btn-primary ripple "
-                            style="float: inline-end;padding: 8px 25px;">View</a>
-                    </div>
-                </div>
-            </div>
+           
             <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
                 <div class="card custom-card">
                     <div class="card-header custom-card-header border-bottom-0">
@@ -93,12 +80,30 @@
             <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
                 <div class="card custom-card">
                     <div class="card-header custom-card-header border-bottom-0">
+                        <h5 class="main-content-label tx-dark tx-medium mb-0">Categories</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="">Categories</h6>
+                        <p class="card-text">Explore diverse categories for your subcategories management system.
+                        </p>
+                        <a href="#" class="btn btn-primary ripple "
+                            style="float: inline-end;padding: 8px 25px;">View</a>
+                        {{-- <a href="{{ route('categories.index') }}" class="btn btn-primary ripple "
+                            style="float: inline-end;padding: 8px 25px;">View</a> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-3 col-md-12 col-12 col-sm-12">
+                <div class="card custom-card">
+                    <div class="card-header custom-card-header border-bottom-0">
                         <h5 class="main-content-label tx-dark tx-medium mb-0">Packages</h5>
                     </div>
                     <div class="card-body">
                         <h6 class="">Packages</h6>
                         <p class="card-text">Create and customize packages to meet your customers' specific needs.</p>
-                        <a href="{{ route('packages.index') }}" class="btn btn-primary ripple "
+                        {{-- <a href="{{ route('packages.index') }}" class="btn btn-primary ripple "
+                            style="float: inline-end;padding: 8px 25px;">View</a> --}}
+                        <a href="#" class="btn btn-primary ripple "
                             style="float: inline-end;padding: 8px 25px;">View</a>
                     </div>
                 </div>

@@ -12,8 +12,8 @@
         <div class="page-header">
             <div>
                 <h2 class="main-content-title tx-24 mg-b-5">Sub Categories</h2>
-                 <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Manage Sub Categories</li>
                 </ol>
@@ -37,9 +37,9 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Category</th>
-                                        <!--<th>Is Addon</th>-->
+                                        {{-- <th>Category</th> --}}
                                         <th>Service Style</th>
+                                        <th>Is Addon</th>
                                         {{-- <th>Single</th>
                                         <th>Trio</th> --}}
                                         <th class="wd-lg-20p">status</th>
@@ -50,9 +50,9 @@
                                     @foreach ($subcategories as $record)
                                         <tr>
                                             <td>{{ $record->name }}</td>
-                                            <td>{{ $record->category->name }}</td>
-                                            <!--<td>{{ $record->is_addon }}</td>-->
                                             <td>{{ $record->serviceStyle->name }}</td>
+                                            <!--<td>{{ $record->is_addon }}</td>-->
+                                            <td>{{ $record->is_addon == 1 ? 'Yes' : 'No' }}</td>
                                             {{-- <td>{{ $record->single }}</td>
                                             <td>{{ $record->trio }}</td> --}}
 

@@ -37,8 +37,8 @@
                                 <div class="col-lg-4 mb-3">
                                     <label for="status">Status</label>
                                     <select class="form-control" id="status" name="status" required>
-                                        <option value="0">Inactive</option>
                                         <option value="1">Active</option>
+                                        <option value="0">In Active</option>
                                     </select>
                                     <small id="statusError" class="text-danger"></small>
                                 </div>
@@ -64,7 +64,13 @@
                                         <tr>
                                             <td>{{ $course->id }}</td>
                                             <td>{{ $course->type }}</td>
-                                            <td>{{ $course->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                            <td>
+                                                @if ($course->status == 1)
+                                                    <span class="text-success">Active</span>
+                                                @else
+                                                    <span class="text-danger">In Active</span>
+                                                @endif
+                                            </td>
                                             <td>
                                                 <button class="btn btn-main-primary px-3 edit-button"
                                                     data-id="{{ $course->id }}" data-type="{{ $course->type }}"
@@ -100,8 +106,8 @@
                                     <div class="form-group">
                                         <label for="edit_status">Status</label>
                                         <select class="form-control" id="edit_status" name="status" required>
-                                            <option value="0">Inactive</option>
                                             <option value="1">Active</option>
+                                            <option value="0">In Active</option>
                                         </select>
                                     </div>
                                 </div>

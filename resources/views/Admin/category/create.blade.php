@@ -47,7 +47,7 @@
                                         <div class="col-lg-4 mb-3">
                                             <label for="status">Status</label>
                                             <select class="form-control" id="status" name="status" required>
-                                                <option value="0">Inactive</option>
+                                                <option value="0">In Active</option>
                                                 <option value="1">Active</option>
                                             </select>
                                             <small id="statusError" class="text-danger"></small>

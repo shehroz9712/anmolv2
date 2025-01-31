@@ -52,7 +52,7 @@
                                         <div class="col-lg-6 mb-3">
                                             <label for="status">Status</label>
                                             <select class="form-control" id="status" name="status" required>
-                                                <option value="0" {{ $record->status == 0 ? 'selected' : '' }}>Inactive
+                                                <option value="0" {{ $record->status == 0 ? 'selected' : '' }}>In Active
                                                 </option>
                                                 <option value="1" {{ $record->status == 1 ? 'selected' : '' }}>Active
                                                 </option>

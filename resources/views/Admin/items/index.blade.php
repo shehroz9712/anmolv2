@@ -50,7 +50,7 @@
                                             <td>${{ $dish->price }}</td>
                                             {{-- <td>{{ $dish->unit }}</td> --}}
                                             <td>{{ $dish->subcategory ? $dish->subcategory->name : '' }}</td>
-                                            <td>{{ $dish->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                            <td>{{ $dish->status == 1 ? 'Active' : 'In Active' }}</td>
                                             <td>
                                                 <a class="btn btn-main-primary px-3"
                                                     href="{{ route('dishes.edit', encrypt($dish->id)) }}">Edit</a>

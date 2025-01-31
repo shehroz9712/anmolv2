@@ -67,7 +67,7 @@
                                             <select class="form-control" id="status" name="status">
                                                 <option disabled selected value="">Select Status</option>
                                                 <option value="0" {{ $package->status == 0 ? 'selected' : '' }}>
-                                                    Inactive</option>
+                                                    In Active</option>
                                                 <option value="1" {{ $package->status == 1 ? 'selected' : '' }}>Active
                                                 </option>
                                             </select>

@@ -34,42 +34,43 @@
                                     @csrf
                                     <div class="form-group row">
 
-                                        <div class="col-lg-3 mb-3">
+                                        <div class="col-lg-4 mb-3">
                                             <label for="name">Name</label>
                                             <input class="form-control" id="name" name="name" required
                                                 type="text">
                                         </div>
-
-                                        <div class="col-lg-3 mb-3">
-                                            <label for="category_id">Category</label>
-                                            <select id="category_id" class="form-control" name="category_id" required>
-                                                @foreach ($categories as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        <div class="col-lg-4 mb-3">
+                                            <label for="course_type_id">Course Type</label>
+                                            <select class="form-control" id="course_type_id" name="course_type_id"
+                                                required>
+                                                @foreach ($coursetype as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->type }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-lg-3 mb-3">
+                                        <div class="col-lg-4 mb-3">
+                                            <label for="service_style_id">Service Style</label>
+                                            <select class="form-control" id="service_style_id" name="service_style_id"
+                                                required>
+                                                <option value="">Select Service Style</option>
+                                                <!-- Service styles will be loaded dynamically -->
+                                            </select>
+                                        </div>
+
+
+                                        <div class="col-lg-4 mb-3">
                                             <label for="is_addon">Is Addon</label>
                                             <select class="form-control" id="is_addon" name="is_addon" required>
                                                 <option value="0">No</option>
                                                 <option value="1">Yes</option>
                                             </select>
                                         </div>
-                                        <div class="col-lg-3 mb-3">
+                                        <div class="col-lg-4 mb-3">
                                             <label for="status">Status</label>
                                             <select class="form-control" id="status" name="status" required>
-                                                <option value="0">Inactive</option>
+                                                <option value="0">In Active</option>
                                                 <option value="1">Active</option>
 
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-3 mb-3">
-                                            <label for="service_style_id">Service Style</label>
-                                            <select class="form-control" id="service_style_id" name="service_style_id"
-                                                required>
-                                                @foreach ($servicestyles as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                @endforeach
                                             </select>
                                         </div>
 
@@ -116,6 +117,27 @@
 @endsection
 
 @section('js')
+    <script>
+        document.getElementById("course_type_id").addEventListener("change", function() {
+            var courseTypeId = this.value;
+            var serviceStyleDropdown = document.getElementById("service_style_id");
+
+            // Clear existing options
+            serviceStyleDropdown.innerHTML = '<option value="">Select Service Style</option>';
+
+            if (courseTypeId) {
+                fetch("{{ route('getServiceStyles') }}?course_type_id=" + courseTypeId)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(item => {
+                            let option = new Option(item.name, item.id);
+                            serviceStyleDropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching service styles:", error));
+            }
+        });
+    </script>
     <script>
         $(document).ready(function() {
             // Array to store selected categories

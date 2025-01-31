@@ -124,7 +124,7 @@
                                         <div class="col-md-6 mb-3">
                                             <label for="status">Status</label>
                                             <select class="form-control" id="status" name="status">
-                                                <option value="0" {{ $dish->status == 0 ? 'selected' : '' }}>Inactive
+                                                <option value="0" {{ $dish->status == 0 ? 'selected' : '' }}>In Active
                                                 </option>
                                                 <option value="1" {{ $dish->status == 1 ? 'selected' : '' }}>Active
                                                 </option>

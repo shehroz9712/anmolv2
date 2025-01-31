@@ -29,50 +29,38 @@ s
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-xl-12">
-                                <form method="POST" action="{{ route('subcategories.update', $record->id) }}">
+                                <form method="POST" action="{{ route('subcategories.update', $record->id) }}"
+                                    onsubmit="return validateForm();">
                                     @csrf
                                     @method('PUT')
 
                                     <div class="form-group row">
-                                        <div class="col-lg-3 mb-3">
+                                        <!-- Name Field -->
+                                        <div class="col-lg-4 mb-3">
                                             <label for="name">Name</label>
                                             <input class="form-control" id="name" name="name" required
                                                 type="text" value="{{ $record->name }}">
                                         </div>
-                                        <div class="col-lg-3 mb-3">
-                                            <label for="category_id">Category</label>
-                                            <select id="category_id" class="form-control" name="category_id" required>
-                                                @foreach ($categories as $item)
+
+                                        <!-- Course Type -->
+                                        <div class="col-lg-4 mb-3">
+                                            <label for="course_type_id">Course Type</label>
+                                            <select class="form-control" id="course_type_id" name="course_type_id" required>
+                                                @foreach ($coursetype as $item)
                                                     <option value="{{ $item->id }}"
-                                                        {{ $record->category_id == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name }}</option>
+                                                        {{ $record->course_type_id == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->type }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-lg-3 mb-3">
-                                            <label for="is_addon">Is Addon</label>
-                                            <select class="form-control" id="is_addon" name="is_addon" required>
-                                                <option value="0" {{ $record->is_addon == 0 ? 'selected' : '' }}>No
-                                                </option>
-                                                <option value="1" {{ $record->is_addon == 1 ? 'selected' : '' }}>Yes
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-3 mb-3">
-                                            <label for="status">Status</label>
-                                            <select class="form-control" id="status" name="status" required>
-                                                <option value="0" {{ $record->status == 0 ? 'selected' : '' }}>Inactive
-                                                </option>
-                                                <option value="1" {{ $record->status == 1 ? 'selected' : '' }}>Active
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-3 mb-3">
+
+                                        <!-- Service Style -->
+                                        <div class="col-lg-4 mb-3">
                                             <label for="service_style_id">Service Style</label>
                                             <select class="form-control" id="service_style_id" name="service_style_id"
                                                 required>
-
-
+                                                <option value="">Select Service Style</option>
                                                 @foreach ($servicestyles as $item)
                                                     <option value="{{ $item->id }}"
                                                         {{ $record->service_style_id == $item->id ? 'selected' : '' }}>
@@ -81,19 +69,43 @@ s
                                                 @endforeach
                                             </select>
                                         </div>
+
+                                        <!-- Is Addon -->
+                                        <div class="col-lg-4 mb-3">
+                                            <label for="is_addon">Is Addon</label>
+                                            <select class="form-control" id="is_addon" name="is_addon" required>
+                                                <option value="0" {{ $record->is_addon == 0 ? 'selected' : '' }}>
+                                                    No</option>
+                                                <option value="1" {{ $record->is_addon == 1 ? 'selected' : '' }}>
+                                                    Yes</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Status -->
+                                        <div class="col-lg-4 mb-3">
+                                            <label for="status">Status</label>
+                                            <select class="form-control" id="status" name="status" required>
+                                                <option value="0" {{ $record->status == 0 ? 'selected' : '' }}>In
+                                                    Active</option>
+                                                <option value="1" {{ $record->status == 1 ? 'selected' : '' }}>
+                                                    Active</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Sub Category Prices -->
+                                        <h6 class="main-content-label mb-3">Sub Category Prices</h6>
                                         <div id="formContainer" class="col-12">
-                                            <!-- Loop through existing package includes -->
-                                            @foreach ($record->price as $item)
+                                            @foreach ($record->price as $price)
                                                 <div class="form-group row align-items-end mb-3">
                                                     <div class="col-lg-4 mb-3">
                                                         <label for="number">Number of Items</label>
                                                         <input class="form-control" type="number" name="number[]"
-                                                            value="{{ $item->pick }}">
+                                                            value="{{ $price->number }}">
                                                     </div>
                                                     <div class="col-lg-4 mb-3">
-                                                        <label for="number">Price</label>
+                                                        <label for="price">Price</label>
                                                         <input class="form-control" type="number" name="price[]"
-                                                            value="{{ $item->price }}">
+                                                            value="{{ $price->price }}">
                                                     </div>
                                                     <div class="col-lg-4 mb-3">
                                                         <button type="button"
@@ -103,14 +115,16 @@ s
                                             @endforeach
                                         </div>
 
+                                        <!-- Add Field Button -->
                                         <div class="col-12 mb-3">
                                             <button type="button" class="btn ripple btn-main-primary" id="addField">Add
                                                 Field</button>
                                         </div>
+                                    </div>
 
-                                        <div class="col-12 mb-3" style="text-align: end;">
-                                            <button class="btn ripple btn-main-primary">Submit</button>
-                                        </div>
+                                    <!-- Submit Button -->
+                                    <div class="col-12 mb-3" style="text-align: end;">
+                                        <button class="btn ripple btn-main-primary">Update</button>
                                     </div>
                                 </form>
                             </div>
@@ -187,23 +201,24 @@ s
 
 
     <script>
-        // Function to validate the name field
-        function validateName() {
-            const nameInput = document.getElementById('name');
-            const nameError = document.getElementById('nameError');
-            const nameValue = nameInput.value;
+        document.getElementById("course_type_id").addEventListener("change", function() {
+            var courseTypeId = this.value;
+            var serviceStyleDropdown = document.getElementById("service_style_id");
 
-            nameError.innerText = ''; // Reset previous error message
+            // Clear existing options
+            serviceStyleDropdown.innerHTML = '<option value="">Select Service Style</option>';
 
-            if (nameValue.trim() === '') {
-                nameError.innerText = 'Name is required';
-                return false;
-            } else if (/[^a-zA-Z0-9\s]/.test(nameValue)) {
-                nameError.innerText = 'Name should only contain letters, numbers, and spaces';
-                return false;
+            if (courseTypeId) {
+                fetch("{{ route('getServiceStyles') }}?course_type_id=" + courseTypeId)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(item => {
+                            let option = new Option(item.name, item.id);
+                            serviceStyleDropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching service styles:", error));
             }
-
-            return true;
-        }
+        });
     </script>
 @endsection

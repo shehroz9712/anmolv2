@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CourseType;
 use App\Models\Price;
 use App\Models\ServiceStyle;
 use App\Models\SubCategory;
@@ -15,8 +16,10 @@ class SubCategoriesController extends Controller
      */
     public function index()
     {
-        $subcategories = SubCategory::with('category', 'serviceStyle')->get();
-        return view('Admin.subcategory.index', compact('subcategories'));
+        $subcategories = SubCategory::with( 'serviceStyle')->get();
+        $coursetype  =  CourseType::Active()->with('ServiceStyles')->get();
+
+        return view('Admin.subcategory.index', compact('coursetype ','subcategories'));
     }
 
     /**
@@ -24,10 +27,10 @@ class SubCategoriesController extends Controller
      */
     public function create()
     {
-        $categories = Category::where(['type' => 2, 'status' => 1])->get();
+        $coursetype = CourseType::where(['status' => 1])->get();
         $servicestyles = ServiceStyle::with('coursetype')->get();
 
-        return view('Admin.subcategory.create', compact('categories', 'servicestyles'));
+        return view('Admin.subcategory.create', compact('coursetype', 'servicestyles'));
     }
 
     /**
@@ -77,11 +80,11 @@ class SubCategoriesController extends Controller
     public function edit(string $id)
     {
         $id = decrypt($id);
-        $categories = Category::where(['type' => 2, 'status' => 1])->get();
         $record = SubCategory::with('category', 'serviceStyle')->find($id);
-        $servicestyles = ServiceStyle::with('coursetype')->get();
+        $coursetype = CourseType::Active()->get();
+        $servicestyles = ServiceStyle::Active()->with('coursetype')->get();
 
-        return view('Admin.subcategory.edit', compact('record', 'categories', 'servicestyles'));
+        return view('Admin.subcategory.edit', compact('record', 'coursetype', 'servicestyles'));
     }
 
     /**
@@ -123,8 +126,11 @@ class SubCategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function getSubCategory(Request $request)
     {
-        //
-    }
+        $serviceStyleId = $request->service_style_id;
+        $serviceStyles = SubCategory::Active()->where('service_style_id', $serviceStyleId)->get();
+
+        return response()->json($serviceStyles);
+    }       
 }

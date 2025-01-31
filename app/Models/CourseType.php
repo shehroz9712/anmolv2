@@ -10,7 +10,7 @@ class CourseType extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
+
     /**
      * Get all of the ServiceStyles for the CourseType
      *
@@ -19,5 +19,9 @@ class CourseType extends Model
     public function ServiceStyles(): HasMany
     {
         return $this->hasMany(ServiceStyle::class);
+    }
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
     }
 }

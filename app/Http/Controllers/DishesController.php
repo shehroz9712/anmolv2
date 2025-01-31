@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CourseType;
 use App\Models\Item;
 use App\Models\DishesEquipment;
 use App\Models\DishesLabour;
 use App\Models\Equipment;
 use App\Models\Labour;
+use App\Models\ServiceStyle;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -27,10 +29,13 @@ class DishesController extends Controller
     public function create()
     {
         // dd('create');
-        $subcategory = SubCategory::Active()->get();
         $labours = Labour::Active()->get();
         $equipments = Equipment::Active()->get();
-        return view('Admin.items.create', compact('subcategory', 'equipments', 'labours'));
+        $coursetype  =  CourseType::Active()->with('ServiceStyles')->get();
+        $serviceStyles = ServiceStyle::Active()->get();
+        $subcategory = SubCategory::Active()->get();
+
+        return view('Admin.items.create', compact('serviceStyles', 'subcategory', 'coursetype', 'equipments', 'labours'));
     }
 
     /**
@@ -47,6 +52,7 @@ class DishesController extends Controller
                 'allergies'
             ]
         );
+        $data['allergies'] = implode(',', $request->allergies);
         if ($request->has('image')) {
 
             $data['image'] =  $this->uploadImage($request->image, 'dishes');
@@ -84,11 +90,13 @@ class DishesController extends Controller
     public function edit(string $id)
     {
         $id = decrypt($id);
-        $subcategory = SubCategory::Active()->get();
+        $subcategories = SubCategory::Active()->get();
         $labours = Labour::Active()->get();
         $equipments = Equipment::Active()->get();
         $dish = Item::with('equipment', 'labour')->find($id);
-        return view('Admin.items.edit', compact('dish', 'subcategory', 'equipments', 'labours'));
+        $coursetype  =  CourseType::Active()->with('ServiceStyles')->get();
+        $serviceStyles = ServiceStyle::Active()->get();
+        return view('Admin.items.edit', compact('dish','serviceStyles', 'coursetype', 'subcategories', 'equipments', 'labours'));
     }
 
     /**

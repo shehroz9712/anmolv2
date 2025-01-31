@@ -135,4 +135,12 @@ class ServiceController extends Controller
 
         return redirect()->route('events.index')->with('message', 'Service Styling updated successfully.');
     }
+
+    public function getServiceStyles(Request $request)
+    {
+        $courseTypeId = $request->course_type_id;
+        $serviceStyles = ServiceStyle::Active()->where('course_type_id', $courseTypeId)->get();
+
+        return response()->json($serviceStyles);
+    }
 }

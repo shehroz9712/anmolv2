@@ -53,8 +53,8 @@
                                 <div class="col-lg-3 mb-3">
                                     <label for="status">Status</label>
                                     <select class="form-control" id="status" name="status" required>
-                                        <option value="0">Inactive</option>
                                         <option value="1">Active</option>
+                                        <option value="0">In Active</option>
                                     </select>
                                 </div>
 
@@ -84,7 +84,7 @@
                                                 @if ($record->status == 1)
                                                     <span class="text-success">Active</span>
                                                 @else
-                                                    <span class="text-danger">Blocked</span>
+                                                    <span class="text-danger">In Active</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -131,8 +131,8 @@
                                             <div class="form-group">
                                                 <label for="edit_status">Status</label>
                                                 <select class="form-control" id="edit_status" name="status" required>
-                                                    <option value="0">Inactive</option>
                                                     <option value="1">Active</option>
+                                                    <option value="0">In Active</option>
                                                 </select>
                                             </div>
                                         </div>

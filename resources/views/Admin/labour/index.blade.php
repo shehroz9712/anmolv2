@@ -53,7 +53,7 @@
                                                 <td>{{ $labour->with_dish ? 'Yes' : 'No' }}</td>
                                                 <td>{{ $labour->guest }}</td>
                                                 <td>{{ $labour->price }}</td>
-                                                <td>{{ $labour->status ? 'Active' : 'Inactive' }}</td>
+                                                <td>{{ $labour->status ? 'Active' : 'In Active' }}</td>
                                                 <td>
                                                     <a href="{{ route('labours.edit', encrypt($labour->id)) }}"
                                                         class="btn btn-primary">Edit</a>

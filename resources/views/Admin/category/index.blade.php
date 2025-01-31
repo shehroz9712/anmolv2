@@ -49,7 +49,7 @@
                                         <tr>
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->name }}</td>
-                                            <td>{{ $category->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                            <td>{{ $category->status == 1 ? 'Active' : 'In Active' }}</td>
                                             <td>{{ $category->type == 1 ? 'Packages' : 'Regular' }}</td>
 
 

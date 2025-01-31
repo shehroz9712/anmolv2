@@ -30,112 +30,112 @@
                         <p class="text-muted card-sub-title">Edit Item with details.</p>
                     </div>
                     <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-12 col-xl-12">
-                                <form action="{{ route('dishes.update', $dish->id) }}" method="POST"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT') <!-- Use PUT method for updating -->
-
+                        <form action="{{ route('dishes.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                        
+                            <div class="row">
+                                <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="name">Name</label>
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                value="{{ $dish->name }}" required>
+                                            <input type="text" class="form-control" id="name" name="name" value="{{ $dish->name }}" required>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="image">Image</label>
                                             <input type="file" class="form-control" id="image" name="image">
-                                            <!-- Display current image -->
-                                            <img src="{{ asset('uploads/dishes/' . $dish->image) }}" alt="Current Image"
-                                                width="100">
+                                            <br>
+                                            @if($dish->image)
+                                                <img src="{{ asset('storage/'.$dish->image) }}" width="100" alt="Dish Image">
+                                            @endif
                                         </div>
                                     </div>
-
+                        
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="price">Price(Leave blank if you need item category price)</label>
-                                            <input type="number" class="form-control" id="price" name="price"
-                                                value="{{ $dish->price }}">
+                                            <label for="price">Price (Leave blank if you need item category price)</label>
+                                            <input type="number" class="form-control" id="price" name="price" value="{{ $dish->price }}">
+                                        </div>
+                                        <div class="col-lg-4 mb-3">
+                                            <label for="course_type_id">Course Type</label>
+                                            <select class="form-control" id="course_type_id" name="course_type_id" required>
+                                                @foreach ($coursetype as $item)
+                                                    <option value="{{ $item->id }}" {{ $dish->course_type_id == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->type }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="service_style_id">Service Style</label>
+                                            <select class="form-control" id="service_style_id" name="service_style_id" required>
+                                                <option value="">Select Service Style</option>
+                                                @foreach ($serviceStyles as $style)
+                                                    <option value="{{ $style->id }}" {{ $dish->service_style_id == $style->id ? 'selected' : '' }}>
+                                                        {{ $style->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="subcategory_id">Sub Category</label>
                                             <select class="form-control" id="subcategory_id" name="subcategory_id" required>
-                                                @foreach ($subcategory as $item)
-                                                    <option value="{{ $item->id }}"
-                                                        {{ $dish->subcategory_id == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name }} <small>
-                                                            @if ($item->is_addon)
-                                                                (Addon Items)
-                                                           
-                                                            @endif
-                                                        </small>
+                                                <option value="">Select Sub Category</option>
+                                                @foreach ($subcategories as $sub)
+                                                    <option value="{{ $sub->id }}" {{ $dish->subcategory_id == $sub->id ? 'selected' : '' }}>
+                                                        {{ $sub->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-
+                        
                                     <div class="row">
-                                        {{-- <div class="col-md-6 mb-3">
-                                            <label for="unit">Unit</label>
-                                            <input type="text" class="form-control" id="unit" name="unit"
-                                                value="{{ $dish->unit }}">
-                                        </div> --}}
                                         <div class="col-md-12 mb-3">
                                             <label for="desc">Description</label>
-                                            <input type="text" class="form-control" id="desc" name="desc"
-                                                value="{{ $dish->desc }}">
+                                            <input type="text" class="form-control" id="desc" name="desc" value="{{ $dish->desc }}">
                                         </div>
-                                        {{-- <div class="col-md-12 mb-3">
-                                            <div class="form-group mb-3">
-                                                <label for="labour">Labours Name </label>
-                                                <select name="labour[]" class="select2" multiple id="">
-                                                    @foreach ($labours as $item)
-                                                        <option value="{{ $item->id }}"
-                                                            @if ($dish->labour && $dish->labour->contains($item->id)) selected @endif>
-                                                            {{ $item->designation }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 mb-3">
-                                            <div class="form-group mb-3">
-                                                <label for="equipment">Equipments Name </label>
-                                                <select name="equipment[]" class="select2" multiple id="">
-                                                    @foreach ($equipments as $item)
-                                                        <option value="{{ $item->id }}"
-                                                            @if ($dish->equipment && $dish->equipment->contains($item->id)) selected @endif>
-                                                            {{ $item->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div> --}}
                                     </div>
+                        
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="allergies">Allergies</label>
+                                            @php
+                                                $selectedAllergies = is_array($dish->allergies) ? $dish->allergies : explode(',', $dish->allergies);
+                                            @endphp
+                                            <select name="allergies[]" class="select2" multiple>
+                                                <option value="milk" {{ in_array('milk', $selectedAllergies) ? 'selected' : '' }}>Milk</option>
+                                                <option value="peanut" {{ in_array('peanut', $selectedAllergies) ? 'selected' : '' }}>Peanut</option>
+                                                <option value="coconut" {{ in_array('coconut', $selectedAllergies) ? 'selected' : '' }}>Coconut</option>
+                                                <option value="yogurt" {{ in_array('yogurt', $selectedAllergies) ? 'selected' : '' }}>Yogurt</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                        
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
                                             <label for="long_desc">Long Description</label>
                                             <textarea class="form-control" id="long_desc" name="long_desc" rows="3">{{ $dish->long_desc }}</textarea>
                                         </div>
                                     </div>
-
+                        
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="status">Status</label>
                                             <select class="form-control" id="status" name="status">
-                                                <option value="0" {{ $dish->status == 0 ? 'selected' : '' }}>Inactive
-                                                </option>
-                                                <option value="1" {{ $dish->status == 1 ? 'selected' : '' }}>Active
-                                                </option>
+                                                <option value="0" {{ $dish->status == 0 ? 'selected' : '' }}>In Active</option>
+                                                <option value="1" {{ $dish->status == 1 ? 'selected' : '' }}>Active</option>
                                             </select>
                                         </div>
                                     </div>
-
-                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                </form>
-
+                        
+                                </div>
                             </div>
-                        </div>
+                        
+                            <button class="btn btn-primary" type="submit">Update</button>
+                        </form>
+                        
+
                     </div>
 
                 </div>

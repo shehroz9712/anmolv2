@@ -56,7 +56,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="col-sm-4">Status</th>
-                                                <td class="col-sm-8">{{ $record->status ? 'Active' : 'Inactive' }}</td>
+                                                <td class="col-sm-8">{{ $record->status ? 'Active' : 'In Active' }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

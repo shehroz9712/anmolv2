@@ -70,7 +70,7 @@
                                             <label for="status">Status</label>
                                             <select class="form-control" id="status" name="status" required>
                                                 <option value="0" @if ($record->status == 0) selected @endif>
-                                                    Inactive</option>
+                                                    In Active</option>
                                                 <option value="1" @if ($record->status == 1) selected @endif>
                                                     Active</option>
                                             </select>

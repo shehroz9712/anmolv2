@@ -188,6 +188,9 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth')->group(function () {
 
     //customer venue
+    Route::get('/get-service-styles', [ServiceController::class, 'getServiceStyles'])->name('getServiceStyles');
+    Route::get('/get-sub-category', [SubCategoriesController::class, 'getSubCategory'])->name('getSubCategory');
+
     Route::get('/service/styling/{eventId?}', [ServiceStyleController::class, 'create'])->name('service.styling');
     Route::post('/service_style/submit', [ServiceStyleController::class, 'store'])->name('service_style.submit');
     Route::post('/item/list', [ServiceStyleController::class, 'store'])->name('item.list');

@@ -47,7 +47,7 @@
                                             <label for="status">Status</label>
                                             <select class="form-control" id="status" name="status" required>
                                                 <option value="0" {{ $course->status == 0 ? 'selected' : '' }}>
-                                                    Inactive</option>
+                                                    In Active</option>
                                                 <option value="1" {{ $course->status == 1 ? 'selected' : '' }}>Active
                                                 </option>
                                             </select>

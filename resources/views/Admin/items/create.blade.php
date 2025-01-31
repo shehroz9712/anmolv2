@@ -28,9 +28,9 @@
                         <p class="text-muted card-sub-title">Add a new Item with details.</p>
                     </div>
                     <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-12 col-xl-12">
-                                <form action="{{ route('dishes.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('dishes.store') }}" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 col-xl-12">
                                     @csrf
 
                                     <div class="row">
@@ -51,22 +51,28 @@
                                                 price)</label>
                                             <input type="number" class="form-control" id="price" name="price">
                                         </div>
-                                        {{-- <div class="col-md-6 mb-3">
-                                            <label for="equipment_id">Equipment ID</label>
-                                            <input type="number" class="form-control" id="equipment_id"
-                                                name="equipment_id">
-                                        </div> --}}
+                                        <div class="col-lg-4 mb-3">
+                                            <label for="course_type_id">Course Type</label>
+                                            <select class="form-control" id="course_type_id" name="course_type_id" required>
+                                                @foreach ($coursetype as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->type }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6 mb-3">
+                                            <label for="service_style_id">Service Style</label>
+                                            <select class="form-control" id="service_style_id" name="service_style_id"
+                                                required>
+                                                <option value="">Select Service Style</option>
+                                                <!-- Service styles will be loaded dynamically -->
+                                            </select>
+                                        </div>
+
                                         <div class="col-md-6 mb-3">
                                             <label for="subcategory_id">Sub Category</label>
                                             <select class="form-control" id="subcategory_id" name="subcategory_id" required>
-                                                @foreach ($subcategory as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }} <small>
-                                                            @if ($item->is_addon)
-                                                                (Addon Items)
-                                                            @endif
-                                                        </small>
-                                                    </option>
-                                                @endforeach
+                                                <option value="">Select Sub Category</option>
+
                                             </select>
                                         </div>
                                     </div>
@@ -131,29 +137,30 @@
 
                                     </div> --}}
 
+
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="long_desc">Long Description</label>
+                                            <!-- Add a unique id to the textarea -->
+                                            <textarea class="form-control" id="long_desc" name="long_desc" rows="3"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-6 mb-3">
+                                            <label for="status">Status</label>
+                                            <select class="form-control" id="status" name="status">
+                                                <option value="0">In Active</option>
+                                                <option value="1">Active</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label for="long_desc">Long Description</label>
-                                <!-- Add a unique id to the textarea -->
-                                <textarea class="form-control" id="long_desc" name="long_desc" rows="3"></textarea>
-                            </div>
-                        </div>
 
-                        <div class="row">
-
-                            <div class="col-md-6 mb-3">
-                                <label for="status">Status</label>
-                                <select class="form-control" id="status" name="status">
-                                    <option value="0">Inactive</option>
-                                    <option value="1">Active</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <button class="btn btn-primary" type="submit">Submit</button>
+                            <button class="btn btn-primary" type="submit">Submit</button>
                         </form>
 
                     </div>
@@ -161,9 +168,6 @@
             </div>
 
         </div>
-    </div>
-    </div>
-    </div>
     </div>
 @endsection
 
@@ -175,5 +179,47 @@
             .catch(error => {
                 console.error(error);
             });
+    </script>
+
+    <script>
+        document.getElementById("course_type_id").addEventListener("change", function() {
+            var courseTypeId = this.value;
+            var serviceStyleDropdown = document.getElementById("service_style_id");
+
+            // Clear existing options
+            serviceStyleDropdown.innerHTML = '<option value="">Select Service Style</option>';
+
+            if (courseTypeId) {
+                fetch("{{ route('getServiceStyles') }}?course_type_id=" + courseTypeId)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(item => {
+                            let option = new Option(item.name, item.id);
+                            serviceStyleDropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching service styles:", error));
+            }
+        });
+
+        document.getElementById("service_style_id").addEventListener("change", function() {
+            var serviceStyleId = this.value;
+            var serviceStyleDropdown = document.getElementById("subcategory_id");
+
+            // Clear existing options
+            serviceStyleDropdown.innerHTML = '<option value="">Select Sub Category</option>';
+
+            if (serviceStyleId) {
+                fetch("{{ route('getSubCategory') }}?service_style_id=" + serviceStyleId)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(item => {
+                            let option = new Option(item.name, item.id);
+                            serviceStyleDropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching Sub Category:", error));
+            }
+        });
     </script>
 @endsection

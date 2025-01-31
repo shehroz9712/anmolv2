@@ -48,7 +48,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="col-sm-4">Status</th>
-                                                <td class="col-sm-8">{{ $package->status == 1 ? 'Active' : 'Inactive' }}
+                                                <td class="col-sm-8">{{ $package->status == 1 ? 'Active' : 'In Active' }}
                                                 </td>
                                             </tr>
                                         </tbody>

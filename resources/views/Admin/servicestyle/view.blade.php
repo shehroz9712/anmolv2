@@ -45,7 +45,13 @@
 
                                             <tr>
                                                 <th class="col-sm-4">Status</th>
-                                                <td class="col-sm-8">{{ $record->status ? 'Active' : 'Inactive' }}</td>
+                                                <td class="col-sm-8">
+                                                    @if ($record->status == 1)
+                                                        <span class="text-success">Active</span>
+                                                    @else
+                                                        <span class="text-danger">In Active</span>
+                                                    @endif
+                                                </td>
                                             </tr>
 
 
