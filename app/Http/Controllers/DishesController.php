@@ -20,7 +20,6 @@ class DishesController extends Controller
     public function index()
     {
         $dishes = Item::with('subcategory', 'coursetype', 'serviceStyle')->get();
-        dd($dishes);
         return view('Admin.items.index', compact('dishes'));
     }
 
